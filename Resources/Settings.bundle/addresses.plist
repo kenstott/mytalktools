@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>StringsTable</key>
+    <string>Root</string>
+    <key>Title</key>
+	<string>Addresses</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+        <dict>
+            <key>DefaultValue</key>
+            <string>www.mytalktools.com</string>
+            <key>IsSecure</key>
+            <false/>
+            <key>Key</key>
+            <string>SyncService</string>
+            <key>Title</key>
+            <string>Sync Service</string>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+        </dict>
+        <dict>
+            <key>DefaultValue</key>
+            <string></string>
+            <key>IsSecure</key>
+            <false/>
+            <key>Key</key>
+            <string>EmailRecipient</string>
+            <key>Title</key>
+            <string>Default Email Recipient</string>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+        </dict>
+        <dict>
+            <key>DefaultValue</key>
+            <string></string>
+            <key>IsSecure</key>
+            <false/>
+            <key>Key</key>
+            <string>MessageRecipient</string>
+            <key>Title</key>
+            <string>Default SMS Recipient</string>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+        </dict>
+	</array>
+</dict>
+</plist>

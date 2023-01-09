@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>Switch/Scanning</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>HasSwitch</string>
+			<key>Title</key>
+			<string>Switch Type</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>RJCooper</string>
+				<string>AbleNet</string>
+				<string>Apple Watch</string>
+				<string>Custom</string>
+				<string>Eye Gaze/Blink - Experimental</string>
+				<string>Eye Blink - Experimental</string>
+				<string>Screen</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string></string>
+				<string>~1:~3</string>
+				<string> :\n</string>
+				<string>1:2</string>
+				<string>custom_switch</string>
+				<string>eye_gaze</string>
+				<string>L:R</string>
+				<string>A:B</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Custom Config</string>
+			<key>Key</key>
+			<string>CustomSwitchConfig</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>AutoScanInterval</string>
+			<key>Title</key>
+			<string>Switch Auto-Scan Interval</string>
+			<key>Titles</key>
+			<array>
+				<string>Do Not Scan</string>
+				<string>1 Second</string>
+				<string>2 Seconds</string>
+				<string>3 Seconds</string>
+				<string>4 Seconds</string>
+				<string>5 Seconds</string>
+				<string>10 Seconds</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>10</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>GazeDwellInterval</string>
+			<key>Title</key>
+			<string>Gaze Dwell Interval</string>
+			<key>Titles</key>
+			<array>
+				<string>Do Not Respond to Gaze Dwell</string>
+				<string>1 Second</string>
+				<string>2 Seconds</string>
+				<string>3 Seconds</string>
+				<string>4 Seconds</string>
+				<string>5 Seconds</string>
+				<string>10 Seconds</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+				<integer>10</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>AutoScanLoops</string>
+			<key>Title</key>
+			<string>Auto-Scan Loops</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>1 Time</string>
+				<string>2 Times</string>
+				<string>3 Times</string>
+				<string>4 Times</string>
+				<string>5 Times</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>ScanNavigation</string>
+			<key>Title</key>
+			<string>Scan Navigation</string>
+			<key>Titles</key>
+			<array>
+				<string>By Cell</string>
+				<string>Row then Column</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>ScanAnimation</string>
+			<key>Title</key>
+			<string>Scan Animation</string>
+			<key>Titles</key>
+			<array>
+				<string>Reverse Colors</string>
+				<string>Popout Cells</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AutoStartScan</string>
+			<key>Title</key>
+			<string>Auto-Start Auto-Scan</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AuditoryScan</string>
+			<key>Title</key>
+			<string>Auditory Scan</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>SelectionTone</string>
+			<key>Title</key>
+			<string>Selection Tone</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>ResetAfterSelection</string>
+			<key>Title</key>
+			<string>Reset after Selection</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>AutoSelectInterval</string>
+			<key>Title</key>
+			<string>Auto-Select Interval</string>
+			<key>Titles</key>
+			<array>
+				<string>Do Not Select</string>
+				<string>1 Second</string>
+				<string>2 Seconds</string>
+				<string>3 Seconds</string>
+				<string>4 Seconds</string>
+				<string>5 Seconds</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+				<integer>5</integer>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

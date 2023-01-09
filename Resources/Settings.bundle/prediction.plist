@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>Word Prediction</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>CommunityPredictions</string>
+			<key>Title</key>
+			<string>Use Community Predictions</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>CodeCommunityPredictions</string>
+			<key>Title</key>
+			<string>Code Community Predictions</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>WizardGesture</string>
+			<key>Title</key>
+			<string>Wizard Gesture</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>0</string>
+			<key>Key</key>
+			<string>WizardDisplay</string>
+			<key>Title</key>
+			<string>Display Predictions As...</string>
+			<key>Titles</key>
+			<array>
+				<string>Board</string>
+				<string>Popup List</string>
+				<string>Popup Board</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+				<string>2</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Maximum Predictions</string>
+			<key>Key</key>
+			<string>MaxPredictionsTitle</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>MaxPredictions</string>
+			<key>DefaultValue</key>
+			<integer>30</integer>
+			<key>MinimumValue</key>
+			<integer>0</integer>
+			<key>MaximumValue</key>
+			<integer>50</integer>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Sort By</string>
+			<key>Key</key>
+			<string>PredictionSort</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>Alphabetically</string>
+				<string>Probability</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<string>1</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

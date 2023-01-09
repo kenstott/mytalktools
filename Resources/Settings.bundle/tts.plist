@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>Text-to-Speech</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<string>com.apple.ttsbundle.Samantha-compact</string>
+			<key>Key</key>
+			<string>TTSVoice2</string>
+			<key>Title</key>
+			<string>TTS Voice</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>US English - Heather - Female/Adult</string>
+				<string>US English - Karen - Female/Adult</string>
+				<string>US English - Micah - Male/Adult</string>
+				<string>US English - Nelly - Female/Child</string>
+				<string>US English - Rod - Male/Adult</string>
+				<string>US English - Ryan - Male/Adult</string>
+				<string>US English - Kenny - Male/Child</string>
+				<string>US English - Laura - Female/Adult</string>
+				<string>US English - Saul - Male/Adult</string>
+				<string>US English - Sharon - Female/Adult</string>
+				<string>US English - Tracy - Female/Adult</string>
+				<string>US English - Will - Male/Adult</string>
+				<string>US English - Will Bad Guy - Male/Adult</string>
+				<string>US English - Will from afar - Male/Adult</string>
+				<string>US English - Will Happy - Male/Adult</string>
+				<string>US English - Will Little Creature - Male/Adult</string>
+				<string>US English - Will Old Man - Male/Adult</string>
+				<string>US English - Will Sad - Male/Adult</string>
+				<string>US English - Will up close - Male/Adult</string>
+				<string>British English - Graham - Male/Adult</string>
+				<string>British English - Lucy - Female/Adult</string>
+				<string>British English - Nizareng - Male/Adult</string>
+				<string>British English - Peter - Male/Adult</string>
+				<string>British English - Peter Happy - Male/Adult</string>
+				<string>British English - Peter Sad - Male/Adult</string>
+				<string>British English - Queen Elizabeth - Male/Adult</string>
+				<string>British English - Rachel - Female/Adult</string>
+				<string>Australian English - Lisa - Female/Adult</string>
+				<string>Australian English - Tyler - Male/Adult</string>
+				<string>Scottish English - Rhona - Female/Adult</string>
+				<string>Indian English - Deepa - Female/Adult</string>
+				<string>French (Canada) - Louise - Female/Adult</string>
+				<string>Catalan - Laia - Female/Adult</string>
+				<string>Danish - Mette - Female/Adult</string>
+				<string>Danish - Rasmus - Male/Adult</string>
+				<string>Dutch - Femke - Female/Adult</string>
+				<string>Dutch - Max - Male/Adult</string>
+				<string>Dutch - Daan - Male/Adult</string>
+				<string>Dutch - Jasmijn - Female/Adult</string>
+				<string>Swedish (Finland) - Samuel - Male/Adult</string>
+				<string>Finnish - Sanna - Female/Adult</string>
+				<string>French - Alice - Female/Adult</string>
+				<string>French - Antoine - Male/Adult</string>
+				<string>French - Antoine from afar - Male/Adult</string>
+				<string>French - Antoine Happy - Male/Adult</string>
+				<string>French - Antoine Sad - Male/Adult</string>
+				<string>French - Antoine up close - Male/Adult</string>
+				<string>French - Bruno - Male/Adult</string>
+				<string>French - Claire - Female/Adult</string>
+				<string>French - Julie - Female/Adult</string>
+				<string>French - Manon - Female/Adult</string>
+				<string>French - Margaux - Female/Adult</string>
+				<string>French - Margaux Happy - Female/Adult</string>
+				<string>French - Margaux Sad - Female/Adult</string>
+				<string>French - Robot - Male/Adult</string>
+				<string>German - Claudia - Female/Adult</string>
+				<string>German - Julia - Female/Adult</string>
+				<string>German - Klaus - Male/Adult</string>
+				<string>German - Sarah - Female/Adult</string>
+				<string>German - Andreas - Male/Adult</string>
+				<string>Greek - Dimitris - Male/Adult</string>
+				<string>Greek - Dimitris Happy - Male/Adult</string>
+				<string>Greek - Dimitris Sad - Male/Adult</string>
+				<string>Italian - Vittorio - Male/Adult</string>
+				<string>Italian - Chiara - Female/Adult</string>
+				<string>Italian - Fabiana - Female/Adult</string>
+				<string>Norwegian - Kari - Female/Adult</string>
+				<string>Norwegian - Olav - Male/Adult</string>
+				<string>Norwegian - Bente - Female/Adult</string>
+				<string>Polish - Ania - Female/Adult</string>
+				<string>Polish - Monika - Female/Adult</string>
+				<string>Portuguese - Celia - Female/Adult</string>
+				<string>Russian - Alyona - Female/Adult</string>
+				<string>Spanish - Antonio - Male/Adult</string>
+				<string>Spanish - Maria - Female/Adult</string>
+				<string>Spanish - Ines - Female/Adult</string>
+				<string>Swedish - Elin - Female/Adult</string>
+				<string>Swedish - Emma - Female/Adult</string>
+				<string>Swedish - Erik - Male/Adult</string>
+				<string>Swedish - Emil - Male/Adult</string>
+				<string>Swedish (Gothenburg) - Kal - Male/Adult</string>
+				<string>Turkish - Ipek - Female/Adult</string>
+				<string>Spanish (US) - Rodrigo - Male/Adult</string>
+				<string>Spanish (US) - Rosa - Female/Adult</string>
+				<string>Belgian Dutch - Jeroen - Male/Adult</string>
+				<string>Belgian Dutch - Jeroen Happy - Male/Adult</string>
+				<string>Belgian Dutch - Jeroen Sad - Male/Adult</string>
+				<string>Belgian Dutch - Sofie - Female/Adult</string>
+				<string>Belgian Dutch - Zoe - Female/Adult</string>
+				<string>Arabic (Saudi Arabia) - Mehdi - Male/Adult</string>
+				<string>Arabic (Saudi Arabia) - Nizar - Male/Adult</string>
+				<string>Arabic (Saudi Arabia) - Salma - Female/Adult</string>
+				<string>Portuguese (Brazil) - Marcia - Female/Adult</string>
+				<string>Czech - Eliska - Female/Adult</string>
+				<string>Japanese - Sakura - Female/Adult</string>
+				<string>Mandarin - Lulu - Female/Adult</string>
+				<string>Scanian - Mia - Female/Adult</string>
+				<string>US English (Free) - Slt - Female/Adult</string>
+				<string>US English (Free) - Awb - Male/Adult</string>
+				<string>US English (Free) - Rms - Male/Adult</string>
+				<string>US English (Free) - Kal - Male/Adult</string>
+				<string>US English (Free) - Slt8k - Female/Adult</string>
+				<string>US English (Free) - Awb8k - Female/Adult</string>
+				<string>US English (Free) - Rms8k - Female/Adult</string>
+				<string>US English (Free) - Kal16 - Female/Adult</string>
+				<string>US English (Free) - Samantha - Female/Adult</string>
+				<string>Arabic (Free)- Maged - Male/Adult</string>
+				<string>Czech (Free)- Zuzana - Female/Adult</string>
+				<string>Danish (Free) - Sara - Female/Adult</string>
+
+				<string>German (Free) - Anna - Female/Adult</string>
+
+				<string>Greek (Free) - Melina - Female/Adult</string>
+
+				<string>Australian English (Free) - Karen - Female/Adult</string>
+
+				<string>British English (Free) - Daniel - Male/Adult</string>
+
+				<string>Irish English (Free) - Moira - Female/Adult</string>
+
+				<string>South African English (Free) - Tessa - Female/Adult</string>
+
+				<string>Spanish (Free) - Monica - Female/Adult</string>
+
+				<string>Spanish (Free) - Paulina - Female/Adult</string>
+
+				<string>Finnish (Free) - Satu - Female/Adult</string>
+
+				<string>French - Canada (Free) - Amelie - Female/Adult</string>
+
+				<string>French (Free) - Thomas - Male/Adult</string>
+
+				<string>Hebrew (Free) - Carmit - Female/Adult</string>
+
+				<string>Hindi (Free) - Lekha - Female/Adult</string>
+
+				<string>Hungarian (Free) - Mariska - Female/Adult</string>
+
+				<string>Indonesian (Free) - Damayanti - Female/Adult</string>
+
+				<string>Italian (Free) - Alice - Female/Adult</string>
+
+				<string>Japanese (Free) - Kyoko - Female/Adult</string>
+
+				<string>Korean (Free) - Yuna - Female/Adult</string>
+
+				<string>Belgian Dutch (Free) - Ellen - Female/Adult</string>
+
+				<string>Dutch (Free) - Xander - Male/Adult</string>
+
+				<string>Norwegian (Free) - Nora - Female/Adult</string>
+
+				<string>Polish (Free) - Zosia - Female/Adult</string>
+
+				<string>Portuguese - Brazil (Free) - Luciana - Female/Adult</string>
+
+				<string>Portuguese (Free) - Joana - Female/Adult</string>
+
+				<string>Romanian (Free) - Ioana - Female/Adult</string>
+
+				<string>Russian (Free) - Milena - Female/Adult</string>
+
+				<string>Slovak (Free) - Laura - Female/Adult</string>
+
+				<string>Swedish (Free) - Alva - Female/Adult</string>
+
+				<string>Thai (Free) - Kanya - Female/Adult</string>
+
+				<string>Turkish (Free) - Yelda - Female/Adult</string>
+
+				<string>Chinese (Free) - Ting-Ting - Female/Adult</string>
+
+				<string>Chinese-Hong Kong (Free) - Sin-Ji - Female/Adult</string>
+
+				<string>Chinese-Taiwan (Free) - Mei-Jia - Female/Adult</string>
+
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string></string>
+				<string>enu_hd_heather_22k_lf.bvcu</string>
+				<string>enu_karen_22k_ns.bvcu</string>
+				<string>enu_micah_22k_ns.bvcu</string>
+				<string>enu_hd_nelly_22k_lf.bvcu</string>
+				<string>enu_hd_rod_22k_lf.bvcu</string>
+				<string>enu_hd_ryan_22k_lf.bvcu</string>
+				<string>enu_hd_kenny_22k_lf.bvcu</string>
+				<string>enu_hd_laura_22k_lf.bvcu</string>
+				<string>enu_saul_22k_ns.bvcu</string>
+				<string>enu_hd_sharon_22k_lf.bvcu</string>
+				<string>enu_hd_tracy_22k_lf.bvcu</string>
+				<string>enu_hd_will_22k_lf.bvcu</string>
+				<string>enu_willbadguy_22k_ns.bvcu</string>
+				<string>enu_willfromafar_22k_ns.bvcu</string>
+				<string>enu_willHappy_22k_ns.bvcu</string>
+				<string>enu_willlittlecreature_22k_ns.bvcu</string>
+				<string>enu_willoldman_22k_ns.bvcu</string>
+				<string>enu_willSad_22k_ns.bvcu</string>
+				<string>enu_willupclose_22k_ns.bvcu</string>
+				<string>eng_hd_graham_22k_lf.bvcu</string>
+				<string>eng_hd_lucy_22k_lf.bvcu</string>
+				<string>eng_hd_nizareng_22k_lf.bvcu</string>
+				<string>eng_hd_peter_22k_lf.bvcu</string>
+				<string>eng_peterhappy_22k_ns.bvcu</string>
+				<string>eng_petersad_22k_ns.bvcu</string>
+				<string>eng_queenelizabeth_22k_ns.bvcu</string>
+				<string>eng_hd_rachel_22k_lf.bvcu</string>
+				<string>en_au_hd_lisa_22k_lf.bvcu</string>
+				<string>en_au_hd_tyler_22k_lf.bvcu</string>
+				<string>en_sct_hd_rhona_22k_lf.bvcu</string>
+				<string>en_in_hd_deepa_22k_lf.bvcu</string>
+				<string>frc_hd_louise_22k_lf.bvcu</string>
+				<string>ca_es_hd_laia_22k_lf.bvcu</string>
+				<string>dad_hd_mette_22k_lf.bvcu</string>
+				<string>dad_hd_rasmus_22k_lf.bvcu</string>
+				<string>dun_hd_femke_22k_lf.bvcu</string>
+				<string>dun_hd_max_22k_lf.bvcu</string>
+				<string>dun_hd_daan_22k_lf.bvcu</string>
+				<string>dun_hd_jasmijn_22k_lf.bvcu</string>
+				<string>sv_fi_hd_samuel_22k_lf.bvcu</string>
+				<string>fif_hd_sanna_22k_lf.bvcu</string>
+				<string>frf_hd_alice_22k_lf.bvcu</string>
+				<string>frf_hd_antoine_22k_lf.bvcu</string>
+				<string>frf_antoinefromafar_22k_ns.bvcu</string>
+				<string>frf_antoineHappy_22k_ns.bvcu</string>
+				<string>frf_antoineSad_22k_ns.bvcu</string>
+				<string>frf_antoineupclose_22k_ns.bvcu</string>
+				<string>frf_hd_bruno_22k_lf.bvcu</string>
+				<string>frf_hd_claire_22k_lf.bvcu</string>
+				<string>frf_hd_julie_22k_lf.bvcu</string>
+				<string>frf_hd_manon_22k_lf.bvcu</string>
+				<string>frf_hd_margaux_22k_lf.bvcu</string>
+				<string>frf_margauxHappy_22k_ns.bvcu</string>
+				<string>frf_margauxSad_22k_ns.bvcu</string>
+				<string>frf_robot_22k_ns.bvcu</string>
+				<string>ged_hd_claudia_22k_lf.bvcu</string>
+				<string>ged_hd_julia_22k_lf.bvcu</string>
+				<string>ged_hd_klaus_22k_lf.bvcu</string>
+				<string>ged_hd_sarah_22k_lf.bvcu</string>
+				<string>ged_hd_andreas_22k_lf.bvcu</string>
+				<string>grg_hd_dimitris_22k_lf.bvcu</string>
+				<string>grg_dimitrisHappy_22k_ns.bvcu</string>
+				<string>grg_dimitrisSad_22k_ns.bvcu</string>
+				<string>iti_hd_vittorio_22k_lf.bvcu</string>
+				<string>iti_hd_chiara_22k_lf.bvcu</string>
+				<string>iti_hd_fabiana_22k_lf.bvcu</string>
+				<string>non_hd_kari_22k_lf.bvcu</string>
+				<string>non_hd_olav_22k_lf.bvcu</string>
+				<string>non_hd_bente_22k_lf.bvcu</string>
+				<string>pop_hd_ania_22k_lf.bvcu</string>
+				<string>pop_hd_monika_22k_lf.bvcu</string>
+				<string>poe_hd_celia_22k_lf.bvcu</string>
+				<string>rur_hd_alyona_22k_lf.bvcu</string>
+				<string>sps_hd_antonio_22k_lf.bvcu</string>
+				<string>sps_hd_maria_22k_lf.bvcu</string>
+				<string>sps_hd_ines_22k_lf.bvcu</string>
+				<string>sws_hd_elin_22k_lf.bvcu</string>
+				<string>sws_hd_emma_22k_lf.bvcu</string>
+				<string>sws_hd_erik_22k_lf.bvcu</string>
+				<string>sws_hd_emil_22k_lf.bvcu</string>
+				<string>gb_se_hd_kal_22k_lf.bvcu</string>
+				<string>tut_hd_ipek_22k_lf.bvcu</string>
+				<string>spu_hd_rodrigo_22k_lf.bvcu</string>
+				<string>spu_hd_rosa_22k_lf.bvcu</string>
+				<string>dub_hd_jeroen_22k_lf.bvcu</string>
+				<string>dub_jeroenhappy_22k_ns.bvcu</string>
+				<string>dub_jeroensad_22k_ns.bvcu</string>
+				<string>dub_hd_sofie_22k_lf.bvcu</string>
+				<string>dub_hd_zoe_22k_lf.bvcu</string>
+				<string>ar_sa_hd_mehdi_22k_lf.bvcu</string>
+				<string>ar_sa_hd_nizar_22k_lf.bvcu</string>
+				<string>ar_sa_hd_salma_22k_lf.bvcu</string>
+				<string>pob_hd_marcia_22k_lf.bvcu</string>
+				<string>czc_hd_eliska_22k_lf.bvcu</string>
+				<string>ja_jp_hd_sakura_22k_lf.bvcu</string>
+				<string>zh_cn_hd_lulu_22k_lf.bvcu</string>
+				<string>sc_se_hd_mia_22k_lf.bvcu</string>
+				<string>openears_slt</string>
+				<string>openears_awb</string>
+				<string>openears_rms</string>
+				<string>openears_kal</string>
+				<string>openears_slt8k</string>
+				<string>openears_awb8k</string>
+				<string>openears_rms8k</string>
+				<string>openears_kal16</string>
+				<string>com.apple.ttsbundle.Samantha-compact</string>
+				<string>com.apple.ttsbundle.Maged-compact</string>
+				<string>com.apple.ttsbundle.Zuzana-compact</string>
+				<string>com.apple.ttsbundle.Sara-compact</string>
+				<string>com.apple.ttsbundle.Anna-compact</string>
+				<string>com.apple.ttsbundle.Melina-compact</string>
+				<string>com.apple.ttsbundle.Karen-compact</string>
+				<string>com.apple.ttsbundle.Daniel-compact</string>
+				<string>com.apple.ttsbundle.Moira-compact</string>
+				<string>com.apple.ttsbundle.Tessa-compact</string>
+				<string>com.apple.ttsbundle.Monica-compact</string>
+				<string>com.apple.ttsbundle.Paulina-compact</string>
+				<string>com.apple.ttsbundle.Satu-compact</string>
+				<string>com.apple.ttsbundle.Amelie-compact</string>
+				<string>com.apple.ttsbundle.Thomas-compact</string>
+				<string>com.apple.ttsbundle.Carmit-compact</string>
+				<string>com.apple.ttsbundle.Lekha-compact</string>
+				<string>com.apple.ttsbundle.Mariska-compact</string>
+				<string>com.apple.ttsbundle.Damayanti-compact</string>
+				<string>com.apple.ttsbundle.Alice-compact</string>
+				<string>com.apple.ttsbundle.Kyoko-compact</string>
+				<string>com.apple.ttsbundle.Yuna-compact</string>
+				<string>com.apple.ttsbundle.Ellen-compact</string>
+				<string>com.apple.ttsbundle.Xander-compact</string>
+				<string>com.apple.ttsbundle.Nora-compact</string>
+				<string>com.apple.ttsbundle.Zosia-compact</string>
+				<string>com.apple.ttsbundle.Luciana-compact</string>
+				<string>com.apple.ttsbundle.Joana-compact</string>
+				<string>com.apple.ttsbundle.Ioana-compact</string>
+				<string>com.apple.ttsbundle.Milena-compact</string>
+				<string>com.apple.ttsbundle.Laura-compact</string>
+				<string>com.apple.ttsbundle.Alva-compact</string>
+				<string>com.apple.ttsbundle.Kanya-compact</string>
+				<string>com.apple.ttsbundle.Yelda-compact</string>
+				<string>com.apple.ttsbundle.Ting-Ting-compact</string>
+				<string>com.apple.ttsbundle.Sin-Ji-compact</string>
+				<string>com.apple.ttsbundle.Mei-Jia-compact</string>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>Key</key>
+			<string>TTSVoiceAlt</string>
+			<key>Title</key>
+			<string>Alternate TTS Voice</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>US English - Heather - Female/Adult</string>
+				<string>US English - Karen - Female/Adult</string>
+				<string>US English - Micah - Male/Adult</string>
+				<string>US English - Nelly - Female/Child</string>
+				<string>US English - Rod - Male/Adult</string>
+				<string>US English - Ryan - Male/Adult</string>
+				<string>US English - Kenny - Male/Child</string>
+				<string>US English - Laura - Female/Adult</string>
+				<string>US English - Saul - Male/Adult</string>
+				<string>US English - Sharon - Female/Adult</string>
+				<string>US English - Tracy - Female/Adult</string>
+				<string>US English - Will - Male/Adult</string>
+				<string>US English - Will Bad Guy - Male/Adult</string>
+				<string>US English - Will from afar - Male/Adult</string>
+				<string>US English - Will Happy - Male/Adult</string>
+				<string>US English - Will Little Creature - Male/Adult</string>
+				<string>US English - Will Old Man - Male/Adult</string>
+				<string>US English - Will Sad - Male/Adult</string>
+				<string>US English - Will up close - Male/Adult</string>
+				<string>British English - Graham - Male/Adult</string>
+				<string>British English - Lucy - Female/Adult</string>
+				<string>British English - Nizareng - Male/Adult</string>
+				<string>British English - Peter - Male/Adult</string>
+				<string>British English - Peter Happy - Male/Adult</string>
+				<string>British English - Peter Sad - Male/Adult</string>
+				<string>British English - Queen Elizabeth - Male/Adult</string>
+				<string>British English - Rachel - Female/Adult</string>
+				<string>Australian English - Lisa - Male/Adult</string>
+				<string>Australian English - Tyler - Male/Adult</string>
+				<string>Scottish English - Rhona - Female/Adult</string>
+				<string>Indian English - Deepa - Female/Adult</string>
+				<string>French (Canada) - Louise - Female/Adult</string>
+				<string>Catalan - Laia - Female/Adult</string>
+				<string>Danish - Mette - Female/Adult</string>
+				<string>Danish - Rasmus - Male/Adult</string>
+				<string>Dutch - Femke - Female/Adult</string>
+				<string>Dutch - Max - Male/Adult</string>
+				<string>Dutch - Daan - Male/Adult</string>
+				<string>Dutch - Jasmijn - Female/Adult</string>
+				<string>Swedish (Finland) - Samuel - Male/Adult</string>
+				<string>Finnish - Sanna - Female/Adult</string>
+				<string>French - Alice - Female/Adult</string>
+				<string>French - Antoine - Male/Adult</string>
+				<string>French - Antoine from afar - Male/Adult</string>
+				<string>French - Antoine Happy - Male/Adult</string>
+				<string>French - Antoine Sad - Male/Adult</string>
+				<string>French - Antoine up close - Male/Adult</string>
+				<string>French - Bruno - Male/Adult</string>
+				<string>French - Claire - Female/Adult</string>
+				<string>French - Julie - Female/Adult</string>
+				<string>French - Manon - Female/Adult</string>
+				<string>French - Margaux - Female/Adult</string>
+				<string>French - Margaux Happy - Female/Adult</string>
+				<string>French - Margaux Sad - Female/Adult</string>
+				<string>French - Robot - Male/Adult</string>
+				<string>German - Claudia - Female/Adult</string>
+				<string>German - Julia - Female/Adult</string>
+				<string>German - Klaus - Male/Adult</string>
+				<string>German - Sarah - Female/Adult</string>
+				<string>German - Andreas - Male/Adult</string>
+				<string>Greek - Dimitris - Male/Adult</string>
+				<string>Greek - Dimitris Happy - Male/Adult</string>
+				<string>Greek - Dimitris Sad - Male/Adult</string>
+				<string>Italian - Vittorio - Male/Adult</string>
+				<string>Italian - Chiara - Female/Adult</string>
+				<string>Italian - Fabiana - Female/Adult</string>
+				<string>Norwegian - Kari - Female/Adult</string>
+				<string>Norwegian - Olav - Male/Adult</string>
+				<string>Norwegian - Bente - Female/Adult</string>
+				<string>Polish - Ania - Female/Adult</string>
+				<string>Polish - Monika - Female/Adult</string>
+				<string>Portuguese - Celia - Female/Adult</string>
+				<string>Russian - Alyona - Female/Adult</string>
+				<string>Spanish - Antonio - Male/Adult</string>
+				<string>Spanish - Maria - Female/Adult</string>
+				<string>Spanish - Ines - Female/Adult</string>
+				<string>Swedish - Elin - Female/Adult</string>
+				<string>Swedish - Emma - Female/Adult</string>
+				<string>Swedish - Erik - Male/Adult</string>
+				<string>Swedish - Emil - Male/Adult</string>
+				<string>Swedish (Gothenburg) - Kal - Male/Adult</string>
+				<string>Turkish - Ipek - Female/Adult</string>
+				<string>Spanish (US) - Rodrigo - Male/Adult</string>
+				<string>Spanish (US) - Rosa - Female/Adult</string>
+				<string>Belgian Dutch - Jeroen - Male/Adult</string>
+				<string>Belgian Dutch - Jeroen Happy - Male/Adult</string>
+				<string>Belgian Dutch - Jeroen Sad - Male/Adult</string>
+				<string>Belgian Dutch - Sofie - Female/Adult</string>
+				<string>Belgian Dutch - Zoe - Female/Adult</string>
+				<string>Arabic (Saudi Arabia) - Mehdi - Male/Adult</string>
+				<string>Arabic (Saudi Arabia) - Nizar - Male/Adult</string>
+				<string>Arabic (Saudi Arabia) - Salma - Female/Adult</string>
+				<string>Portuguese (Brazil) - Marcia - Female/Adult</string>
+				<string>Czech - Eliska - Female/Adult</string>
+				<string>Japanese - Sakura - Female/Adult</string>
+				<string>Mandarin - Lulu - Female/Adult</string>
+				<string>Scanian - Mia - Female/Adult</string>
+				<string>US English (Free) - Slt - Female/Adult</string>
+				<string>US English (Free) - Awb - Male/Adult</string>
+				<string>US English (Free) - Rms - Male/Adult</string>
+				<string>US English (Free) - Kal - Male/Adult</string>
+				<string>US English (Free) - Slt8k - Female/Adult</string>
+				<string>US English (Free) - Awb8k - Female/Adult</string>
+				<string>US English (Free) - Rms8k - Female/Adult</string>
+				<string>US English (Free) - Kal16 - Female/Adult</string>
+				<string>US English (Free) - Samantha - Female/Adult</string>
+				<string>Arabic (Free)- Maged - Male/Adult</string>
+				<string>Czech (Free)- Zuzana - Female/Adult</string>
+				<string>Danish (Free) - Sara - Female/Adult</string>
+				<string>German (Free) - Anna - Female/Adult</string>
+
+				<string>Greek (Free) - Melina - Female/Adult</string>
+
+				<string>Australian English (Free) - Karen - Female/Adult</string>
+
+				<string>British English (Free) - Daniel - Male/Adult</string>
+
+				<string>Irish English (Free) - Moira - Female/Adult</string>
+
+				<string>South African English (Free) - Tessa - Female/Adult</string>
+
+				<string>Spanish (Free) - Monica - Female/Adult</string>
+
+				<string>Spanish (Free) - Paulina - Female/Adult</string>
+
+				<string>Finnish (Free) - Satu - Female/Adult</string>
+
+				<string>French - Canada (Free) - Amelie - Female/Adult</string>
+
+				<string>French (Free) - Thomas - Male/Adult</string>
+
+				<string>Hebrew (Free) - Carmit - Female/Adult</string>
+
+				<string>Hindi (Free) - Lekha - Female/Adult</string>
+
+				<string>Hungarian (Free) - Mariska - Female/Adult</string>
+
+				<string>Indonesian (Free) - Damayanti - Female/Adult</string>
+
+				<string>Italian (Free) - Alice - Female/Adult</string>
+
+				<string>Japanese (Free) - Kyoko - Female/Adult</string>
+
+				<string>Korean (Free) - Yuna - Female/Adult</string>
+
+				<string>Belgian Dutch (Free) - Ellen - Female/Adult</string>
+
+				<string>Dutch (Free) - Xander - Male/Adult</string>
+
+				<string>Norwegian (Free) - Nora - Female/Adult</string>
+
+				<string>Polish (Free) - Zosia - Female/Adult</string>
+
+				<string>Portuguese - Brazil (Free) - Luciana - Female/Adult</string>
+
+				<string>Portuguese (Free) - Joana - Female/Adult</string>
+
+				<string>Romanian (Free) - Ioana - Female/Adult</string>
+
+				<string>Russian (Free) - Milena - Female/Adult</string>
+
+				<string>Slovak (Free) - Laura - Female/Adult</string>
+
+				<string>Swedish (Free) - Alva - Female/Adult</string>
+
+				<string>Thai (Free) - Kanya - Female/Adult</string>
+
+				<string>Turkish (Free) - Yelda - Female/Adult</string>
+
+				<string>Chinese (Free) - Ting-Ting - Female/Adult</string>
+
+				<string>Chinese-Hong Kong (Free) - Sin-Ji - Female/Adult</string>
+
+				<string>Chinese-Taiwan (Free) - Mei-Jia - Female/Adult</string>
+
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string></string>
+				<string>enu_hd_heather_22k_lf.bvcu</string>
+				<string>enu_karen_22k_ns.bvcu</string>
+				<string>enu_micah_22k_ns.bvcu</string>
+				<string>enu_hd_nelly_22k_lf.bvcu</string>
+				<string>enu_hd_rod_22k_lf.bvcu</string>
+				<string>enu_hd_ryan_22k_lf.bvcu</string>
+				<string>enu_hd_kenny_22k_lf.bvcu</string>
+				<string>enu_hd_laura_22k_lf.bvcu</string>
+				<string>enu_saul_22k_ns.bvcu</string>
+				<string>enu_hd_sharon_22k_lf.bvcu</string>
+				<string>enu_hd_tracy_22k_lf.bvcu</string>
+				<string>enu_hd_will_22k_lf.bvcu</string>
+				<string>enu_willbadguy_22k_ns.bvcu</string>
+				<string>enu_willfromafar_22k_ns.bvcu</string>
+				<string>enu_willHappy_22k_ns.bvcu</string>
+				<string>enu_willlittlecreature_22k_ns.bvcu</string>
+				<string>enu_willoldman_22k_ns.bvcu</string>
+				<string>enu_willSad_22k_ns.bvcu</string>
+				<string>enu_willupclose_22k_ns.bvcu</string>
+				<string>eng_hd_graham_22k_lf.bvcu</string>
+				<string>eng_hd_lucy_22k_lf.bvcu</string>
+				<string>eng_hd_nizareng_22k_lf.bvcu</string>
+				<string>eng_hd_peter_22k_lf.bvcu</string>
+				<string>eng_peterhappy_22k_ns.bvcu</string>
+				<string>eng_petersad_22k_ns.bvcu</string>
+				<string>eng_queenelizabeth_22k_ns.bvcu</string>
+				<string>eng_hd_rachel_22k_lf.bvcu</string>
+				<string>en_au_hd_lisa_22k_lf.bvcu</string>
+				<string>en_au_hd_tyler_22k_lf.bvcu</string>
+				<string>en_sct_hd_rhona_22k_lf.bvcu</string>
+				<string>en_in_hd_deepa_22k_lf.bvcu</string>
+				<string>frc_hd_louise_22k_lf.bvcu</string>
+				<string>ca_es_hd_laia_22k_lf.bvcu</string>
+				<string>dad_hd_mette_22k_lf.bvcu</string>
+				<string>dad_hd_rasmus_22k_lf.bvcu</string>
+				<string>dun_hd_femke_22k_lf.bvcu</string>
+				<string>dun_hd_max_22k_lf.bvcu</string>
+				<string>dun_hd_daan_22k_lf.bvcu</string>
+				<string>dun_hd_jasmijn_22k_lf.bvcu</string>
+				<string>sv_fi_hd_samuel_22k_lf.bvcu</string>
+				<string>fif_hd_sanna_22k_lf.bvcu</string>
+				<string>frf_hd_alice_22k_lf.bvcu</string>
+				<string>frf_hd_antoine_22k_lf.bvcu</string>
+				<string>frf_antoinefromafar_22k_ns.bvcu</string>
+				<string>frf_antoineHappy_22k_ns.bvcu</string>
+				<string>frf_antoineSad_22k_ns.bvcu</string>
+				<string>frf_antoineupclose_22k_ns.bvcu</string>
+				<string>frf_hd_bruno_22k_lf.bvcu</string>
+				<string>frf_hd_claire_22k_lf.bvcu</string>
+				<string>frf_hd_julie_22k_lf.bvcu</string>
+				<string>frf_hd_manon_22k_lf.bvcu</string>
+				<string>frf_hd_margaux_22k_lf.bvcu</string>
+				<string>frf_margauxHappy_22k_ns.bvcu</string>
+				<string>frf_margauxSad_22k_ns.bvcu</string>
+				<string>frf_robot_22k_ns.bvcu</string>
+				<string>ged_hd_claudia_22k_lf.bvcu</string>
+				<string>ged_hd_julia_22k_lf.bvcu</string>
+				<string>ged_hd_klaus_22k_lf.bvcu</string>
+				<string>ged_hd_sarah_22k_lf.bvcu</string>
+				<string>ged_hd_andreas_22k_lf.bvcu</string>
+				<string>grg_hd_dimitris_22k_lf.bvcu</string>
+				<string>grg_dimitrisHappy_22k_ns.bvcu</string>
+				<string>grg_dimitrisSad_22k_ns.bvcu</string>
+				<string>iti_hd_vittorio_22k_lf.bvcu</string>
+				<string>iti_hd_chiara_22k_lf.bvcu</string>
+				<string>iti_hd_fabiana_22k_lf.bvcu</string>
+				<string>non_hd_kari_22k_lf.bvcu</string>
+				<string>non_hd_olav_22k_lf.bvcu</string>
+				<string>non_hd_bente_22k_lf.bvcu</string>
+				<string>pop_hd_ania_22k_lf.bvcu</string>
+				<string>pop_hd_monika_22k_lf.bvcu</string>
+				<string>poe_hd_celia_22k_lf.bvcu</string>
+				<string>rur_hd_alyona_22k_lf.bvcu</string>
+				<string>sps_hd_antonio_22k_lf.bvcu</string>
+				<string>sps_hd_maria_22k_lf.bvcu</string>
+				<string>sps_hd_ines_22k_lf.bvcu</string>
+				<string>sws_hd_elin_22k_lf.bvcu</string>
+				<string>sws_hd_emma_22k_lf.bvcu</string>
+				<string>sws_hd_erik_22k_lf.bvcu</string>
+				<string>sws_hd_emil_22k_lf.bvcu</string>
+				<string>gb_se_hd_kal_22k_lf.bvcu</string>
+				<string>tut_hd_ipek_22k_lf.bvcu</string>
+				<string>spu_hd_rodrigo_22k_lf.bvcu</string>
+				<string>spu_hd_rosa_22k_lf.bvcu</string>
+				<string>dub_hd_jeroen_22k_lf.bvcu</string>
+				<string>dub_jeroenhappy_22k_ns.bvcu</string>
+				<string>dub_jeroensad_22k_ns.bvcu</string>
+				<string>dub_hd_sofie_22k_lf.bvcu</string>
+				<string>dub_hd_zoe_22k_lf.bvcu</string>
+				<string>ar_sa_hd_mehdi_22k_lf.bvcu</string>
+				<string>ar_sa_hd_nizar_22k_lf.bvcu</string>
+				<string>ar_sa_hd_salma_22k_lf.bvcu</string>
+				<string>pob_hd_marcia_22k_lf.bvcu</string>
+				<string>czc_hd_eliska_22k_lf.bvcu</string>
+				<string>ja_jp_hd_sakura_22k_lf.bvcu</string>
+				<string>zh_cn_hd_lulu_22k_lf.bvcu</string>
+				<string>sc_se_hd_mia_22k_lf.bvcu</string>
+				<string>openears_slt</string>
+				<string>openears_awb</string>
+				<string>openears_rms</string>
+				<string>openears_kal</string>
+				<string>openears_slt8k</string>
+				<string>openears_awb8k</string>
+				<string>openears_rms8k</string>
+				<string>openears_kal16</string>
+				<string>com.apple.ttsbundle.Samantha-compact</string>
+				<string>com.apple.ttsbundle.Maged-compact</string>
+				<string>com.apple.ttsbundle.Zuzana-compact</string>
+				<string>com.apple.ttsbundle.Sara-compact</string>
+				<string>com.apple.ttsbundle.Anna-compact</string>
+				<string>com.apple.ttsbundle.Melina-compact</string>
+				<string>com.apple.ttsbundle.Karen-compact</string>
+				<string>com.apple.ttsbundle.Daniel-compact</string>
+				<string>com.apple.ttsbundle.Moira-compact</string>
+				<string>com.apple.ttsbundle.Tessa-compact</string>
+				<string>com.apple.ttsbundle.Monica-compact</string>
+				<string>com.apple.ttsbundle.Paulina-compact</string>
+				<string>com.apple.ttsbundle.Satu-compact</string>
+				<string>com.apple.ttsbundle.Amelie-compact</string>
+				<string>com.apple.ttsbundle.Thomas-compact</string>
+				<string>com.apple.ttsbundle.Carmit-compact</string>
+				<string>com.apple.ttsbundle.Lekha-compact</string>
+				<string>com.apple.ttsbundle.Mariska-compact</string>
+				<string>com.apple.ttsbundle.Damayanti-compact</string>
+				<string>com.apple.ttsbundle.Alice-compact</string>
+				<string>com.apple.ttsbundle.Kyoko-compact</string>
+				<string>com.apple.ttsbundle.Yuna-compact</string>
+				<string>com.apple.ttsbundle.Ellen-compact</string>
+				<string>com.apple.ttsbundle.Xander-compact</string>
+				<string>com.apple.ttsbundle.Nora-compact</string>
+				<string>com.apple.ttsbundle.Zosia-compact</string>
+				<string>com.apple.ttsbundle.Luciana-compact</string>
+				<string>com.apple.ttsbundle.Joana-compact</string>
+				<string>com.apple.ttsbundle.Ioana-compact</string>
+				<string>com.apple.ttsbundle.Milena-compact</string>
+				<string>com.apple.ttsbundle.Laura-compact</string>
+				<string>com.apple.ttsbundle.Alva-compact</string>
+				<string>com.apple.ttsbundle.Kanya-compact</string>
+				<string>com.apple.ttsbundle.Yelda-compact</string>
+				<string>com.apple.ttsbundle.Ting-Ting-compact</string>
+				<string>com.apple.ttsbundle.Sin-Ji-compact</string>
+				<string>com.apple.ttsbundle.Mei-Jia-compact</string>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string></string>
+			<key>Key</key>
+			<string>TTSVoiceServer</string>
+			<key>Title</key>
+			<string>Server TTS Voice</string>
+			<key>Titles</key>
+			<array>
+				<string>US English - David - Male/Adult</string>
+				<string>US English - Zira - Female/Adult</string>
+				<string>US English - Helen - Female/Adult</string>
+				<string>British English - Hazel - Female/Adult</string>
+				<string>Australian English - Hayley - Female/Adult</string>
+				<string>Canadian English - Heather - Female/Adult</string>
+				<string>Indian English - Heera - Female/Adult</string>
+				<string>French - Hortense - Female/Adult</string>
+				<string>French (Canada) - Harmonie - Female/Adult</string>
+				<string>Catalan - Herena - Female/Adult</string>
+				<string>Danish - Helle - Female/Adult</string>
+				<string>German - Hedda - Female/Adult</string>
+				<string>Spanish - Helena - Female/Adult</string>
+				<string>Spanish (Mexico) - Hilda - Female/Adult</string>
+				<string>Finnish - Heidi - Female/Adult</string>
+				<string>Italian - Lucia - Female/Adult</string>
+				<string>Japanese - Haruka - Female/Adult</string>
+				<string>Korean - Heami - Female/Adult</string>
+				<string>Norwegian - Hulda - Female/Adult</string>
+				<string>Dutch - Hanna - Female/Adult</string>
+				<string>Polish - Paulina - Female/Adult</string>
+				<string>Portuguese - Helia - Female/Adult</string>
+				<string>Portuguese (Brazil) - Heloisa - Female/Adult</string>
+				<string>Russian - Elena - Female/Adult</string>
+				<string>Swedish - Hedvig - Female/Adult</string>
+				<string>Chinese - HuiHui - Female/Adult</string>
+				<string>Chinese (Hong Kong) - HunYee - Female/Adult</string>
+				<string>Chinese (Taiwan) - HanHan - Female/Adult</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>Microsoft David Desktop</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-US, ZiraPro)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-US, Helen)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-GB, Hazel)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-CA, Heather)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (en-IN, Heera)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (fr-FR, Hortense)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (fr-CA, Harmonie)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (ca-ES, Herena)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (da-DK, Helle)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (de-DE, Hedda)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (es-ES, Helena)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (es-MX, Hilda)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (fi-FI, Heidi)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (it-IT, Lucia)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (ja-JP, Haruka)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (ko-KR, Heami)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (nb-NO, Hulda)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (nl-NL, Hanna)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (pl-PL, Paulina)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (pt-PT, Helia)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (pt-BR, Heloisa)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (ru-RU, Elena)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (sv-SE, Hedvig)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (zh-CN, HuiHui)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (zh-HK, HunYee)</string>
+				<string>Microsoft Server Speech Text to Speech Voice (zh-TW, HanHan)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>TTS Words Per Minute</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>200</integer>
+			<key>Key</key>
+			<string>SpeechRate</string>
+			<key>MaximumValue</key>
+			<integer>700</integer>
+			<key>MinimumValue</key>
+			<integer>50</integer>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>TTS Voice Shaping</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<integer>100</integer>
+			<key>Key</key>
+			<string>VoiceShape</string>
+			<key>MaximumValue</key>
+			<integer>140</integer>
+			<key>MinimumValue</key>
+			<integer>70</integer>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>

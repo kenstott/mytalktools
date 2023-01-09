@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>Title</key>
+	<string>Authoring</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AuthoringAllowed</string>
+			<key>Title</key>
+			<string>Authoring Allowed</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>RememberMe</string>
+			<key>Title</key>
+			<string>Remember Me</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>TouchID</string>
+			<key>Title</key>
+			<string>Use Touch ID</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Default Username</string>
+			<key>Key</key>
+			<string>LOGINUSERNAME</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Board Name</string>
+			<key>Key</key>
+			<string>BoardName</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>SaveToPhotoAlbum</string>
+			<key>Title</key>
+			<string>Save Images To Photo Album</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AppleiCloudSyncSettings</string>
+			<key>Title</key>
+			<string>iCloud Sync Account Settings</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>No</string>
+			<key>Key</key>
+			<string>AutoSync</string>
+			<key>Title</key>
+			<string>Automatically Sync Content</string>
+			<key>Titles</key>
+			<array>
+				<string>No</string>
+				<string>Merge with Workspace</string>
+				<string>Overwrite Device</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>No</string>
+				<string>Merge</string>
+				<string>Overwrite</string>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AuthorHints</string>
+			<key>Title</key>
+			<string>Display Author Hints</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>SwipeDirectoryAuthor</string>
+			<key>Title</key>
+			<string>Directory On Swipe - Author Mode</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>SwipeDirectoryAuthorCells</string>
+			<key>Title</key>
+			<string>Directory Includes Cells</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+			<key>Key</key>
+			<string>AllowSettingsDownload</string>
+			<key>Title</key>
+			<string>Allow Settings Download</string>
+			<key>TrueValue</key>
+			<true/>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+	</array>
+</dict>
+</plist>
