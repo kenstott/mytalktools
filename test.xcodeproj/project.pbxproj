@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1843E630296BBFC800663122 /* SharingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843E62F296BBFC800663122 /* SharingDialog.swift */; };
 		18A6BE81295FB1B80039B5D4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BE80295FB1B80039B5D4 /* File.swift */; };
-		18A6BE8429607FA30039B5D4 /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BE8329607FA30039B5D4 /* DataWrapper.swift */; };
+		18A6BE8429607FA30039B5D4 /* GlobalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BE8329607FA30039B5D4 /* GlobalState.swift */; };
 		18A6BE89296083450039B5D4 /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = 18A6BE88296083450039B5D4 /* FMDB */; };
 		18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BEA3296089CC0039B5D4 /* Board.swift */; };
 		18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BEA52960A8B70039B5D4 /* Content.swift */; };
@@ -38,8 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		18A6BE80295FB1B80039B5D4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		18A6BE8329607FA30039B5D4 /* DataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
+		18A6BE8329607FA30039B5D4 /* GlobalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalState.swift; sourceTree = "<group>"; };
 		18A6BEA3296089CC0039B5D4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		18A6BEA52960A8B70039B5D4 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		18A6BEA72960BCCB0039B5D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,11 +82,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1843E631296C4EA700663122 /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				1843E62F296BBFC800663122 /* SharingDialog.swift */,
+			);
+			path = Dialogs;
+			sourceTree = "<group>";
+		};
 		18A6BEA2296089B60039B5D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				18A6BEA3296089CC0039B5D4 /* Board.swift */,
 				18A6BEA52960A8B70039B5D4 /* Content.swift */,
+				18A6BE8329607FA30039B5D4 /* GlobalState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,15 +131,15 @@
 		18CE4C54295FAC2000D349A3 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				1843E631296C4EA700663122 /* Dialogs */,
 				18CE4C59295FAC2400D349A3 /* Assets.xcassets */,
+				18A6BF03296253060039B5D4 /* AppContainer.swift */,
 				18CE4C57295FAC2000D349A3 /* BoardView.swift */,
 				18A6BEA72960BCCB0039B5D4 /* ContentView.swift */,
-				18A6BE8329607FA30039B5D4 /* DataWrapper.swift */,
 				18A6BE80295FB1B80039B5D4 /* File.swift */,
 				18CE4C5B295FAC2400D349A3 /* Preview Content */,
 				18A6BEEA2960E72A0039B5D4 /* ScrollView */,
 				18CE4C55295FAC2000D349A3 /* testApp.swift */,
-				18A6BF03296253060039B5D4 /* AppContainer.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -258,10 +269,11 @@
 				18A6BEE52960E42D0039B5D4 /* OpenScrollView.swift in Sources */,
 				18A6BEE72960E5020039B5D4 /* ScrollDestination.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
+				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
 				18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */,
 				18A6BEE92960E5EA0039B5D4 /* OpenScrollViewBlocking.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
-				18A6BE8429607FA30039B5D4 /* DataWrapper.swift in Sources */,
+				18A6BE8429607FA30039B5D4 /* GlobalState.swift in Sources */,
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
