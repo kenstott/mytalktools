@@ -8,13 +8,15 @@
 import Foundation
 import FMDB
 
-class DataWrapper: ObservableObject {
+class GlobalState: ObservableObject {
     
     @Published var authorMode = false
     @Published var isPortrait = true
+    @Published var editMode = false
     static var db: FMDatabase?
     
     init(fileName: String = "sample") {
+        
         // 1 - Get filePath of the SQLite file
         let fileURL = try! FileManager.default
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -28,6 +30,7 @@ class DataWrapper: ObservableObject {
             fatalError("Unable to open database")
         }
                 
-        DataWrapper.db = db
+        GlobalState.db = db
     }
+    
 }
