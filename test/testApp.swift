@@ -21,6 +21,7 @@ var appDefaults = [
 struct testApp: App {
     
     @StateObject private var dataWrapper: GlobalState = GlobalState();
+    @ObservedObject var appState = AppState()
     
     init() {
         initializeBoard()
@@ -29,7 +30,10 @@ struct testApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AppContainer().environmentObject(dataWrapper);
+            AppContainer()
+                .environmentObject(dataWrapper)
+                .environmentObject(appState)
+            ;
         }
     }
 }

@@ -7,21 +7,30 @@
 
 import SwiftUI
 import FMDB
+import AlertToast
 import AVFAudio
 
 struct BoardView: View {
     
     @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var appState: AppState
     let padding = 0.0
     private var id: Int = 0
     private var geometry: GeometryProxy;
+    @Environment(\.dismiss) var dismiss
     @StateObject private var board = Board()
     @AppStorage("MaximumRows") var maximumRows = 1
+    @AppStorage("ForegroundColor") var foregroundColor = "Black"
+    @AppStorage("AdvancedUserBar") var advancedUseBar = false
+    @AppStorage("UserHints") var userHints = true
+    @AppStorage("UserBarSync") var userBarSync = false
+    @AppStorage("UserBarWizard") var userBarWizard = false
     @State private var isActive = false
     @State private var activeChildBoard: Int? = 0
     @State private var player: AVAudioPlayer?
     @State var rowsToDisplay = 0
     @State var cellWidth = 0.0
+    @State var showHelp = false
     @State var columns = Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: 1)
     @State private var showSharingActionSheet = false
     private var settings = UserDefaults.standard.dictionaryRepresentation()
@@ -29,6 +38,10 @@ struct BoardView: View {
     init(_ id: Int = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
+    }
+    
+    func toolbarShown() -> CGFloat {
+        return globalState.authorMode || advancedUseBar ? 40 : 0
     }
     
     var body: some View {
@@ -50,28 +63,35 @@ struct BoardView: View {
                                     activeChildBoard = item.childBoardId
                                 }
                             },
-                            maximumCellHeight: .constant(Double(geometry.size.height - 50 - (globalState.authorMode ? 40 : 0)) / Double(min(maximumRows, board.rows))),
+                            maximumCellHeight: .constant(Double(geometry.size.height - 50 - toolbarShown()) / Double(min(maximumRows, board.rows))),
                             cellWidth: .constant((geometry.size.width / Double(board.columns == 0 ? 1 : board.columns))), board: .constant(board))
                     }
                 }
                 .frame(width: geometry.size.width)
                 .padding(0)
             }
-            .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - (globalState.authorMode ? 40 : 0), maxHeight: UIScreen.main.bounds.height -
-                   geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - (globalState.authorMode ? 40 : 0))
+            .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown(), maxHeight: UIScreen.main.bounds.height -
+                   geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown())
             .fixedSize()
             .onAppear() {
                 board.setId(id)
                 columns = Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: board.columns)
             }
+            
         }
+        .toast(isPresenting: $showHelp, alert: {
+            AlertToast(type: .regular, title: "Tap 'Edit' to begin editing")
+        })
         .navigationBarTitle(board.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button(globalState.authorMode ? "Done" : "Author") {
+                Button(globalState.authorMode ? LocalizedStringKey("Done") : LocalizedStringKey("Author")) {
                     print("Author button tapped!")
                     self.globalState.authorMode.toggle()
+                    if userHints && globalState.authorMode && !globalState.editMode {
+                        showHelp.toggle()
+                    }
                 }
             }
             ToolbarItemGroup(placement: .bottomBar) {
@@ -79,36 +99,78 @@ struct BoardView: View {
                     Button {
                         print("Help")
                     } label: {
-                        Label("Help", systemImage: "questionmark.circle")
+                        Label(LocalizedStringKey("Help"), systemImage: "questionmark.circle")
                     }
                     SharingDialog(board: board)
                     Button {
                         print("Library")
                     } label: {
-                        Label("Library", systemImage: "building.columns")
+                        Label(LocalizedStringKey("Library"), systemImage: "building.columns")
                     }
                     Button {
                         print("Search")
                     } label: {
-                        Label("Search", systemImage: "magnifyingglass")
+                        Label(LocalizedStringKey("Search"), systemImage: "magnifyingglass")
                     }
                     Button {
-                        print("Type")
+                        print("Undo")
                     } label: {
-                        Label("Type", systemImage: "keyboard")
+                        Label(LocalizedStringKey("Undo"), systemImage: "arrow.uturn.backward")
                     }
                     Button {
-                        print("Wizard")
+                        print("Redo")
                     } label: {
-                        Label("Wizard", systemImage: "sparkle.magnifyingglass")
+                        Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
                     }
-                    Toggle("Edit", isOn: $globalState.editMode)
+                    Toggle(LocalizedStringKey("Edit"), isOn: $globalState.editMode)
                     Button {
                         print("Sync")
                     } label: {
-                        Label("Sync", systemImage: "arrow.triangle.2.circlepath")
+                        Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
                     }
                     
+                } else if (advancedUseBar) {
+                    Button {
+                        print("Home")
+                        appState.rootViewId = UUID()
+                    } label: {
+                        Label(LocalizedStringKey("Home"), systemImage: "house")
+                    }
+                    Button {
+                        print("Back")
+                        dismiss()
+                    } label: {
+                        Label(LocalizedStringKey("Back"), systemImage: "arrowshape.turn.up.backward")
+                    }
+                    if (userBarSync) {
+                        Button {
+                            print("Sync")
+                        } label: {
+                            Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
+                        }
+                    }
+                    Button {
+                        print("Type Words")
+                    } label: {
+                        Label("Type Words", systemImage: "keyboard")
+                    }
+                    Button {
+                        print("Recents")
+                    } label: {
+                        Label(LocalizedStringKey("Recents"), systemImage: "clock")
+                    }
+                    Button {
+                        print("Most Viewed")
+                    } label: {
+                        Label(LocalizedStringKey("Most Viewed"), systemImage: "list.number")
+                    }
+                    if (userBarWizard) {
+                        Button {
+                            print("Wizard")
+                        } label: {
+                            Label("Wizard", systemImage: "sparkle.magnifyingglass")
+                        }
+                    }
                 }
             }
         }

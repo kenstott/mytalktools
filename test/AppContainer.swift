@@ -12,6 +12,7 @@ import AVFAudio
 struct AppContainer: View {
     
     @EnvironmentObject var dataWrapper: GlobalState
+    @EnvironmentObject var appState: AppState
     
     init() {
         do {
@@ -26,7 +27,7 @@ struct AppContainer: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
-                BoardView(1, geometry: geometry)
+                BoardView(1, geometry: geometry).id(appState.rootViewId)
             }
             .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
                 guard let scene = UIApplication.shared.windows.first?.windowScene else { return }

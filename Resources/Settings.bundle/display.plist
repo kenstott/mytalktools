@@ -180,34 +180,6 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<true/>
-			<key>FalseValue</key>
-			<false/>
-			<key>Key</key>
-			<string>SwipeDirectoryUser</string>
-			<key>Title</key>
-			<string>Directory On Swipe - User Mode</string>
-			<key>TrueValue</key>
-			<true/>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>FalseValue</key>
-			<false/>
-			<key>Key</key>
-			<string>SwipeDirectoryUserCells</string>
-			<key>Title</key>
-			<string>Directory Includes Cells</string>
-			<key>TrueValue</key>
-			<true/>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
 			<false/>
 			<key>FalseValue</key>
 			<false/>
@@ -265,22 +237,6 @@
 		<dict>
 			<key>DefaultValue</key>
 			<true/>
-			<key>FalseValue</key>
-			<false/>
-			<key>Key</key>
-			<string>UserBarSettings</string>
-			<key>Title</key>
-			<string>User Bar Settings</string>
-			<key>TrueValue</key>
-			<true/>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>FalseValue</key>
-			<false/>
 			<key>Key</key>
 			<string>VolumeButton</string>
 			<key>Title</key>

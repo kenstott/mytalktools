@@ -12,7 +12,12 @@ import AVFAudio
 
 struct ContentView: View {
     @EnvironmentObject var globalState: GlobalState
-    @AppStorage("SeparatorLines") var separatorLines = true
+    @AppStorage("SeparatorLines") var _separatorLines = true
+    @AppStorage("ForegroundColor") var _foregroundColor = "Black"
+    @AppStorage("BackgroundColor") var _backgroundColor = "White"
+    @AppStorage("DefaultFontSize") var _defaultFontSize = ""
+    @AppStorage("VisibleHotspots") var _visibleHotSpots = false
+    @AppStorage("ColorKey") var colorKey = "1"
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
@@ -22,6 +27,18 @@ struct ContentView: View {
     
     private var onClick: (() -> Void)? = nil
     private var id: Int = 0
+    func foregroundColor() -> Color {
+        return _foregroundColor == "Black" ? Color.black : Color.white
+    }
+    func backgroundColor() -> Color {
+        return _backgroundColor == "Black" ? Color.black : Color.white
+    }
+    func separatorLines() -> CGFloat {
+        return _separatorLines ? 1 : 0
+    }
+    func defaultFontSize() -> CGFloat {
+        return CGFloat(Double(_defaultFontSize) ?? 15)
+    }
     
     init(_ id: Int, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board> ) {
         self.id = id;
@@ -81,14 +98,20 @@ struct ContentView: View {
                     Image(String(content.urlImage.split(separator: ".").first!))
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
+                        .background(.clear)
                 }
                 Text(content.name)
+                    .foregroundColor(foregroundColor())
+                    .background(.clear)
+                    .font(.system(size: defaultFontSize()))
             }
             .frame(width: cellWidth, height: maximumCellHeight)
-            .border(Color.black, width: separatorLines ? 1 : 0)
             .padding(0)
+            .background(.clear)
             if globalState.authorMode {
-                Text(content.urlMedia).foregroundColor(Color.gray)
+                Text(content.urlMedia)
+                    .foregroundColor(Color.gray)
+                    .background(.clear)
             }
             if content.childBoardId != 0 {
                 ZStack(alignment: .topTrailing) {
@@ -97,14 +120,18 @@ struct ContentView: View {
                         .padding(5)
                         .alignmentGuide(.top) { $0[.bottom] - 20 }
                         .alignmentGuide(.trailing) { $0[.trailing] + 1 }
+                        .foregroundColor(.gray)
+                        .background(.clear)
                 }
             }
         }
         .frame(minWidth: cellWidth, maxWidth: .infinity, minHeight: 0, maxHeight: maximumCellHeight)
+        .border(foregroundColor(), width: separatorLines())
         .onAppear() {
             content.setId(id)
         }
         .padding(0)
+        .background(backgroundColor())
     }
     
     var OverlayImage: some View {
