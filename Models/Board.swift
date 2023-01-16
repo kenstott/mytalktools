@@ -75,6 +75,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     }
     
     @Published var contents: [Content] = []
+    @Published var filteredContents: [Content] = []
     @Published var columns: Int = 0
     @Published var rows: Int = 0
     @Published var userId: Int = -1
@@ -94,7 +95,9 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         self.name = getString(id: id, column: "board_name", defaultValue: "Unknown")
         self.userId = getInt(id: id, column: "user_id", defaultValue: -1)
         self.sort = getSort(id: id)
+        calcCellSizes()
         sortContent()
+        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
         return self
     }
     
@@ -105,8 +108,25 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return nil
     }
     
+    func defaultSortContent() -> [Content] {
+        contents.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
+    }
+    
     func sortContent() {
         contents = contents.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
+    }
+    
+    func calcCellSizes() {
+        let contents = defaultSortContent()
+        var anchorCell = Content()
+        for content in contents {
+            if (content.externalUrl == "x") {
+                anchorCell.cellSize += 1
+            } else {
+                anchorCell = content
+                content.cellSize = 1
+            }
+        }
     }
     
     func swap(id1: Int, id2: Int) -> Bool {

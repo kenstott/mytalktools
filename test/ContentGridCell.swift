@@ -28,9 +28,8 @@ struct ContentGridCell: View {
         self.separatorLines = separatorLines
     }
     var body: some View {
-        ZStack {
-            
-                VStack {
+        ZStack(alignment: .center) {
+            VStack(alignment: .center) {
                     if content.urlImage != "" {
                         Image(String(content.urlImage.split(separator: ".").first!))
                             .resizable()
@@ -43,10 +42,8 @@ struct ContentGridCell: View {
                         .background(.clear)
                         .font(.system(size: defaultFontSize))
                 }
-                .frame(width: cellWidth - cellMargin, height: maximumCellHeight - cellMargin)
+//                .frame(width: cellWidth - cellMargin, height: maximumCellHeight - cellMargin)
                 .background(.clear)
-
-            
             if globalState.authorMode {
                 ZStack(alignment: .topLeading) {
                         Color.clear
@@ -86,9 +83,8 @@ struct ContentGridCell: View {
             }
         }
         .padding(cellMargin)
-        .frame(minWidth: cellWidth, maxWidth: .infinity, minHeight: 0, maxHeight: maximumCellHeight)
-        .border(foregroundColor, width: separatorLines * cellMargin)
-
+        .frame(width: cellWidth, height: maximumCellHeight)
+        .border(foregroundColor, width: separatorLines)
         .background(backgroundColor)
     }
 }

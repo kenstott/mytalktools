@@ -45,6 +45,9 @@
          contextName = "Content.init():Content.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentView.init(_:onClick:maximumCellHeight:cellWidth:board:):ContentView.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString
@@ -70,6 +73,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Board.calcCellSizes():Board.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
       </ContextState>
       <ContextState
@@ -77,6 +83,9 @@
          <PersistentStrings>
             <PersistentString
                value = "$item">
+            </PersistentString>
+            <PersistentString
+               value = "cellWidth">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

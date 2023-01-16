@@ -10,6 +10,7 @@ import FMDB
 import AVKit
 import AVFAudio
 
+
 struct ContentView: View {
     @EnvironmentObject var globalState: GlobalState
     @AppStorage("SeparatorLines") var _separatorLines = true
@@ -106,16 +107,6 @@ struct ContentView: View {
                 ContentGridCell(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor, backgroundColor: backgroundColor, maximumCellHeight: maximumCellHeight, cellWidth: cellWidth, separatorLines: separatorLines)
             }
         }
-    }
-    
-    var OverlayImage: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.gray)
-                .opacity(0.2)
-        }
-        .frame(minWidth: cellWidth, maxWidth: .infinity, minHeight: 0, maxHeight: maximumCellHeight)
-        .padding(0)
     }
 }
 

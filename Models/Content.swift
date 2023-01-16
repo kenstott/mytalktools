@@ -30,6 +30,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var ttsSpeechPrompt: String = ""
     @Published var createDate: String = ""
     @Published var updateDate: String = ""
+    @Published var cellSize = 1
     var link: UInt16 {
         get {
             if (childBoardLink != 0) {

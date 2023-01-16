@@ -34,29 +34,18 @@ struct BoardView: View {
     @State var showHelp = false
     @State private var showSharingActionSheet = false
     @State var showVolume = false
-    var maximumCellHeight: Double {
-        get {
-            Double(geometry.size.height - 50 - toolbarShown()) / Double(min(maximumRows, board.rows))
-        }
-    }
-    var cellWidth: Double {
-        get {
-            geometry.size.width / Double(board.columns == 0 ? 1 : board.columns)
-        }
+    var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown) / Double(min(maximumRows, board.rows)) } }
+    var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
+    var toolbarShown: CGFloat { get { globalState.authorMode || advancedUseBar ? 40 : 0 } }
+    var columns: Array<GridItem> { get { Array<GridItem>(repeating: GridItem(.fixed(cellWidth), spacing: 0, alignment: .leading), count: board.columns) } }
+    func multiplier(_ content: Content) -> Double {
+        return 1
     }
     
     init(_ id: Int = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
         _ = self.board.setId(id)
-    }
-    
-    func toolbarShown() -> CGFloat {
-        return globalState.authorMode || advancedUseBar ? 40 : 0
-    }
-    
-    func columns() -> Array<GridItem> {
-        return Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: board.columns)
     }
     
     var body: some View {
@@ -69,23 +58,23 @@ struct BoardView: View {
             }
             if (displayAsList) {
                 List($board.contents) {
-                        $item in
-                        ContentView(
-                            $item,
-                            onClick: { () -> Void in
-                                if (item.link != 0) {
-                                    activeChildBoard = Int(item.link)
-                                }
-                            },
-                            maximumCellHeight: .constant(maximumCellHeight),
-                            cellWidth: .constant(0),
-                            board: .constant(self.board)
-                        )
+                    $item in
+                    ContentView(
+                        $item,
+                        onClick: { () -> Void in
+                            if (item.link != 0) {
+                                activeChildBoard = Int(item.link)
+                            }
+                        },
+                        maximumCellHeight: .constant(maximumCellHeight),
+                        cellWidth: .constant(0),
+                        board: .constant(self.board)
+                    )
                 }
             } else {
                 ScrollView {
-                    LazyVGrid(columns: columns(), spacing: 0) {
-                        ForEach($board.contents, id: \.id) {
+                    LazyVGrid(columns: columns, spacing: 0) {
+                        ForEach($board.filteredContents, id: \.id) {
                             $item in
                             ContentView(
                                 $item,
@@ -95,16 +84,17 @@ struct BoardView: View {
                                     }
                                 },
                                 maximumCellHeight: .constant(maximumCellHeight),
-                                cellWidth: .constant(cellWidth),
+                                cellWidth: .constant(cellWidth * Double(item.cellSize)),
                                 board: .constant(self.board)
                             )
+                            if item.cellSize > 1 { Color.clear }
                         }
                     }
                     .frame(width: geometry.size.width)
                     .padding(0)
                 }
-                .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown(), maxHeight: UIScreen.main.bounds.height -
-                       geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown())
+                .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown, maxHeight: UIScreen.main.bounds.height -
+                       geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown)
                 .fixedSize()
             }
         }
