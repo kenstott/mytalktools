@@ -10,9 +10,6 @@ import FMDB
 import AVKit
 import AVFAudio
 
-
-
-
 struct ContentView: View {
     @EnvironmentObject var globalState: GlobalState
     @AppStorage("SeparatorLines") var _separatorLines = true

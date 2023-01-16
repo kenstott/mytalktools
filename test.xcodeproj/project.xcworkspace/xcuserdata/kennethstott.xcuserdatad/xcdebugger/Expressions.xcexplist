@@ -3,30 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Content.setId(_:):Content.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Content.init():Content.swift">
-      </ContextState>
-      <ContextState
-         contextName = "BoardView.init(_:geometry:):BoardView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "geometry.safeAreaInsets.top">
-            </PersistentString>
-            <PersistentString
-               value = "geometry.safeAreaInsets.bottom">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #2 in BoardView.body.getter:BoardView.swift">
-      </ContextState>
-      <ContextState
          contextName = "BoardView.onChildBoard(childBoardId:):BoardView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Board.getString(column:defaultValue:):Board.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in BoardView.body.getter:BoardView.swift">
@@ -40,24 +17,41 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #1 in BoardView.body.getter:BoardView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "$item">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in BoardView.body.getter:BoardView.swift">
          <PersistentStrings>
             <PersistentString
                value = "item">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataWrapper">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.init(_:):BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in ContentGridCell.body.getter:ContentGridCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Content.init():Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cellWidth">
+            </PersistentString>
+            <PersistentString
+               value = "maximumCellHeight">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -76,10 +70,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #2 in closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
+         contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #1 in BoardView.body.getter:BoardView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dataWrapper">
+               value = "$item">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -92,18 +89,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentView.body.getter:ContentView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cellWidth">
-            </PersistentString>
-            <PersistentString
-               value = "maximumCellHeight">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #2 in BoardView.body.getter:BoardView.swift">
       </ContextState>
       <ContextState
-         contextName = "BoardView.init(_:):BoardView.swift">
+         contextName = "initializeBoard():File.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentGridCell.body.getter:ContentGridCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._cellMargin.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #2 in closure #1 in BoardView.body.getter:BoardView.swift">
@@ -112,6 +109,23 @@
                value = "board.rows">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.init(_:geometry:):BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "geometry.safeAreaInsets.top">
+            </PersistentString>
+            <PersistentString
+               value = "geometry.safeAreaInsets.bottom">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Board.getString(column:defaultValue:):Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Content.setId(_:):Content.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
