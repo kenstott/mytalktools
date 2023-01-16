@@ -17,6 +17,8 @@ class GlobalState: ObservableObject {
     
     init(fileName: String = "sample") {
         
+        initializeBoard()
+        
         // 1 - Get filePath of the SQLite file
         let fileURL = try! FileManager.default
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)

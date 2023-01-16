@@ -10,6 +10,9 @@ import FMDB
 import AVKit
 import AVFAudio
 
+
+
+
 struct ContentView: View {
     @EnvironmentObject var globalState: GlobalState
     @AppStorage("SeparatorLines") var _separatorLines = true
@@ -17,35 +20,42 @@ struct ContentView: View {
     @AppStorage("BackgroundColor") var _backgroundColor = "White"
     @AppStorage("DefaultFontSize") var _defaultFontSize = ""
     @AppStorage("VisibleHotspots") var _visibleHotSpots = false
+    @AppStorage("DisplayAsList") var displayAsList = false
     @AppStorage("ColorKey") var colorKey = "1"
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
+    @Binding var content: Content
     @State private var player: AVAudioPlayer? = nil
-    @StateObject private var content = Content()
     @State var targeted: Bool = true
-    
-    private var onClick: (() -> Void)? = nil
-    private var id: Int = 0
-    func foregroundColor() -> Color {
-        return _foregroundColor == "Black" ? Color.black : Color.white
+    private var separatorLines: CGFloat {
+        get {
+            return _separatorLines ? 1 : 0
+        }
     }
-    func backgroundColor() -> Color {
+    private var foregroundColor: Color {
+        get {
+            return _foregroundColor == "Black" ? Color.black : Color.white
+        }
+    }
+    private var backgroundColor: Color {
         return _backgroundColor == "Black" ? Color.black : Color.white
     }
-    func separatorLines() -> CGFloat {
-        return _separatorLines ? 1 : 0
+    private var defaultFontSize: CGFloat {
+        get {
+            return CGFloat(Double(_defaultFontSize) ?? 15)
+        }
     }
-    func defaultFontSize() -> CGFloat {
-        return CGFloat(Double(_defaultFontSize) ?? 15)
-    }
+    private var onClick: (() -> Void)? = nil
+    private var id: Int = 0
     
-    init(_ id: Int, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board> ) {
-        self.id = id;
+    init(_ content: Binding<Content>, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board> ) {
+        self.id = content.id;
         self.onClick = onClick
         self._maximumCellHeight = maximumCellHeight
         self._cellWidth = cellWidth
         self._board = board
+        self._content = content
     }
     
     var body: some View {
@@ -93,45 +103,12 @@ struct ContentView: View {
     
     var MainView: some View {
         ZStack {
-            VStack {
-                if content.urlImage != "" {
-                    Image(String(content.urlImage.split(separator: ".").first!))
-                        .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .background(.clear)
-                }
-                Text(content.name)
-                    .foregroundColor(foregroundColor())
-                    .background(.clear)
-                    .font(.system(size: defaultFontSize()))
-            }
-            .frame(width: cellWidth, height: maximumCellHeight)
-            .padding(0)
-            .background(.clear)
-            if globalState.authorMode {
-                Text(content.urlMedia)
-                    .foregroundColor(Color.gray)
-                    .background(.clear)
-            }
-            if content.childBoardId != 0 {
-                ZStack(alignment: .topTrailing) {
-                    Color.clear
-                    Image(systemName: "ellipsis")
-                        .padding(5)
-                        .alignmentGuide(.top) { $0[.bottom] - 20 }
-                        .alignmentGuide(.trailing) { $0[.trailing] + 1 }
-                        .foregroundColor(.gray)
-                        .background(.clear)
-                }
+            if (displayAsList) {
+                ContentListRow(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor)
+            } else {
+                ContentGridCell(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor, backgroundColor: backgroundColor, maximumCellHeight: maximumCellHeight, cellWidth: cellWidth, separatorLines: separatorLines)
             }
         }
-        .frame(minWidth: cellWidth, maxWidth: .infinity, minHeight: 0, maxHeight: maximumCellHeight)
-        .border(foregroundColor(), width: separatorLines())
-        .onAppear() {
-            content.setId(id)
-        }
-        .padding(0)
-        .background(backgroundColor())
     }
     
     var OverlayImage: some View {
@@ -148,7 +125,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(45545, onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board())).environmentObject(GlobalState())
+            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board())).environmentObject(GlobalState())
         }
     }
 }

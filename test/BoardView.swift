@@ -18,11 +18,12 @@ struct BoardView: View {
     private var id: Int = 0
     private var geometry: GeometryProxy;
     @Environment(\.dismiss) var dismiss
-    @StateObject private var board = Board()
+    @ObservedObject private var board = Board()
     @AppStorage("MaximumRows") var maximumRows = 1
     @AppStorage("ForegroundColor") var foregroundColor = "Black"
     @AppStorage("AdvancedUserBar") var advancedUseBar = false
     @AppStorage("UserHints") var userHints = true
+    @AppStorage("DisplayAsList") var displayAsList = false
     @AppStorage("UserBarSync") var userBarSync = false
     @AppStorage("UserBarWizard") var userBarWizard = false
     @AppStorage("VolumeButton") var volumeButton = true
@@ -30,56 +31,82 @@ struct BoardView: View {
     @State private var activeChildBoard: Int? = 0
     @State private var player: AVAudioPlayer?
     @State var rowsToDisplay = 0
-    @State var cellWidth = 0.0
     @State var showHelp = false
-    @State var columns = Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: 1)
     @State private var showSharingActionSheet = false
     @State var showVolume = false
-    private var settings = UserDefaults.standard.dictionaryRepresentation()
+    var maximumCellHeight: Double {
+        get {
+            Double(geometry.size.height - 50 - toolbarShown()) / Double(min(maximumRows, board.rows))
+        }
+    }
+    var cellWidth: Double {
+        get {
+            geometry.size.width / Double(board.columns == 0 ? 1 : board.columns)
+        }
+    }
     
     init(_ id: Int = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
+        _ = self.board.setId(id)
     }
     
     func toolbarShown() -> CGFloat {
         return globalState.authorMode || advancedUseBar ? 40 : 0
     }
     
+    func columns() -> Array<GridItem> {
+        return Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: board.columns)
+    }
+    
     var body: some View {
-        ZStack {
-            ForEach(board.content, id: \.id) {
-                item in
-                if item.childBoardId != 0 {
-                    NavigationLink(destination: BoardView(item.childBoardId, geometry: geometry), tag: item.childBoardId, selection: $activeChildBoard) { EmptyView() }
+        VStack {
+            ForEach($board.contents, id: \.id) {
+                $item in
+                if $item.childBoardId.wrappedValue != 0 {
+                    NavigationLink(destination: BoardView(item.childBoardId, geometry: geometry), tag: $item.childBoardId.wrappedValue, selection: $activeChildBoard) { EmptyView() }
                 }
             }
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 0) {
-                    ForEach(board.content, id: \.id) {
-                        item in
+            if (displayAsList) {
+                List($board.contents) {
+                        $item in
                         ContentView(
-                            item.id,
+                            $item,
                             onClick: { () -> Void in
-                                if (item.childBoardId != 0) {
-                                    activeChildBoard = item.childBoardId
+                                if (item.link != 0) {
+                                    activeChildBoard = Int(item.link)
                                 }
                             },
-                            maximumCellHeight: .constant(Double(geometry.size.height - 50 - toolbarShown()) / Double(min(maximumRows, board.rows))),
-                            cellWidth: .constant((geometry.size.width / Double(board.columns == 0 ? 1 : board.columns))), board: .constant(board))
-                    }
+                            maximumCellHeight: .constant(maximumCellHeight),
+                            cellWidth: .constant(0),
+                            board: .constant(self.board)
+                        )
                 }
-                .frame(width: geometry.size.width)
-                .padding(0)
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: columns(), spacing: 0) {
+                        ForEach($board.contents, id: \.id) {
+                            $item in
+                            ContentView(
+                                $item,
+                                onClick: { () -> Void in
+                                    if (item.childBoardId != 0) {
+                                        activeChildBoard = item.childBoardId
+                                    }
+                                },
+                                maximumCellHeight: .constant(maximumCellHeight),
+                                cellWidth: .constant(cellWidth),
+                                board: .constant(self.board)
+                            )
+                        }
+                    }
+                    .frame(width: geometry.size.width)
+                    .padding(0)
+                }
+                .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown(), maxHeight: UIScreen.main.bounds.height -
+                       geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown())
+                .fixedSize()
             }
-            .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown(), maxHeight: UIScreen.main.bounds.height -
-                   geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown())
-            .fixedSize()
-            .onAppear() {
-                board.setId(id)
-                columns = Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: board.columns)
-            }
-            
         }
         .toast(isPresenting: $showHelp, alert: {
             AlertToast(type: .regular, title: "Tap 'Edit' to begin editing")

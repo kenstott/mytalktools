@@ -20,18 +20,17 @@ var appDefaults = [
 @main
 struct testApp: App {
     
-    @StateObject private var dataWrapper: GlobalState = GlobalState();
+    @StateObject private var globalState: GlobalState = GlobalState();
     @ObservedObject var appState = AppState()
     
     init() {
-        initializeBoard()
         UserDefaults.standard.register(defaults: appDefaults)
     }
     
     var body: some Scene {
         WindowGroup {
             AppContainer()
-                .environmentObject(dataWrapper)
+                .environmentObject(globalState)
                 .environmentObject(appState)
             ;
         }

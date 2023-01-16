@@ -6,13 +6,7 @@
          contextName = "Content.setId(_:):Content.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #2 in BoardView.body.getter:BoardView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "BoardView.onChildBoard(childBoardId:):BoardView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Board.getString(column:defaultValue:):Board.swift">
+         contextName = "Content.init():Content.swift">
       </ContextState>
       <ContextState
          contextName = "BoardView.init(_:geometry:):BoardView.swift">
@@ -26,7 +20,38 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #2 in BoardView.body.getter:BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.onChildBoard(childBoardId:):BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Board.getString(column:defaultValue:):Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._board.contents">
+            </PersistentString>
+            <PersistentString
+               value = "board">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "$item">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in BoardView.body.getter:BoardView.swift">
@@ -40,13 +65,13 @@
          contextName = "closure #3 in ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self._content.id">
+            </PersistentString>
+            <PersistentString
                value = "provider.first.id">
             </PersistentString>
             <PersistentString
                value = "self.targeted">
-            </PersistentString>
-            <PersistentString
-               value = "self._content.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

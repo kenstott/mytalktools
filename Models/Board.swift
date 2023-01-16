@@ -22,7 +22,7 @@ func getInt(id: Int, column: String, defaultValue: Int = -1) -> Int {
     return result
 }
 
-private func getContent(id: Int) -> [Content] {
+private func getContents(id: Int) -> [Content] {
     var result: [Content] = []
     let s = GlobalState.db!.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ?", withArgumentsIn: [id]) ?? FMResultSet();
     while s.next() {
@@ -44,9 +44,37 @@ private func getSort(id: Int) -> [Int] {
     return sort
 }
 
-class Board: Identifiable, ObservableObject {
+class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
-    @Published private(set) var content: [Content] = []
+    static func == (lhs: Board, rhs: Board) -> Bool {
+        guard lhs.contents == rhs.contents else {
+            return false
+        }
+        guard lhs.columns == rhs.columns else {
+            return false
+        }
+        guard lhs.rows == rhs.rows else {
+            return false
+        }
+        guard lhs.name == rhs.name else {
+            return false
+        }
+        guard lhs.sort == rhs.sort else {
+            return false
+        }
+        return true
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(contents)
+        hasher.combine(columns)
+        hasher.combine(rows)
+        hasher.combine(name)
+        hasher.combine(sort)
+        hasher.combine(id)
+    }
+    
+    @Published var contents: [Content] = []
     @Published var columns: Int = 0
     @Published var rows: Int = 0
     @Published var userId: Int = -1
@@ -54,24 +82,36 @@ class Board: Identifiable, ObservableObject {
     @Published var sort: [Int] = [0,0,0]
     @Published var id: Int = 0
     
-    func setId(_ id: Int) {
+    init() {
+        columns = 0
+    }
+    
+    func setId(_ id: Int) -> Board {
         self.id = id;
-        self.content = getContent(id: id)
+        self.contents = getContents(id: id)
         self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
         self.rows = getInt(id: id, column: "board_rows", defaultValue: -1)
         self.name = getString(id: id, column: "board_name", defaultValue: "Unknown")
         self.userId = getInt(id: id, column: "user_id", defaultValue: -1)
         self.sort = getSort(id: id)
         sortContent()
+        return self
+    }
+    
+    func content(_ id: Int) -> Content? {
+        if let i = contents.firstIndex(where: { $0.id == id }) {
+            return contents[i]
+        }
+        return nil
     }
     
     func sortContent() {
-        content = content.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
+        contents = contents.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
     }
     
     func swap(id1: Int, id2: Int) -> Bool {
-        let content1 = content.first(where: {$0.id == id1})
-        let content2 = content.first(where: {$0.id == id2})
+        let content1 = contents.first(where: {$0.id == id1})
+        let content2 = contents.first(where: {$0.id == id2})
         if content1 != nil && content2 != nil {
             let row = content1!.row
             let column = content1!.column

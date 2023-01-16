@@ -27,16 +27,88 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var ttsSpeech: String = ""
     @Published var externalUrl: String = ""
     @Published var alternateTTS: String = ""
+    @Published var ttsSpeechPrompt: String = ""
     @Published var createDate: String = ""
     @Published var updateDate: String = ""
+    var link: UInt16 {
+        get {
+            if (childBoardLink != 0) {
+                return UInt16(self.childBoardLink)
+            }
+            return UInt16(self.childBoardId)
+        }
+    }
     
     static func == (lhs: Content, rhs: Content) -> Bool {
-        return lhs.id == rhs.id
+        guard lhs.name == rhs.name else {
+            return false
+        }
+        guard lhs.urlImage == rhs.urlImage else {
+            return false
+        }
+        guard lhs.urlMedia == rhs.urlMedia else {
+            return false
+        }
+        guard lhs.ttsSpeech == rhs.ttsSpeech else {
+            return false
+        }
+        guard lhs.externalUrl == rhs.externalUrl else {
+            return false
+        }
+        guard lhs.alternateTTS == rhs.alternateTTS else {
+            return false
+        }
+        guard lhs.childBoardId == rhs.childBoardId else {
+            return false
+        }
+        guard lhs.childBoardLink == rhs.childBoardLink else {
+            return false
+        }
+        guard lhs.color == rhs.color else {
+            return false
+        }
+        guard lhs.fontSize == rhs.fontSize else {
+            return false
+        }
+        guard lhs.zoom == rhs.zoom else {
+            return false
+        }
+        guard lhs.doNotZoomPics == rhs.doNotZoomPics else {
+            return false
+        }
+        guard lhs.doNotAddToPhraseBar == rhs.doNotAddToPhraseBar else {
+            return false
+        }
+        guard lhs.row == rhs.row else {
+            return false
+        }
+        guard lhs.column == rhs.column else {
+            return false
+        }
+        guard lhs.ttsSpeechPrompt == rhs.ttsSpeechPrompt else {
+            return false
+        }
+        return true
     }
     
     public func hash(into hasher: inout Hasher) {
-            return hasher.combine(id)
-        }
+        hasher.combine(name)
+        hasher.combine(urlImage)
+        hasher.combine(urlMedia)
+        hasher.combine(ttsSpeech)
+        hasher.combine(externalUrl)
+        hasher.combine(alternateTTS)
+        hasher.combine(childBoardId)
+        hasher.combine(childBoardLink)
+        hasher.combine(color)
+        hasher.combine(fontSize)
+        hasher.combine(zoom)
+        hasher.combine(doNotZoomPics)
+        hasher.combine(doNotAddToPhraseBar)
+        hasher.combine(row)
+        hasher.combine(column)
+        hasher.combine(ttsSpeechPrompt)
+    }
     
     func getString(column: String, defaultValue: String = "") -> String {
         var result: String = defaultValue
@@ -81,8 +153,16 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.ttsSpeech = getString(column: "tts_speech", defaultValue: "")
         self.externalUrl = getString(column: "external_url", defaultValue: "")
         self.alternateTTS = getString(column: "alternate_tts", defaultValue: "")
+        self.ttsSpeechPrompt = getString(column: "tts_speech", defaultValue: "")
         self.updateDate = getString(column: "update_date", defaultValue: "")
         self.createDate = getString(column: "create_date", defaultValue: "")
+        return self;
+    }
+    
+    func setPreview() -> Content {
+        self.name = "Snack"
+        self.urlImage = "Snack_reduced.png"
+        self.urlMedia = "Snack.mp3"
         return self;
     }
 }
