@@ -7,7 +7,7 @@
 
 import Foundation
 import FMDB
-
+	
 class GlobalState: ObservableObject {
     
     @Published var authorMode = false

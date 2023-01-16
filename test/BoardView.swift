@@ -25,6 +25,7 @@ struct BoardView: View {
     @AppStorage("UserHints") var userHints = true
     @AppStorage("UserBarSync") var userBarSync = false
     @AppStorage("UserBarWizard") var userBarWizard = false
+    @AppStorage("VolumeButton") var volumeButton = true
     @State private var isActive = false
     @State private var activeChildBoard: Int? = 0
     @State private var player: AVAudioPlayer?
@@ -33,6 +34,7 @@ struct BoardView: View {
     @State var showHelp = false
     @State var columns = Array<GridItem>(repeating: GridItem(.flexible(), spacing: 0), count: 1)
     @State private var showSharingActionSheet = false
+    @State var showVolume = false
     private var settings = UserDefaults.standard.dictionaryRepresentation()
     
     init(_ id: Int = 1, geometry: GeometryProxy) {
@@ -84,7 +86,22 @@ struct BoardView: View {
         })
         .navigationBarTitle(board.name)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showVolume) {
+            VolumeDialog().presentationDetents([.medium])
+        }
         .toolbar {
+            ToolbarItem(placement: .secondaryAction) {
+                if (volumeButton) {
+                    Button {
+                        print("Volume")
+                        showVolume.toggle()
+                    } label: {
+                        Label(LocalizedStringKey("Volume"), systemImage: "speaker.wave.1")
+                    }
+                } else {
+                    EmptyView()
+                }
+            }
             ToolbarItem(placement: .primaryAction) {
                 Button(globalState.authorMode ? LocalizedStringKey("Done") : LocalizedStringKey("Author")) {
                     print("Author button tapped!")

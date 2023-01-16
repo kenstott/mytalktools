@@ -35,6 +35,8 @@
 		18D89A422969086000BAF565 /* sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D89A412969086000BAF565 /* sample.sqlite */; };
 		18EA71BD2974E653005477CE /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 18EA71BC2974E653005477CE /* AlertToast */; };
 		18EA71BF2974FDFA005477CE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71BE2974FDFA005477CE /* AppState.swift */; };
+		18EA71C129750667005477CE /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C029750667005477CE /* VolumeSlider.swift */; };
+		18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C229750A39005477CE /* VolumeDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D89A412969086000BAF565 /* sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.sqlite; sourceTree = "<group>"; };
 		18EA71BE2974FDFA005477CE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		18EA71C029750667005477CE /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
+		18EA71C229750A39005477CE /* VolumeDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				1843E62F296BBFC800663122 /* SharingDialog.swift */,
+				18EA71C029750667005477CE /* VolumeSlider.swift */,
+				18EA71C229750A39005477CE /* VolumeDialog.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -257,10 +263,12 @@
 				18EA71BF2974FDFA005477CE /* AppState.swift in Sources */,
 				18A6BE81295FB1B80039B5D4 /* File.swift in Sources */,
 				18A6BEA82960BCCB0039B5D4 /* ContentView.swift in Sources */,
+				18EA71C129750667005477CE /* VolumeSlider.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
 				18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
+				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* GlobalState.swift in Sources */,
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
 			);
