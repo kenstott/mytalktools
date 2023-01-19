@@ -17,10 +17,11 @@ class Speak {
     let APPLE_SPEECH_PREFIX_ALT = "com.apple.voice.compact."
     let speechSynthesizer = AVSpeechSynthesizer()
     
-    init(_ ttsVoice: String, ttsVoiceAlternate: String?) {
+    func setVoices(_ ttsVoice: String, ttsVoiceAlternate: String?) {
         self.ttsVoiceAlternate = ttsVoiceAlternate
         self.ttsVoice = ttsVoice
     }
+    
     func utter(_ phrase: String, speechRate: Double, voiceShape: Double, alternate: inout Bool?) {
         if (NilOrEmpty(phrase)) {
             return;
@@ -33,7 +34,7 @@ class Speak {
             let utterance = AVSpeechUtterance(string: phrase)
             utterance.voice = AVSpeechSynthesisVoice(identifier: voice ?? "com.apple.ttsbundle.Samantha-compact")
             utterance.pitchMultiplier = 1.0
-            utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, max(AVSpeechUtteranceMinimumSpeechRate, Float(speechRate) / 500));
+            //utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, max(AVSpeechUtteranceMinimumSpeechRate, Float(speechRate) / 500));
             utterance.pitchMultiplier = (((Float(voiceShape) - 70.0) / 70.0) * 1.5) + 0.5;
             speechSynthesizer.speak(utterance)
         }

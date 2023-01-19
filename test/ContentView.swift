@@ -29,7 +29,9 @@ struct ContentView: View {
     @Binding var content: Content
     @State private var player: AVAudioPlayer? = nil
     @State var targeted: Bool = true
-    let speak: Speak;
+    let speak = Speak()
+
+
     private var separatorLines: CGFloat {
         get {
             return _separatorLines ? 1 : 0
@@ -58,7 +60,6 @@ struct ContentView: View {
         self._cellWidth = cellWidth
         self._board = board
         self._content = content
-        self.speak = Speak(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate)
     }
     
     var body: some View {
@@ -101,6 +102,7 @@ struct ContentView: View {
                             onClick!()
                         }
                         else  {
+                            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate)
                             let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
                             var alternate: Bool? = content.alternateTTSVoice
                             speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
