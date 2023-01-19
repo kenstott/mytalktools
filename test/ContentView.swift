@@ -10,7 +10,6 @@ import FMDB
 import AVKit
 import AVFAudio
 
-
 struct ContentView: View {
     @EnvironmentObject var globalState: GlobalState
     @AppStorage("SeparatorLines") var _separatorLines = true
@@ -20,12 +19,17 @@ struct ContentView: View {
     @AppStorage("VisibleHotspots") var _visibleHotSpots = false
     @AppStorage("DisplayAsList") var displayAsList = false
     @AppStorage("ColorKey") var colorKey = "1"
+    @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
+    @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
+    @AppStorage("SpeechRate") var speechRate: Double = 700
+    @AppStorage("VoiceShape") var voiceShape: Double = 100
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
     @Binding var content: Content
     @State private var player: AVAudioPlayer? = nil
     @State var targeted: Bool = true
+    let speak: Speak;
     private var separatorLines: CGFloat {
         get {
             return _separatorLines ? 1 : 0
@@ -54,6 +58,7 @@ struct ContentView: View {
         self._cellWidth = cellWidth
         self._board = board
         self._content = content
+        self.speak = Speak(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate)
     }
     
     var body: some View {
@@ -76,6 +81,7 @@ struct ContentView: View {
             } else {
                 MainView
                     .onTapGesture {
+                        let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
                         if (content.urlMedia != "") {
                             let sound = content.urlMedia.split(separator: ".")
                             let root = String(sound.first ?? "")
@@ -93,6 +99,11 @@ struct ContentView: View {
                                 print("Problem playing: \(soundFileURL!)")
                             }
                             onClick!()
+                        }
+                        else  {
+                            let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
+                            var alternate: Bool? = content.alternateTTSVoice
+                            speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
                         }
                     }
             }

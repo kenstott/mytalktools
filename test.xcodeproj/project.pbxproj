@@ -40,6 +40,7 @@
 		18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C42975B18E005477CE /* DisclosureIndicator.swift */; };
 		18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C62975B1D8005477CE /* ContentListRow.swift */; };
 		18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C82975B889005477CE /* ContentGridCell.swift */; };
+		18EA71CB2978EC19005477CE /* Speak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71CA2978EC19005477CE /* Speak.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		18EA71C42975B18E005477CE /* DisclosureIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureIndicator.swift; sourceTree = "<group>"; };
 		18EA71C62975B1D8005477CE /* ContentListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListRow.swift; sourceTree = "<group>"; };
 		18EA71C82975B889005477CE /* ContentGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridCell.swift; sourceTree = "<group>"; };
+		18EA71CA2978EC19005477CE /* Speak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speak.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				18EA71C42975B18E005477CE /* DisclosureIndicator.swift */,
 				18EA71C62975B1D8005477CE /* ContentListRow.swift */,
 				18EA71C82975B889005477CE /* ContentGridCell.swift */,
+				18EA71CA2978EC19005477CE /* Speak.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
+				18EA71CB2978EC19005477CE /* Speak.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* GlobalState.swift in Sources */,

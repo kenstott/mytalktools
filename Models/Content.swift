@@ -3,6 +3,34 @@ import AVFAudio
 import SwiftUI
 import FMDB
 
+class ForegroundColorMask
+{
+    static var kfBlack = 1
+    static var kfDarkGray = 2
+    static var kfLightGray = 3
+    static var kfWhite = 4
+    static var kfGray = 5
+    static var kfPink = 6
+    static var kfGreen = 7
+    static var kfBlue = 8
+    static var kfCyan = 9
+    static var kfYellow = 10
+    static var kfMagenta = 11
+    static var kfOrange = 12
+    static var kfPurple = 13
+    static var kfBrown = 14
+    static var kfClear = 15
+    static var kfRed = 16
+    static var kHidden = 0x0001 << 8
+    static var kNegate = 0x0001 << 9
+    static var kNoRepeatsOnChildren = 0x0001 << 10
+    static var kNoRepeats = 0x0001 << 11
+    static var kPositive = 0x0001 << 12
+    static var kAlternateTTSVoice = 0x0001 << 13
+    static var kPopupStyleChildBoard = 0x0001 << 14
+};
+
+
 class Content: Identifiable, Hashable, ObservableObject {
     
     var id: Int = 0
@@ -27,6 +55,13 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var ttsSpeech: String = ""
     @Published var externalUrl: String = ""
     @Published var alternateTTS: String = ""
+    @Published var alternateTTSVoice: Bool = false
+    @Published var negate: Bool = false
+    @Published var positive: Bool = false
+    @Published var repeatBoard: Bool = false
+    @Published var repeatChildBoards: Bool = false
+    @Published var popupStyleChildBoard: Bool = false
+    @Published var hidden: Bool = false
     @Published var ttsSpeechPrompt: String = ""
     @Published var createDate: String = ""
     @Published var updateDate: String = ""
@@ -87,6 +122,24 @@ class Content: Identifiable, Hashable, ObservableObject {
             return false
         }
         guard lhs.ttsSpeechPrompt == rhs.ttsSpeechPrompt else {
+            return false
+        }
+        guard lhs.alternateTTSVoice == rhs.alternateTTSVoice else {
+            return false
+        }
+        guard lhs.negate == rhs.negate else {
+            return false
+        }
+        guard lhs.positive == rhs.positive else {
+            return false
+        }
+        guard lhs.repeatBoard == rhs.repeatBoard else {
+            return false
+        }
+        guard lhs.repeatChildBoards == rhs.repeatChildBoards else {
+            return false
+        }
+        guard lhs.hidden == rhs.hidden else {
             return false
         }
         return true
@@ -157,6 +210,13 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.ttsSpeechPrompt = getString(column: "tts_speech", defaultValue: "")
         self.updateDate = getString(column: "update_date", defaultValue: "")
         self.createDate = getString(column: "create_date", defaultValue: "")
+        self.negate = (self.color & ForegroundColorMask.kNegate) != 0
+        self.alternateTTSVoice = (self.color & ForegroundColorMask.kAlternateTTSVoice) != 0
+        self.positive = (self.color & ForegroundColorMask.kPositive) != 0
+        self.repeatBoard = (self.color & ForegroundColorMask.kNoRepeats) == 0
+        self.repeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren) == 0
+        self.popupStyleChildBoard = (self.color & ForegroundColorMask.kPopupStyleChildBoard) != 0
+        self.hidden = (self.color & ForegroundColorMask.kHidden) != 0
         return self;
     }
     
