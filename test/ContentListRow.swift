@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentListRow: View {
+    @EnvironmentObject var media: Media
     private var content = Content()
     private var defaultFontSize: CGFloat = 20
     private var foregroundColor = Color.white
@@ -19,7 +20,7 @@ struct ContentListRow: View {
     var body: some View {
         HStack {
             if content.urlImage != "" {
-                Image(String(content.urlImage.split(separator: ".").first!))
+                Image(uiImage: media.getImage(content.urlImage))
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .background(.clear)
@@ -41,6 +42,6 @@ struct ContentListRow: View {
 }
 struct ContentListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ContentListRow(Content().setPreview(), defaultFontSize: 20, foregroundColor: Color.black).environmentObject(GlobalState())
+        ContentListRow(Content().setPreview(), defaultFontSize: 20, foregroundColor: Color.black).environmentObject(BoardState())
     }
 }

@@ -11,8 +11,11 @@ import AVFAudio
 
 struct AppContainer: View {
     
-    @EnvironmentObject var dataWrapper: GlobalState
+    @EnvironmentObject var globalState: BoardState
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var speak: Speak
+    @EnvironmentObject var media: Media
+    @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {
         do {
@@ -31,8 +34,8 @@ struct AppContainer: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
                 guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
-                self.dataWrapper.isPortrait = scene.interfaceOrientation.isPortrait
-                print("Is portrait: \(self.dataWrapper.isPortrait)")
+                globalState.isPortrait = scene.interfaceOrientation.isPortrait
+                print("Is portrait: \(globalState.isPortrait)")
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
@@ -41,6 +44,6 @@ struct AppContainer: View {
 
 struct AppContainer_Previews: PreviewProvider {
     static var previews: some View {
-        AppContainer().environmentObject(GlobalState())
+        AppContainer().environmentObject(BoardState())
     }
 }

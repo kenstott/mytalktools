@@ -2,50 +2,51 @@ import Foundation
 import SwiftUI
 import FMDB
 
-func getString(id: Int, column: String, defaultValue: String = "") -> String {
-    var result: String = defaultValue
-    let s = GlobalState.db!.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
-    if s?.next() != nil {
-        result = s?.string(forColumnIndex: 0) ?? defaultValue
-    }
-    s?.close()
-    return result
-}
-
-func getInt(id: Int, column: String, defaultValue: Int = -1) -> Int {
-    var result: Int = defaultValue
-    let s = GlobalState.db!.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
-    if s?.next() != nil {
-        result = s?.long(forColumnIndex: 0) ?? defaultValue
-    }
-    s?.close()
-    return result
-}
-
-private func getContents(id: Int) -> [Content] {
-    var result: [Content] = []
-    let s = GlobalState.db!.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ?", withArgumentsIn: [id]) ?? FMResultSet();
-    while s.next() {
-        result.append(Content().setId(s.long(forColumnIndex: 0)))
-    }
-    s.close()
-    return result;
-}
-
-private func getSort(id: Int) -> [Int] {
-    var sort: [Int] = [0,0,0]
-    let s = GlobalState.db!.executeQuery("SELECT sort1, sort2, sort3 FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
-    if s?.next() != nil {
-        sort[0] = s?.long(forColumnIndex: 0) ?? 0
-        sort[1] = s?.long(forColumnIndex: 1) ?? 0
-        sort[2] = s?.long(forColumnIndex: 2) ?? 0
-    }
-    s?.close()
-    return sort
-}
 
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
+    func getString(id: Int, column: String, defaultValue: String = "") -> String {
+        var result: String = defaultValue
+        let s = BoardState.db?.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
+        if s?.next() != nil {
+            result = s?.string(forColumnIndex: 0) ?? defaultValue
+        }
+        s?.close()
+        return result
+    }
+
+    func getInt(id: Int, column: String, defaultValue: Int = -1) -> Int {
+        var result: Int = defaultValue
+        let s = BoardState.db?.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
+        if s?.next() != nil {
+            result = s?.long(forColumnIndex: 0) ?? defaultValue
+        }
+        s?.close()
+        return result
+    }
+
+    private func getContents(id: Int) -> [Content] {
+        var result: [Content] = []
+        let s = BoardState.db?.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ?", withArgumentsIn: [id]) ?? FMResultSet();
+        while s.next() {
+            result.append(Content().setId(s.long(forColumnIndex: 0)))
+        }
+        s.close()
+        return result;
+    }
+
+    private func getSort(id: Int) -> [Int] {
+        var sort: [Int] = [0,0,0]
+        let s = BoardState.db?.executeQuery("SELECT sort1, sort2, sort3 FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
+        if s?.next() != nil {
+            sort[0] = s?.long(forColumnIndex: 0) ?? 0
+            sort[1] = s?.long(forColumnIndex: 1) ?? 0
+            sort[2] = s?.long(forColumnIndex: 2) ?? 0
+        }
+        s?.close()
+        return sort
+    }
+
     static func == (lhs: Board, rhs: Board) -> Bool {
         guard lhs.contents == rhs.contents else {
             return false

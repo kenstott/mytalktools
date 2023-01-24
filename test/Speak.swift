@@ -8,10 +8,10 @@
 import Foundation
 import AVFAudio
 
-class Speak {
+class Speak: ObservableObject {
     
-    private var ttsVoiceAlternate: String?
-    private var ttsVoice = ""
+    @Published var ttsVoiceAlternate: String?
+    @Published var ttsVoice = ""
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
     let APPLE_SPEECH_PREFIX = "com.apple.ttsbundle."
     let APPLE_SPEECH_PREFIX_ALT = "com.apple.voice.compact."
@@ -34,10 +34,14 @@ class Speak {
             let utterance = AVSpeechUtterance(string: phrase)
             utterance.voice = AVSpeechSynthesisVoice(identifier: voice ?? "com.apple.ttsbundle.Samantha-compact")
             utterance.pitchMultiplier = 1.0
-            //utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, max(AVSpeechUtteranceMinimumSpeechRate, Float(speechRate) / 500));
+            utterance.rate = min(AVSpeechUtteranceMaximumSpeechRate, max(AVSpeechUtteranceMinimumSpeechRate, Float(speechRate) / 500.0));
             utterance.pitchMultiplier = (((Float(voiceShape) - 70.0) / 70.0) * 1.5) + 0.5;
             speechSynthesizer.speak(utterance)
         }
+    }
+    
+    func voiceCell() {
+        
     }
 }
 

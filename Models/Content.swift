@@ -166,7 +166,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     
     func getString(column: String, defaultValue: String = "") -> String {
         var result: String = defaultValue
-        let s = GlobalState.db!.executeQuery("SELECT \(column) FROM content WHERE iphone_content_id = ?", withArgumentsIn: [id]);
+        let s = BoardState.db!.executeQuery("SELECT \(column) FROM content WHERE iphone_content_id = ?", withArgumentsIn: [id]);
         if s?.next() != nil {
             result = s?.string(forColumnIndex: 0) ?? defaultValue
         }
@@ -176,7 +176,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     
     func getInt(column: String, defaultValue: Int = -1) -> Int {
         var result: Int = defaultValue
-        let s = GlobalState.db!.executeQuery("SELECT \(column) FROM content WHERE iphone_content_id = ?", withArgumentsIn: [id]);
+        let s = BoardState.db!.executeQuery("SELECT \(column) FROM content WHERE iphone_content_id = ?", withArgumentsIn: [id]);
         if s?.next() != nil {
             result = s?.long(forColumnIndex: 0) ?? defaultValue
         }

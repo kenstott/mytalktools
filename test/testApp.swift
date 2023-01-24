@@ -20,8 +20,11 @@ var appDefaults = [
 @main
 struct testApp: App {
     
-    @StateObject private var globalState: GlobalState = GlobalState();
+    @StateObject private var globalState: BoardState = BoardState();
     @ObservedObject var appState = AppState()
+    @ObservedObject var speak = Speak()
+    @ObservedObject var media = Media()
+    @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {
         UserDefaults.standard.register(defaults: appDefaults)
@@ -32,7 +35,9 @@ struct testApp: App {
             AppContainer()
                 .environmentObject(globalState)
                 .environmentObject(appState)
-            ;
+                .environmentObject(speak)
+                .environmentObject(media)
         }
+        
     }
 }

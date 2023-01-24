@@ -11,7 +11,9 @@ import AVKit
 import AVFAudio
 
 struct ContentView: View {
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var globalState: BoardState
+    @EnvironmentObject var speak: Speak
+    @EnvironmentObject var media: Media
     @AppStorage("SeparatorLines") var _separatorLines = true
     @AppStorage("ForegroundColor") var _foregroundColor = "Black"
     @AppStorage("BackgroundColor") var _backgroundColor = "White"
@@ -21,7 +23,7 @@ struct ContentView: View {
     @AppStorage("ColorKey") var colorKey = "1"
     @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
-    @AppStorage("SpeechRate") var speechRate: Double = 700
+    @AppStorage("SpeechRate") var speechRate: Double = 200
     @AppStorage("VoiceShape") var voiceShape: Double = 100
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
@@ -29,8 +31,6 @@ struct ContentView: View {
     @Binding var content: Content
     @State private var player: AVAudioPlayer? = nil
     @State var targeted: Bool = true
-    let speak = Speak()
-
 
     private var separatorLines: CGFloat {
         get {
@@ -82,12 +82,8 @@ struct ContentView: View {
             } else {
                 MainView
                     .onTapGesture {
-                        let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
                         if (content.urlMedia != "") {
-                            let sound = content.urlMedia.split(separator: ".")
-                            let root = String(sound.first ?? "")
-                            let ext = String(sound[1])
-                            let soundFileURL = Bundle.main.url(forResource: root, withExtension: ext)
+                            let soundFileURL = media.getURL(content.urlMedia)
                             do {
                                 if (soundFileURL != nil) {
                                     player = try AVAudioPlayer(contentsOf: soundFileURL!)
@@ -106,6 +102,7 @@ struct ContentView: View {
                             let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
                             var alternate: Bool? = content.alternateTTSVoice
                             speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
+                            onClick!()
                         }
                     }
             }
@@ -126,7 +123,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board())).environmentObject(GlobalState())
+            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board())).environmentObject(BoardState())
         }
     }
 }

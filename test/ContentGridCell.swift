@@ -16,7 +16,8 @@ struct ContentGridCell: View {
     private var cellWidth: Double = 20
     private var separatorLines: CGFloat = 1
     @AppStorage("CellMargin") var cellMargin: Double = 5.0
-    @EnvironmentObject var globalState: GlobalState
+    @EnvironmentObject var globalState: BoardState
+    @EnvironmentObject var media: Media
     
     init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat) {
         self.content = content
@@ -31,7 +32,7 @@ struct ContentGridCell: View {
         ZStack(alignment: .center) {
             VStack(alignment: .center) {
                     if content.urlImage != "" {
-                        Image(String(content.urlImage.split(separator: ".").first!))
+                        Image(uiImage: media.getImage(content.urlImage))
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .background(.clear)
@@ -90,6 +91,6 @@ struct ContentGridCell: View {
 }
 struct ContentGridCell_Previews: PreviewProvider {
     static var previews: some View {
-        ContentGridCell(Content().setPreview(), defaultFontSize: 10, foregroundColor: .black, backgroundColor: .clear, maximumCellHeight: 200, cellWidth: 200, separatorLines: 1).environmentObject(GlobalState())
+        ContentGridCell(Content().setPreview(), defaultFontSize: 10, foregroundColor: .black, backgroundColor: .clear, maximumCellHeight: 200, cellWidth: 200, separatorLines: 1).environmentObject(BoardState())
     }
 }
