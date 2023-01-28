@@ -5,7 +5,7 @@ import FMDB
 
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
-    func getString(id: Int, column: String, defaultValue: String = "") -> String {
+    func getString(id: UInt, column: String, defaultValue: String = "") -> String {
         var result: String = defaultValue
         let s = BoardState.db?.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
         if s?.next() != nil {
@@ -15,7 +15,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return result
     }
 
-    func getInt(id: Int, column: String, defaultValue: Int = -1) -> Int {
+    func getInt(id: UInt, column: String, defaultValue: Int = -1) -> Int {
         var result: Int = defaultValue
         let s = BoardState.db?.executeQuery("SELECT \(column) FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
         if s?.next() != nil {
@@ -25,7 +25,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return result
     }
 
-    private func getContents(id: Int) -> [Content] {
+    private func getContents(id: UInt) -> [Content] {
         var result: [Content] = []
         let s = BoardState.db?.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ?", withArgumentsIn: [id]) ?? FMResultSet();
         while s.next() {
@@ -35,7 +35,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return result;
     }
 
-    private func getSort(id: Int) -> [Int] {
+    private func getSort(id: UInt) -> [Int] {
         var sort: [Int] = [0,0,0]
         let s = BoardState.db?.executeQuery("SELECT sort1, sort2, sort3 FROM board WHERE iphone_board_id = ?", withArgumentsIn: [id]);
         if s?.next() != nil {
@@ -82,13 +82,13 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     @Published var userId: Int = -1
     @Published var name: String = ""
     @Published var sort: [Int] = [0,0,0]
-    @Published var id: Int = 0
+    @Published var id: UInt = 0
     
     init() {
         columns = 0
     }
     
-    func setId(_ id: Int) -> Board {
+    func setId(_ id: UInt) -> Board {
         self.id = id;
         self.contents = getContents(id: id)
         self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)

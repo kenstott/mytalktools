@@ -7,19 +7,53 @@
 
 import Foundation
 import AVFAudio
+import SwiftUI
 
-class Speak: ObservableObject {
+class Speak: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    
+    override init() {
+        super.init()
+        self.speechSynthesizer.delegate = self
+    }
     
     @Published var ttsVoiceAlternate: String?
     @Published var ttsVoice = ""
+    @Published var speaking = false
+    @Published var player: AVAudioPlayer? = nil
+    @Published var viewId: UUID?
+
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
     let APPLE_SPEECH_PREFIX = "com.apple.ttsbundle."
     let APPLE_SPEECH_PREFIX_ALT = "com.apple.voice.compact."
     let speechSynthesizer = AVSpeechSynthesizer()
+    var callback: (() -> Void)? = nil
+    func setAudioPlayer(_ player: AVAudioPlayer, closure: @escaping () -> Void ) {
+        self.player = player
+        self.player?.delegate = self
+        self.callback = closure
+    }
     
-    func setVoices(_ ttsVoice: String, ttsVoiceAlternate: String?) {
+    func play() {
+        speaking = true
+        player?.stop()
+        player?.prepareToPlay()
+        player?.play()
+    }
+    
+    func audioPlayerDidFinishPlaying(
+        _ player: AVAudioPlayer,
+        successfully flag: Bool
+    ) {
+        if callback != nil {
+            self.speaking = false;
+            callback!()
+        }
+    }
+    
+    func setVoices(_ ttsVoice: String, ttsVoiceAlternate: String?, closure: @escaping () -> Void ) {
         self.ttsVoiceAlternate = ttsVoiceAlternate
         self.ttsVoice = ttsVoice
+        self.callback = closure
     }
     
     func utter(_ phrase: String, speechRate: Double, voiceShape: Double, alternate: inout Bool?) {
@@ -40,8 +74,17 @@ class Speak: ObservableObject {
         }
     }
     
-    func voiceCell() {
-        
+}
+
+extension Speak: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) { speaking = true }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) { speaking = false}
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) { speaking = true }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        speaking = false
+        callback?()
     }
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) { speaking = false}
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) { speaking = true }
 }
 

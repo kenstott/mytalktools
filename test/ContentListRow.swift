@@ -19,8 +19,8 @@ struct ContentListRow: View {
     }
     var body: some View {
         HStack {
-            if content.urlImage != "" {
-                Image(uiImage: media.getImage(content.urlImage))
+            if content.imageURL != "" {
+                Image(uiImage: content.image)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .background(.clear)
@@ -34,7 +34,7 @@ struct ContentListRow: View {
                 .background(.clear)
                 .font(.system(size: defaultFontSize))
             Spacer()
-            if (content.childBoardId != 0 || content.childBoardLink != 0) {
+            if (content.linkId != 0) {
                 DisclosureIndicator()
             }
         }

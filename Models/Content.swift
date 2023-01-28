@@ -30,20 +30,73 @@ class ForegroundColorMask
     static var kPopupStyleChildBoard = 0x0001 << 14
 };
 
+class ContentType {
+    static var imageSoundNameLink = 12
+    static var imageSoundLink = 9
+    static var imageNameLink = 10
+    static var imageLink = 6
+    static var soundNameLink = 11
+    static var soundLink = 7
+    static var nameLink = 8
+    static var link = 1
+    static var imageSoundName = 15
+    static var imageSound = 13
+    static var imageName = 14
+    static var image = 2
+    static var soundName = 16
+    static var sound = 3
+    static var name = 4
+    static var goHome = 19
+    static var goBack = 18
+}
+
 
 class Content: Identifiable, Hashable, ObservableObject {
     
+    func copy(id: Int) -> Content {
+        let c = Content()
+        c.id = id
+        c.name = self.name
+        c.imageURL = self.imageURL
+        c.soundURL = self.soundURL
+        c.contentType = self.contentType
+        c.childBoardId = self.childBoardId
+        c.childBoardLink = self.childBoardLink
+        c.backgroundColor = self.backgroundColor
+        c.color = self.color
+        c.fontSize = self.fontSize
+        c.zoom = self.zoom
+        c.doNotAddToPhraseBar = self.doNotAddToPhraseBar
+        c.doNotZoomPics = self.doNotZoomPics
+        c.ttsSpeech = self.ttsSpeech
+        c.externalUrl = self.externalUrl
+        c.alternateTTS = self.alternateTTS
+        c.alternateTTSVoice = self.alternateTTSVoice
+        c.negate = self.negate
+        c.positive = self.positive
+        c.repeatBoard = self.repeatBoard
+        c.repeatChildBoards = self.repeatChildBoards
+        c.popupStyleChildBoard = self.popupStyleChildBoard
+        c.hidden = self.hidden
+        c.ttsSpeechPrompt = self.ttsSpeechPrompt
+        c.cellSize = self.cellSize
+        return c
+    }
+    
+    
+    private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
+    
     var id: Int = 0
     @Published var name: String = ""
-    @Published var urlImage: String = ""
-    @Published var urlMedia: String = ""
+    @Published var imageURL: String = ""
+    @Published var soundURL: String = ""
     @Published var contentType: Int = 15
     @Published var boardId: Int = -1
     @Published var row: Int = -1
     @Published var column: Int = -1
     @Published var userId: Int = -1
-    @Published var childBoardLink: Int = 0
-    @Published var childBoardId: Int = 0
+    @Published var childBoardLink: UInt = 0
+    @Published var childBoardId: UInt = 0
     @Published var totalUses: Int = 0
     @Published var sessionUses: Int = 0
     @Published var backgroundColor: Int = 0
@@ -66,12 +119,114 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var createDate: String = ""
     @Published var updateDate: String = ""
     @Published var cellSize = 1
-    var link: UInt16 {
+    
+    var image: UIImage {
+        get {
+            switch contentType {
+                case ContentType.goHome: return UIImage(systemName: "house")!
+                case ContentType.goBack: return UIImage(systemName: "arrowshape.backward")!
+                default: return Media.getImage(imageURL)
+            }
+        }
+    }
+    
+    // Legacy - MyTalk
+    var cellType: Int {
+        get {
+            if (self.contentType != ContentType.goHome && self.contentType != ContentType.goBack) {
+                if (self.link != 0) {
+                    if (!NilOrEmpty(imageURL)) {
+                        if (!NilOrEmpty(soundURL)) {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.imageSoundNameLink; // A + I + S + T
+                            }
+                            else {
+                                return ContentType.imageSoundLink; // A + I + S
+                            }
+                        }
+                        else {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.imageNameLink; // A + I + T
+                            }
+                            else {
+                                return ContentType.imageLink; // A + I
+                            }
+                        }
+                    }
+                    else {
+                        if (!NilOrEmpty(soundURL)) {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.soundNameLink; // A + S + T
+                            }
+                            else {
+                                return ContentType.soundLink; // A + S
+                            }
+                        }
+                        else {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.nameLink; // A + T
+                            }
+                            else {
+                                return ContentType.link; // A
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (!NilOrEmpty(imageURL)) {
+                        if (!NilOrEmpty(soundURL)) {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.imageSoundName; // I + S + T
+                            }
+                            else {
+                                return ContentType.imageSound; // I + S
+                            }
+                        }
+                        else {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.imageName; // I + T
+                            }
+                            else {
+                                return ContentType.image; // I
+                            }
+                        }
+                    }
+                    else {
+                        if (!NilOrEmpty(soundURL)) {
+                            if (!NilOrEmpty(self.name)) {
+                                return ContentType.soundName; // S + T
+                            }
+                            else {
+                                return ContentType.sound; // S
+                            }
+                        }
+                        else {
+                            if (self.name.count > 0) {
+                                return ContentType.name; // T
+                            }
+                            else {
+                                // nothing ???
+                            }
+                        }
+                    }
+                }
+            }
+            return self.contentType;
+        }
+    }
+    
+    var link: UInt {
         get {
             if (childBoardLink != 0) {
-                return UInt16(self.childBoardLink)
+                return UInt(truncatingIfNeeded: self.childBoardLink)
             }
-            return UInt16(self.childBoardId)
+            return UInt(truncatingIfNeeded: self.childBoardId)
+        }
+    }
+    
+    var linkId: UInt {
+        get {
+            return UInt(self.link)
         }
     }
     
@@ -79,10 +234,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         guard lhs.name == rhs.name else {
             return false
         }
-        guard lhs.urlImage == rhs.urlImage else {
+        guard lhs.imageURL == rhs.imageURL else {
             return false
         }
-        guard lhs.urlMedia == rhs.urlMedia else {
+        guard lhs.soundURL == rhs.soundURL else {
             return false
         }
         guard lhs.ttsSpeech == rhs.ttsSpeech else {
@@ -147,8 +302,8 @@ class Content: Identifiable, Hashable, ObservableObject {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(name)
-        hasher.combine(urlImage)
-        hasher.combine(urlMedia)
+        hasher.combine(imageURL)
+        hasher.combine(soundURL)
         hasher.combine(ttsSpeech)
         hasher.combine(externalUrl)
         hasher.combine(alternateTTS)
@@ -184,18 +339,28 @@ class Content: Identifiable, Hashable, ObservableObject {
         return result
     }
     
+    func getUInt(column: String, defaultValue: UInt = 0) -> UInt {
+        var result: UInt = defaultValue
+        let s = BoardState.db!.executeQuery("SELECT \(column) FROM content WHERE iphone_content_id = ?", withArgumentsIn: [id]);
+        if s?.next() != nil {
+            result = UInt(s?.unsignedLongLongInt(forColumnIndex: 0) ?? UInt64(defaultValue))
+        }
+        s?.close()
+        return result
+    }
+    
     func setId(_ id: Int) -> Content {
         self.id = id;
         self.name = getString(column: "content_name", defaultValue: "")
-        self.urlImage = getString(column: "content_url", defaultValue: "")
-        self.urlMedia = getString(column: "content_url2", defaultValue: "")
+        self.imageURL = getString(column: "content_url", defaultValue: "")
+        self.soundURL = getString(column: "content_url2", defaultValue: "")
         self.contentType = getInt(column: "content_type", defaultValue: 15)
         self.boardId = getInt(column: "board_id", defaultValue: -1)
         self.row = getInt(column: "row_index", defaultValue: -1)
         self.column = getInt(column: "clm_index", defaultValue: -1)
         self.userId = getInt(column: "user_id", defaultValue: -1)
-        self.childBoardLink = getInt(column: "child_board_link", defaultValue: 0)
-        self.childBoardId = getInt(column: "child_board_id", defaultValue: 0)
+        self.childBoardLink = getUInt(column: "child_board_link", defaultValue: 0)
+        self.childBoardId = getUInt(column: "child_board_id", defaultValue: 0)
         self.totalUses = getInt(column: "total_uses", defaultValue: 0)
         self.sessionUses = getInt(column: "session_uses", defaultValue: 0)
         self.backgroundColor = getInt(column: "background_color", defaultValue: 0)
@@ -222,9 +387,36 @@ class Content: Identifiable, Hashable, ObservableObject {
     
     func setPreview() -> Content {
         self.name = "Snack"
-        self.urlImage = "Snack_reduced.png"
-        self.urlMedia = "Snack.mp3"
+        self.imageURL = "Snack_reduced.png"
+        self.soundURL = "Snack.mp3"
         return self;
     }
+    
+    func voice(_ speak: Speak, ttsVoice: String, ttsVoiceAlternate: String, speechRate: Double, voiceShape: Double, callback: @escaping () -> Void) {
+        if (soundURL != "") {
+            let soundFileURL = Media.getURL(soundURL)
+            do {
+                if (soundFileURL != nil) {
+                    speak.setAudioPlayer(try AVAudioPlayer(contentsOf: soundFileURL!)) {
+                        callback()
+                    }
+                    speak.play()
+                }
+            }
+            catch {
+                print("Problem playing: \(soundFileURL!)")
+            }
+        }
+        else  {
+            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                callback()
+            }
+            let phrase = alternateTTS != "" ? alternateTTS : name
+            var alternate: Bool? = alternateTTSVoice
+            speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
+        }
+    }
+    
+    
 }
 

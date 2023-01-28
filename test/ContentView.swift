@@ -11,10 +11,13 @@ import AVKit
 import AVFAudio
 
 struct ContentView: View {
-    @EnvironmentObject var globalState: BoardState
+    
+    @EnvironmentObject var boardState: BoardState
+    @EnvironmentObject var phraseBarState: PhraseBarState
     @EnvironmentObject var speak: Speak
     @EnvironmentObject var media: Media
     @AppStorage("SeparatorLines") var _separatorLines = true
+    @AppStorage("PhraseMode") var phraseMode = "0"
     @AppStorage("ForegroundColor") var _foregroundColor = "Black"
     @AppStorage("BackgroundColor") var _backgroundColor = "White"
     @AppStorage("DefaultFontSize") var _defaultFontSize = ""
@@ -25,13 +28,14 @@ struct ContentView: View {
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
     @AppStorage("SpeechRate") var speechRate: Double = 200
     @AppStorage("VoiceShape") var voiceShape: Double = 100
+    @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
     @Binding var content: Content
-    @State private var player: AVAudioPlayer? = nil
     @State var targeted: Bool = true
-
+    @State var id = UUID()
+    
     private var separatorLines: CGFloat {
         get {
             return _separatorLines ? 1 : 0
@@ -51,10 +55,10 @@ struct ContentView: View {
         }
     }
     private var onClick: (() -> Void)? = nil
-    private var id: Int = 0
+    private var contentId: Int = 0
     
     init(_ content: Binding<Content>, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board> ) {
-        self.id = content.id;
+        self.contentId = content.id;
         self.onClick = onClick
         self._maximumCellHeight = maximumCellHeight
         self._cellWidth = cellWidth
@@ -64,7 +68,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            if globalState.authorMode && globalState.editMode {
+            if boardState.authorMode && boardState.editMode {
                 MainView
                     .onDrop(of: ["public.utf8-plain-text"], isTargeted: self.$targeted,
                             perform: { (provider) -> Bool in
@@ -82,28 +86,23 @@ struct ContentView: View {
             } else {
                 MainView
                     .onTapGesture {
-                        if (content.urlMedia != "") {
-                            let soundFileURL = media.getURL(content.urlMedia)
-                            do {
-                                if (soundFileURL != nil) {
-                                    player = try AVAudioPlayer(contentsOf: soundFileURL!)
-                                    player?.stop()
-                                    player?.prepareToPlay()
-                                    player?.play()
+                        if (phraseMode == "1") {
+                            switch content.contentType {
+                            case ContentType.goBack:
+                                break;
+                            case ContentType.goHome:
+                                break;
+                            default:
+                                if (content.link == 0) {
+                                    phraseBarState.contents.append(content)
                                 }
                             }
-                            catch {
-                                print("Problem playing: \(soundFileURL!)")
+                        } else {
+                            content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
+                                print("done")
                             }
-                            onClick!()
                         }
-                        else  {
-                            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate)
-                            let phrase = content.alternateTTS != "" ? content.alternateTTS : content.name
-                            var alternate: Bool? = content.alternateTTSVoice
-                            speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
-                            onClick!()
-                        }
+                        onClick!()
                     }
             }
         }
@@ -111,7 +110,7 @@ struct ContentView: View {
     
     var MainView: some View {
         ZStack {
-            if (displayAsList) {
+            if displayAsList {
                 ContentListRow(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor)
             } else {
                 ContentGridCell(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor, backgroundColor: backgroundColor, maximumCellHeight: maximumCellHeight, cellWidth: cellWidth, separatorLines: separatorLines)

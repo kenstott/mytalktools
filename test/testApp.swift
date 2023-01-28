@@ -20,10 +20,11 @@ var appDefaults = [
 @main
 struct testApp: App {
     
-    @StateObject private var globalState: BoardState = BoardState();
+    @StateObject private var boardState = BoardState();
     @ObservedObject var appState = AppState()
     @ObservedObject var speak = Speak()
     @ObservedObject var media = Media()
+    @ObservedObject var phraseBarState = PhraseBarState()
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {
@@ -33,10 +34,11 @@ struct testApp: App {
     var body: some Scene {
         WindowGroup {
             AppContainer()
-                .environmentObject(globalState)
+                .environmentObject(boardState)
                 .environmentObject(appState)
                 .environmentObject(speak)
                 .environmentObject(media)
+                .environmentObject(phraseBarState)
         }
         
     }

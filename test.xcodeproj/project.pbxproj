@@ -14,6 +14,8 @@
 		182702C9297C25F5009C3B12 /* UserValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702C8297C25F5009C3B12 /* UserValidation.swift */; };
 		182702CB297C5452009C3B12 /* NewDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702CA297C5452009C3B12 /* NewDatabase.swift */; };
 		182702CD297D5FF4009C3B12 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702CC297D5FF4009C3B12 /* Media.swift */; };
+		182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D02981E1F2009C3B12 /* PhraseBar.swift */; };
+		182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D22981E49B009C3B12 /* PhraseBarView.swift */; };
 		1843E630296BBFC800663122 /* SharingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843E62F296BBFC800663122 /* SharingDialog.swift */; };
 		18A6BE81295FB1B80039B5D4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BE80295FB1B80039B5D4 /* File.swift */; };
 		18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BE8329607FA30039B5D4 /* BoardState.swift */; };
@@ -58,6 +60,8 @@
 		182702C8297C25F5009C3B12 /* UserValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserValidation.swift; sourceTree = "<group>"; };
 		182702CA297C5452009C3B12 /* NewDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDatabase.swift; sourceTree = "<group>"; };
 		182702CC297D5FF4009C3B12 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		182702D02981E1F2009C3B12 /* PhraseBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseBar.swift; sourceTree = "<group>"; };
+		182702D22981E49B009C3B12 /* PhraseBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhraseBarView.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		18A6BE80295FB1B80039B5D4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		18A6BE8329607FA30039B5D4 /* BoardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardState.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				182702C4297C17F0009C3B12 /* User.swift */,
 				182702C6297C1816009C3B12 /* Network.swift */,
 				182702C8297C25F5009C3B12 /* UserValidation.swift */,
+				182702D02981E1F2009C3B12 /* PhraseBar.swift */,
 				182702CA297C5452009C3B12 /* NewDatabase.swift */,
 				182702CC297D5FF4009C3B12 /* Media.swift */,
 			);
@@ -155,6 +160,7 @@
 		18CE4C54295FAC2000D349A3 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				182702D22981E49B009C3B12 /* PhraseBarView.swift */,
 				1843E631296C4EA700663122 /* Dialogs */,
 				18CE4C59295FAC2400D349A3 /* Assets.xcassets */,
 				18A6BF03296253060039B5D4 /* AppContainer.swift */,
@@ -298,6 +304,7 @@
 				18A6BE81295FB1B80039B5D4 /* File.swift in Sources */,
 				18A6BEA82960BCCB0039B5D4 /* ContentView.swift in Sources */,
 				18EA71C129750667005477CE /* VolumeSlider.swift in Sources */,
+				182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */,
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				182702C3297C01BE009C3B12 /* About.swift in Sources */,
@@ -309,6 +316,7 @@
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
 				18EA71CB2978EC19005477CE /* Speak.swift in Sources */,
+				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,

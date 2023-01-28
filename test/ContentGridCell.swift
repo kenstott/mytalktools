@@ -31,25 +31,30 @@ struct ContentGridCell: View {
     var body: some View {
         ZStack(alignment: .center) {
             VStack(alignment: .center) {
-                    if content.urlImage != "" {
-                        Image(uiImage: media.getImage(content.urlImage))
-                            .resizable()
-                            .aspectRatio(1, contentMode: .fit)
-                            .background(.clear)
-                            .padding(5)
-                    }
-                    Text(content.name)
-                        .foregroundColor(foregroundColor)
+                Spacer()
+                switch content.contentType {
+                case ContentType.goBack: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
+                case ContentType.goHome: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
+                default:
+                    Image(uiImage: content.image)
+                        .resizable()
+                        .font(.system(size: 100))
+                        .aspectRatio(1, contentMode: .fit)
                         .background(.clear)
-                        .font(.system(size: defaultFontSize))
+                        .padding(5)
                 }
-//                .frame(width: cellWidth - cellMargin, height: maximumCellHeight - cellMargin)
-                .background(.clear)
+                Spacer()
+                Text(content.name)
+                    .foregroundColor(foregroundColor)
+                    .background(.clear)
+                    .font(.system(size: defaultFontSize))
+            }
+            .background(.clear)
             if globalState.authorMode {
                 ZStack(alignment: .topLeading) {
-                        Color.clear
+                    Color.clear
                     VStack(alignment: .leading) {
-                        if (content.urlMedia != "") {
+                        if (content.soundURL != "") {
                             Image(systemName: "waveform")
                                 .resizable()
                                 .aspectRatio(1, contentMode: .fit)
@@ -71,7 +76,7 @@ struct ContentGridCell: View {
                 }
                 .padding(5)
             }
-            if content.childBoardId != 0 {
+            if content.childBoardId != 0 && content.boardId != -1 {
                 ZStack(alignment: .topTrailing) {
                     Color.clear
                     Image(systemName: "ellipsis")

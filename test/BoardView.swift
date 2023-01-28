@@ -12,11 +12,12 @@ import AVFAudio
 
 struct BoardView: View {
     
-    @EnvironmentObject var globalState: BoardState
+    @EnvironmentObject var boardState: BoardState
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var media: Media
+    @EnvironmentObject var phraseBarState: PhraseBarState
     let padding = 0.0
-    private var id: Int = 0
+    private var id: UInt = 0
     private var geometry: GeometryProxy;
     @Environment(\.dismiss) var dismiss
     @StateObject private var board = Board()
@@ -30,17 +31,19 @@ struct BoardView: View {
     @AppStorage("UserBarWizard") var userBarWizard = false
     @AppStorage("VolumeButton") var volumeButton = true
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
+    @AppStorage("PhraseMode") var phraseMode = "0"
     @State private var isActive = false
-    @State private var activeChildBoard: Int? = 0
+    @State private var activeChildBoard: UInt? = 0
     @State private var player: AVAudioPlayer?
     @State var rowsToDisplay = 0
     @State private var showSharingActionSheet = false
     @State var showVolume = false
     @State var showAuthorHelp = false
     @State var showUserHelp = false
-    var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown) / Double(min(maximumRows, board.rows)) } }
+    var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
-    var toolbarShown: CGFloat { get { globalState.authorMode || advancedUseBar ? 40 : 0 } }
+    var toolbarShown: CGFloat { get { boardState.authorMode || advancedUseBar ? 40 : 0 } }
+    var phraseBarShown: CGFloat { get { phraseMode == "1" ? 100 : 0 } }
     var columns: Array<GridItem> { get { Array<GridItem>(
         repeating: GridItem(.fixed(cellWidth), spacing: 0, alignment: .leading),
         count: max(board.columns, 1)) } }
@@ -48,7 +51,7 @@ struct BoardView: View {
         return 1
     }
     
-    init(_ id: Int = 1, geometry: GeometryProxy) {
+    init(_ id: UInt = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
     }
@@ -58,20 +61,23 @@ struct BoardView: View {
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
             }
-            switch globalState.state {
+            switch boardState.state {
             case .closed:
                 ProgressView("Downloading your communication board...").onAppear {
                     Task {
-                        await globalState.setUserDb(username: storedUsername, media: media)
+                        await boardState.setUserDb(username: storedUsername, media: media)
                         _ = board.setId(id)
                     }
                 }
             case .ready:
                 VStack {
+                    if phraseMode == "1" {
+                        PhraseBarView()
+                    }
                     ForEach($board.contents, id: \.id) {
                         $item in
                         if $item.childBoardId.wrappedValue != 0 {
-                            NavigationLink(destination: BoardView(item.childBoardLink != 0 ? item.childBoardLink : item.childBoardId, geometry: geometry), tag: item.childBoardLink != 0 ? item.childBoardLink : item.childBoardId, selection: $activeChildBoard) { EmptyView() }
+                            NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard) { EmptyView() }
                         }
                     }
                     if (displayAsList) {
@@ -81,7 +87,7 @@ struct BoardView: View {
                                 $item,
                                 onClick: { () -> Void in
                                     if (item.link != 0) {
-                                        activeChildBoard = Int(item.link)
+                                        activeChildBoard = item.linkId
                                     }
                                 },
                                 maximumCellHeight: .constant(maximumCellHeight),
@@ -97,8 +103,13 @@ struct BoardView: View {
                                     ContentView(
                                         $item,
                                         onClick: { () -> Void in
-                                            if (item.childBoardId != 0 || item.childBoardLink != 0) {
-                                                activeChildBoard = item.childBoardLink != 0 ? item.childBoardLink : item.childBoardId
+                                            switch item.contentType {
+                                            case ContentType.goBack: dismiss()
+                                            case ContentType.goHome:appState.rootViewId = UUID()
+                                            default:
+                                                if (item.linkId != 0) {
+                                                    activeChildBoard = item.linkId
+                                                }
                                             }
                                         },
                                         maximumCellHeight: .constant(maximumCellHeight),
@@ -111,8 +122,8 @@ struct BoardView: View {
                             .frame(width: geometry.size.width)
                             .padding(0)
                         }
-                        .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown, maxHeight: UIScreen.main.bounds.height -
-                               geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown)
+                        .frame(minHeight: UIScreen.main.bounds.height - geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown - phraseBarShown, maxHeight: UIScreen.main.bounds.height -
+                               geometry.safeAreaInsets.top - geometry.safeAreaInsets.bottom - 50 - toolbarShown - phraseBarShown)
                         .fixedSize()
                     }
                 }
@@ -125,13 +136,13 @@ struct BoardView: View {
                     VolumeDialog().presentationDetents([.medium])
                 }
                 .onAppear {
-                    showAuthorHelp = globalState.authorMode && authorHints
-                    showUserHelp = !globalState.authorMode && userHints
+                    showAuthorHelp = boardState.authorMode && authorHints
+                    showUserHelp = !boardState.authorMode && userHints
                     _ = board.setId(id)
                 }
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
-                        if !globalState.authorMode {
+                        if !boardState.authorMode {
                             Button {
                                 
                             } label: {
@@ -141,7 +152,7 @@ struct BoardView: View {
                         } else {
                             Button( LocalizedStringKey("Done")) {
                                 print("Done button tapped!")
-                                self.globalState.authorMode.toggle()
+                                self.boardState.authorMode.toggle()
                             }
                         }
                     }
@@ -158,7 +169,7 @@ struct BoardView: View {
                         }
                     }
                     ToolbarItemGroup(placement: .bottomBar) {
-                        if (self.globalState.authorMode) {
+                        if (self.boardState.authorMode) {
                             Button {
                                 print("Help")
                             } label: {
@@ -185,7 +196,7 @@ struct BoardView: View {
                             } label: {
                                 Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
                             }
-                            Toggle(LocalizedStringKey("Edit"), isOn: $globalState.editMode)
+                            Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
                                 print("Sync")
                             } label: {

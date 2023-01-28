@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Content.link.getter:Content.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #2 in Network.isValidUser(username:password:):Network.swift">
       </ContextState>
       <ContextState
@@ -23,6 +26,9 @@
       </ContextState>
       <ContextState
          contextName = "Board.getString(column:defaultValue:):Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Media.getImage(_:):Media.swift">
       </ContextState>
       <ContextState
          contextName = "ContentView.init(_:onClick:maximumCellHeight:cellWidth:board:):ContentView.swift">
@@ -75,6 +81,20 @@
          contextName = "Content.init():Content.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #2 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_item">
+            </PersistentString>
+            <PersistentString
+               value = "_item.linkId">
+            </PersistentString>
+            <PersistentString
+               value = "_activeChildBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "initializeBoard():File.swift">
       </ContextState>
       <ContextState
@@ -82,6 +102,17 @@
          <PersistentStrings>
             <PersistentString
                value = "board.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Content.image.getter:Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in PhraseBarView.body.getter:PhraseBarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "phraseBarState.contents.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -152,6 +183,9 @@
                value = "geometry.safeAreaInsets.bottom">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardState.reloadDatabase(fileURL:):BoardState.swift">
       </ContextState>
       <ContextState
          contextName = "BoardView.init(_:):BoardView.swift">
