@@ -70,9 +70,12 @@ class Media: ObservableObject {
     
     
     static func getURL(_ path: String) -> URL? {
+        if path == "" {
+            return nil
+        }
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let (dir, name, ext)  = splitFileName(str: path)
-        if dir == "" {
+        if dir == "" && name != "" {
             let url = createLocalUrl(forImageNamed: name)
             return url
         }

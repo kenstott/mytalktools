@@ -59,4 +59,5 @@ struct NewDatabase: Decodable, Encodable {
 struct NewDatabaseInput: Decodable, Encodable {
     var userName: String
     var uuid: String = ""
+    var boardID: String?
 }

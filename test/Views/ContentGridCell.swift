@@ -33,8 +33,8 @@ struct ContentGridCell: View {
             VStack(alignment: .center) {
                 Spacer()
                 switch content.contentType {
-                case ContentType.goBack: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
-                case ContentType.goHome: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
+                case ContentType.goHome: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
+                case ContentType.goBack: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
                 default:
                     Image(uiImage: content.image)
                         .resizable()

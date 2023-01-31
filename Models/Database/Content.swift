@@ -46,8 +46,8 @@ class ContentType {
     static var soundName = 16
     static var sound = 3
     static var name = 4
-    static var goHome = 19
-    static var goBack = 18
+    static var goHome = 18
+    static var goBack = 19
 }
 
 

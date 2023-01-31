@@ -31,6 +31,7 @@ struct BoardView: View {
     @AppStorage("UserBarWizard") var userBarWizard = false
     @AppStorage("VolumeButton") var volumeButton = true
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
+    @AppStorage("BoardName") var storedBoardName = ""
     @AppStorage("PhraseMode") var phraseMode = "0"
     @State private var isActive = false
     @State private var activeChildBoard: UInt? = 0
@@ -65,7 +66,7 @@ struct BoardView: View {
             case .closed:
                 ProgressView("Downloading your communication board...").onAppear {
                     Task {
-                        await boardState.setUserDb(username: storedUsername, media: media)
+                        await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                         _ = board.setId(id)
                     }
                 }
@@ -105,7 +106,7 @@ struct BoardView: View {
                                         onClick: { () -> Void in
                                             switch item.contentType {
                                             case ContentType.goBack: dismiss()
-                                            case ContentType.goHome:appState.rootViewId = UUID()
+                                            case ContentType.goHome: appState.rootViewId = UUID()
                                             default:
                                                 if (item.linkId != 0) {
                                                     activeChildBoard = item.linkId
