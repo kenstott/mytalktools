@@ -36,14 +36,6 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>Switch/Scanning</string>
-			<key>File</key>
-			<string>switch</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
 			<string>Touch</string>
 			<key>File</key>
 			<string>touch</string>

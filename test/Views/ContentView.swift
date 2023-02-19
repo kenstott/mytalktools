@@ -88,9 +88,9 @@ struct ContentView: View {
                     .onTapGesture {
                         if (phraseMode == "1") {
                             switch content.contentType {
-                            case ContentType.goBack:
+                            case .goBack:
                                 break;
-                            case ContentType.goHome:
+                            case .goHome:
                                 break;
                             default:
                                 if (content.link == 0) {

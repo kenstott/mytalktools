@@ -105,8 +105,8 @@ struct BoardView: View {
                                         $item,
                                         onClick: { () -> Void in
                                             switch item.contentType {
-                                            case ContentType.goBack: dismiss()
-                                            case ContentType.goHome: appState.rootViewId = UUID()
+                                            case .goBack: dismiss()
+                                            case .goHome: appState.rootViewId = UUID()
                                             default:
                                                 if (item.linkId != 0) {
                                                     activeChildBoard = item.linkId

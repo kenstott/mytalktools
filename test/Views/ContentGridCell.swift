@@ -22,10 +22,10 @@ struct ContentGridCell: View {
     init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat) {
         self.content = content
         self.defaultFontSize = defaultFontSize
-        self.foregroundColor = foregroundColor
+        self.foregroundColor = content.convertColor(value: content.foregroundColor) ?? foregroundColor
         self.maximumCellHeight = maximumCellHeight
         self.cellWidth = cellWidth
-        self.backgroundColor = backgroundColor
+        self.backgroundColor = content.convertColor(value: content.backgroundColor) ?? backgroundColor
         self.separatorLines = separatorLines
     }
     var body: some View {
@@ -33,8 +33,8 @@ struct ContentGridCell: View {
             VStack(alignment: .center) {
                 Spacer()
                 switch content.contentType {
-                case ContentType.goHome: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
-                case ContentType.goBack: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
+                case .goHome: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
+                case .goBack: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
                 default:
                     Image(uiImage: content.image)
                         .resizable()

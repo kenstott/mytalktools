@@ -3,55 +3,86 @@ import AVFAudio
 import SwiftUI
 import FMDB
 
-class ForegroundColorMask
-{
-    static var kfBlack = 1
-    static var kfDarkGray = 2
-    static var kfLightGray = 3
-    static var kfWhite = 4
-    static var kfGray = 5
-    static var kfPink = 6
-    static var kfGreen = 7
-    static var kfBlue = 8
-    static var kfCyan = 9
-    static var kfYellow = 10
-    static var kfMagenta = 11
-    static var kfOrange = 12
-    static var kfPurple = 13
-    static var kfBrown = 14
-    static var kfClear = 15
-    static var kfRed = 16
-    static var kHidden = 0x0001 << 8
-    static var kNegate = 0x0001 << 9
-    static var kNoRepeatsOnChildren = 0x0001 << 10
-    static var kNoRepeats = 0x0001 << 11
-    static var kPositive = 0x0001 << 12
-    static var kAlternateTTSVoice = 0x0001 << 13
-    static var kPopupStyleChildBoard = 0x0001 << 14
-};
-
-class ContentType {
-    static var imageSoundNameLink = 12
-    static var imageSoundLink = 9
-    static var imageNameLink = 10
-    static var imageLink = 6
-    static var soundNameLink = 11
-    static var soundLink = 7
-    static var nameLink = 8
-    static var link = 1
-    static var imageSoundName = 15
-    static var imageSound = 13
-    static var imageName = 14
-    static var image = 2
-    static var soundName = 16
-    static var sound = 3
-    static var name = 4
-    static var goHome = 18
-    static var goBack = 19
-}
-
-
 class Content: Identifiable, Hashable, ObservableObject {
+    
+    enum ContentType: Int {
+        case imageSoundNameLink = 12
+        case imageSoundLink = 9
+        case imageNameLink = 10
+        case imageLink = 6
+        case soundNameLink = 11
+        case soundLink = 7
+        case nameLink = 8
+        case link = 1
+        case imageSoundName = 15
+        case imageSound = 13
+        case imageName = 14
+        case image = 2
+        case soundName = 16
+        case sound = 3
+        case name = 4
+        case goHome = 18
+        case goBack = 19
+    }
+
+    enum BackgroundColorMask: Int {
+        case kNone = 0
+        case kTop = 256
+        case kBottom = 512
+        case kRight = 1024
+        case kLeft = 2048
+        case kOverlay = 4096
+        case kOpaque = 8192
+    }
+
+    enum ForegroundColorMask: Int
+    {
+        case kfDefault = 0
+        case kfBlack = 1
+        case kfDarkGray = 2
+        case kfLightGray = 3
+        case kfWhite = 4
+        case kfGray = 5
+        case kfPink = 6
+        case kfGreen = 7
+        case kfBlue = 8
+        case kfCyan = 9
+        case kfYellow = 10
+        case kfMagenta = 11
+        case kfOrange = 12
+        case kfPurple = 13
+        case kfBrown = 14
+        case kfClear = 15
+        case kfRed = 16
+        case kHidden = 256
+        case kNegate = 512
+        case kNoRepeatsOnChildren = 1024
+        case kNoRepeats = 2048
+        case kPositive = 4096
+        case kAlternateTTSVoice = 8192
+        case kPopupStyleChildBoard = 16384
+    };
+
+    func convertColor(value: Int) -> Color? {
+        switch(ForegroundColorMask(rawValue: value) ?? ForegroundColorMask.kfDefault) {
+        case .kfWhite: return Color.white
+        case .kfRed: return Color.red
+        case .kfBlue: return Color.blue
+        case .kfCyan: return Color.cyan
+        case .kfGray: return Color.gray
+        case .kfPink: return Color.pink
+        case .kfBlack: return Color.black
+        case .kfBrown: return Color.brown
+        case .kfClear: return Color.white.opacity(1.0)
+        case .kfOrange: return Color.orange
+        case .kfPurple: return Color.purple
+        case .kfMagenta: return Color(red: 1.0, green: 0.0, blue: 1.0)
+        case .kfYellow: return Color.yellow
+        case .kfDarkGray: return Color(red: 0.66, green: 0.66, blue: 0.66)
+        case .kfLightGray: return Color(red: 0.82, green: 0.82, blue: 0.82)
+        default: return nil
+        }
+    }
     
     func copy(id: Int) -> Content {
         let c = Content()
@@ -62,8 +93,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         c.contentType = self.contentType
         c.childBoardId = self.childBoardId
         c.childBoardLink = self.childBoardLink
+        c.background = self.background
         c.backgroundColor = self.backgroundColor
         c.color = self.color
+        c.foregroundColor = self.foregroundColor
         c.fontSize = self.fontSize
         c.zoom = self.zoom
         c.doNotAddToPhraseBar = self.doNotAddToPhraseBar
@@ -80,17 +113,31 @@ class Content: Identifiable, Hashable, ObservableObject {
         c.hidden = self.hidden
         c.ttsSpeechPrompt = self.ttsSpeechPrompt
         c.cellSize = self.cellSize
+        c.isOpaque = self.isOpaque
+        c.isRepeatBoard = self.isRepeatBoard
+        c.isRepeatRowTop = self.isRepeatRowTop
+        c.isRepeatedCellOverlay = self.isRepeatedCellOverlay
+        c.isRepeatChildBoards = self.isRepeatChildBoards
+        c.isRepeatRowBottom = self.isRepeatRowBottom
+        c.isRepeatColumnLeft = self.isRepeatColumnLeft
+        c.isRepeatColumnRight = self.isRepeatColumnRight
         return c
     }
     
     
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
     
+    private func getRepeat(value: Int) -> Int {
+        return value & 0xFF00;
+    }
+    
     var id: Int = 0
+    private var background: Int = 0
+    private var color: Int = 0
     @Published var name: String = ""
     @Published var imageURL: String = ""
     @Published var soundURL: String = ""
-    @Published var contentType: Int = 15
+    @Published var contentType: ContentType = ContentType.imageSoundName
     @Published var boardId: Int = -1
     @Published var row: Int = -1
     @Published var column: Int = -1
@@ -99,8 +146,8 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var childBoardId: UInt = 0
     @Published var totalUses: Int = 0
     @Published var sessionUses: Int = 0
+    @Published var foregroundColor: Int = 0
     @Published var backgroundColor: Int = 0
-    @Published var color: Int = 0
     @Published var fontSize: Int = 0
     @Published var zoom: Bool = false
     @Published var doNotAddToPhraseBar: Bool = false
@@ -119,55 +166,63 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var createDate: String = ""
     @Published var updateDate: String = ""
     @Published var cellSize = 1
+    @Published var isRepeatRowTop: Bool = false
+    @Published var isRepeatRowBottom: Bool = false
+    @Published var isRepeatColumnRight: Bool = false
+    @Published var isRepeatColumnLeft: Bool = false
+    @Published var isRepeatedCellOverlay: Bool = false
+    @Published var isOpaque: Bool = false
+    @Published var isRepeatBoard: Bool = false
+    @Published var isRepeatChildBoards: Bool = false
     
     var image: UIImage {
         get {
             switch contentType {
-                case ContentType.goHome: return UIImage(systemName: "house")!
-                case ContentType.goBack: return UIImage(systemName: "arrowshape.backward")!
+                case .goHome: return UIImage(systemName: "house")!
+                case .goBack: return UIImage(systemName: "arrowshape.backward")!
                 default: return Media.getImage(imageURL)
             }
         }
     }
     
     // Legacy - MyTalk
-    var cellType: Int {
+    var cellType: ContentType {
         get {
-            if (self.contentType != ContentType.goHome && self.contentType != ContentType.goBack) {
+            if (self.contentType != .goHome && self.contentType != .goBack) {
                 if (self.link != 0) {
                     if (!NilOrEmpty(imageURL)) {
                         if (!NilOrEmpty(soundURL)) {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.imageSoundNameLink; // A + I + S + T
+                                return .imageSoundNameLink; // A + I + S + T
                             }
                             else {
-                                return ContentType.imageSoundLink; // A + I + S
+                                return .imageSoundLink; // A + I + S
                             }
                         }
                         else {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.imageNameLink; // A + I + T
+                                return .imageNameLink; // A + I + T
                             }
                             else {
-                                return ContentType.imageLink; // A + I
+                                return .imageLink; // A + I
                             }
                         }
                     }
                     else {
                         if (!NilOrEmpty(soundURL)) {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.soundNameLink; // A + S + T
+                                return .soundNameLink; // A + S + T
                             }
                             else {
-                                return ContentType.soundLink; // A + S
+                                return .soundLink; // A + S
                             }
                         }
                         else {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.nameLink; // A + T
+                                return .nameLink; // A + T
                             }
                             else {
-                                return ContentType.link; // A
+                                return .link; // A
                             }
                         }
                     }
@@ -176,33 +231,33 @@ class Content: Identifiable, Hashable, ObservableObject {
                     if (!NilOrEmpty(imageURL)) {
                         if (!NilOrEmpty(soundURL)) {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.imageSoundName; // I + S + T
+                                return .imageSoundName; // I + S + T
                             }
                             else {
-                                return ContentType.imageSound; // I + S
+                                return .imageSound; // I + S
                             }
                         }
                         else {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.imageName; // I + T
+                                return .imageName; // I + T
                             }
                             else {
-                                return ContentType.image; // I
+                                return .image; // I
                             }
                         }
                     }
                     else {
                         if (!NilOrEmpty(soundURL)) {
                             if (!NilOrEmpty(self.name)) {
-                                return ContentType.soundName; // S + T
+                                return .soundName; // S + T
                             }
                             else {
-                                return ContentType.sound; // S
+                                return .sound; // S
                             }
                         }
                         else {
                             if (self.name.count > 0) {
-                                return ContentType.name; // T
+                                return .name; // T
                             }
                             else {
                                 // nothing ???
@@ -354,7 +409,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.name = getString(column: "content_name", defaultValue: "")
         self.imageURL = getString(column: "content_url", defaultValue: "")
         self.soundURL = getString(column: "content_url2", defaultValue: "")
-        self.contentType = getInt(column: "content_type", defaultValue: 15)
+        self.contentType = ContentType(rawValue: getInt(column: "content_type", defaultValue: 15)) ?? .imageSoundName
         self.boardId = getInt(column: "board_id", defaultValue: -1)
         self.row = getInt(column: "row_index", defaultValue: -1)
         self.column = getInt(column: "clm_index", defaultValue: -1)
@@ -363,8 +418,9 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.childBoardId = getUInt(column: "child_board_id", defaultValue: 0)
         self.totalUses = getInt(column: "total_uses", defaultValue: 0)
         self.sessionUses = getInt(column: "session_uses", defaultValue: 0)
-        self.backgroundColor = getInt(column: "background_color", defaultValue: 0)
+        self.background = getInt(column: "background_color", defaultValue: 0)
         self.color = getInt(column: "foreground_color", defaultValue: 0)
+        self.foregroundColor = self.color & 0x00FF
         self.fontSize = getInt(column: "font_size", defaultValue: 0)
         self.zoom = getInt(column: "zoom", defaultValue: 0) == 1
         self.doNotAddToPhraseBar = getInt(column: "do_not_add_to_phrasebar", defaultValue: 0) == 1
@@ -375,16 +431,114 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.ttsSpeechPrompt = getString(column: "tts_speech", defaultValue: "")
         self.updateDate = getString(column: "update_date", defaultValue: "")
         self.createDate = getString(column: "create_date", defaultValue: "")
-        self.negate = (self.color & ForegroundColorMask.kNegate) != 0
-        self.alternateTTSVoice = (self.color & ForegroundColorMask.kAlternateTTSVoice) != 0
-        self.positive = (self.color & ForegroundColorMask.kPositive) != 0
-        self.repeatBoard = (self.color & ForegroundColorMask.kNoRepeats) == 0
-        self.repeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren) == 0
-        self.popupStyleChildBoard = (self.color & ForegroundColorMask.kPopupStyleChildBoard) != 0
-        self.hidden = (self.color & ForegroundColorMask.kHidden) != 0
+        self.negate = (self.color & ForegroundColorMask.kNegate.rawValue) != 0
+        self.alternateTTSVoice = (self.color & ForegroundColorMask.kAlternateTTSVoice.rawValue) != 0
+        self.positive = (self.color & ForegroundColorMask.kPositive.rawValue) != 0
+        self.repeatBoard = (self.color & ForegroundColorMask.kNoRepeats.rawValue) == 0
+        self.repeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren.rawValue) == 0
+        self.popupStyleChildBoard = (self.color & ForegroundColorMask.kPopupStyleChildBoard.rawValue) != 0
+        self.hidden = (self.color & ForegroundColorMask.kHidden.rawValue) != 0
+        self.isRepeatBoard = (self.color & ForegroundColorMask.kNoRepeats.rawValue) == 0
+        self.isRepeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren.rawValue) == 0
+        setAllRepeats()
         return self;
     }
+
+    func setAllRepeats() -> Void {
+        self.isRepeatRowTop = getRepeat(value: self.background) == BackgroundColorMask.kTop.rawValue
+        self.isRepeatRowBottom = getRepeat(value: self.background) == BackgroundColorMask.kBottom.rawValue
+        self.isRepeatColumnRight = getRepeat(value: self.background) == BackgroundColorMask.kRight.rawValue
+        self.isRepeatColumnLeft = getRepeat(value: self.background) == BackgroundColorMask.kLeft.rawValue
+        self.isRepeatedCellOverlay = getRepeat(value: self.background) == BackgroundColorMask.kOverlay.rawValue
+        self.isOpaque = getRepeat(value: self.background) == BackgroundColorMask.kOpaque.rawValue
+        self.backgroundColor = self.background & 0x00FF
+    }
     
+    func setRepeat(value: BackgroundColorMask) ->Void {
+        background = (background & 0x00FF) | value.rawValue
+        setAllRepeats()
+    }
+    
+    func setOpaque(value: Bool) -> Void {
+        backgroundColor = value ? backgroundColor | BackgroundColorMask.kOpaque.rawValue : backgroundColor & ~BackgroundColorMask.kOpaque.rawValue
+        setAllRepeats()
+    }
+    
+    func setNegate(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kNegate.rawValue : color & ~ForegroundColorMask.kNegate.rawValue
+        self.foregroundColor = self.color & 0x00FF
+        if (value) {
+            color = color & ~ForegroundColorMask.kPositive.rawValue
+        }
+        negate = value
+    }
+    
+    func setAlternateTtsVoice(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kAlternateTTSVoice.rawValue : color & ~ForegroundColorMask.kAlternateTTSVoice.rawValue;
+        self.foregroundColor = self.color & 0x00FF
+        alternateTTSVoice = value
+    }
+    
+    func setRepeatBoard(value: Bool) -> Void {
+        color = !value ? color | ForegroundColorMask.kNoRepeats.rawValue : color & ~ForegroundColorMask.kNoRepeats.rawValue;
+        self.foregroundColor = self.color & 0x00FF
+        isRepeatBoard = value
+    }
+
+    func setRepeatChildBoards(value: Bool) -> Void {
+        color = !value ? color | ForegroundColorMask.kNoRepeatsOnChildren.rawValue : color & ~ForegroundColorMask.kNoRepeatsOnChildren.rawValue;
+        self.foregroundColor = self.color & 0x00FF
+        isRepeatChildBoards = value
+    }
+    
+    func setPopupStyleChildBoard(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kPopupStyleChildBoard.rawValue : color & ~ForegroundColorMask.kPopupStyleChildBoard.rawValue;
+        self.foregroundColor = self.color & 0x00FF
+        popupStyleChildBoard = value
+    }
+    
+    func setAlternateTTSVoice(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kAlternateTTSVoice.rawValue : color & ~ForegroundColorMask.kAlternateTTSVoice.rawValue
+        self.foregroundColor = self.color & 0x00FF
+        alternateTTSVoice = value
+    }
+    
+    func setHidden(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kHidden.rawValue : color & ~ForegroundColorMask.kHidden.rawValue
+        self.foregroundColor = self.color & 0x00FF
+        hidden = value
+    }
+    
+    func setRepeatOverlay(value: Bool) -> Void {
+        setRepeat(value: value ? BackgroundColorMask.kOverlay : BackgroundColorMask.kNone)
+        setAllRepeats()
+    }
+
+    func setRepeatRowTop(value: Bool) -> Void {
+        setRepeat(value: value ? BackgroundColorMask.kTop : BackgroundColorMask.kNone)
+        setAllRepeats()
+    }
+
+    func setRepeatRowBottom(value: Bool) -> Void {
+        setRepeat(value: value ? BackgroundColorMask.kBottom : BackgroundColorMask.kNone)
+        setAllRepeats()
+    }
+
+    func setRepeatColumnLeft(value: Bool) -> Void {
+        setRepeat(value: value ? BackgroundColorMask.kLeft : BackgroundColorMask.kNone)
+        setAllRepeats()
+    }
+
+    func setRepeatColumnRight(value: Bool) -> Void {
+        setRepeat(value: value ? BackgroundColorMask.kRight : BackgroundColorMask.kNone)
+        setAllRepeats()
+    }
+    
+    func setColor(value: Int) -> Void {
+        color = (color & 0xFF00) | value
+        self.foregroundColor = self.color & 0x00FF
+    }
+
     func setPreview() -> Content {
         self.name = "Snack"
         self.imageURL = "Snack_reduced.png"
