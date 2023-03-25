@@ -35,6 +35,7 @@ struct ContentView: View {
     @Binding var content: Content
     @State var targeted: Bool = true
     @State var id = UUID()
+    @State var linkID: UInt?
     
     private var separatorLines: CGFloat {
         get {
@@ -68,6 +69,11 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            if content.boardId == -1 && content.linkId != 0 {
+                GeometryReader { geometry in
+                    NavigationLink(destination: BoardView(content.linkId, geometry: geometry), tag: content.linkId, selection: $linkID) { EmptyView() }
+                }
+            }
             if boardState.authorMode && boardState.editMode {
                 MainView
                     .onDrop(of: ["public.utf8-plain-text"], isTargeted: self.$targeted,
@@ -101,11 +107,15 @@ struct ContentView: View {
                             content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
                                 print("done")
                             }
+                            if content.boardId == -1 && content.linkId != 0 {
+                                self.linkID = content.linkId
+                            }
                         }
                         onClick!()
                     }
             }
         }
+        
     }
     
     var MainView: some View {

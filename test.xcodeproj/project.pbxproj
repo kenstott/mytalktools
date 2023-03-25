@@ -42,6 +42,11 @@
 		18CE4C58295FAC2000D349A3 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE4C57295FAC2000D349A3 /* BoardView.swift */; };
 		18CE4C5A295FAC2400D349A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CE4C59295FAC2400D349A3 /* Assets.xcassets */; };
 		18CE4C5D295FAC2400D349A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */; };
+		18D5571C29B38BEF00DE584B /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5571B29B38BEF00DE584B /* GetPost.swift */; };
+		18D5571E29B3912A00DE584B /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5571D29B3912A00DE584B /* Convertable.swift */; };
+		18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5571F29B50D6F00DE584B /* LibraryDialog.swift */; };
+		18D5572229B50D8500DE584B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5572129B50D8500DE584B /* LibraryView.swift */; };
+		18D5572629B50ECF00DE584B /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5572529B50ECF00DE584B /* Library.swift */; };
 		18D89A422969086000BAF565 /* sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D89A412969086000BAF565 /* sample.sqlite */; };
 		18EA71BD2974E653005477CE /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 18EA71BC2974E653005477CE /* AlertToast */; };
 		18EA71BF2974FDFA005477CE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71BE2974FDFA005477CE /* AppState.swift */; };
@@ -66,7 +71,7 @@
 		182702D429874ED1009C3B12 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
-		1886DBB029CF8C5C00CF4011 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18A6BE80295FB1B80039B5D4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		18A6BE8329607FA30039B5D4 /* BoardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardState.swift; sourceTree = "<group>"; };
 		18A6BEA3296089CC0039B5D4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -91,6 +96,11 @@
 		18CE4C57295FAC2000D349A3 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		18CE4C59295FAC2400D349A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		18D5571B29B38BEF00DE584B /* GetPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetPost.swift; path = ../../../../../../../Monterey/Users/kennethstott/Desktop/test/Models/Remote/GetPost.swift; sourceTree = "<group>"; };
+		18D5571D29B3912A00DE584B /* Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Convertable.swift; path = ../../../../../../../Monterey/Users/kennethstott/Desktop/test/Models/Remote/Convertable.swift; sourceTree = "<group>"; };
+		18D5571F29B50D6F00DE584B /* LibraryDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDialog.swift; sourceTree = "<group>"; };
+		18D5572129B50D8500DE584B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryView.swift; path = ../../../../../../../Monterey/Users/kennethstott/Desktop/test/test/Views/LibraryView.swift; sourceTree = "<group>"; };
+		18D5572529B50ECF00DE584B /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Library.swift; path = ../../../../../../../Monterey/Users/kennethstott/Desktop/test/Models/Remote/Library.swift; sourceTree = "<group>"; };
 		18D89A412969086000BAF565 /* sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.sqlite; sourceTree = "<group>"; };
 		18EA71BE2974FDFA005477CE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		18EA71C029750667005477CE /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
@@ -132,6 +142,9 @@
 				182702C6297C1816009C3B12 /* Network.swift */,
 				182702C4297C17F0009C3B12 /* User.swift */,
 				182702CC297D5FF4009C3B12 /* Media.swift */,
+				18D5571B29B38BEF00DE584B /* GetPost.swift */,
+				18D5571D29B3912A00DE584B /* Convertable.swift */,
+				18D5572529B50ECF00DE584B /* Library.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -139,6 +152,7 @@
 		182702D829889631009C3B12 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18D5571F29B50D6F00DE584B /* LibraryDialog.swift */,
 				182702D22981E49B009C3B12 /* PhraseBarView.swift */,
 				18A6BF03296253060039B5D4 /* AppContainer.swift */,
 				18CE4C57295FAC2000D349A3 /* BoardView.swift */,
@@ -146,6 +160,7 @@
 				18EA71C42975B18E005477CE /* DisclosureIndicator.swift */,
 				18EA71C62975B1D8005477CE /* ContentListRow.swift */,
 				18EA71C82975B889005477CE /* ContentGridCell.swift */,
+				18D5572129B50D8500DE584B /* LibraryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +211,7 @@
 		18CE4C54295FAC2000D349A3 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				1886DBB029CF8C5C00CF4011 /* Info.plist */,
+				1883BF882991BA7600395772 /* Info.plist */,
 				1883BF872991B93D00395772 /* test.entitlements */,
 				182702D829889631009C3B12 /* Views */,
 				1843E631296C4EA700663122 /* Dialogs */,
@@ -330,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182702C1297BF871009C3B12 /* Author.swift in Sources */,
+				18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */,
 				18CE4C58295FAC2000D349A3 /* BoardView.swift in Sources */,
 				18EA71BF2974FDFA005477CE /* AppState.swift in Sources */,
 				18A6BE81295FB1B80039B5D4 /* File.swift in Sources */,
@@ -339,17 +355,21 @@
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				182702C3297C01BE009C3B12 /* About.swift in Sources */,
+				18D5571E29B3912A00DE584B /* Convertable.swift in Sources */,
 				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
 				182702C9297C25F5009C3B12 /* UserValidation.swift in Sources */,
 				18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */,
+				18D5571C29B38BEF00DE584B /* GetPost.swift in Sources */,
 				182702CB297C5452009C3B12 /* NewDatabase.swift in Sources */,
 				182702C7297C1816009C3B12 /* Network.swift in Sources */,
+				18D5572229B50D8500DE584B /* LibraryView.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
 				18EA71CB2978EC19005477CE /* Speak.swift in Sources */,
 				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				182702D529874ED1009C3B12 /* Query.swift in Sources */,
+				18D5572629B50ECF00DE584B /* Library.swift in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,
 				18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */,

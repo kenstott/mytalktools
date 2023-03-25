@@ -76,7 +76,7 @@ struct ContentGridCell: View {
                 }
                 .padding(5)
             }
-            if content.childBoardId != 0 && content.boardId != -1 {
+            if content.childBoardId != 0 {
                 ZStack(alignment: .topTrailing) {
                     Color.clear
                     Image(systemName: "ellipsis")

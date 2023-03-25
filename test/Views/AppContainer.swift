@@ -10,7 +10,7 @@ import FMDB
 import AVFAudio
 
 struct AppContainer: View {
-    
+    @EnvironmentObject var userState: User
     @EnvironmentObject var globalState: BoardState
     @EnvironmentObject var phraseBarState: PhraseBarState
     @EnvironmentObject var appState: AppState

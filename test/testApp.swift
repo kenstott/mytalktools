@@ -25,6 +25,7 @@ struct testApp: App {
     @ObservedObject var speak = Speak()
     @ObservedObject var media = Media()
     @ObservedObject var phraseBarState = PhraseBarState()
+    @ObservedObject var userState = User()
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {
@@ -39,6 +40,7 @@ struct testApp: App {
                 .environmentObject(speak)
                 .environmentObject(media)
                 .environmentObject(phraseBarState)
+                .environmentObject(userState)
         }
         
     }

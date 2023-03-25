@@ -2,8 +2,13 @@ import Foundation
 import SwiftUI
 import FMDB
 
+struct LibraryBoardIdInput: Convertable {
+    var boardId: UInt
+}
 
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
+    
+    var getBoardPost = GetPost<LibraryBoard, LibraryBoardIdInput>(service: "GetBoard")
     
     static func initializeBoard() {
         let nameForFile = "sample"
@@ -114,14 +119,60 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     func setId(_ id: UInt) -> Board {
         self.id = id;
         self.contents = getContents(id: id)
-        self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
-        self.rows = getInt(id: id, column: "board_rows", defaultValue: -1)
-        self.name = getString(id: id, column: "board_name", defaultValue: "Unknown")
-        self.userId = getInt(id: id, column: "user_id", defaultValue: -1)
-        self.sort = getSort(id: id)
-        calcCellSizes()
-        sortContent()
-        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
+        if self.contents.count > 0 {
+            self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
+            self.rows = getInt(id: id, column: "board_rows", defaultValue: -1)
+            self.name = getString(id: id, column: "board_name", defaultValue: "Unknown")
+            self.userId = getInt(id: id, column: "user_id", defaultValue: -1)
+            self.sort = getSort(id: id)
+            calcCellSizes()
+            sortContent()
+            self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
+        } else {
+            Task {
+                do {
+                    let remoteBoard = try await getBoardPost.execute(params: LibraryBoardIdInput(boardId: id))
+                    DispatchQueue.main.async {
+                        self.columns = remoteBoard?.WebBoard.Columns ?? 0
+                        self.rows = remoteBoard?.WebBoard.Rows ?? 0
+                        self.userId = -1
+                        self.sort[0] = remoteBoard?.WebBoard.Sort1 ?? 0
+                        self.sort[1] = remoteBoard?.WebBoard.Sort2 ?? 0
+                        self.sort[2] = remoteBoard?.WebBoard.Sort3 ?? 0
+                        var currentRow = 1
+                        var currentColumn = 1
+                        self.contents = remoteBoard?.Contents.map {
+                            let row = $0
+                            var libraryContent = LibraryContent()
+                            libraryContent.ContentId = row.WebContentId
+                            libraryContent.Text = row.contentName
+                            libraryContent.Picture = "\(UserUploadUrl)\(row.contentUrl.replacing("%2F", with: "/").replacing("%2E", with: "."))"
+                            libraryContent.Sound = "\(UserUploadUrl)\(row.contentUrl2.replacing("%2F", with: "/").replacing("%2E", with: "."))"
+                            
+                            let content = Content().copyLibraryContent(libraryContent)
+                            content.boardId = Int(id)
+                            content.contentType = ContentType(rawValue: row.contentType)!
+                            content.row = currentRow
+                            content.column = currentColumn
+                            print(content)
+                            currentColumn += 1
+                            if currentColumn > self.columns {
+                                currentRow += 1
+                                currentColumn = 1
+                            }
+                            return content
+                        } ?? []
+                        self.calcCellSizes()
+                        self.sortContent()
+                        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
+                        print(self.contents)
+                    }
+                }
+                catch let error {
+                    print(error)
+                }
+            }
+        }
         return self
     }
     
