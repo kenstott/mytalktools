@@ -66,7 +66,7 @@
 		182702D429874ED1009C3B12 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
-		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1886DBB029CF8C5C00CF4011 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18A6BE80295FB1B80039B5D4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		18A6BE8329607FA30039B5D4 /* BoardState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardState.swift; sourceTree = "<group>"; };
 		18A6BEA3296089CC0039B5D4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		18CE4C54295FAC2000D349A3 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				1883BF882991BA7600395772 /* Info.plist */,
+				1886DBB029CF8C5C00CF4011 /* Info.plist */,
 				1883BF872991B93D00395772 /* test.entitlements */,
 				182702D829889631009C3B12 /* Views */,
 				1843E631296C4EA700663122 /* Dialogs */,
