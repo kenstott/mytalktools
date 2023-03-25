@@ -11,13 +11,13 @@ struct Author: View {
     
     let fileManager = FileManager.default
     var isValidUser = Network<UserValidation, UserValidationInput>(service: "IsValidUser")
-    var getUserInfo = Network<UserInfo, UserInfoInput>(service: "GetUserByUserName")
     var query = Network<Query, QueryInput>(service: "Query")
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var boardState: BoardState
     @EnvironmentObject var media: Media
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var userState: User
     @AppStorage("UserHints") var userHints = true
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     @AppStorage("PASSWORD") var storedPassword = ""
@@ -27,9 +27,11 @@ struct Author: View {
     @State var username = ""
     @State var password = ""
     @State var boardName = ""
-    @State var showLoginError = false
+    @State var showLoginError: Bool = false
+    @State var loggingIn: Bool = false
     @State var isProfessional = false
     @State var showBoardName = false
+    
     
     func getBoardNames() -> [String] {
         guard let result = try? JSONDecoder().decode([String].self, from: cachedBoardNames.data(using: .utf8, allowLossyConversion: false)!) else {
@@ -45,131 +47,146 @@ struct Author: View {
     var body: some View {
         
         NavigationView {
-            Form {
-                Section {
-                    TextField("User Name", text: $username).autocorrectionDisabled().autocapitalization(.none)
-                    SecureField("Password", text: $password).autocorrectionDisabled().autocapitalization(.none)
-                    if showBoardName || storedBoardName != "" {
-                        Picker("Board Name", selection: Binding(get: { boardName != "" ? boardName : storedBoardName }, set: { selectedItem in
-                            print(selectedItem)
-                            boardName = selectedItem
-                        })) {
-                            Text(boardName != "" ? boardName : storedBoardName).tag(boardName != "" ? boardName : storedBoardName)
-                            ForEach(getBoardNames(), id: \.self) {
-                                Text($0)
-                            }
-                        }
-                    }
-                    Toggle(isOn: $rememberMe) {
-                        Text("Remember Me")
-                    }
-                    Button {
-                        // Handle for got password action.
-                    } label: {
-                        Text("Forgot password")
-                    }
-                }
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 16)
-                
-                
-                Section {
-                    Button {
-                        // Handle for forgot password action.
-                    } label: {
-                        Text("Create new user name")
-                    }
-                    Button {
-                        // Handle for About action.
-                    }
-                label: {
-                    NavigationLink(destination: About()) {
-                        Text("About")
-                    }
-                }
-                    Button {
-                        // Handle for got password action.
-                    } label: {
-                        Text("Tell a friend")
-                    }
-                    Button {
-                        // Handle for got password action.
-                    } label: {
-                        Text("Rate this app")
-                    }
-                    Button {
-                        // Handle for got password action.
-                    } label: {
-                        Text("Restore purchases at no cost")
-                    }
-                }
-                .alert("Login Error", isPresented: $showLoginError) {} message: {
-                    Text(isValidUser.result?.errorMessage ?? "Unknown error")
-                }
-            }.navigationBarTitle("Login")
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button( LocalizedStringKey("Login")) {
-                            showLoginError = false
-                            Task {
-                                let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
-                                print(result!.d)
-                                if (result!.result == .Validated) {
-                                    let userProfile = try await getUserInfo.execute(params: UserInfoInput(userName: username))
-                                    if ((userProfile?.d.Roles.contains("Professional"))!) {
-                                        let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
-                                        setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
-                                        if (getBoardNames().contains(boardName)) {
-                                            isProfessional = false
-                                            storedUsername = username
-                                            storedPassword = password
-                                            storedBoardName = boardName
-                                            self.boardState.authorMode.toggle()
-                                            await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                            appState.rootViewId = UUID()
-                                            dismiss()
-                                        }
-                                        else if (getBoardNames().contains(storedBoardName)) {
-                                            isProfessional = false
-                                            storedUsername = username
-                                            storedPassword = password
-                                            boardName = storedBoardName
-                                            self.boardState.authorMode.toggle()
-                                            await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                            appState.rootViewId = UUID()
-                                            dismiss()
-                                        } else {
-                                            isProfessional = true
-                                            storedBoardName = ""
-                                        }
-                                    } else {
-                                        storedUsername = username
-                                        storedPassword = password
-                                        self.boardState.authorMode.toggle()
-                                        await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
-                                        dismiss()
-                                    }
-                                } else {
-                                    showLoginError = true
+            ZStack {
+                Form {
+                    Section {
+                        TextField("User Name", text: $username).autocorrectionDisabled().autocapitalization(.none)
+                        SecureField("Password", text: $password).autocorrectionDisabled().autocapitalization(.none)
+                        if showBoardName || storedBoardName != "" {
+                            Picker("Board Name", selection: Binding(get: { boardName != "" ? boardName : storedBoardName }, set: { selectedItem in
+                                print(selectedItem)
+                                boardName = selectedItem
+                            })) {
+                                Text(boardName != "" ? boardName : storedBoardName).tag(boardName != "" ? boardName : storedBoardName)
+                                ForEach(getBoardNames(), id: \.self) {
+                                    Text($0)
                                 }
                             }
                         }
-                        .alert(isPresented: $isProfessional, content: {
-                            Alert(title: Text("Professional Account"),
-                                  message: Text("Select a board name from Login"),
-                                  dismissButton: Alert.Button.default(Text("OK"),
-                                                                      action: {
-                                showBoardName = true
-                            }))
-                        })
+                        Toggle(isOn: $rememberMe) {
+                            Text("Remember Me")
+                        }
+                        Button {
+                            // Handle for got password action.
+                        } label: {
+                            Text("Forgot password")
+                        }
                     }
-                }
-                .onAppear {
-                    if (rememberMe) {
-                        username = storedUsername
-                        password = storedPassword
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal, 16)
+                    
+                    
+                    Section {
+                        Button {
+                            // Handle for forgot password action.
+                        } label: {
+                            Text("Create new user name")
+                        }
+                        Button {
+                            // Handle for About action.
+                        }
+                    label: {
+                        NavigationLink(destination: About()) {
+                            Text("About")
+                        }
                     }
-                }
+                        Button {
+                            // Handle for got password action.
+                        } label: {
+                            Text("Tell a friend")
+                        }
+                        Button {
+                            // Handle for got password action.
+                        } label: {
+                            Text("Rate this app")
+                        }
+                        Button {
+                            // Handle for got password action.
+                        } label: {
+                            Text("Restore purchases at no cost")
+                        }
+                    }
+                    .alert("Login Error", isPresented: $showLoginError) {} message: {
+                        Text(isValidUser.result?.errorMessage ?? "Unknown error")
+                    }
+                }.navigationBarTitle("Login")
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Button {
+                                showLoginError = false
+                                loggingIn = true
+                                Task {
+                                    let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
+                                    print(result!.d)
+                                    if (result!.result == .Validated) {
+                                        let profile = try await userState.getProfile(username)
+                                        if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
+                                            let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
+                                            setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
+                                            if (getBoardNames().contains(boardName)) {
+                                                isProfessional = false
+                                                storedUsername = username
+                                                storedPassword = password
+                                                storedBoardName = boardName
+                                                self.boardState.authorMode.toggle()
+                                                await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                                appState.rootViewId = UUID()
+                                                loggingIn = false
+                                                dismiss()
+                                            }
+                                            else if (getBoardNames().contains(storedBoardName)) {
+                                                isProfessional = false
+                                                storedUsername = username
+                                                storedPassword = password
+                                                boardName = storedBoardName
+                                                self.boardState.authorMode.toggle()
+                                                await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                                appState.rootViewId = UUID()
+                                                loggingIn = false
+                                                dismiss()
+                                            } else {
+                                                isProfessional = true
+                                                storedBoardName = ""
+                                                loggingIn = false
+                                            }
+                                        } else {
+                                            storedUsername = username
+                                            storedPassword = password
+                                            self.boardState.authorMode.toggle()
+                                            await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
+                                            loggingIn = false
+                                            dismiss()
+                                        }
+                                    } else {
+                                        showLoginError = true
+                                        loggingIn = false
+                                    }
+                                }
+                            } label: {
+                                if loggingIn {
+                                    ProgressView()
+                                } else {
+                                    Text(LocalizedStringKey("Login"))
+                                }
+                            }
+                            .alert(isPresented: $isProfessional, content: {
+                                Alert(title: Text("Professional Account"),
+                                      message: Text("Select a board name from Login"),
+                                      dismissButton: Alert.Button.default(Text("OK"),
+                                                                          action: {
+                                    showBoardName = true
+                                }))
+                            })
+                            .disabled(loggingIn)
+                        }
+                    }
+                    .onAppear {
+                        if (rememberMe) {
+                            username = storedUsername
+                            password = storedPassword
+                        }
+                    }
+            }
         }
     }
 }

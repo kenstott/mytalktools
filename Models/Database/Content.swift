@@ -3,28 +3,28 @@ import AVFAudio
 import SwiftUI
 import FMDB
 
+enum ContentType: Int {
+    case imageSoundNameLink = 12
+    case imageSoundLink = 9
+    case imageNameLink = 10
+    case imageLink = 6
+    case soundNameLink = 11
+    case soundLink = 7
+    case nameLink = 8
+    case link = 1
+    case imageSoundName = 15
+    case imageSound = 13
+    case imageName = 14
+    case image = 2
+    case soundName = 16
+    case sound = 3
+    case name = 4
+    case goHome = 18
+    case goBack = 19
+}
+
 class Content: Identifiable, Hashable, ObservableObject {
     
-    enum ContentType: Int {
-        case imageSoundNameLink = 12
-        case imageSoundLink = 9
-        case imageNameLink = 10
-        case imageLink = 6
-        case soundNameLink = 11
-        case soundLink = 7
-        case nameLink = 8
-        case link = 1
-        case imageSoundName = 15
-        case imageSound = 13
-        case imageName = 14
-        case image = 2
-        case soundName = 16
-        case sound = 3
-        case name = 4
-        case goHome = 18
-        case goBack = 19
-    }
-
     enum BackgroundColorMask: Int {
         case kNone = 0
         case kTop = 256
@@ -551,7 +551,8 @@ class Content: Identifiable, Hashable, ObservableObject {
             let soundFileURL = Media.getURL(soundURL)
             do {
                 if (soundFileURL != nil) {
-                    speak.setAudioPlayer(try AVAudioPlayer(contentsOf: soundFileURL!)) {
+                    let data = try Data(contentsOf: soundFileURL!)
+                    speak.setAudioPlayer(try AVAudioPlayer(data: data)) {
                         callback()
                     }
                     speak.play()
@@ -571,6 +572,36 @@ class Content: Identifiable, Hashable, ObservableObject {
         }
     }
     
-    
+    func copyLibraryContent(_ content: LibraryContent?) -> Content {
+        if content != nil {
+            self.id = content!.ContentId;
+            self.name = content!.Text
+            self.imageURL = content!.Picture ?? ""
+            self.soundURL = content!.Sound ?? ""
+            self.childBoardLink = content!.ChildBoardLinkId
+            self.childBoardId = content!.ChildBoardId
+            self.background = content!.Background
+            self.color = content!.Foreground
+            self.foregroundColor = self.color & 0x00FF
+            self.fontSize = content!.FontSize
+            self.zoom = content!.Zoom
+            self.doNotAddToPhraseBar = content!.DoNotAddToPhraseBar
+            self.doNotZoomPics = content!.DoNotZoomPics
+            self.externalUrl = content!.ExternalUrl
+            self.alternateTTS = content!.AlternateTtsText
+            self.ttsSpeechPrompt = content!.TtsSpeechPrompt
+            self.negate = (self.color & ForegroundColorMask.kNegate.rawValue) != 0
+            self.alternateTTSVoice = (self.color & ForegroundColorMask.kAlternateTTSVoice.rawValue) != 0
+            self.positive = (self.color & ForegroundColorMask.kPositive.rawValue) != 0
+            self.repeatBoard = (self.color & ForegroundColorMask.kNoRepeats.rawValue) == 0
+            self.repeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren.rawValue) == 0
+            self.popupStyleChildBoard = (self.color & ForegroundColorMask.kPopupStyleChildBoard.rawValue) != 0
+            self.hidden = (self.color & ForegroundColorMask.kHidden.rawValue) != 0
+            self.isRepeatBoard = (self.color & ForegroundColorMask.kNoRepeats.rawValue) == 0
+            self.isRepeatChildBoards = (self.color & ForegroundColorMask.kNoRepeatsOnChildren.rawValue) == 0
+            setAllRepeats()
+        }
+        return self;
+    }
 }
 

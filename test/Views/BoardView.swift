@@ -16,6 +16,7 @@ struct BoardView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var media: Media
     @EnvironmentObject var phraseBarState: PhraseBarState
+    @EnvironmentObject var userState: User
     let padding = 0.0
     private var id: UInt = 0
     private var geometry: GeometryProxy;
@@ -139,7 +140,9 @@ struct BoardView: View {
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints
                     showUserHelp = !boardState.authorMode && userHints
-                    _ = board.setId(id)
+                   
+                        _ = board.setId(id)
+                    
                 }
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
@@ -177,11 +180,7 @@ struct BoardView: View {
                                 Label(LocalizedStringKey("Help"), systemImage: "questionmark.circle")
                             }
                             SharingDialog(board: board)
-                            Button {
-                                print("Library")
-                            } label: {
-                                Label(LocalizedStringKey("Library"), systemImage: "building.columns")
-                            }
+                            LibraryDialog().environmentObject(userState)
                             Button {
                                 print("Search")
                             } label: {

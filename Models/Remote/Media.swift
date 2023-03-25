@@ -73,6 +73,9 @@ class Media: ObservableObject {
         if path == "" {
             return nil
         }
+        if (path.starts(with: "https://")) {
+            return URL(string: path);
+        }
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let (dir, name, ext)  = splitFileName(str: path)
         if dir == "" && name != "" {

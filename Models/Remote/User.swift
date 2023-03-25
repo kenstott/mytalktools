@@ -206,20 +206,117 @@ struct UserInfoInput: Decodable, Encodable {
     var userName: String
 }
 
+struct OwnerIdInput: Convertable, Encodable {
+    var ownerId: String
+}
+
+struct SharedUser: Decodable, Encodable, Hashable {
+    static func == (lhs: SharedUser, rhs: SharedUser) -> Bool {
+        return lhs.dollarSignId == rhs.dollarSignId &&
+        lhs.Create == rhs.Create &&
+        lhs.Delete == rhs.Delete &&
+        lhs.Read == rhs.Create &&
+        lhs.Update == rhs.Delete &&
+        lhs.Invitation == rhs.Invitation &&
+        lhs.UserNameorInviteEmail == rhs.UserNameorInviteEmail &&
+        lhs.UserRightId == rhs.UserRightId &&
+        lhs.Version == rhs.Version
+    }
+    
+    init() {
+        dollarSignId = "0"
+        Create = false
+        Delete = false
+        Read = false
+        Update = false
+        Invitation = false
+        UserNameorInviteEmail = ""
+        UserRightId = 0
+        Version = ""
+    }
+    
+    var dollarSignId: String
+    var Create: Bool
+    var Delete: Bool
+    var Read: Bool
+    var Update: Bool
+    var Invitation: Bool
+    var UserNameorInviteEmail: String?
+    var UserRightId: Int
+    var Version: String
+}
+struct LibraryRoot: Decodable, Encodable, Identifiable, Hashable {
+    static func == (lhs: LibraryRoot, rhs: LibraryRoot) -> Bool {
+        return lhs.LibraryId == rhs.LibraryId && lhs.Name == rhs.Name && lhs.OwnerId == rhs.OwnerId && lhs.Version == rhs.Version && lhs.SharedUsers == rhs.SharedUsers
+    }
+    
+    var id: Int? { get {
+        return LibraryId
+    }}
+    var LibraryId: Int
+    var Name: String
+    var OwnerId: String
+    var SharedUsers: [SharedUser]?
+    var Version: String
+    var read, write, update, delete: Bool?
+}
+
 class User: Identifiable, ObservableObject {
     
-    var getUserInfo = Network<UserInfo, UserInfoInput>(service: "GetUserInfo")
+    static var isValidUser = Network<UserValidation, UserValidationInput>(service: "IsValidUser")
+    var getUserInfo = Network<UserInfo, UserInfoInput>(service: "GetUserByUserName")
+    var getLibrariesPost = GetPost<Array<LibraryRoot>, OwnerIdInput>(service: "GetLibraryTitles")
     
     @Published var id: Int = 0
-    @Published var email: String = ""
+    @Published var email: String? = nil
     @Published var username: String = ""
-    @Published var password: String = ""
+    @Published var libraries: Array<LibraryRoot>? =  nil
+    @Published var myLibraries: Array<LibraryRoot>? =  nil
+    @Published var sharedLibraries: Array<LibraryRoot>? =  nil
+    @Published var profile: UserInfoResult? = nil
     
-    func populate(_ username: String) async -> Void {
+    static func isValidUser(username: String, password: String) async -> Bool {
         do {
-            let userInfo = try await getUserInfo.execute(params: UserInfoInput(userName: username))
+            let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
+            return result?.d == 2
+        } catch {
+            /* ignore */
+        }
+        return false
+    }
+    
+    func getProfile(_ username: String) async -> UserInfoResult? {
+        var result: UserInfoResult?
+        do {
+            if username == self.username && self.profile != nil {
+                return self.profile;
+            }
+            let userInfo = try await getUserInfo.execute(params: UserInfoInput(userName: username ))
+            result = userInfo?.d
+            DispatchQueue.main.async {
+                self.profile = userInfo?.d
+                self.email = userInfo?.d.Email ?? ""
+                self.username = userInfo?.d.Username ?? ""
+                self.getLibraries()
+            }
         } catch let error {
             print(error)
+        }
+        return result
+    }
+    
+    public func getLibraries() {
+        Task {
+            do {
+                let result = try await getLibrariesPost.execute(params: OwnerIdInput(ownerId: username ))
+                DispatchQueue.main.async {
+                    self.libraries = (result ?? []).sorted { $0.Name > $1.Name };
+                    self.sharedLibraries = self.libraries?.filter { $0.OwnerId != self.username }.sorted { $0.Name > $1.Name }
+                    self.myLibraries = self.libraries?.filter { $0.OwnerId == self.username }.sorted { $0.Name > $1.Name }
+                }
+            } catch let error {
+                print(error)
+            }
         }
     }
 }
