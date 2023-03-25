@@ -148,10 +148,9 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                             libraryContent.Text = row.contentName
                             libraryContent.Picture = "\(UserUploadUrl)\(row.contentUrl.replacing("%2F", with: "/").replacing("%2E", with: "."))"
                             libraryContent.Sound = "\(UserUploadUrl)\(row.contentUrl2.replacing("%2F", with: "/").replacing("%2E", with: "."))"
-                            
                             let content = Content().copyLibraryContent(libraryContent)
                             content.boardId = Int(id)
-                            content.contentType = ContentType(rawValue: row.contentType)!
+                            content.contentType = ContentType(rawValue: row.contentType) ?? .imageSoundName
                             content.row = currentRow
                             content.column = currentColumn
                             print(content)
