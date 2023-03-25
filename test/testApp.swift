@@ -8,21 +8,38 @@
 import SwiftUI
 import FMDB
 
+var appDefaults = [
+    "ForegroundColor": "Black",
+    "BackgroundColor": "White",
+    "DefaultFontSize": "12",
+    "SeparatorLines": true,
+    "MaximumRows": 3
+] as [String : Any]
+
+
 @main
 struct testApp: App {
     
-    @StateObject private var dataWrapper: DataWrapper = DataWrapper();
-    
-    private var appDefaults = ["MaximumRows": 3]
+    @StateObject private var boardState = BoardState();
+    @ObservedObject var appState = AppState()
+    @ObservedObject var speak = Speak()
+    @ObservedObject var media = Media()
+    @ObservedObject var phraseBarState = PhraseBarState()
+    @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {
-        initializeBoard()
         UserDefaults.standard.register(defaults: appDefaults)
     }
     
     var body: some Scene {
         WindowGroup {
-            AppContainer().environmentObject(dataWrapper);
+            AppContainer()
+                .environmentObject(boardState)
+                .environmentObject(appState)
+                .environmentObject(speak)
+                .environmentObject(media)
+                .environmentObject(phraseBarState)
         }
+        
     }
 }

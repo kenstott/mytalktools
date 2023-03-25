@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Content.link.getter:Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in Network.isValidUser(username:password:):Network.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentGridCell.body.getter:ContentGridCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._cellMargin.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GlobalState.reloadDatabase(fileURL:):GlobalState.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Board.getString(column:defaultValue:):Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Media.getImage(_:):Media.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentView.init(_:onClick:maximumCellHeight:cellWidth:board:):ContentView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.onChildBoard(childBoardId:):BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Board.calcCellSizes():Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "$item">
+            </PersistentString>
+            <PersistentString
+               value = "cellWidth">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "globalState.state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataWrapper">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Network.isValidUser(username:password:):Network.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "autocapitalization">
+            </PersistentString>
+            <PersistentString
+               value = "urlRequest.httpBody">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Content.init():Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in implicit closure #1 in closure #1 in closure #3 in closure #2 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_item">
+            </PersistentString>
+            <PersistentString
+               value = "_item.linkId">
+            </PersistentString>
+            <PersistentString
+               value = "_activeChildBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "initializeBoard():File.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "board.wrappedValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Content.image.getter:Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in PhraseBarView.body.getter:PhraseBarView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "phraseBarState.contents.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Board.setId(_:):Board.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.contents">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.init(id:):BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "pBoard.columns">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "item">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Network.isValidUser(username:password:):Network.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "response.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Board.getSort(id:):Board.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Network.execute(params:):Network.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cellWidth">
+            </PersistentString>
+            <PersistentString
+               value = "maximumCellHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in Network.isValidUser(username:password:):Network.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.init(_:geometry:):BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "geometry.safeAreaInsets.top">
+            </PersistentString>
+            <PersistentString
+               value = "geometry.safeAreaInsets.bottom">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardState.reloadDatabase(fileURL:):BoardState.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.init(_:):BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._board.contents">
+            </PersistentString>
+            <PersistentString
+               value = "board">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Content.setId(_:):Content.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in ContentGridCell.body.getter:ContentGridCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in ContentView.body.getter:ContentView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.targeted">
+            </PersistentString>
+            <PersistentString
+               value = "provider.first.id">
+            </PersistentString>
+            <PersistentString
+               value = "self._content.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in Network.isValidUser(username:password:):Network.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "response.status">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in BoardView.body.getter:BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "board.rows">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

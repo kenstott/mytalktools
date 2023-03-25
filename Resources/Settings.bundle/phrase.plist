@@ -19,7 +19,6 @@
 			<array>
 				<string>Off</string>
 				<string>On</string>
-				<string>On-Alternate</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
@@ -27,7 +26,6 @@
 			<array>
 				<integer>0</integer>
 				<integer>1</integer>
-				<integer>2</integer>
 			</array>
 		</dict>
 		<dict>
@@ -39,20 +37,6 @@
 			<string>PhraseBarAddVoice</string>
 			<key>Title</key>
 			<string>Voice adding to phrase</string>
-			<key>TrueValue</key>
-			<true/>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>FalseValue</key>
-			<false/>
-			<key>Key</key>
-			<string>PhraseBarPictures</string>
-			<key>Title</key>
-			<string>Pics in Phrase Mode</string>
 			<key>TrueValue</key>
 			<true/>
 			<key>Type</key>
