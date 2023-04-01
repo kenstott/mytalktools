@@ -160,7 +160,7 @@ struct BoardView: View {
                             }
                         }
                     }
-                    ToolbarItem(placement: .secondaryAction) {
+                    ToolbarItem(placement: .automatic) {
                         if (volumeButton) {
                             Button {
                                 print("Volume")
