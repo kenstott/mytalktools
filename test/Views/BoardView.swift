@@ -78,7 +78,7 @@ struct BoardView: View {
                     }
                     ForEach($board.contents, id: \.id) {
                         $item in
-                        if $item.childBoardId.wrappedValue != 0 {
+                        if $item.childBoardId.wrappedValue != 0 && !boardState.editMode {
                             NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard) { EmptyView() }
                         }
                     }

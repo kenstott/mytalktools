@@ -1987,8 +1987,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "566"
-            endingLineNumber = "566"
+            startingLineNumber = "580"
+            endingLineNumber = "580"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
             <Locations>
@@ -2035,8 +2035,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "567"
-            endingLineNumber = "567"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3524,8 +3524,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "init(_:onClick:maximumCellHeight:cellWidth:board:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3540,8 +3540,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "MainView"
             landmarkType = "24">
          </BreakpointContent>
@@ -3604,8 +3604,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -3620,8 +3620,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -3636,8 +3636,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -3652,8 +3652,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -3700,8 +3700,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -4353,8 +4353,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "MainView"
             landmarkType = "24">
             <Locations>
@@ -4401,8 +4401,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -4421,6 +4421,38 @@
             endingLineNumber = "91"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "71791574-52AB-430D-B0CE-795DE7B427DA - 6024f455e31aa113"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 (SwiftUI.Binding&lt;test.Content&gt;) -&gt; test.ContentView in implicit closure #2 (SwiftUI.Binding&lt;test.Content&gt;) -&gt; test.ContentView in closure #2 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;test.PhraseBarView&gt;, SwiftUI.ForEach&lt;SwiftUI.Binding&lt;Swift.Array&lt;test.Content&gt;&gt;, Swift.Int, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, test.BoardView&gt;&gt;&gt;, SwiftUI._ConditionalContent&lt;SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;SwiftUI.Binding&lt;Swift.Array&lt;test.Content&gt;&gt;, Swift.Int, test.ContentView&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.fixedSize() -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;SwiftUI.ProgressView&lt;SwiftUI.EmptyView, SwiftUI.EmptyView&gt;&gt;, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in test.BoardView.body.getter : some"
+                  moduleName = "test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Monterey%20-%20Data/Users/kennethstott/test/mytalktools/test/Views/BoardView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "71791574-52AB-430D-B0CE-795DE7B427DA - 6024f455e31aaecc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 (SwiftUI.Binding&lt;test.Content&gt;) -&gt; test.ContentView in implicit closure #2 (SwiftUI.Binding&lt;test.Content&gt;) -&gt; test.ContentView in closure #2 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;test.PhraseBarView&gt;, SwiftUI.ForEach&lt;SwiftUI.Binding&lt;Swift.Array&lt;test.Content&gt;&gt;, Swift.Int, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.EmptyView, test.BoardView&gt;&gt;&gt;, SwiftUI._ConditionalContent&lt;SwiftUI.List&lt;Swift.Never, SwiftUI.ForEach&lt;SwiftUI.Binding&lt;Swift.Array&lt;test.Content&gt;&gt;, Swift.Int, test.ContentView&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.fixedSize() -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(Swift.Optional&lt;SwiftUI.ProgressView&lt;SwiftUI.EmptyView, SwiftUI.EmptyView&gt;&gt;, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in test.BoardView.body.getter : some"
+                  moduleName = "test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Monterey%20-%20Data/Users/kennethstott/test/mytalktools/test/Views/BoardView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4433,8 +4465,8 @@
             filePath = "test/Views/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -4449,8 +4481,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "552"
-            endingLineNumber = "552"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4465,8 +4497,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4481,8 +4513,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
             <Locations>
@@ -4529,8 +4561,8 @@
             filePath = "Models/Database/Content.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
             landmarkName = "voice(_:ttsVoice:ttsVoiceAlternate:speechRate:voiceShape:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4645,6 +4677,54 @@
             endingLineNumber = "137"
             landmarkName = "setId(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9796D303-7C9D-48BE-BB73-EA0D31016A33"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB49702D-F4E8-4B0B-96A5-B77F5914E1CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B35E303-188E-45E4-8A9C-4B829BFDDDF6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
