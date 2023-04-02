@@ -15,7 +15,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 ||MyTalkTools Mobile|MyTalkTools for Android|Workspace Family|Workspace Pro|
 | :- | :- | :- | :- | :- |
 |[Device Management](#_device_management)|||||
-|- Operating Systems/Browsers|iPad, iPad Pro, iPhone, |Android 4+|Edge, Chrome, FF, Safari|Chrome, FF, Safari|
+|- Operating Systems/Browsers|iPad, iPad Pro, iPhone|Android 4+|Edge, Chrome, FF, Safari|Chrome, FF, Safari|
 |- [Synchronize Settings Across Devices with iCloud](#_synchronize_settings_across) (e.g. username, password, maximum rows, etc.)|x||||
 |- [Keep media content in device photo library](#_keep_media_content) (creates a local backup of related media on device)|x|x|||
 |- [Turn off screen rotation](#_turn_off_screen) (and stay in portrait or landscape always)|x||||
