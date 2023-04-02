@@ -10,7 +10,7 @@ By the start of 2024 - new bug fixes and feature requests will be handled throug
 The code, as is, lets you view most boards using your MyTalkTools account (with the exception of hotspot boards). In the current phase, the code is scaffolding out UI elements for editing and library management. Once the UI is scaffolded - functionality will be added.
 
 # Features
-These are the features that are being replicated in this new SwiftUI implementation.
+These are the features that are being replicated in this new SwiftUI implementation. Note - all accessibility features will now be managed by iOS. The existing scanning feature will be deprecated.
 
 ||MyTalkTools Mobile|MyTalkTools for Android|Workspace Family|Workspace Pro|
 | :- | :- | :- | :- | :- |
