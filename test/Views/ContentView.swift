@@ -36,6 +36,7 @@ struct ContentView: View {
     @State var targeted: Bool = true
     @State var id = UUID()
     @State var linkID: UInt?
+    @State var showEditCellActionSheet = false
     
     private var separatorLines: CGFloat {
         get {
@@ -67,6 +68,16 @@ struct ContentView: View {
         self._content = content
     }
     
+    func save() {
+        print("Save")
+        showEditCellActionSheet = false
+    }
+    
+    func cancel() {
+        print("Cancel")
+        showEditCellActionSheet = false
+    }
+    
     var body: some View {
         ZStack {
             if content.boardId == -1 && content.linkId != 0 {
@@ -87,6 +98,7 @@ struct ContentView: View {
                     }
                     .onTapGesture {
                         print("Show edit menu")
+                        showEditCellActionSheet = true
                     }
                 
             } else {
@@ -114,6 +126,9 @@ struct ContentView: View {
                         onClick!()
                     }
             }
+        }
+        .sheet(isPresented: $showEditCellActionSheet) {
+            EditCell(content: content, save: save, cancel: cancel)
         }
         
     }

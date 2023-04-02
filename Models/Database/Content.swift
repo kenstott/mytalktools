@@ -3,7 +3,9 @@ import AVFAudio
 import SwiftUI
 import FMDB
 
-enum ContentType: Int {
+enum ContentType: Int, CaseIterable, Identifiable {
+    var id: Self { self }
+    
     case imageSoundNameLink = 12
     case imageSoundLink = 9
     case imageNameLink = 10
@@ -34,7 +36,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         case kOverlay = 4096
         case kOpaque = 8192
     }
-
+    
     enum ForegroundColorMask: Int
     {
         case kfDefault = 0
@@ -62,7 +64,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         case kAlternateTTSVoice = 8192
         case kPopupStyleChildBoard = 16384
     };
-
+    
     func convertColor(value: Int) -> Color? {
         switch(ForegroundColorMask(rawValue: value) ?? ForegroundColorMask.kfDefault) {
         case .kfWhite: return Color.white
@@ -175,12 +177,24 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var isRepeatBoard: Bool = false
     @Published var isRepeatChildBoards: Bool = false
     
+    var isVideo: Bool {
+        get {
+            return soundURL.lowercased().contains("\\.(mov|avi|mp4|mpeg4|wmv|m4v)")
+        }
+    }
+    
+    func isVideo(soundURL: String) -> Bool {
+        
+        return soundURL.lowercased().contains("\\.(mov|avi|mp4|mpeg4|wmv|m4v)")
+        
+    }
+    
     var image: UIImage {
         get {
             switch contentType {
-                case .goHome: return UIImage(systemName: "house")!
-                case .goBack: return UIImage(systemName: "arrowshape.backward")!
-                default: return Media.getImage(imageURL)
+            case .goHome: return UIImage(systemName: "house")!
+            case .goBack: return UIImage(systemName: "arrowshape.backward")!
+            default: return Media.getImage(imageURL)
             }
         }
     }
@@ -443,7 +457,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         setAllRepeats()
         return self;
     }
-
+    
     func setAllRepeats() -> Void {
         self.isRepeatRowTop = getRepeat(value: self.background) == BackgroundColorMask.kTop.rawValue
         self.isRepeatRowBottom = getRepeat(value: self.background) == BackgroundColorMask.kBottom.rawValue
@@ -484,7 +498,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.foregroundColor = self.color & 0x00FF
         isRepeatBoard = value
     }
-
+    
     func setRepeatChildBoards(value: Bool) -> Void {
         color = !value ? color | ForegroundColorMask.kNoRepeatsOnChildren.rawValue : color & ~ForegroundColorMask.kNoRepeatsOnChildren.rawValue;
         self.foregroundColor = self.color & 0x00FF
@@ -513,22 +527,22 @@ class Content: Identifiable, Hashable, ObservableObject {
         setRepeat(value: value ? BackgroundColorMask.kOverlay : BackgroundColorMask.kNone)
         setAllRepeats()
     }
-
+    
     func setRepeatRowTop(value: Bool) -> Void {
         setRepeat(value: value ? BackgroundColorMask.kTop : BackgroundColorMask.kNone)
         setAllRepeats()
     }
-
+    
     func setRepeatRowBottom(value: Bool) -> Void {
         setRepeat(value: value ? BackgroundColorMask.kBottom : BackgroundColorMask.kNone)
         setAllRepeats()
     }
-
+    
     func setRepeatColumnLeft(value: Bool) -> Void {
         setRepeat(value: value ? BackgroundColorMask.kLeft : BackgroundColorMask.kNone)
         setAllRepeats()
     }
-
+    
     func setRepeatColumnRight(value: Bool) -> Void {
         setRepeat(value: value ? BackgroundColorMask.kRight : BackgroundColorMask.kNone)
         setAllRepeats()
@@ -538,7 +552,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         color = (color & 0xFF00) | value
         self.foregroundColor = self.color & 0x00FF
     }
-
+    
     func setPreview() -> Content {
         self.name = "Snack"
         self.imageURL = "Snack_reduced.png"
