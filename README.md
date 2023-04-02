@@ -7,7 +7,9 @@ This is the incomplete open-source version of the MyTalkTools iOS client. Commun
 By the start of 2024 - new bug fixes and feature requests will be handled through open source contributors
 
 # Project
-The code, as is, lets you view most boards using your MyTalkTools account (with the exception of hotspot boards). In the current phase, the code is scaffolding out UI elements for editing and library management. Once the UI is scaffolded - functionality will be added.
+The code, as is, lets you view and use most boards using your MyTalkTools account (with the exception of hotspot boards). In the current phase, the code is scaffolding out UI elements for editing and library management. Once the UI is scaffolded - functionality will be added.
+
+Feel free to request new features, contribute coding - or contribute new language translations.
 
 # Features
 These are the features that are being replicated in this new SwiftUI implementation. Note - all accessibility features will now be managed by iOS. The existing scanning feature will be deprecated.
