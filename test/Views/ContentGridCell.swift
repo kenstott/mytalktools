@@ -22,10 +22,10 @@ struct ContentGridCell: View {
     init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat) {
         self.content = content
         self.defaultFontSize = defaultFontSize
-        self.foregroundColor = content.convertColor(value: content.foregroundColor) ?? foregroundColor
+        self.foregroundColor = Content.convertColor(value: content.foregroundColor) ?? foregroundColor
         self.maximumCellHeight = maximumCellHeight
         self.cellWidth = cellWidth
-        self.backgroundColor = content.convertColor(value: content.backgroundColor) ?? backgroundColor
+        self.backgroundColor = Content.convertColor(value: content.backgroundColor) ?? backgroundColor
         self.separatorLines = separatorLines
     }
     var body: some View {

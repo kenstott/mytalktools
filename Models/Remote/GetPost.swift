@@ -58,7 +58,7 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
                 .replacing("}])", with: "}]")
                 .replacing("$id", with: "dollarSignId")
                 .replacing("\"Sort3\":0})", with: "\"Sort3\":0}")
-            print(stringResult)
+//            print(stringResult)
             result = try JSONDecoder().decode(Output.self, from: Data(stringResult.utf8))
             return result
         } else {

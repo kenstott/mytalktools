@@ -107,9 +107,11 @@ let UserUploadUrl = "https://mytalktools.com/dnn/UserUploads/"
 
 class Library: Identifiable, ObservableObject {
     
+    static var cache: Dictionary<Int, Array<LibraryItem>> = [:]
     static func cleanseFilename(_ filename: String) -> String {
         var x = filename;
         x = x
+            .replacing("%20", with: " ")
             .replacing(".png", with: "")
             .replacing(".jpg", with: "")
             .replacing(".mp3", with: "")
@@ -126,6 +128,7 @@ class Library: Identifiable, ObservableObject {
     @Published var items: [LibraryItem]?
     @Published var root: LibraryRoot?
     @Published var rights: Rights = Rights(create: false, read: false, update: false, delete: false)
+    @Published var loaded = false
     
     init(_ root: LibraryRoot, username: String) {
         self.root = root
@@ -144,29 +147,37 @@ class Library: Identifiable, ObservableObject {
     }
     
     public func getLibraryItems() {
-        Task {
-            do {
-                let result = try await getLibraryItemsPost.execute(params: GetLibraryInput(libraryId: root?.LibraryId ?? 0))
-                DispatchQueue.main.async {
-                    self.items = (result ?? [])
-                        .map {
-                            var row = $0
-                            row.MediaUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\(row.OriginalFilename)"
-                            if row.ItemType == 2 {
-                                row.ThumbnailUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\((row.CompressedFilename.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))"
-                            } else {
-                                print(row.ItemType, row.OriginalFilename)
+        if Library.cache[self.root?.LibraryId ?? 0] != nil {
+            items = Library.cache[self.root?.LibraryId ?? 0]
+            loaded = true
+        } else {
+            Task {
+                do {
+                    let result = try await getLibraryItemsPost.execute(params: GetLibraryInput(libraryId: root?.LibraryId ?? 0))
+                    DispatchQueue.main.async {
+                        self.items = (result ?? [])
+                            .map {
+                                var row = $0
+                                
+                                row.MediaUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\(row.OriginalFilename)"
+                                if row.ItemType == 2 {
+                                    row.ThumbnailUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\(row.CompressedFilename)"
+                                } else {
+                                    print(row.ItemType, row.OriginalFilename)
+                                }
+                                if row.ItemType == 3 {
+                                    let PictureUrl = "\(UserUploadUrl)\(row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "")\(((row.Content?.Picture ?? "").addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))"
+                                    row.Content?.Picture = PictureUrl
+                                }
+                                return row
                             }
-                            if row.ItemType == 3 {
-                                let PictureUrl = "\(UserUploadUrl)\(row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "")\(((row.Content?.Picture ?? "").addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))"
-                                row.Content?.Picture = PictureUrl
-                            }
-                            return row
-                        }
-                        .sorted { $0.OriginalFilename < $1.OriginalFilename }
+                            .sorted { $0.OriginalFilename < $1.OriginalFilename }
+                        Library.cache[self.root?.LibraryId ?? 0] = self.items!
+                        self.loaded = true
+                    }
+                } catch let error {
+                    print(error)
                 }
-            } catch let error {
-                print(error)
             }
         }
     }

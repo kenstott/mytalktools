@@ -65,7 +65,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         case kPopupStyleChildBoard = 16384
     };
     
-    func convertColor(value: Int) -> Color? {
+    static func convertColor(value: Int) -> Color? {
         switch(ForegroundColorMask(rawValue: value) ?? ForegroundColorMask.kfDefault) {
         case .kfWhite: return Color.white
         case .kfRed: return Color.red
@@ -487,6 +487,15 @@ class Content: Identifiable, Hashable, ObservableObject {
         negate = value
     }
     
+    func setPositive(value: Bool) -> Void {
+        color = value ? color | ForegroundColorMask.kPositive.rawValue : color & ~ForegroundColorMask.kPositive.rawValue
+        self.foregroundColor = self.color & 0x00FF
+        if (value) {
+            color = color & ~ForegroundColorMask.kNegate.rawValue
+        }
+        positive = value
+    }
+    
     func setAlternateTtsVoice(value: Bool) -> Void {
         color = value ? color | ForegroundColorMask.kAlternateTTSVoice.rawValue : color & ~ForegroundColorMask.kAlternateTTSVoice.rawValue;
         self.foregroundColor = self.color & 0x00FF
@@ -551,6 +560,11 @@ class Content: Identifiable, Hashable, ObservableObject {
     func setColor(value: Int) -> Void {
         color = (color & 0xFF00) | value
         self.foregroundColor = self.color & 0x00FF
+    }
+    
+    func setBackgroundColor(value: Int) -> Void {
+        color = (color & 0xFF00) | value
+        self.backgroundColor = self.backgroundColor & 0x00FF
     }
     
     func setPreview() -> Content {
