@@ -10,6 +10,11 @@ import FMDB
 import AVKit
 import AVFAudio
 
+enum ActionSheetType {
+    case top
+    case board
+}
+
 struct ContentView: View {
     
     @EnvironmentObject var boardState: BoardState
@@ -37,6 +42,9 @@ struct ContentView: View {
     @State var id = UUID()
     @State var linkID: UInt?
     @State var showEditCellActionSheet = false
+    @State var showEditActionSheet = false
+    @State var showBoardSortOrderSheet = false
+    @State var actionSheetType: ActionSheetType = .top
     
     private var separatorLines: CGFloat {
         get {
@@ -78,6 +86,31 @@ struct ContentView: View {
         showEditCellActionSheet = false
     }
     
+    func cellAction() {
+        DispatchQueue.main.async {
+            if (phraseMode == "1") {
+                switch content.contentType {
+                case .goBack:
+                    break;
+                case .goHome:
+                    break;
+                default:
+                    if (content.link == 0) {
+                        phraseBarState.contents.append(content)
+                    }
+                }
+            } else {
+                content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
+                    print("done")
+                }
+                if content.boardId == -1 && content.linkId != 0 {
+                    self.linkID = content.linkId
+                }
+            }
+            onClick!()
+        }
+    }
+    
     var body: some View {
         ZStack {
             if content.boardId == -1 && content.linkId != 0 {
@@ -98,39 +131,84 @@ struct ContentView: View {
                     }
                     .onTapGesture {
                         print("Show edit menu")
-                        showEditCellActionSheet = true
+                        showEditActionSheet = false
+                        DispatchQueue.main.async {
+                            actionSheetType = .top
+                            showEditActionSheet = true
+                        }
                     }
                 
             } else {
                 MainView
                     .onTapGesture {
-                        if (phraseMode == "1") {
-                            switch content.contentType {
-                            case .goBack:
-                                break;
-                            case .goHome:
-                                break;
-                            default:
-                                if (content.link == 0) {
-                                    phraseBarState.contents.append(content)
-                                }
-                            }
-                        } else {
-                            content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
-                                print("done")
-                            }
-                            if content.boardId == -1 && content.linkId != 0 {
-                                self.linkID = content.linkId
-                            }
-                        }
-                        onClick!()
+                        cellAction()
                     }
             }
         }
         .sheet(isPresented: $showEditCellActionSheet) {
             EditCell(content: content, save: save, cancel: cancel)
         }
-        
+        .sheet(isPresented: $showBoardSortOrderSheet) {
+            BoardSortOrder(
+                save: {
+                    showBoardSortOrderSheet = false
+                }
+                ,cancel: {
+                    showBoardSortOrderSheet = false
+                }
+            )
+        }
+        .actionSheet(isPresented: $showEditActionSheet) {
+            switch(actionSheetType) {
+            case .board: return ActionSheet(
+                title: Text("Change Board Dimensions"),
+                buttons: [
+                    .cancel { showEditActionSheet = false },
+                    .default(Text("Sort Order"), action: {
+                        showEditActionSheet = false
+                        showBoardSortOrderSheet = true
+                    }),
+                    .default(Text("Add Row"), action: {
+                    }),
+                    .default(Text("Add Column"), action: {
+                    }),
+                    .default(Text("Delete Last Row"), action: {
+                    }),
+                    .default(Text("Delete Right Column"), action: {
+                    }),
+                    .default(Text("Compress Columns By 1"), action: {
+                    }),
+                    .default(Text("Stretch Columns By 1"), action: {
+                    })
+                ]
+            )
+            case .top:
+                let repeatButton: [ActionSheet.Button] = [.default(Text("Repeat"), action: {})]
+                var buttons: [ActionSheet.Button] = [
+                    .cancel { print("cancel") },
+                    .default(Text("Edit Cell-\(content.name)"), action: {
+                        showEditActionSheet = false
+                        showEditCellActionSheet = true
+                    }),
+                    .default(Text("Perform Action-\(content.name)"), action: {
+                        cellAction()
+                    }),
+                    .default(Text("Edit Board-\(board.name)"), action: {
+                        showEditActionSheet = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            actionSheetType = .board
+                            showEditActionSheet = true
+                        }
+                    })]
+                if board.name == "Home" {
+                    buttons.append(repeatButton[0])
+                }
+                return ActionSheet(
+                    title: Text("Edit Options"),
+                    buttons: buttons
+                )
+            }
+        }
     }
     
     var MainView: some View {
