@@ -51,11 +51,11 @@ struct EditCell: View {
     @State var pandoraArtist = ""
     @State var showPandoraSong = false
     @State var pandoraSong = ""
-    var save: (() -> Void)? = nil
+    var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
     
-    init(content: Content, save: @escaping () -> Void, cancel: @escaping () -> Void) {
+    init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
         self.content = content
         self.name = content.name
         self.isOpaque = content.isOpaque
@@ -402,7 +402,7 @@ struct EditCell: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
-                            save!()
+                            save!(editedContent.save())
                         } label: {
                             Text("Save")
                         }
@@ -499,6 +499,11 @@ struct EditCell: View {
             .onChange(of: name) {
                 newValue in
                 editedContent.name = newValue
+                print(newValue)
+            }
+            .onChange(of: imageUrl) {
+                newValue in
+                editedContent.imageURL = newValue
                 print(newValue)
             }
             .onChange(of: image) {
@@ -652,7 +657,7 @@ struct EditCell_Previews: PreviewProvider {
         print("Cancel")
     }
     
-    static func save() {
+    static func save(content: Content) {
         print("Save")
     }
     static var previews: some View {

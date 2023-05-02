@@ -123,9 +123,33 @@ class Content: Identifiable, Hashable, ObservableObject {
         c.isRepeatRowBottom = self.isRepeatRowBottom
         c.isRepeatColumnLeft = self.isRepeatColumnLeft
         c.isRepeatColumnRight = self.isRepeatColumnRight
+        c.column = self.column
+        c.row = self.row
         return c
     }
     
+    func save() -> Content {
+        setColumn(column: "content_name", value: self.name)
+        setColumn(column: "content_url", value: self.imageURL)
+        setColumn(column: "content_url2", value: self.soundURL)
+        setColumn(column: "content_type", value: self.contentType.rawValue)
+        setColumn(column: "row_index", value: self.row)
+        setColumn(column: "clm_index", value: self.column)
+        setColumn(column: "child_board_link", value: childBoardLink)
+        setColumn(column: "child_board_id", value: self.childBoardId)
+        setColumn(column: "background_color", value: self.background)
+        setColumn(column: "foreground_color", value: self.color)
+        setColumn(column: "font_size", value: self.fontSize)
+        setColumn(column: "zoom", value: self.zoom)
+        setColumn(column: "do_not_add_to_phrasebar", value: self.doNotAddToPhraseBar)
+        setColumn(column: "do_not_zoom_pics", value: self.doNotZoomPics)
+        setColumn(column: "tts_speech", value: self.ttsSpeech)
+        setColumn(column: "external_url", value: self.externalUrl)
+        setColumn(column: "alternate_tts", value: self.alternateTTS)
+        setColumn(column: "tts_speech", value: self.ttsSpeechPrompt)
+        setColumn(column: "update_date", value: Date())
+        return self
+    }
     
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
     
@@ -386,6 +410,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         hasher.combine(row)
         hasher.combine(column)
         hasher.combine(ttsSpeechPrompt)
+    }
+    
+    func setColumn(column: String, value: Any) -> Void {
+        try BoardState.db!.executeUpdate("UPDATE content set \(column) = ? WHERE iphone_content_id = ?", withArgumentsIn: [value,id]);
     }
     
     func getString(column: String, defaultValue: String = "") -> String {

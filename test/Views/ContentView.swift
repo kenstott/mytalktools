@@ -76,8 +76,9 @@ struct ContentView: View {
         self._content = content
     }
     
-    func save() {
+    func save(content: Content) {
         print("Save")
+        self.content = content
         showEditCellActionSheet = false
     }
     
