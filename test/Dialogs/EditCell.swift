@@ -402,7 +402,7 @@ struct EditCell: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
-                            save!(editedContent.save())
+                            save!(editedContent)
                         } label: {
                             Text("Save")
                         }

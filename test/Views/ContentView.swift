@@ -78,6 +78,8 @@ struct ContentView: View {
     
     func save(content: Content) {
         print("Save")
+        boardState.createUndoSlot();
+        content.save();
         self.content = content
         showEditCellActionSheet = false
     }

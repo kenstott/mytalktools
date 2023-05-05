@@ -187,15 +187,25 @@ struct BoardView: View {
                                 Label(LocalizedStringKey("Search"), systemImage: "magnifyingglass")
                             }
                             Button {
+                                boardState.undo()
+                                Task {
+                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                    _ = board.setId(id)
+                                }
                                 print("Undo")
                             } label: {
                                 Label(LocalizedStringKey("Undo"), systemImage: "arrow.uturn.backward")
-                            }
+                            }.disabled(!boardState.undoable)
                             Button {
+                                boardState.redo()
+                                Task {
+                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                    _ = board.setId(id)
+                                }
                                 print("Redo")
                             } label: {
                                 Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
-                            }
+                            }.disabled(!boardState.redoable)
                             Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
                                 print("Sync")
