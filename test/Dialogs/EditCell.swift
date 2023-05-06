@@ -15,6 +15,9 @@ struct EditCell: View {
         case AppLinkCreated
         case MyTalk
         case Pandora
+        case Facebook
+        case Contacts
+        case Facetime
     }
     
     @State var content: Content
@@ -51,6 +54,9 @@ struct EditCell: View {
     @State var pandoraArtist = ""
     @State var showPandoraSong = false
     @State var pandoraSong = ""
+    @State var showDirections = false
+    @State var address = ""
+    @State var showEmail = false
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
@@ -110,7 +116,8 @@ struct EditCell: View {
                     }
                     if contentType != .goHome && contentType != .goBack {
                         Section {
-                            TextField(text: $name, prompt: Text("Cell Text")) {
+                            TextField(text: $name, prompt: Text("Cell Text"))
+                            {
                                 Text("Text")
                             }
                         } header: {
@@ -520,7 +527,21 @@ struct EditCell: View {
             TextField("Enter song name", text: $pandoraSong)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "pandora:/createStation?song=\(pandoraSong)"
+                testExternalUrl = "pandora:/createStation?song=\(pandoraSong.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Add Destination", isPresented: $showDirections) {
+            TextField("Enter the address", text: $address)
+                .autocapitalization(.none)
+                .disableAutocorrection(false)
+            Button("OK", action: {
+                var addressComponent = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "";
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "https://maps.google.com?daddr=\(addressComponent)&saddr=Current+Location"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -531,12 +552,28 @@ struct EditCell: View {
             TextField("Enter artist name", text: $pandoraArtist)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "pandora:/createStation?artist=\(pandoraArtist)"
+                testExternalUrl = "pandora:/createStation?artist=\(pandoraArtist.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
             })
             Button("Cancel", action: {})
+        }
+        .sheet(isPresented: $showEmail) {
+            func save(address: String, subject: String, emailBody: String) {
+                showEmail = false
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "mailto:\(address.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")&body=\(emailBody.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+                print("Save")
+            }
+            func cancel() {
+                showEmail = false
+                print("Cancel")
+            }
+            return Email(save: save, cancel: cancel)
         }
         .actionSheet(isPresented: $showIntegrationIdeas) {
             switch(activeSheet) {
@@ -545,6 +582,33 @@ struct EditCell: View {
                 message: Text("Available Integrations"),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Directions"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showDirections = true
+                        }
+                    }),
+                    .default(Text("Email"), action: {
+                        showEmail = true
+                    }),
+                    .default(Text("Facebook"), action: {
+                        activeSheet = .Facebook
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Contacts"), action: {
+                        activeSheet = .Contacts
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Facetime"), action: {
+                        activeSheet = .Facetime
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
                     .default(Text("IMDB (Movies)"), action: {
                         activeSheet = .IMDB
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -569,7 +633,12 @@ struct EditCell: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             showIntegrationIdeas = true
                         }
-                    })
+                    }),
+                    .default(Text("Skype"), action: {}),
+                    .default(Text("SMS"), action: {}),
+                    .default(Text("Telephone"), action: {}),
+                    .default(Text("Video Player"), action: {}),
+
                 ]
             )
                 
@@ -578,11 +647,131 @@ struct EditCell: View {
                 message: Text("Available Options"),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Show Times"), action: {  }),
-                    .default(Text("Box Office"), action: { print("Music Player") }),
-                    .default(Text("Coming Soon"), action: { print("Music Player") }),
-                    .default(Text("Actors Born Today"), action: { print("Music Player") }),
-                    .default(Text("TV Show Recaps"), action: { print("Music Player") })
+                    .default(Text("Show Times"), action: {
+                        testExternalUrl = "imdb:///showtimes"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Box Office"), action: {
+                        testExternalUrl = "imdb:///boxoffice"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Coming Soon"), action: {
+                        testExternalUrl = "imdb:///feature/comingsoon"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Actors Born Today"), action: {
+                        testExternalUrl = "imdb:///feature/borntoday"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("TV Show Recaps"), action: {
+                        testExternalUrl = "imdb:///feature/tvrecaps"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    })
+                ]
+            )
+            case .Contacts: return ActionSheet(
+                title: Text("Contacts"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("All Contacts"), action: {
+                        testExternalUrl = "contacts://"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("One Contact"), action: { print("Music Player") }),
+                    .default(Text("Selected Contacts"), action: { print("Music Player") })
+                ]
+            )
+            case .Facebook: return ActionSheet(
+                title: Text("Facebook"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Profile"), action: {
+                        testExternalUrl = "fb://profile"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Friends"), action: {
+                        testExternalUrl = "fb://friends"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Friend Requests"), action: {
+                        testExternalUrl = "fb://requests"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Events"), action: {
+                        testExternalUrl = "fb://events"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("News Feed"), action: {
+                        testExternalUrl = "fb://feed"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Albums"), action: {
+                        testExternalUrl = "fb://albums"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            showIntegrationIdeas = true
+                        }
+                    })
+                ]
+            )
+            case .Facetime: return ActionSheet(
+                title: Text("Facetime"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Apple ID"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                            showPandoraArtist = true
+                        }
+                    }),
+                    .default(Text("Email"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                            showPandoraSong = true
+                        }
+                    }),
+                    .default(Text("Phone Number"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                            showPandoraSong = true
+                        }
+                    })
                 ]
             )
             case .Pandora: return ActionSheet(
@@ -638,6 +827,11 @@ struct EditCell: View {
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Test App Link"), action: {
                         activeSheet = .AppLinkCreated
+                        if let url = URL(string: testExternalUrl) {
+                                    if UIApplication.shared.canOpenURL(url) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             showIntegrationIdeas = true
                         }

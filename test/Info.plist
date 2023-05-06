@@ -4,7 +4,17 @@
 <dict>
 	<key>UISupportsTrueScreenSizeOnMac</key>
 	<true/>
-    <key>UILaunchToFullScreenByDefaultOnMac</key>
-    <true/>
+	<key>UILaunchToFullScreenByDefaultOnMac</key>
+	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb</string>
+		<string>pandora</string>
+		<string>tel</string>
+		<string>mailto</string>
+		<string>music</string>
+		<string>imdb</string>
+		<string>contacts</string>
+	</array>
 </dict>
 </plist>
