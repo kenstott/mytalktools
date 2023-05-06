@@ -18,6 +18,7 @@ struct EditCell: View {
         case Facebook
         case Contacts
         case Facetime
+        case Skype
     }
     
     @State var content: Content
@@ -60,7 +61,18 @@ struct EditCell: View {
     @State var showAppleID = false
     @State var showFacetimeEmail = false
     @State var showPhoneNumber = false
+    @State var showContact = false
+    @State var showContacts = false
     @State var facetimeID = ""
+    @State var contactName = ""
+    @State var showSkypePhoneNumber = false
+    @State var skypePhoneNumber = ""
+    @State var showSkypeVideo = false
+    @State var skypeVideo = ""
+    @State var showSMS = false
+    @State var smsPhoneNumber = ""
+    @State var showTelephone = false
+    @State var telephonePhoneNumber = ""
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
@@ -549,11 +561,77 @@ struct EditCell: View {
             })
             Button("Cancel", action: {})
         }
+        .alert("Enter Skype Phone Number", isPresented: $showSkypePhoneNumber) {
+            TextField("Enter Phone Number", text: $skypePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "skype:\(skypePhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter SMS Phone Number", isPresented: $showSMS) {
+            TextField("Enter Phone Number", text: $smsPhoneNumber).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "sms:\(smsPhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Telephone Number", isPresented: $showTelephone) {
+            TextField("Enter Phone Number", text: $telephonePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "tel:\(telephonePhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Skype Name", isPresented: $showSkypeVideo) {
+            TextField("Enter the Skype name", text: $skypeVideo).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "skype:\(skypeVideo.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")?call&video=true"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
         .alert("Enter Phone Number", isPresented: $showPhoneNumber) {
             TextField("Enter Phone Number", text: $facetimeID).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
                 testExternalUrl = "facetime://\(facetimeID.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Contact Name", isPresented: $showContact) {
+            TextField("Enter a name", text: $contactName).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "contact:/\(contactName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Comma-Separated Name List", isPresented: $showContacts) {
+            TextField("Enter list", text: $contactName).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "contactsboard:/\(contactName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -576,7 +654,7 @@ struct EditCell: View {
                 .autocapitalization(.none)
                 .disableAutocorrection(false)
             Button("OK", action: {
-                var addressComponent = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "";
+                let addressComponent = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "";
                 activeSheet = .AppLinkCreated
                 testExternalUrl = "maps://app?daddr=\(addressComponent)&saddr=Current+Location"
                 DispatchQueue.main.async {
@@ -621,7 +699,7 @@ struct EditCell: View {
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Directions"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showDirections = true
                         }
                     }),
@@ -630,52 +708,67 @@ struct EditCell: View {
                     }),
                     .default(Text("Facebook"), action: {
                         activeSheet = .Facebook
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Contacts"), action: {
                         activeSheet = .Contacts
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Facetime"), action: {
                         activeSheet = .Facetime
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("IMDB (Movies)"), action: {
                         activeSheet = .IMDB
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Music Player"), action: {
                         testExternalUrl = "music://"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("MyTalkTools"), action: {
                         activeSheet = .MyTalk
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Pandora"), action: {
                         activeSheet = .Pandora
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Skype"), action: {}),
-                    .default(Text("SMS"), action: {}),
-                    .default(Text("Telephone"), action: {}),
-                    .default(Text("Video Player"), action: {}),
-
+                    .default(Text("Skype"), action: {
+                        activeSheet = .Skype
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("SMS"), action: {
+                        showSMS = true
+                    }),
+                    .default(Text("Telephone"), action: {
+                        showTelephone = true
+                    }),
+                    .default(Text("Video Player"), action: {
+                        testExternalUrl = "videos://"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    
                 ]
             )
                 
@@ -687,35 +780,35 @@ struct EditCell: View {
                     .default(Text("Show Times"), action: {
                         testExternalUrl = "imdb:///showtimes"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Box Office"), action: {
                         testExternalUrl = "imdb:///boxoffice"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Coming Soon"), action: {
                         testExternalUrl = "imdb:///feature/comingsoon"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Actors Born Today"), action: {
                         testExternalUrl = "imdb:///feature/borntoday"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("TV Show Recaps"), action: {
                         testExternalUrl = "imdb:///feature/tvrecaps"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     })
@@ -729,12 +822,41 @@ struct EditCell: View {
                     .default(Text("All Contacts"), action: {
                         testExternalUrl = "contacts://"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("One Contact"), action: { print("Music Player") }),
-                    .default(Text("Selected Contacts"), action: { print("Music Player") })
+                    .default(Text("One Contact"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showContact = true
+                        }
+                    }),
+                    .default(Text("Selected Contacts"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showContacts = true
+                        }
+                    })
+                ]
+            )
+            case .Skype: return ActionSheet(
+                title: Text("Skype"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Voice"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showSkypePhoneNumber = true
+                        }
+                    }),
+                    .default(Text("Video"), action: {
+                        showIntegrationIdeas = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showSkypePhoneNumber = true
+                        }
+                    })
                 ]
             )
             case .Facebook: return ActionSheet(
@@ -745,42 +867,42 @@ struct EditCell: View {
                     .default(Text("Profile"), action: {
                         testExternalUrl = "fb://profile"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Friends"), action: {
                         testExternalUrl = "fb://friends"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Friend Requests"), action: {
                         testExternalUrl = "fb://requests"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Events"), action: {
                         testExternalUrl = "fb://events"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("News Feed"), action: {
                         testExternalUrl = "fb://feed"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
                     .default(Text("Albums"), action: {
                         testExternalUrl = "fb://albums"
                         activeSheet = .AppLinkCreated
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     })
@@ -793,19 +915,19 @@ struct EditCell: View {
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Apple ID"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showAppleID = true
                         }
                     }),
                     .default(Text("Email"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showFacetimeEmail = true
                         }
                     }),
                     .default(Text("Phone Number"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPhoneNumber = true
                         }
                     })
@@ -818,13 +940,13 @@ struct EditCell: View {
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Artist"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPandoraArtist = true
                         }
                     }),
                     .default(Text("Song"), action: {
                         showIntegrationIdeas = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPandoraSong = true
                         }
                     })
@@ -835,7 +957,13 @@ struct EditCell: View {
                 message: Text("Available Options"),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Go To Home"), action: {  }),
+                    .default(Text("Go To Home"), action: {
+                        testExternalUrl = "mytalktools:/home"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
                     .default(Text("Go Back"), action: { print("Music Player") }),
                     .default(Text("Show Phrase Bar"), action: { print("Music Player") }),
                     .default(Text("Phrase Bar Backspace"), action: { print("Music Player") }),
@@ -865,11 +993,11 @@ struct EditCell: View {
                     .default(Text("Test App Link"), action: {
                         activeSheet = .AppLinkCreated
                         if let url = URL(string: testExternalUrl) {
-                                    if UIApplication.shared.canOpenURL(url) {
-                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                    }
-                                }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            if UIApplication.shared.canOpenURL(url) {
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),

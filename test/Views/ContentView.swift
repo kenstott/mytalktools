@@ -91,7 +91,7 @@ struct ContentView: View {
     
     func cellAction() {
         DispatchQueue.main.async {
-            if (phraseMode == "1") {
+            if (phraseMode == "1" || phraseBarState.userPhraseModeToggle) {
                 switch content.contentType {
                 case .goBack:
                     break;

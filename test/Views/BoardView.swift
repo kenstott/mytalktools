@@ -17,6 +17,8 @@ struct BoardView: View {
     @EnvironmentObject var media: Media
     @EnvironmentObject var phraseBarState: PhraseBarState
     @EnvironmentObject var userState: User
+    @EnvironmentObject var speak: Speak
+    
     let padding = 0.0
     private var id: UInt = 0
     private var geometry: GeometryProxy;
@@ -42,10 +44,12 @@ struct BoardView: View {
     @State var showVolume = false
     @State var showAuthorHelp = false
     @State var showUserHelp = false
+    @State var showTypePhrase = false
+    
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
     var toolbarShown: CGFloat { get { boardState.authorMode || advancedUseBar ? 40 : 0 } }
-    var phraseBarShown: CGFloat { get { phraseMode == "1" ? 100 : 0 } }
+    var phraseBarShown: CGFloat { get { phraseMode == "1" || phraseBarState.userPhraseModeToggle ? 100 : 0 } }
     var columns: Array<GridItem> { get { Array<GridItem>(
         repeating: GridItem(.fixed(cellWidth), spacing: 0, alignment: .leading),
         count: max(board.columns, 1)) } }
@@ -58,8 +62,10 @@ struct BoardView: View {
         self.geometry = geometry
     }
     
+    
     var body: some View {
-        VStack {
+        var phraseBarView = PhraseBarView()
+        return VStack {
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
             }
@@ -73,8 +79,8 @@ struct BoardView: View {
                 }
             case .ready:
                 VStack {
-                    if phraseMode == "1" {
-                        PhraseBarView()
+                    if phraseMode == "1" || phraseBarState.userPhraseModeToggle {
+                        phraseBarView
                     }
                     ForEach($board.contents, id: \.id) {
                         $item in
@@ -134,14 +140,21 @@ struct BoardView: View {
                 })
                 .navigationBarTitle(board.name)
                 .navigationBarTitleDisplayMode(.inline)
+                .sheet(isPresented: $showTypePhrase) {
+                    TypePhrase(done: {
+                        phrase in
+                        print(phrase)
+                        showTypePhrase = false
+                    }, cancel: {  showTypePhrase = false })
+                }
                 .sheet(isPresented: $showVolume) {
                     VolumeDialog().presentationDetents([.medium])
                 }
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints
                     showUserHelp = !boardState.authorMode && userHints
-                   
-                        _ = board.setId(id)
+                    
+                    _ = board.setId(id)
                     
                 }
                 .toolbar {
@@ -234,7 +247,7 @@ struct BoardView: View {
                                 }
                             }
                             Button {
-                                print("Type Words")
+                                showTypePhrase = true
                             } label: {
                                 Label("Type Words", systemImage: "keyboard")
                             }
@@ -258,6 +271,21 @@ struct BoardView: View {
                         }
                     }
                 }
+            }
+        }
+        .onOpenURL { url in
+            print(url)
+            var command = url.absoluteString.replacing("mytalktools:/", with: "").replacing("mtt:/", with: "");
+            switch(command) {
+            case "home": appState.rootViewId = UUID()
+            case "back": dismiss()
+            case "phraseBarOn": phraseBarState.userPhraseModeToggle = true
+            case "phraseBarOff": phraseBarState.userPhraseModeToggle = false
+            case "phraseBarToggle": phraseBarState.userPhraseModeToggle = !phraseBarState.userPhraseModeToggle
+            case "phraseBarClear": phraseBarState.contents.removeAll()
+            case "phraseBarBackspace": phraseBarState.contents.removeLast()
+            case "play": phraseBarView.speakPhrases(phraseBarState, speak)
+            default: print("Unknown command: \(url.absoluteString)")
             }
         }
     }

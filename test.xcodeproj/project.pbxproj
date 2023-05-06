@@ -52,6 +52,7 @@
 		18D89A422969086000BAF565 /* sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D89A412969086000BAF565 /* sample.sqlite */; };
 		18E02A2129D9E8030057E4C3 /* Rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E02A2029D9E8030057E4C3 /* Rotate.swift */; };
 		18E15EEF2A069AAC002AEA3F /* CreateEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */; };
+		18E15F092A06F6B7002AEA3F /* TypePhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F082A06F6B7002AEA3F /* TypePhrase.swift */; };
 		18EA71BD2974E653005477CE /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 18EA71BC2974E653005477CE /* AlertToast */; };
 		18EA71BF2974FDFA005477CE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71BE2974FDFA005477CE /* AppState.swift */; };
 		18EA71C129750667005477CE /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C029750667005477CE /* VolumeSlider.swift */; };
@@ -110,6 +111,7 @@
 		18D89A412969086000BAF565 /* sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.sqlite; sourceTree = "<group>"; };
 		18E02A2029D9E8030057E4C3 /* Rotate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Rotate.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Extensions/Rotate.swift; sourceTree = "<group>"; };
 		18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmail.swift; sourceTree = "<group>"; };
+		18E15F082A06F6B7002AEA3F /* TypePhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePhrase.swift; sourceTree = "<group>"; };
 		18EA71BE2974FDFA005477CE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		18EA71C029750667005477CE /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		18EA71C229750A39005477CE /* VolumeDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeDialog.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				187FFB0C29D85D6B00D91F66 /* EditCell.swift */,
 				18C245A829FD814500008D38 /* BoardSortOrder.swift */,
 				18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */,
+				18E15F082A06F6B7002AEA3F /* TypePhrase.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
 				18E02A2129D9E8030057E4C3 /* Rotate.swift in Sources */,
 				182702C9297C25F5009C3B12 /* UserValidation.swift in Sources */,
+				18E15F092A06F6B7002AEA3F /* TypePhrase.swift in Sources */,
 				18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */,
 				187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */,
 				1886DBB729CFBC1D00CF4011 /* Library.swift in Sources */,

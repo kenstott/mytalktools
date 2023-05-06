@@ -8,5 +8,6 @@
 import Foundation
 
 class PhraseBarState: ObservableObject {
+    @Published var userPhraseModeToggle = false
     @Published var contents: [Content] = []
 }

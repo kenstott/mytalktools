@@ -24,8 +24,8 @@ struct PhraseBarView: View {
     @State var proxy: ScrollViewProxy?
     @State var speakingItem = 0
     
-    func speakPhrases(_ item: Int = 0) {
-        if phraseBarState.contents.count > item {
+    func speakPhrases(_ pbs: PhraseBarState, _ spk: Speak, _ item: Int = 0) {
+        if pbs.contents.count > item {
             if phraseBarAnimate {
                 DispatchQueue.main.async {
                     withAnimation {
@@ -34,12 +34,12 @@ struct PhraseBarView: View {
                 }
             }
             speakingItem = item + 1
-            phraseBarState.contents[item].voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
+            pbs.contents[item].voice(spk, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
                 speakingItem = 0
-                speakPhrases(item + 1)
+                speakPhrases(pbs, spk, item + 1)
             }
         } else if autoErase {
-            phraseBarState.contents.removeAll()
+            pbs.contents.removeAll()
         } else if phraseBarAnimate {
             DispatchQueue.main.async {
                 withAnimation {
@@ -113,7 +113,7 @@ struct PhraseBarView: View {
             }
             Button {
                 print("play")
-                speakPhrases()
+                speakPhrases(phraseBarState, speak)
             } label: {
                 Image(systemName: "play.fill")
                     .font(.system(size: 40))

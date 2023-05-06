@@ -6,16 +6,229 @@
 	<true/>
 	<key>UILaunchToFullScreenByDefaultOnMac</key>
 	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>Icon-152.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MyTalkTools Cell File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.mytalktools.cell.mtt</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>Icon-152.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>OpenBoardFormat Board File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.mytalktools.obf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>Icon-152.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>OpenBoardFormat Board Collection File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.mytalktools.obz</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.MyTalk</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon-Small-50</string>
+			<key>CFBundleURLName</key>
+			<string>com.mytalktools.mobile</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mytalktools</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>Icon-Small-50</string>
+			<key>CFBundleURLName</key>
+			<string>com.mytalktools.mobile</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mtt</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.medical</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbauth</string>
+		<string>mytalktools</string>
+		<string>mtt</string>
 		<string>fb</string>
-		<string>pandora</string>
-		<string>tel</string>
-		<string>mailto</string>
-		<string>music</string>
+		<string>skype</string>
 		<string>imdb</string>
-		<string>contacts</string>
+		<string>pandora</string>
+		<string>facetime</string>
+		<string>kindle</string>
+		<string>feed</string>
+		<string>music</string>
+		<string>videos</string>
+		<string>comgoogleearth</string>
 		<string>maps</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>MyTalk needs access to your camera to use this feature.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>MyTalk needs access to your contacts to display them.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>If you have selected usage tracking. This device will track your location at all times to help you make your communication boards more helpful.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>MyTalk needs access to your location to use this feature</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>If you have selected usage tracking. This device will track your location to help you make your communication boards more helpful.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MyTalk needs access to your microphone to use this feature.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We are adding images to your photo library. You may turn off this setting.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>MyTalk needs access to your photo library to use this feature.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.content</string>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MyTalkTools Cell</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.mytalktools.cell.mtt</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>mtt</string>
+				<key>public.mime-type</key>
+				<string>application/mytalktools</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.content</string>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>OpenBoardFormat Board</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.mytalktools.obf</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>obf</string>
+				<key>public.mime-type</key>
+				<string>application/octet-stream</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.content</string>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>OpenBoardFormat Board Set</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.mytalktools.obz</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<string>obz</string>
+				<key>public.mime-type</key>
+				<string>application/octet-stream</string>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

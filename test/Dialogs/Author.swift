@@ -116,50 +116,56 @@ struct Author: View {
                                 showLoginError = false
                                 loggingIn = true
                                 Task {
-                                    let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
-                                    print(result!.d)
-                                    if (result!.result == .Validated) {
-                                        let profile = try await userState.getProfile(username)
-                                        if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
-                                            let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
-                                            setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
-                                            if (getBoardNames().contains(boardName)) {
-                                                isProfessional = false
-                                                storedUsername = username
-                                                storedPassword = password
-                                                storedBoardName = boardName
-                                                self.boardState.authorMode.toggle()
-                                                await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                                appState.rootViewId = UUID()
-                                                loggingIn = false
-                                                dismiss()
-                                            }
-                                            else if (getBoardNames().contains(storedBoardName)) {
-                                                isProfessional = false
-                                                storedUsername = username
-                                                storedPassword = password
-                                                boardName = storedBoardName
-                                                self.boardState.authorMode.toggle()
-                                                await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                                appState.rootViewId = UUID()
-                                                loggingIn = false
-                                                dismiss()
+                                    do {
+                                        let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
+                                        print(result!.d)
+                                        if (result!.result == .Validated) {
+                                            let profile = try await userState.getProfile(username)
+                                            if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
+                                                let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
+                                                setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
+                                                if (getBoardNames().contains(boardName)) {
+                                                    isProfessional = false
+                                                    storedUsername = username
+                                                    storedPassword = password
+                                                    storedBoardName = boardName
+                                                    self.boardState.authorMode.toggle()
+                                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                                    appState.rootViewId = UUID()
+                                                    loggingIn = false
+                                                    dismiss()
+                                                }
+                                                else if (getBoardNames().contains(storedBoardName)) {
+                                                    isProfessional = false
+                                                    storedUsername = username
+                                                    storedPassword = password
+                                                    boardName = storedBoardName
+                                                    self.boardState.authorMode.toggle()
+                                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                                    appState.rootViewId = UUID()
+                                                    loggingIn = false
+                                                    dismiss()
+                                                } else {
+                                                    isProfessional = true
+                                                    storedBoardName = ""
+                                                    loggingIn = false
+                                                }
                                             } else {
-                                                isProfessional = true
-                                                storedBoardName = ""
+                                                storedUsername = username
+                                                storedPassword = password
+                                                self.boardState.authorMode.toggle()
+                                                await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
                                                 loggingIn = false
+                                                dismiss()
                                             }
                                         } else {
-                                            storedUsername = username
-                                            storedPassword = password
-                                            self.boardState.authorMode.toggle()
-                                            await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
+                                            showLoginError = true
                                             loggingIn = false
-                                            dismiss()
                                         }
-                                    } else {
+                                    } catch let error {
                                         showLoginError = true
                                         loggingIn = false
+                                        print(error)
                                     }
                                 }
                             } label: {

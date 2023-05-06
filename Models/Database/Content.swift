@@ -128,7 +128,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         return c
     }
     
-    func save() -> Content {
+    func save() -> Void {
         setColumn(column: "content_name", value: self.name)
         setColumn(column: "content_url", value: self.imageURL)
         setColumn(column: "content_url2", value: self.soundURL)
@@ -148,7 +148,6 @@ class Content: Identifiable, Hashable, ObservableObject {
         setColumn(column: "alternate_tts", value: self.alternateTTS)
         setColumn(column: "tts_speech", value: self.ttsSpeechPrompt)
         setColumn(column: "update_date", value: Date())
-        return self
     }
     
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
@@ -413,7 +412,11 @@ class Content: Identifiable, Hashable, ObservableObject {
     }
     
     func setColumn(column: String, value: Any) -> Void {
-        try BoardState.db!.executeUpdate("UPDATE content set \(column) = ? WHERE iphone_content_id = ?", withArgumentsIn: [value,id]);
+        do {
+            try BoardState.db!.executeUpdate("UPDATE content set \(column) = ? WHERE iphone_content_id = ?", withArgumentsIn: [value,id]);
+        } catch let error {
+            print(error)
+        }
     }
     
     func getString(column: String, defaultValue: String = "") -> String {
