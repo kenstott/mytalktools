@@ -57,6 +57,10 @@ struct EditCell: View {
     @State var showDirections = false
     @State var address = ""
     @State var showEmail = false
+    @State var showAppleID = false
+    @State var showFacetimeEmail = false
+    @State var showPhoneNumber = false
+    @State var facetimeID = ""
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
@@ -534,6 +538,39 @@ struct EditCell: View {
             })
             Button("Cancel", action: {})
         }
+        .alert("Enter Email", isPresented: $showFacetimeEmail) {
+            TextField("Enter Email", text: $facetimeID).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "facetime://\(facetimeID.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Phone Number", isPresented: $showPhoneNumber) {
+            TextField("Enter Phone Number", text: $facetimeID).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "facetime://\(facetimeID.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Apple ID", isPresented: $showAppleID) {
+            TextField("Enter Apple ID", text: $facetimeID).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                activeSheet = .AppLinkCreated
+                testExternalUrl = "facetime://\(facetimeID.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                DispatchQueue.main.async {
+                    showIntegrationIdeas = true
+                }
+            })
+            Button("Cancel", action: {})
+        }
         .alert("Add Destination", isPresented: $showDirections) {
             TextField("Enter the address", text: $address)
                 .autocapitalization(.none)
@@ -541,7 +578,7 @@ struct EditCell: View {
             Button("OK", action: {
                 var addressComponent = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "";
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "https://maps.google.com?daddr=\(addressComponent)&saddr=Current+Location"
+                testExternalUrl = "maps://app?daddr=\(addressComponent)&saddr=Current+Location"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -757,19 +794,19 @@ struct EditCell: View {
                     .default(Text("Apple ID"), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                            showPandoraArtist = true
+                            showAppleID = true
                         }
                     }),
                     .default(Text("Email"), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                            showPandoraSong = true
+                            showFacetimeEmail = true
                         }
                     }),
                     .default(Text("Phone Number"), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                            showPandoraSong = true
+                            showPhoneNumber = true
                         }
                     })
                 ]
