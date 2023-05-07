@@ -279,6 +279,7 @@ struct BoardView: View {
             switch(command) {
             case "home": appState.rootViewId = UUID()
             case "back": dismiss()
+            case "type": showTypePhrase = true
             case "phraseBarOn": phraseBarState.userPhraseModeToggle = true
             case "phraseBarOff": phraseBarState.userPhraseModeToggle = false
             case "phraseBarToggle": phraseBarState.userPhraseModeToggle = !phraseBarState.userPhraseModeToggle

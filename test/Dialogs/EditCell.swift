@@ -454,6 +454,10 @@ struct EditCell: View {
                 newValue in
                 editedContent.ttsSpeech = newValue
             }
+            .onChange(of: externalUrl) {
+                newValue in
+                editedContent.externalUrl = newValue
+            }
             .onChange(of: positive) {
                 newValue in
                 editedContent.setPositive(value: newValue)
@@ -958,21 +962,71 @@ struct EditCell: View {
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Go To Home"), action: {
-                        testExternalUrl = "mytalktools:/home"
+                        testExternalUrl = "mtt:/home"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Go Back"), action: { print("Music Player") }),
-                    .default(Text("Show Phrase Bar"), action: { print("Music Player") }),
-                    .default(Text("Phrase Bar Backspace"), action: { print("Music Player") }),
+                    .default(Text("Go Back"), action: {
+                        testExternalUrl = "mtt:/back"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Show Phrase Bar"), action: {
+                        testExternalUrl = "mtt:/phraseBarOn"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Phrase Bar Backspace"), action: {
+                        testExternalUrl = "mtt:/phraseBarBackspace"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Phrase Bar Clear"), action: {
+                        testExternalUrl = "mtt:/phraseBarClear"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Phrase Bar Play"), action: {
+                        testExternalUrl = "mtt:/play"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
                     .default(Text("Phrase Bar Keypress"), action: { print("Music Player") }),
                     .default(Text("Phrase Bar Make Word"), action: { print("Music Player") }),
-                    .default(Text("Hide Phrase Bar"), action: { print("Music Player") }),
-                    .default(Text("Toggle Phrase Bar"), action: { print("Music Player") }),
+                    .default(Text("Hide Phrase Bar"), action: {
+                        testExternalUrl = "mtt:/phraseBarOff"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
+                    .default(Text("Toggle Phrase Bar"), action: {
+                        testExternalUrl = "mtt:/phraseBarToggle"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
                     .default(Text("View Phrase Bar History"), action: { print("Music Player") }),
-                    .default(Text("Display Keyboard"), action: { print("Music Player") }),
+                    .default(Text("Display Keyboard"), action: {
+                        testExternalUrl = "mtt:/type"
+                        activeSheet = .AppLinkCreated
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
+                    }),
                     .default(Text("Voice a Phrase"), action: { print("Music Player") }),
                     .default(Text("Exit MyTalk"), action: { print("Music Player") }),
                     .default(Text("Print"), action: { print("Music Player") }),

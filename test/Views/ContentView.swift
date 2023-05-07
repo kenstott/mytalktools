@@ -109,6 +109,13 @@ struct ContentView: View {
                 if content.boardId == -1 && content.linkId != 0 {
                     self.linkID = content.linkId
                 }
+                if (content.externalUrl != "") {
+                    if let url = URL(string: content.externalUrl) {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                }
             }
             onClick!()
         }
