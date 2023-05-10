@@ -8,9 +8,13 @@
 import Foundation
 
 func fixDate(date: String) -> Date {
-    let search = /(Date\((.*?)(\+.*)?\))/
-    if let result = try? search.wholeMatch(in: date) {
-        return Date(timeIntervalSince1970: Double(result.2) ?? 0)
+    let digits = /[0-9]+/
+    if let result = try? digits.firstMatch(in: date) {
+        print(Double(result.0) ?? 0)
+        print(Date.now.timeIntervalSince1970)
+        let result = Date(timeIntervalSince1970: (Double(result.0) ?? 0) / 1000.0 )
+        print(result)
+        return result;
     }
     return Date.now
 }

@@ -66,14 +66,16 @@ struct ContentView: View {
     }
     private var onClick: (() -> Void)? = nil
     private var contentId: Int = 0
+    private var refresh = 0
     
-    init(_ content: Binding<Content>, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board> ) {
+    init(_ content: Binding<Content>, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board>, refresh: Int ) {
         self.contentId = content.id;
         self.onClick = onClick
         self._maximumCellHeight = maximumCellHeight
         self._cellWidth = cellWidth
         self._board = board
         self._content = content
+        self.refresh = refresh
     }
     
     func save(content: Content) {
@@ -235,7 +237,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board())).environmentObject(BoardState())
+            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0).environmentObject(BoardState())
         }
     }
 }

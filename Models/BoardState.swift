@@ -8,9 +8,18 @@
 import Foundation
 import FMDB
 
+enum SyncApproach {
+    case overwriteLocal, overwriteRemote, merge
+}
+
+enum WriteApproach {
+    case uploadToRemote, downloadToLocal, doNothing
+}
+
 class BoardState: ObservableObject {
     
     static var db: FMDatabase?
+    static var dbUrl: URL?
     
     enum State {
         case closed
@@ -21,6 +30,7 @@ class BoardState: ObservableObject {
     let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     var getNewDatabase = Network<NewDatabase, NewDatabaseInput>(service: "GetNewDatabase")
     var getNewDatabaseMultiboard = Network<NewDatabase, NewDatabaseInput>(service: "GetNewDatabaseMultiboard")
+    var syncMergePost = Network<SyncMergeResultParent, SyncMergeInput>(service: "MergeDataMultiBoardAndroid")
     
     @Published private(set) var state = State.closed
     @Published var authorMode = false
@@ -43,6 +53,19 @@ class BoardState: ObservableObject {
     }
     
     var undoFiles: [URL] = []
+    
+    func getDatabaseImage() -> String? {
+        do {
+            let fileData = try Data.init(contentsOf: dbUrl!)
+            let fileStream:String = fileData.base64EncodedString()
+            print(fileStream)
+            return fileStream
+        } catch {
+            print("error")
+            print(error.localizedDescription)
+        }
+        return nil
+    }
     
     func createUndoSlot() {
         do {
@@ -131,13 +154,26 @@ class BoardState: ObservableObject {
         }
     }
     
+    func merge(username: String, boardID: String, media: Media) async {
+        do {
+            await media.WriteMediaFilesToServer(username: username)
+            let dbImage = getDatabaseImage() ?? ""
+            let board = try await syncMergePost.execute(params: SyncMergeInput(databaseImage: dbImage, userName: username, uuid: "123", boardID: boardID))
+            try board?.d.DatabaseImageData.write(to: dbUrl!)
+            await media.syncMedia(board?.d.DirectoryList ?? [], syncApproach: .merge)
+            print(board)
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func overwriteDevice(dbUser: URL, username: String, media: Media, boardID: String?) async -> Void {
         do {
             let board = try await boardID != nil && boardID != ""
             ? getNewDatabaseMultiboard.execute(params: NewDatabaseInput(userName: username, uuid: "123", boardID: boardID))
             : getNewDatabase.execute(params: NewDatabaseInput(userName: username, uuid: "123"))
             try board?.d.DatabaseImageData.write(to: dbUser)
-            media.syncMedia(board?.d.DirectoryList ?? [])
+            await media.syncMedia(board?.d.DirectoryList ?? [], syncApproach: .overwriteLocal)
             DispatchQueue.main.async {
                 self.board = board
             }
@@ -186,6 +222,7 @@ class BoardState: ObservableObject {
             fatalError("Unable to open database")
         }
         dbUrl = fileURL;
+        BoardState.dbUrl = fileURL
         BoardState.db = db
         state = .ready
         self.db = db

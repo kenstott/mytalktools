@@ -7,18 +7,32 @@
 
 import Foundation
 import UIKit
+import FMDB
 
+struct UploadFileParams: Decodable, Encodable {
+    var user: String
+    var orientation: String?
+}
 
 class Media: ObservableObject {
     
+    let encoder = JSONEncoder()
     let fileManager = FileManager.default
     let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    let orientation = [
+        UIInterfaceOrientation.unknown.rawValue: "unknown",
+        UIInterfaceOrientation.portrait.rawValue: "portrait",
+        UIInterfaceOrientation.portraitUpsideDown.rawValue: "portrait-upside-down",
+        UIInterfaceOrientation.landscapeLeft.rawValue: "landscape-left",
+        UIInterfaceOrientation.landscapeRight.rawValue: "landscape-right"
+    ]
     
     @Published var fileLoadingProgress = 0.0
     @Published var total = 0
     @Published var completed = 0
     @Published var directoryList: [FileListDirectory] = []
     @Published var downloading = false
+    @Published var uploading = false
     
     func countMedia() -> Int {
         var total = 0
@@ -88,14 +102,22 @@ class Media: ObservableObject {
             .appendingPathExtension(ext)
     }
     
-    func updateProgress(_ progress: Double) {
+    func updateProgress(_ progress: Double, _ uploading: Bool = false) {
         DispatchQueue.main.async {
             if self.fileLoadingProgress != progress {
                 if progress >= 1 && self.downloading {
-                    self.downloading = false
+                    if (uploading) {
+                        self.uploading = false
+                    } else {
+                        self.downloading = false
+                    }
                 }
                 else if progress < 1 && !self.downloading {
-                    self.downloading = true
+                    if (uploading) {
+                        self.uploading = true
+                    } else {
+                        self.downloading = true
+                    }
                 }
                 self.fileLoadingProgress = min(progress,1)
             }
@@ -108,18 +130,30 @@ class Media: ObservableObject {
             self.total = self.countMedia()
             self.completed = 0
             self.downloading = false
+            self.uploading = false
         }
         updateProgress(0)
     }
     
-    func incrementProgress() {
+    func resetCounters(array: [Any]) {
+        DispatchQueue.main.async {
+            self.directoryList = []
+            self.total = array.count
+            self.completed = 0
+            self.downloading = false
+            self.uploading = false
+        }
+        updateProgress(0)
+    }
+    
+    func incrementProgress(uploading: Bool = false) {
         DispatchQueue.main.async {
             self.completed += 1
-            self.updateProgress(Double(self.completed) / Double(self.total))
+            self.updateProgress(Double(self.completed) / Double(self.total), uploading)
         }
     }
     
-    func syncMedia(_ directoryList: [FileListDirectory]) {
+    func syncMedia(_ directoryList: [FileListDirectory], syncApproach: 	SyncApproach = .merge) async {
         
         resetCounters(directoryList)
         
@@ -136,15 +170,22 @@ class Media: ObservableObject {
             }
             for z in d.FileList {
                 let media = mediaDirectory.appendingPathComponent(z.Name)
-                var outdated = false
+                var outdated: WriteApproach = .doNothing
                 let exists = fileManager.fileExists(atPath: media.path, isDirectory: &isDirectory)
                 if exists {
                     do {
                         let modifiedDate = try fileManager.attributesOfItem(atPath: media.path)[.modificationDate] as! Date
-                        outdated = z.lastWriteTimeUtc > modifiedDate
+                        print(modifiedDate)
+                        print(z.lastWriteTimeUtc)
+                        switch(syncApproach) {
+                        case .overwriteLocal: outdated = z.lastWriteTimeUtc > modifiedDate ? .downloadToLocal : .doNothing
+                        case .overwriteRemote: outdated = z.lastWriteTimeUtc < modifiedDate ? .downloadToLocal : .doNothing
+                        case .merge: outdated = z.lastWriteTimeUtc < modifiedDate ? .uploadToRemote : (z.lastWriteTimeUtc > modifiedDate ? .downloadToLocal : .doNothing)
+                        }
+                        
                     } catch { /* ignore */ }
                 }
-                if !exists || outdated {
+                if !exists || outdated == .downloadToLocal {
                     let urlString =
                     "https://www.mytalktools.com/dnn/UserUploads/" +
                     ("\(d.Name)\(z.Name)"
@@ -154,35 +195,118 @@ class Media: ObservableObject {
                         incrementProgress()
                         return
                     }
-                    let downloadTask = URLSession.shared.downloadTask(with: url) { [self]
-                        urlOrNil, responseOrNil, errorOrNil in
-                        if (errorOrNil != nil) {
-                            print("file error: \(String(describing: errorOrNil))")
-                            incrementProgress()
-                            return
-                        }
-                        if (responseOrNil == nil) {
-                            print("could not download: \(String(describing: urlString))")
-                            incrementProgress()
-                            return
-                        }
-                        guard let fileURL = urlOrNil else { return }
-                        do {
-                            if exists {
-                                try self.fileManager.removeItem(at: media)
+                    var urlRequest = URLRequest(url: url)
+                    urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")  // the request is JSON
+                    urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")        // the expected response is also JSON
+                    urlRequest.httpMethod = "GET"
+                    do {
+                        let (data, responseRaw ) = try await URLSession.shared.data(for: urlRequest)
+                        let response = responseRaw as! HTTPURLResponse
+                        if response.statusCode == 200 {
+                            do {
+                                if exists {
+                                    try self.fileManager.removeItem(at: media)
+                                }
+                                self.fileManager.createFile(atPath: media.path, contents: data)
+                            } catch {
+                                print ("file error: \(error)")
                             }
-                            try self.fileManager.moveItem(at: fileURL, to: media)
-                        } catch {
-                            print ("file error: \(error)")
+                        } else {
+                            print(response)
                         }
-                        self.incrementProgress()
+                    } catch let error {
+                        print(error)
                     }
-                    downloadTask.resume()
-                    
+                    self.incrementProgress()
                 } else {
                     incrementProgress()
                 }
             }
         }
     }
+    
+    func WriteMediaFilesToServer(username: String) async {
+        do {
+            let privateLibrary = documentsURL!.appendingPathComponent(username).appendingPathComponent("Private Library")
+            let items = try fileManager.contentsOfDirectory(atPath: privateLibrary.path).filter({ !$0.contains(".sqlite")})
+            resetCounters(array: items)
+            for item in items {
+                let itemPath = "\(username)/Private Library/\(item)"
+                let s = BoardState.db!.executeQuery("SELECT content_url, content_url2 FROM content WHERE content_url = ? OR content_url2 = ?", withArgumentsIn: [itemPath,itemPath]);
+                var found = false
+                while s!.next() {
+                    found = true
+                }
+                if !found {
+                    try fileManager.removeItem(atPath: privateLibrary.appendingPathComponent(item).path)
+                    print("Unused file: \(itemPath)")
+                } else {
+                    await sendFile(username: username, fileURL: privateLibrary.appendingPathComponent(item))
+                }
+                incrementProgress(uploading: true)
+            }
+            print("done")
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func sendFile(username: String, fileURL: URL) async {
+        do {
+            let url = URL(string: "https://www.mytalktools.com/dnn/UploadToLibrary.ashx")
+            
+            // generate boundary string using a unique string
+            let boundary = UUID().uuidString
+            
+            // Set the URLRequest to POST and to the specified URL
+            let fileData = try? Data(contentsOf: fileURL)
+            
+            let fileName = fileURL.lastPathComponent
+            let mimetype = fileURL.mimeType()
+            let paramName = "file"
+            var inputData = Data()
+            
+            var request = URLRequest(url: url!)
+            request.httpMethod = "POST"
+            
+            // Content-Type is multipart/form-data, this is the same as submitting form data with file upload
+            // in a web browser
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            
+            // Add the param data to the raw http request data
+            inputData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+            inputData.append("Content-Disposition: form-data; name=\"user\";".data(using: .utf8)!)
+            inputData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
+            inputData.append(username.data(using: .utf8)!)
+            
+            if fileURL.path.hasSuffix(".mov") {
+                inputData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+                inputData.append("Content-Disposition: form-data; name=\"orientation\";".data(using: .utf8)!)
+                inputData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
+                inputData.append(orientation[ImageUtility.orientationForTrack(by: fileURL)]!.data(using: .utf8)!)
+            }
+            
+            // Add the file data to the raw http request data
+            inputData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+            inputData.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+            inputData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
+            inputData.append(fileData!)
+            inputData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+            print(String(decoding: inputData, as: UTF8.self))
+            // do not forget to set the content-length!
+            request.setValue(String(inputData.count), forHTTPHeaderField: "Content-Length")
+            let (responseData, responseRaw) = try await URLSession.shared.upload(for: request, from: inputData)
+            var response = responseRaw as! HTTPURLResponse
+            if response.statusCode == 200 {
+                let stringResult = String(data: responseData, encoding: .utf8) ?? "[]"
+                print(stringResult)
+            } else {
+                print("Error: \(response.statusCode)")
+                return
+            }
+        } catch let error {
+            print(error)
+        }
+    }
 }
+

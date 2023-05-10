@@ -63,7 +63,8 @@ struct PhraseBarView: View {
                                     },
                                     maximumCellHeight: .constant(80),
                                     cellWidth: .constant(80),
-                                    board: .constant(Board())
+                                    board: .constant(Board()),
+                                    refresh: 0
                                 )
                                 .id(offset + 1)
                                 .overlay(offset + 1 == speakingItem ? Image(systemName: "speaker.wave.3").padding(0).foregroundColor(.gray).background(.clear).imageScale(.small) : nil, alignment: .topLeading)

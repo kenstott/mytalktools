@@ -20,12 +20,31 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
     
     let encoder = JSONEncoder()
     let host = "https://www.mytalktools.com/dnn/get-post.ashx"
+    let syncHost = "https://www.mytalktools.com/dnn/sync.asmx"
     var service: String
     
     @Published var result: Output?
     
     init(service: String) {
         self.service = service
+    }
+    
+    func getSyncRequest(_ input: Convertable) -> URLRequest? {
+        do {
+            let encoder = JSONEncoder()
+            let inputDictionary = input.convertToDict() ?? [:];
+            let httpBody = try encoder.encode(input)
+            guard let url = URL(string: "\(syncHost)/\(service)") else { fatalError("Missing URL") }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")  // the request is JSON
+            urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")        // the expected response is also JSON
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = httpBody
+            return urlRequest
+        } catch let error {
+            print(error)
+            return nil
+        }
     }
     
     func getUrlRequest(_ input: Convertable) -> URLRequest {
@@ -45,6 +64,26 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
     func getJsonData(obj: Encodable) -> Data {
         let jsonString = String(data: try! encoder.encode(obj), encoding: .utf8)
         return jsonString!.data(using: .utf8, allowLossyConversion: false)!
+    }
+    
+    func syncService(params: Input) async throws -> Output? {
+        let urlRequest = getSyncRequest(params)
+        let (data, responseRaw) = try await URLSession.shared.data(for: urlRequest!)
+        let response = responseRaw as? HTTPURLResponse
+        if response!.statusCode == 200 {
+            var stringResult = String(data: data, encoding: .utf8) ?? "[]"
+            stringResult = stringResult.replacing("fake(", with: "")
+                .replacing("},]", with: "}]")
+                .replacing("}])", with: "}]")
+                .replacing("$id", with: "dollarSignId")
+                .replacing("\"Sort3\":0})", with: "\"Sort3\":0}")
+//            print(stringResult)
+            result = try JSONDecoder().decode(Output.self, from: Data(stringResult.utf8))
+            return result
+        } else {
+            print("Error: \(response!.statusCode)")
+            return nil
+        }
     }
     
     func execute(params: Input) async throws -> Output? {

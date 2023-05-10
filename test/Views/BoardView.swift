@@ -45,6 +45,8 @@ struct BoardView: View {
     @State var showAuthorHelp = false
     @State var showUserHelp = false
     @State var showTypePhrase = false
+    @State var showSync = false
+    @State var newDatabase = 0
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -64,10 +66,15 @@ struct BoardView: View {
     
     
     var body: some View {
-        var phraseBarView = PhraseBarView()
+        let phraseBarView = PhraseBarView()
+        print("showSync\(showSync)")
         return VStack {
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
+            }
+            if media.uploading {
+                ProgressView(value: media.fileLoadingProgress, total: 1.0).tint(.white)
+                    .background(.black)
             }
             switch boardState.state {
             case .closed:
@@ -100,7 +107,8 @@ struct BoardView: View {
                                 },
                                 maximumCellHeight: .constant(maximumCellHeight),
                                 cellWidth: .constant(0),
-                                board: .constant(self.board)
+                                board: .constant(self.board),
+                                refresh: newDatabase
                             )
                         }
                     } else {
@@ -122,7 +130,8 @@ struct BoardView: View {
                                         },
                                         maximumCellHeight: .constant(maximumCellHeight),
                                         cellWidth: .constant(cellWidth * Double(item.cellSize)),
-                                        board: .constant(self.board)
+                                        board: .constant(self.board),
+                                        refresh: newDatabase
                                     )
                                     if item.cellSize > 1 { Color.clear }
                                 }
@@ -140,6 +149,31 @@ struct BoardView: View {
                 })
                 .navigationBarTitle(board.name)
                 .navigationBarTitleDisplayMode(.inline)
+                .confirmationDialog("Synchronize with Workspace", isPresented: $showSync) {
+                    Button("Overwrite Local Device") {
+                        Task {
+                            await boardState.overwriteDevice(dbUser: boardState.dbUrl!, username: userState.username, media: media, boardID: storedBoardName)
+                            DispatchQueue.main.async {
+                                boardState.reloadDatabase(fileURL: boardState.dbUrl!)
+                                newDatabase = newDatabase + 1
+                                appState.rootViewId = UUID()
+                            }
+                        }
+                    }
+                    Button("Overwrite Remote Workspace") {
+                        
+                    }
+                    Button("Merge Local Device and Remote Workspace") {
+                        Task {
+                            await boardState.merge(username: userState.username, boardID: storedBoardName, media: media)
+                            DispatchQueue.main.async {
+                                boardState.reloadDatabase(fileURL: boardState.dbUrl!)
+                                newDatabase = newDatabase + 1
+                                appState.rootViewId = UUID()
+                            }
+                        }
+                    }
+                }
                 .sheet(isPresented: $showTypePhrase) {
                     TypePhrase(done: {
                         phrase in
@@ -222,6 +256,7 @@ struct BoardView: View {
                             Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
                                 print("Sync")
+                                showSync = true
                             } label: {
                                 Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
                             }
@@ -242,6 +277,7 @@ struct BoardView: View {
                             if (userBarSync) {
                                 Button {
                                     print("Sync")
+                                    showSync = true
                                 } label: {
                                     Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
                                 }
@@ -275,7 +311,7 @@ struct BoardView: View {
         }
         .onOpenURL { url in
             print(url)
-            var command = url.absoluteString.replacing("mytalktools:/", with: "").replacing("mtt:/", with: "");
+            let command = url.absoluteString.replacing("mytalktools:/", with: "").replacing("mtt:/", with: "");
             switch(command) {
             case "home": appState.rootViewId = UUID()
             case "back": dismiss()

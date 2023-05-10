@@ -60,7 +60,8 @@ struct LibraryView: View {
                                     },
                                     maximumCellHeight: .constant(geo.size.height),
                                     cellWidth: .constant(geo.size.width),
-                                    board: .constant(Board())
+                                    board: .constant(Board()),
+                                    refresh: 0
                                 )
                                 
                             default:
