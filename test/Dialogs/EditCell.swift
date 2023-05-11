@@ -19,8 +19,9 @@ struct EditCell: View {
         case Contacts
         case Facetime
         case Skype
+        case Image
     }
-    
+    @EnvironmentObject var userState: User
     @State var content: Content
     @State var contentType: ContentType
     @State var editedContent: Content
@@ -73,6 +74,10 @@ struct EditCell: View {
     @State var smsPhoneNumber = ""
     @State var showTelephone = false
     @State var telephonePhoneNumber = ""
+    @State var showPhotoLibrary = false
+    @State var showCamera = false
+    @State var cameraImage: UIImage = UIImage()
+
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
@@ -112,7 +117,6 @@ struct EditCell: View {
         default: contentType = .imageSoundName
         }
         self.editedContent.contentType = contentType
-        
     }
     
     var body: some View {
@@ -151,6 +155,8 @@ struct EditCell: View {
                                     VStack(alignment :.leading) {
                                         Button {
                                             print(imageUrl != "" ? "Swap" : "Add")
+                                            showIntegrationIdeas = true
+                                            activeSheet = .Image
                                         } label: {
                                             Label(LocalizedStringKey(imageUrl != "" ? "Swap" : "Add"), systemImage: imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                         }
@@ -186,14 +192,19 @@ struct EditCell: View {
                                             }
                                         }
                                         Spacer()
-                                        
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .aspectRatio(1, contentMode: .fit)
-                                            .background(isOpaque ? .white : .clear)
-                                            .padding(0)
-                                            .border(.gray, width: 1)
-                                            .frame(width: 160, height: 120.0)
+                                        ZStack {
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .background(isOpaque ? .white : .clear)
+                                                .padding(0)
+                                                .border(.gray, width: 1)
+                                            if negate {
+                                                NegateView()
+                                            } else if positive {
+                                                PositiveView()
+                                            }
+                                        }.frame(width: 160, height: 160)
                                     }
                                 }
                             }
@@ -442,6 +453,36 @@ struct EditCell: View {
                 }
                 Spacer()
             }
+            .onChange(of: cameraImage) {
+                newValue in
+                image = newValue
+                var regex : NSRegularExpression = try! NSRegularExpression(pattern:"[^A-Za-z0-9]", options: .caseInsensitive)
+                var modString = regex.stringByReplacingMatches(in: name, options: .reportProgress, range: NSMakeRange(0, name.count), withTemplate: "_")
+                if modString.count == 0 {
+                    modString = "temp"
+                }
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                var url = documentsURL?
+                    .appendingPathComponent(userState.username)
+                    .appendingPathComponent("Private Library")
+                    .appendingPathComponent(modString)
+                    .appendingPathExtension("png")
+                var increment = 1
+                var isDirectory: ObjCBool = false
+                while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
+                    url = documentsURL?
+                        .appendingPathComponent(userState.username)
+                        .appendingPathComponent("Private Library")
+                        .appendingPathComponent("\(modString)\(increment)")
+                        .appendingPathExtension("png")
+                    increment += 1
+                }
+                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                let pngImageData = scaledImage!.pngData()
+                FileManager.default.createFile(atPath: url!.path, contents: pngImageData)
+                imageUrl = "\(userState.username)/Private Library/\(url!.lastPathComponent)"
+                print(imageUrl)
+            }
             .onChange(of: alternateTTSVoice) {
                 newValue in
                 editedContent.setAlternateTTSVoice(value: newValue)
@@ -461,11 +502,17 @@ struct EditCell: View {
             .onChange(of: positive) {
                 newValue in
                 editedContent.setPositive(value: newValue)
+                if positive {
+                    negate = false
+                }
                 print(newValue)
             }
             .onChange(of: negate) {
                 newValue in
                 editedContent.setNegate(value: newValue)
+                if negate {
+                    positive = false
+                }
                 print(newValue)
             }
             .onChange(of: isOpaque) {
@@ -541,6 +588,12 @@ struct EditCell: View {
                 newValue in
                 editedContent.soundURL = newValue
                 print(newValue)
+            }
+            .sheet(isPresented: $showPhotoLibrary) {
+                ImagePicker(sourceType: .savedPhotosAlbum, selectedImage: $cameraImage)
+            }
+            .sheet(isPresented: $showCamera) {
+                ImagePicker(sourceType: .camera, selectedImage: $cameraImage)
             }
         }
         .alert("Enter song name", isPresented: $showPandoraSong) {
@@ -860,6 +913,34 @@ struct EditCell: View {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showSkypePhoneNumber = true
                         }
+                    })
+                ]
+            )
+            case .Image: return ActionSheet(
+                title: Text("Image"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Saved Photo Albums"), action: {
+                        showPhotoLibrary = true
+                    }),
+                    .default(Text("Camera"), action: {
+                        showCamera = true
+                    }),
+                    .default(Text("Web Image Search"), action: {
+                        
+                    }),
+                    .default(Text("Web Page"), action: {
+                        
+                    }),
+                    .default(Text("From Library"), action: {
+                       
+                    }),
+                    .default(Text("From File"), action: {
+                        
+                    }),
+                    .default(Text("From Contacts"), action: {
+                        
                     })
                 ]
             )

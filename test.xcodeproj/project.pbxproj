@@ -56,6 +56,9 @@
 		18E15F0B2A099FB9002AEA3F /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F0A2A099FB9002AEA3F /* Sync.swift */; };
 		18E15F252A0B099D002AEA3F /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F242A0B099D002AEA3F /* URL.swift */; };
 		18E15F282A0C0090002AEA3F /* ImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F272A0C0090002AEA3F /* ImageUtility.m */; };
+		18E15F2B2A0C7596002AEA3F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F2A2A0C7596002AEA3F /* CameraView.swift */; };
+		18E15F452A0D3C9A002AEA3F /* NegateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F442A0D3C9A002AEA3F /* NegateView.swift */; };
+		18E15F472A0D4F7C002AEA3F /* PositiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F462A0D4F7C002AEA3F /* PositiveView.swift */; };
 		18EA71BD2974E653005477CE /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 18EA71BC2974E653005477CE /* AlertToast */; };
 		18EA71BF2974FDFA005477CE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71BE2974FDFA005477CE /* AppState.swift */; };
 		18EA71C129750667005477CE /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C029750667005477CE /* VolumeSlider.swift */; };
@@ -120,6 +123,9 @@
 		18E15F262A0C0090002AEA3F /* test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "test-Bridging-Header.h"; sourceTree = "<group>"; };
 		18E15F272A0C0090002AEA3F /* ImageUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageUtility.m; sourceTree = "<group>"; };
 		18E15F292A0C01A1002AEA3F /* ImageUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageUtility.h; sourceTree = "<group>"; };
+		18E15F2A2A0C7596002AEA3F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		18E15F442A0D3C9A002AEA3F /* NegateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegateView.swift; sourceTree = "<group>"; };
+		18E15F462A0D4F7C002AEA3F /* PositiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveView.swift; sourceTree = "<group>"; };
 		18EA71BE2974FDFA005477CE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		18EA71C029750667005477CE /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		18EA71C229750A39005477CE /* VolumeDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeDialog.swift; sourceTree = "<group>"; };
@@ -180,6 +186,9 @@
 				18EA71C42975B18E005477CE /* DisclosureIndicator.swift */,
 				18EA71C62975B1D8005477CE /* ContentListRow.swift */,
 				18EA71C82975B889005477CE /* ContentGridCell.swift */,
+				18E15F2A2A0C7596002AEA3F /* CameraView.swift */,
+				18E15F442A0D3C9A002AEA3F /* NegateView.swift */,
+				18E15F462A0D4F7C002AEA3F /* PositiveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -404,11 +413,13 @@
 				187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */,
 				1886DBB729CFBC1D00CF4011 /* Library.swift in Sources */,
 				182702CB297C5452009C3B12 /* NewDatabase.swift in Sources */,
+				18E15F2B2A0C7596002AEA3F /* CameraView.swift in Sources */,
 				182702C7297C1816009C3B12 /* Network.swift in Sources */,
 				1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
 				18E15F252A0B099D002AEA3F /* URL.swift in Sources */,
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
+				18E15F472A0D4F7C002AEA3F /* PositiveView.swift in Sources */,
 				18C245A929FD814500008D38 /* BoardSortOrder.swift in Sources */,
 				18EA71CB2978EC19005477CE /* Speak.swift in Sources */,
 				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
@@ -418,6 +429,7 @@
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,
 				1886DBB929CFBC4400CF4011 /* LibraryView.swift in Sources */,
 				18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */,
+				18E15F452A0D3C9A002AEA3F /* NegateView.swift in Sources */,
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
 				182702C5297C17F0009C3B12 /* User.swift in Sources */,
 			);

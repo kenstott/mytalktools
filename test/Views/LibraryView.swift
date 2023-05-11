@@ -47,7 +47,9 @@ struct LibraryView: View {
                                     .navigationTitle(Library.cleanseFilename(row.OriginalFilename))
                             case 2:
                                 AsyncImage(url: URL(string: row.MediaUrl ?? "")) { image in
-                                    image.resizable().scaledToFit()
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                 } placeholder: {
                                     ProgressView()
                                 }.navigationTitle(Library.cleanseFilename(row.OriginalFilename))
@@ -77,15 +79,23 @@ struct LibraryView: View {
                                     case "mp4": Image(systemName: "film").frame(width: 50.0, height: 50.0)
                                     default: Image(systemName: "music.note").frame(width: 50.0, height: 50.0)
                                     }
-                                case 2: AsyncImage(url: URL(string: row.ThumbnailUrl ?? "")) { image in
-                                    image.resizable().scaledToFit()
-                                } placeholder: {
-                                    ProgressView()
-                                }.frame(width: 50.0, height: 50.0)
+                                case 2:
+                                    VStack {
+                                        AsyncImage(url: URL(string: row.MediaUrl ?? "")) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                    }
+                                    .frame(width: 50.0, height: 50.0)
                                 case 3:
                                     VStack {
                                         AsyncImage(url: URL(string: row.Content?.Picture ?? "")) { image in
-                                            image.resizable().scaledToFit()
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
                                         } placeholder: {
                                             ProgressView()
                                         }

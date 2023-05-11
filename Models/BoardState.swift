@@ -57,9 +57,7 @@ class BoardState: ObservableObject {
     func getDatabaseImage() -> String? {
         do {
             let fileData = try Data.init(contentsOf: dbUrl!)
-            let fileStream:String = fileData.base64EncodedString()
-            print(fileStream)
-            return fileStream
+            return fileData.base64EncodedString()
         } catch {
             print("error")
             print(error.localizedDescription)
@@ -161,7 +159,6 @@ class BoardState: ObservableObject {
             let board = try await syncMergePost.execute(params: SyncMergeInput(databaseImage: dbImage, userName: username, uuid: "123", boardID: boardID))
             try board?.d.DatabaseImageData.write(to: dbUrl!)
             await media.syncMedia(board?.d.DirectoryList ?? [], syncApproach: .merge)
-            print(board)
         } catch let error {
             print(error)
         }

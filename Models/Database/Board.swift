@@ -153,7 +153,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                             content.contentType = ContentType(rawValue: row.contentType) ?? .imageSoundName
                             content.row = currentRow
                             content.column = currentColumn
-                            print(content)
                             currentColumn += 1
                             if currentColumn > self.columns {
                                 currentRow += 1
@@ -164,7 +163,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                         self.calcCellSizes()
                         self.sortContent()
                         self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
-                        print(self.contents)
                     }
                 }
                 catch let error {
@@ -183,11 +181,11 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     }
     
     func defaultSortContent() -> [Content] {
-        contents.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
+        contents.sorted(by: { ( $0.row * columns  + $0.column ) < ( $1.row * columns + $1.column )  })
     }
     
     func sortContent() {
-        contents = contents.sorted(by: { ( $0.row + 1 ) * ( $0.column + 1 ) < ( $1.row + 1 ) * ( $1.column + 1 )  })
+        contents = contents.sorted(by: { ( $0.row * columns  + $0.column ) < ( $1.row * columns + $1.column )  })
     }
     
     func calcCellSizes() {
@@ -204,16 +202,23 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     }
     
     func swap(id1: Int, id2: Int) -> Bool {
-        let content1 = contents.first(where: {$0.id == id1})
-        let content2 = contents.first(where: {$0.id == id2})
+        let content1 = contents.firstIndex(where: {$0.id == id1})
+        let content2 = contents.firstIndex(where: {$0.id == id2})
+        let c1 = Content().setId(id1)
+        let c2 = Content().setId(id2)
         if content1 != nil && content2 != nil {
-            let row = content1!.row
-            let column = content1!.column
-            content1!.row = content2!.row
-            content1!.column = content2!.column
-            content2!.row = row
-            content2!.column = column
+            let row = c1.row
+            let column = c1.column
+            c1.row = c2.row
+            c1.column = c2.column
+            c2.row = row
+            c2.column = column
+            contents[content1!] = c1
+            contents[content2!] = c2
+            c1.save()
+            c2.save()
             sortContent()
+            filteredContents = contents.filter { $0.externalUrl != "x" }
             return true
         }
         return false

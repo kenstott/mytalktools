@@ -175,14 +175,12 @@ class Media: ObservableObject {
                 if exists {
                     do {
                         let modifiedDate = try fileManager.attributesOfItem(atPath: media.path)[.modificationDate] as! Date
-                        print(modifiedDate)
-                        print(z.lastWriteTimeUtc)
                         switch(syncApproach) {
                         case .overwriteLocal: outdated = z.lastWriteTimeUtc > modifiedDate ? .downloadToLocal : .doNothing
                         case .overwriteRemote: outdated = z.lastWriteTimeUtc < modifiedDate ? .downloadToLocal : .doNothing
                         case .merge: outdated = z.lastWriteTimeUtc < modifiedDate ? .uploadToRemote : (z.lastWriteTimeUtc > modifiedDate ? .downloadToLocal : .doNothing)
                         }
-                        
+                        	
                     } catch { /* ignore */ }
                 }
                 if !exists || outdated == .downloadToLocal {
@@ -245,7 +243,6 @@ class Media: ObservableObject {
                 }
                 incrementProgress(uploading: true)
             }
-            print("done")
         } catch let error {
             print(error)
         }
@@ -292,17 +289,11 @@ class Media: ObservableObject {
             inputData.append("Content-Type: \(mimetype)\r\n\r\n".data(using: .utf8)!)
             inputData.append(fileData!)
             inputData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-            print(String(decoding: inputData, as: UTF8.self))
-            // do not forget to set the content-length!
             request.setValue(String(inputData.count), forHTTPHeaderField: "Content-Length")
-            let (responseData, responseRaw) = try await URLSession.shared.upload(for: request, from: inputData)
+            let (_, responseRaw) = try await URLSession.shared.upload(for: request, from: inputData)
             var response = responseRaw as! HTTPURLResponse
-            if response.statusCode == 200 {
-                let stringResult = String(data: responseData, encoding: .utf8) ?? "[]"
-                print(stringResult)
-            } else {
+            if response.statusCode != 200 {
                 print("Error: \(response.statusCode)")
-                return
             }
         } catch let error {
             print(error)

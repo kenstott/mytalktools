@@ -44,7 +44,6 @@ class Speak: NSObject, ObservableObject, AVAudioPlayerDelegate {
         _ player: AVAudioPlayer,
         successfully flag: Bool
     ) {
-        print(flag)
         if callback != nil {
             self.speaking = false;
             callback!()

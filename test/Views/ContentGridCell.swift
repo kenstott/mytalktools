@@ -36,12 +36,19 @@ struct ContentGridCell: View {
                 case .goHome: Image(systemName: "house").font(.system(size: 50)).imageScale(.medium)
                 case .goBack: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
                 default:
-                    Image(uiImage: content.image)
-                        .resizable()
-                        .font(.system(size: 100))
-                        .aspectRatio(1, contentMode: .fit)
-                        .background(.clear)
-                        .padding(5)
+                    ZStack {
+                        Image(uiImage: content.image)
+                            .resizable()
+                            .font(.system(size: 100))
+                            .aspectRatio(contentMode: .fit)
+                            .background(.clear)
+                            .padding(5)
+                        if content.negate {
+                            NegateView()
+                        } else if (content.positive) {
+                            PositiveView()
+                        }
+                    }
                 }
                 Spacer()
                 Text(content.name)
@@ -57,7 +64,7 @@ struct ContentGridCell: View {
                         if (content.soundURL != "") {
                             Image(systemName: "waveform")
                                 .resizable()
-                                .aspectRatio(1, contentMode: .fit)
+                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 15)
                                 .foregroundColor(.gray)
                                 .background(.clear)

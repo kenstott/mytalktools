@@ -20,11 +20,20 @@ struct ContentListRow: View {
     var body: some View {
         HStack {
             if content.imageURL != "" {
-                Image(uiImage: content.image)
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
-                    .background(.clear)
-                    .frame(width: 50, height: 50)
+                ZStack {
+                    Image(uiImage: content.image)
+                        .resizable()
+                        .font(.system(size: 100))
+                        .aspectRatio(contentMode: .fit)
+                        .background(.clear)
+                        .padding(5)
+                    if content.negate {
+                        NegateView()
+                    } else if (content.positive) {
+                        PositiveView()
+                    }
+                }
+                .frame(width: 50, height: 50)
             } else {
                 EmptyView()
                     .frame(width: 50, height: 50)
