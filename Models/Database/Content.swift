@@ -147,7 +147,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         setColumn(column: "external_url", value: self.externalUrl)
         setColumn(column: "alternate_tts", value: self.alternateTTS)
         setColumn(column: "tts_speech", value: self.ttsSpeechPrompt)
-        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacing("T", with: " ").replacing("Z", with: ".00Z"))
+        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacing("T", with: " "))
     }
     
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }

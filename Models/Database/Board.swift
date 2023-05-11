@@ -10,6 +10,20 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
     var getBoardPost = GetPost<LibraryBoard, LibraryBoardIdInput>(service: "GetBoard")
     
+    func setColumn(column: String, value: Any) -> Void {
+        BoardState.db!.executeUpdate("UPDATE board set \(column) = ? WHERE iphone_board_id = ?", withArgumentsIn: [value,id]);
+    }
+
+    func save() -> Void {
+        setColumn(column: "board_name", value: name)
+        setColumn(column: "board_clms", value: columns)
+        setColumn(column: "board_rows", value: rows)
+        setColumn(column: "sort1", value: sort[0])
+        setColumn(column: "sort2", value: sort[1])
+        setColumn(column: "sort3", value: sort[2])
+        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacing("T", with: " "))
+    }
+
     static func initializeBoard() {
         let nameForFile = "sample"
         let extForFile = "sqlite"
@@ -103,7 +117,11 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         hasher.combine(id)
     }
     
-    @Published var contents: [Content] = []
+    @Published var contents: [Content] = [] {
+        didSet {
+            filteredContents = self.contents.filter { $0.externalUrl != "x" }
+        }
+    }
     @Published var filteredContents: [Content] = []
     @Published var columns: Int = 0
     @Published var rows: Int = 0
@@ -127,7 +145,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             self.sort = getSort(id: id)
             calcCellSizes()
             sortContent()
-            self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
+//            self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
         } else {
             Task {
                 do {
@@ -162,7 +180,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                         } ?? []
                         self.calcCellSizes()
                         self.sortContent()
-                        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
+//                        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
                     }
                 }
                 catch let error {
@@ -201,7 +219,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         }
     }
     
-    func swap(id1: Int, id2: Int) -> Bool {
+    func swap(id1: Int, id2: Int, boardState: BoardState) -> Bool {
         let content1 = contents.firstIndex(where: {$0.id == id1})
         let content2 = contents.firstIndex(where: {$0.id == id2})
         let c1 = Content().setId(id1)
@@ -215,10 +233,12 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             c2.column = column
             contents[content1!] = c1
             contents[content2!] = c2
+            boardState.createUndoSlot()
             c1.save()
             c2.save()
+            save()
             sortContent()
-            filteredContents = contents.filter { $0.externalUrl != "x" }
+//            filteredContents = contents.filter { $0.externalUrl != "x" }
             return true
         }
         return false

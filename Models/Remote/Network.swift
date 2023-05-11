@@ -49,6 +49,7 @@ class Network<Output: Decodable, Input: Encodable>: ObservableObject {
             return result
         } else {
             print("Error: \(response!.statusCode)")
+            print(HTTPURLResponse.localizedString(forStatusCode: response!.statusCode))
             return nil
         }
     }

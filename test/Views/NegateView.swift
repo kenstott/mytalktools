@@ -5,14 +5,9 @@ struct NegateShape: Shape {
         var path = Path()
         let radius = min(rect.width, rect.height) / 2
         path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: radius, startAngle: .degrees(0), endAngle: .degrees(360), clockwise: true)
-        if rect.height > rect.width {
-            var adjust = (rect.height - rect.width) / 2
-            path.move(to: CGPoint(x: rect.midX, y: rect.maxY - adjust))
-            path.addLine(to: CGPoint(x: rect.midX, y: rect.minY + adjust))
-        } else {
-            path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
-            path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-        }
+        let adjust = max(rect.height - rect.width, 0) / 2
+        path.move(to: CGPoint(x: rect.midX, y: rect.maxY - adjust))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY + adjust))
         return path
     }
 }

@@ -134,7 +134,7 @@ struct ContentView: View {
                 MainView
                     .onDrop(of: ["public.utf8-plain-text"], isTargeted: self.$targeted,
                             perform: { (provider) -> Bool in
-                        return board.swap(id1: content.id, id2: Int(provider.first?.suggestedName ?? "") ?? -1)
+                        return board.swap(id1: content.id, id2: Int(provider.first?.suggestedName ?? "") ?? -1, boardState: boardState)
                     })
                     .onDrag {
                         let item = NSItemProvider(object: NSString(string: String(self.content.id)))
