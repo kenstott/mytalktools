@@ -31,9 +31,19 @@ struct LibraryView: View {
             return name
         }
     }
-    
+        
+    func fuzzyMatch(items: [LibraryItem], searchText: String) throws -> [LibraryItem] {
+        try items.filter {
+            try Task.checkCancellation()
+            return $0.OriginalFilename.localizedCaseInsensitiveContains(searchText) ||
+            $0.TagString.localizedCaseInsensitiveContains(searchText) ||
+            $0.Content?.Text.localizedCaseInsensitiveContains(searchText) ?? false
+        }
+    }
+        
     var body: some View {
-        GeometryReader { geo in
+        
+        return GeometryReader { geo in
             ZStack {
                 List {
                     ForEach(searchResults, id: \.self) { row in
@@ -171,7 +181,7 @@ struct LibraryView: View {
                     Task {
                         searchTask?.cancel()
                         let task = Task.detached {
-                            try await Task.sleep(for: .seconds(1.5)) // debounce; if you don't want debouncing, remove this, but it can eliminate annoying updates of the UI while the user is typing
+                            try await Task.sleep(nanoseconds: 1500)
                             return try await fuzzyMatch(items: library.items ?? [], searchText: query)
                         }
                         searchTask = task
@@ -179,13 +189,11 @@ struct LibraryView: View {
                     }
                 }
                 .toolbar {
-                    if library.rights.delete || library.rights.update {
-                        ToolbarItem {
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        if library.rights.delete || library.rights.update {
                             EditButton()
                         }
-                    }
-                    if library.rights.create && editMode?.wrappedValue.isEditing == true {
-                        ToolbarItem {
+                        if library.rights.create && editMode?.wrappedValue.isEditing == true {
                             Button {
                                 print("Create")
                             } label: {
@@ -201,14 +209,4 @@ struct LibraryView: View {
         }
         
     }
-    
-    func fuzzyMatch(items: [LibraryItem], searchText: String) throws -> [LibraryItem] {
-        try items.filter {
-            try Task.checkCancellation()
-            return $0.OriginalFilename.localizedCaseInsensitiveContains(searchText) ||
-            $0.TagString.localizedCaseInsensitiveContains(searchText) ||
-            $0.Content?.Text.localizedCaseInsensitiveContains(searchText) ?? false
-        }
     }
-    
-}

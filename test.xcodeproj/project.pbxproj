@@ -18,6 +18,7 @@
 		182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D22981E49B009C3B12 /* PhraseBarView.swift */; };
 		182702D529874ED1009C3B12 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D429874ED1009C3B12 /* Query.swift */; };
 		1843E630296BBFC800663122 /* SharingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843E62F296BBFC800663122 /* SharingDialog.swift */; };
+		18458DE32A0EBC4300BAF832 /* RecordSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18458DE22A0EBC4300BAF832 /* RecordSound.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -43,6 +44,7 @@
 		18A6BF02296211FD0039B5D4 /* Yes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BEFA296211FD0039B5D4 /* Yes.mp3 */; };
 		18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BF03296253060039B5D4 /* AppContainer.swift */; };
 		18A6BF06296359B40039B5D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BF05296359B30039B5D4 /* Settings.bundle */; };
+		18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C4D72A10545600A18334 /* ShareSheet.swift */; };
 		18C245A929FD814500008D38 /* BoardSortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C245A829FD814500008D38 /* BoardSortOrder.swift */; };
 		18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE4C55295FAC2000D349A3 /* testApp.swift */; };
 		18CE4C58295FAC2000D349A3 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE4C57295FAC2000D349A3 /* BoardView.swift */; };
@@ -81,6 +83,7 @@
 		182702D22981E49B009C3B12 /* PhraseBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhraseBarView.swift; sourceTree = "<group>"; };
 		182702D429874ED1009C3B12 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
+		18458DE22A0EBC4300BAF832 /* RecordSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSound.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		18A6BEFA296211FD0039B5D4 /* Yes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Yes.mp3; sourceTree = "<group>"; };
 		18A6BF03296253060039B5D4 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		18A6BF05296359B30039B5D4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		18C0C4D72A10545600A18334 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		18C245A829FD814500008D38 /* BoardSortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSortOrder.swift; sourceTree = "<group>"; };
 		18CE4C52295FAC2000D349A3 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CE4C55295FAC2000D349A3 /* testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testApp.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				18C245A829FD814500008D38 /* BoardSortOrder.swift */,
 				18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */,
 				18E15F082A06F6B7002AEA3F /* TypePhrase.swift */,
+				18458DE22A0EBC4300BAF832 /* RecordSound.swift */,
+				18C0C4D72A10545600A18334 /* ShareSheet.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -429,9 +435,11 @@
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,
 				1886DBB929CFBC4400CF4011 /* LibraryView.swift in Sources */,
 				18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */,
+				18458DE32A0EBC4300BAF832 /* RecordSound.swift in Sources */,
 				18E15F452A0D3C9A002AEA3F /* NegateView.swift in Sources */,
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
 				182702C5297C17F0009C3B12 /* User.swift in Sources */,
+				18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +500,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytalk.mytalktools.test;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -545,6 +554,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytalk.mytalktools.test;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

@@ -145,7 +145,7 @@ struct TypePhrase: View {
                 .onAppear {
                     focusedField = .phrase
                 }
-                .navigationBarTitle("\(Locale.current.language.languageCode?.identifier ?? "Unknown")-\(Locale.current.language.region?.identifier ?? "Unknown")", displayMode: .inline)
+                .navigationBarTitle("\(Locale.current.languageCode ?? "Unknown")-\(Locale.current.regionCode ?? "Unknown")", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {

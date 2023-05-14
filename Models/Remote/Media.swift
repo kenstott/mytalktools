@@ -42,6 +42,31 @@ class Media: ObservableObject {
         return total;
     }
     
+    static func generateFileName(str: String, username: String, ext: String, libName: String = "Private Library") -> URL {
+        let regex : NSRegularExpression = try! NSRegularExpression(pattern:"[^A-Za-z0-9]", options: .caseInsensitive)
+        var modString = regex.stringByReplacingMatches(in: str, options: .reportProgress, range: NSMakeRange(0, str.count), withTemplate: "_")
+        if modString.count == 0 {
+            modString = "temp"
+        }
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        var url = documentsURL?
+            .appendingPathComponent(username)
+            .appendingPathComponent(libName)
+            .appendingPathComponent(modString)
+            .appendingPathExtension(ext)
+        var increment = 1
+        var isDirectory: ObjCBool = false
+        while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
+            url = documentsURL?
+                .appendingPathComponent(username)
+                .appendingPathComponent(libName)
+                .appendingPathComponent("\(modString)\(increment)")
+                .appendingPathExtension(ext)
+            increment += 1
+        }
+        return url!
+    }
+    
     static func splitFileName(str: String) -> (String, String, String) {
         let path = str as NSString
         let directory = path.deletingLastPathComponent
@@ -290,8 +315,7 @@ class Media: ObservableObject {
             inputData.append(fileData!)
             inputData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
             request.setValue(String(inputData.count), forHTTPHeaderField: "Content-Length")
-            let (_, responseRaw) = try await URLSession.shared.upload(for: request, from: inputData)
-            var response = responseRaw as! HTTPURLResponse
+            let (_, response) = (try await URLSession.shared.upload(for: request, from: inputData)) as! (Data, HTTPURLResponse)
             if response.statusCode != 200 {
                 print("Error: \(response.statusCode)")
             }

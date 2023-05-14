@@ -23,6 +23,7 @@ struct AppContainer: View {
             // Attempts to activate session so you can play audio,
             // if other sessions have priority this will fail
             try AVAudioSession.sharedInstance().setActive(true)
+            try! AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default)
         } catch _ {
             // Handle error
         }

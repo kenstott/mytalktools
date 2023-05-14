@@ -147,7 +147,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         setColumn(column: "external_url", value: self.externalUrl)
         setColumn(column: "alternate_tts", value: self.alternateTTS)
         setColumn(column: "tts_speech", value: self.ttsSpeechPrompt)
-        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacing("T", with: " "))
+        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: "T", with: " "))
     }
     
     private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
@@ -412,11 +412,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     }
     
     func setColumn(column: String, value: Any) -> Void {
-        do {
-            try BoardState.db!.executeUpdate("UPDATE content set \(column) = ? WHERE iphone_content_id = ?", withArgumentsIn: [value,id]);
-        } catch let error {
-            print(error)
-        }
+        BoardState.db!.executeUpdate("UPDATE content set \(column) = ? WHERE iphone_content_id = ?", withArgumentsIn: [value,id]);
     }
     
     func getString(column: String, defaultValue: String = "") -> String {

@@ -111,12 +111,12 @@ class Library: Identifiable, ObservableObject {
     static func cleanseFilename(_ filename: String) -> String {
         var x = filename;
         x = x
-            .replacing("%20", with: " ")
-            .replacing(".png", with: "")
-            .replacing(".jpg", with: "")
-            .replacing(".mp3", with: "")
-            .replacing(".mp4", with: "")
-            .replacing("_", with: " ")
+            .replacingOccurrences(of: "%20", with: " ")
+            .replacingOccurrences(of: ".png", with: "")
+            .replacingOccurrences(of: ".jpg", with: "")
+            .replacingOccurrences(of: ".mp3", with: "")
+            .replacingOccurrences(of: ".mp4", with: "")
+            .replacingOccurrences(of: "_", with: " ")
         let pattern = "\\d{2,}$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let modText = regex.stringByReplacingMatches(in: x, options: [], range: NSRange(location: 0, length: x.count), withTemplate: "")
@@ -159,14 +159,14 @@ class Library: Identifiable, ObservableObject {
                             .map {
                                 var row = $0
                                 
-                                row.MediaUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\(row.OriginalFilename)"
+                                row.MediaUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacingOccurrences(of: "%2F", with: "/").replacingOccurrences(of: "%2E", with: "."))\(row.OriginalFilename)"
                                 if row.ItemType == 2 {
-                                    row.ThumbnailUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))\(row.CompressedFilename)"
+                                    row.ThumbnailUrl = "\(UserUploadUrl)\((row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacingOccurrences(of: "%2F", with: "/").replacingOccurrences(of: "%2E", with: "."))\(row.CompressedFilename)"
                                 } else {
                                     print(row.ItemType, row.OriginalFilename)
                                 }
                                 if row.ItemType == 3 {
-                                    let PictureUrl = "\(UserUploadUrl)\(row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "")\(((row.Content?.Picture ?? "").addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacing("%2F", with: "/").replacing("%2E", with: "."))"
+                                    let PictureUrl = "\(UserUploadUrl)\(row.Path.addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "")\(((row.Content?.Picture ?? "").addingPercentEncoding(withAllowedCharacters: .alphanumerics) ?? "").replacingOccurrences(of: "%2F", with: "/").replacingOccurrences(of: "%2E", with: "."))"
                                     row.Content?.Picture = PictureUrl
                                 }
                                 return row

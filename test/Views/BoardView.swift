@@ -64,10 +64,8 @@ struct BoardView: View {
         self.geometry = geometry
     }
     
-    
     var body: some View {
         let phraseBarView = PhraseBarView()
-        print("showSync\(showSync)")
         return VStack {
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
@@ -311,7 +309,7 @@ struct BoardView: View {
         }
         .onOpenURL { url in
             print(url)
-            let command = url.absoluteString.replacing("mytalktools:/", with: "").replacing("mtt:/", with: "");
+            let command = url.absoluteString.replacingOccurrences(of: "mytalktools:/", with: "").replacingOccurrences(of: "mtt:/", with: "");
             switch(command) {
             case "home": appState.rootViewId = UUID()
             case "back": dismiss()

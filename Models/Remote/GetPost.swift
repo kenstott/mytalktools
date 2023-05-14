@@ -32,7 +32,6 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
     func getSyncRequest(_ input: Convertable) -> URLRequest? {
         do {
             let encoder = JSONEncoder()
-            let inputDictionary = input.convertToDict() ?? [:];
             let httpBody = try encoder.encode(input)
             guard let url = URL(string: "\(syncHost)/\(service)") else { fatalError("Missing URL") }
             var urlRequest = URLRequest(url: url)
@@ -72,11 +71,12 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
         let response = responseRaw as? HTTPURLResponse
         if response!.statusCode == 200 {
             var stringResult = String(data: data, encoding: .utf8) ?? "[]"
-            stringResult = stringResult.replacing("fake(", with: "")
-                .replacing("},]", with: "}]")
-                .replacing("}])", with: "}]")
-                .replacing("$id", with: "dollarSignId")
-                .replacing("\"Sort3\":0})", with: "\"Sort3\":0}")
+            stringResult = stringResult
+                .replacingOccurrences(of: "fake(", with: "")
+                .replacingOccurrences(of: "},]", with: "}]")
+                .replacingOccurrences(of: "}])", with: "}]")
+                .replacingOccurrences(of: "$id", with: "dollarSignId")
+                .replacingOccurrences(of: "\"Sort3\":0})", with: "\"Sort3\":0}")
 //            print(stringResult)
             result = try JSONDecoder().decode(Output.self, from: Data(stringResult.utf8))
             return result
@@ -92,11 +92,11 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
         let response = responseRaw as? HTTPURLResponse
         if response!.statusCode == 200 {
             var stringResult = String(data: data, encoding: .utf8) ?? "[]"
-            stringResult = stringResult.replacing("fake(", with: "")
-                .replacing("},]", with: "}]")
-                .replacing("}])", with: "}]")
-                .replacing("$id", with: "dollarSignId")
-                .replacing("\"Sort3\":0})", with: "\"Sort3\":0}")
+            stringResult = stringResult.replacingOccurrences(of: "fake(", with: "")
+                .replacingOccurrences(of: "},]", with: "}]")
+                .replacingOccurrences(of: "}])", with: "}]")
+                .replacingOccurrences(of: "$id", with: "dollarSignId")
+                .replacingOccurrences(of: "\"Sort3\":0})", with: "\"Sort3\":0}")
 //            print(stringResult)
             result = try JSONDecoder().decode(Output.self, from: Data(stringResult.utf8))
             return result

@@ -120,7 +120,7 @@ struct Author: View {
                                         let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
                                         print(result!.d)
                                         if (result!.result == .Validated) {
-                                            let profile = try await userState.getProfile(username)
+                                            let profile = await userState.getProfile(username)
                                             if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
                                                 let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
                                                 setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])

@@ -7,10 +7,21 @@
 
 import Foundation
 
+func matchStrings(input: String, pattern: String) -> [String] {
+    do {
+        let regex = try NSRegularExpression(pattern: pattern)
+        let nsInput = input as NSString
+        let matches = regex.matches(in: input, range: NSRange(location: 0, length: nsInput.length))
+        return matches.map { nsInput.substring(with: $0.range)}
+    } catch {
+        return []
+    }
+}
+
 func fixDate(date: String) -> Date {
-    let digits = /[0-9]+/
-    if let result = try? digits.firstMatch(in: date) {
-        return Date(timeIntervalSince1970: (Double(result.0) ?? 0) / 1000.0 )
+    let result = matchStrings(input: date, pattern: "[0-9]+")
+    if (result.count > 0) {
+        return Date(timeIntervalSince1970: (Double(result[0]) ?? 0) / 1000.0 )
     }
     return Date.now
 }

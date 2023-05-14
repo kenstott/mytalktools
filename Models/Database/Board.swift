@@ -21,7 +21,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         setColumn(column: "sort1", value: sort[0])
         setColumn(column: "sort2", value: sort[1])
         setColumn(column: "sort3", value: sort[2])
-        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacing("T", with: " "))
+        setColumn(column: "update_date", value: ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: "T", with: " "))
     }
 
     static func initializeBoard() {
@@ -164,8 +164,8 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                             var libraryContent = LibraryContent()
                             libraryContent.ContentId = row.WebContentId
                             libraryContent.Text = row.contentName
-                            libraryContent.Picture = "\(UserUploadUrl)\(row.contentUrl.replacing("%2F", with: "/").replacing("%2E", with: "."))"
-                            libraryContent.Sound = "\(UserUploadUrl)\(row.contentUrl2.replacing("%2F", with: "/").replacing("%2E", with: "."))"
+                            libraryContent.Picture = "\(UserUploadUrl)\(row.contentUrl.replacingOccurrences(of: "%2F", with: "/").replacingOccurrences(of: "%2E", with: "."))"
+                            libraryContent.Sound = "\(UserUploadUrl)\(row.contentUrl2.replacingOccurrences(of: "%2F", with: "/").replacingOccurrences(of: "%2E", with: "."))"
                             let content = Content().copyLibraryContent(libraryContent)
                             content.boardId = Int(id)
                             content.contentType = ContentType(rawValue: row.contentType) ?? .imageSoundName

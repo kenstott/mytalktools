@@ -20,67 +20,96 @@ struct EditCell: View {
         case Facetime
         case Skype
         case Image
+        case Sound
+        case Video
+        case ChildBoard
     }
+    
+    enum FilePickerType {
+        case image
+        case sound
+        case childBoard
+        case video
+    }
+    
     @EnvironmentObject var userState: User
+    @EnvironmentObject var speak: Speak
+    @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
+    @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
+    @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
+    @AppStorage("SpeechRate") var speechRate: Double = 200
+    @AppStorage("VoiceShape") var voiceShape: Double = 100
+    
     @State var content: Content
     @State var contentType: ContentType
-    @State var editedContent: Content
-    @State var isOpaque: Bool
-    @State var image: UIImage
-    @State var name: String
-    @State var negate: Bool
-    @State var positive: Bool
-    @State var imageUrl: String
-    @State var soundUrl: String
-    @State var childBoard: UInt
-    @State var childBoardId: UInt
-    @State var childBoardLink: UInt
-    @State var includeRepeatedCells: Bool
-    @State var popupStyleBoard: Bool
-    @State var fontSize: Int
-    @State var foregroundColor: Int
-    @State var backgroundColor: Int
-    @State var cellSize: Int
-    @State var doNotZoomPics: Bool
-    @State var zoom: Bool
-    @State var doNotAddToPhraseBar: Bool
-    @State var hidden: Bool
-    @State var ttsSpeech: String
-    @State var ttsSpeechPrompt: String
-    @State var alternateTTSVoice: Bool
-    @State var externalUrl: String
-    @State var testExternalUrl: String = ""
-    @State var showIntegrationIdeas: Bool = false
-    @State var activeSheet: ActiveSheet = .Main
-    @State var showPandoraArtist = false
-    @State var pandoraArtist = ""
-    @State var showPandoraSong = false
-    @State var pandoraSong = ""
-    @State var showDirections = false
-    @State var address = ""
-    @State var showEmail = false
-    @State var showAppleID = false
-    @State var showFacetimeEmail = false
-    @State var showPhoneNumber = false
-    @State var showContact = false
-    @State var showContacts = false
-    @State var facetimeID = ""
-    @State var contactName = ""
-    @State var showSkypePhoneNumber = false
-    @State var skypePhoneNumber = ""
-    @State var showSkypeVideo = false
-    @State var skypeVideo = ""
-    @State var showSMS = false
-    @State var smsPhoneNumber = ""
-    @State var showTelephone = false
-    @State var telephonePhoneNumber = ""
-    @State var showPhotoLibrary = false
-    @State var showCamera = false
-    @State var cameraImage: UIImage = UIImage()
-
+    @State private var showFilePicker = false
+    @State private var filePickerType: FilePickerType = .image
+    @State private var filePickerTYpes: [UTType] = [.image]
+    @State private var editedContent: Content
+    @State private var isOpaque: Bool
+    @State private var image: UIImage
+    @State private var name: String
+    @State private var negate: Bool
+    @State private var positive: Bool
+    @State private var imageUrl: String
+    @State private var soundUrl: String
+    @State private var childBoard: UInt
+    @State private var childBoardId: UInt
+    @State private var childBoardLink: UInt
+    @State private var includeRepeatedCells: Bool
+    @State private var popupStyleBoard: Bool
+    @State private var fontSize: Int
+    @State private var foregroundColor: Int
+    @State private var backgroundColor: Int
+    @State private var cellSize: Int
+    @State private var doNotZoomPics: Bool
+    @State private var zoom: Bool
+    @State private var doNotAddToPhraseBar: Bool
+    @State private var hidden: Bool
+    @State private var ttsSpeech: String
+    @State private var ttsSpeechPrompt: String
+    @State private var alternateTTSVoice: Bool
+    @State private var alternateTTS: String
+    @State private var externalUrl: String
+    @State private var testExternalUrl: String = ""
+    @State private var showIntegrationIdeas: Bool = false
+    @State private var activeSheet: ActiveSheet = .Main
+    @State private var showPandoraArtist = false
+    @State private var pandoraArtist = ""
+    @State private var showPandoraSong = false
+    @State private var pandoraSong = ""
+    @State private var showDirections = false
+    @State private var address = ""
+    @State private var showEmail = false
+    @State private var showAppleID = false
+    @State private var showFacetimeEmail = false
+    @State private var showPhrase = false
+    @State private var ttsPhrase = ""
+    @State private var showPhoneNumber = false
+    @State private var showContact = false
+    @State private var showContacts = false
+    @State private var facetimeID = ""
+    @State private var contactName = ""
+    @State private var showSkypePhoneNumber = false
+    @State private var skypePhoneNumber = ""
+    @State private var showSkypeVideo = false
+    @State private var skypeVideo = ""
+    @State private var showSMS = false
+    @State private var smsPhoneNumber = ""
+    @State private var showTelephone = false
+    @State private var telephonePhoneNumber = ""
+    @State private var showPhotoLibrary = false
+    @State private var showCamera = false
+    @State private var showRecordAudio = false
+    @State private var cameraImage: UIImage = UIImage()
+    @State private var showShareSheet = false
+    @State public var sharedItems : [Any] = []
+    
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
     
+    
+    //    @Environment(\.dismiss) var dismiss
     
     init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
         self.content = content
@@ -110,6 +139,7 @@ struct EditCell: View {
         self.ttsSpeech = content.ttsSpeech
         self.ttsSpeechPrompt = content.ttsSpeechPrompt
         self.alternateTTSVoice = content.alternateTTSVoice
+        self.alternateTTS = content.alternateTTS
         self.externalUrl = content.externalUrl
         switch (content.contentType) {
         case .goBack: contentType = .goBack
@@ -117,6 +147,33 @@ struct EditCell: View {
         default: contentType = .imageSoundName
         }
         self.editedContent.contentType = contentType
+    }
+    
+    func getFilename(_ name: String) -> URL? {
+        var modString = name.split(separator: ".")
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        var url = documentsURL?
+            .appendingPathComponent(userState.username)
+            .appendingPathComponent("Private Library")
+            .appendingPathComponent(String(modString[0]))
+            .appendingPathExtension(String(modString[1]))
+        var increment = 0
+        var isDirectory: ObjCBool = false
+        while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
+            increment += 1
+            modString[0] = "\(modString[0])\(increment)"
+            url = documentsURL?
+                .appendingPathComponent(userState.username)
+                .appendingPathComponent("Private Library")
+                .appendingPathComponent("\(modString[0])\(increment)")
+                .appendingPathExtension(String(modString[1]))
+        }
+        return url;
+    }
+    
+    func truncateFileURL(_ url: URL) -> String {
+        let x = url.path.split(separator: userState.username);
+        return "\(userState.username)\(x[1])"
     }
     
     var body: some View {
@@ -170,13 +227,37 @@ struct EditCell: View {
                                             Button {
                                                 print("Rotate")
                                                 image = image.rotate(radians: 1.57079633)!
+                                                if let data = image.pngData() {
+                                                    var (_, filename, _) = Media.splitFileName(str: imageUrl)
+                                                    filename = "\(filename)_r"
+                                                    var fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                                                        .first?.appendingPathComponent(userState.username)
+                                                        .appendingPathComponent("Private Library")
+                                                        .appendingPathComponent(filename)
+                                                        .appendingPathExtension("png")
+                                                    while FileManager.default.fileExists(atPath: fileURL!.path) {
+                                                        filename = "\(filename)_r"
+                                                        fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                                                            .first?.appendingPathComponent(userState.username)
+                                                            .appendingPathComponent("Private Library")
+                                                            .appendingPathComponent(filename)
+                                                            .appendingPathExtension("png")
+                                                    }
+                                                    try? data.write(to: fileURL!)
+                                                    imageUrl = "\(userState.username)/Private Library/\(filename).png"
+                                                }
                                             } label: {
                                                 Label(LocalizedStringKey("Rotate"), systemImage: "rotate.right").labelStyle(.iconOnly)
                                             }
                                             Button {
                                                 print("Share")
+                                                var fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                                                    .first?.appendingPathComponent(imageUrl)
+                                                guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
+                                                let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+                                                //                                                dismiss()
+                                                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
                                             } label: {
-                                                
                                                 Label(LocalizedStringKey("Share"), systemImage: "square.and.arrow.up").labelStyle(.iconOnly)
                                             }
                                         }
@@ -216,6 +297,8 @@ struct EditCell: View {
                                 HStack {
                                     Button {
                                         print(soundUrl != "" ? "Swap" : "Add")
+                                        showIntegrationIdeas = true
+                                        activeSheet = .Sound
                                     } label: {
                                         Label(LocalizedStringKey(soundUrl != "" ? "Swap" : "Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
@@ -252,6 +335,8 @@ struct EditCell: View {
                                 HStack {
                                     Button {
                                         print(soundUrl != "" ? "Swap" : "Add")
+                                        showIntegrationIdeas = true
+                                        activeSheet = .Video
                                     } label: {
                                         Label(LocalizedStringKey(soundUrl != "" ? "Swap" : "Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
@@ -297,6 +382,8 @@ struct EditCell: View {
                             HStack {
                                 Button {
                                     print(childBoard > 0 ? "Swap" : "Add")
+                                    showIntegrationIdeas = true
+                                    activeSheet = .ChildBoard
                                 } label: {
                                     Label(LocalizedStringKey(childBoard > 0 ? "Swap" : "Add"), systemImage: childBoard > 0 ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                 }
@@ -433,6 +520,7 @@ struct EditCell: View {
                     }
                 }
                 .navigationBarTitle("Edit Cell")
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
@@ -456,7 +544,7 @@ struct EditCell: View {
             .onChange(of: cameraImage) {
                 newValue in
                 image = newValue
-                var regex : NSRegularExpression = try! NSRegularExpression(pattern:"[^A-Za-z0-9]", options: .caseInsensitive)
+                let regex : NSRegularExpression = try! NSRegularExpression(pattern:"[^A-Za-z0-9]", options: .caseInsensitive)
                 var modString = regex.stringByReplacingMatches(in: name, options: .reportProgress, range: NSMakeRange(0, name.count), withTemplate: "_")
                 if modString.count == 0 {
                     modString = "temp"
@@ -595,7 +683,39 @@ struct EditCell: View {
             .sheet(isPresented: $showCamera) {
                 ImagePicker(sourceType: .camera, selectedImage: $cameraImage)
             }
+            .sheet(isPresented: $showRecordAudio) {
+                RecordSound(cellText: $name, filename: $soundUrl)
+                    .presentationDetents([.medium])
+            }
+            .sheet(isPresented: $showShareSheet) {
+                ShareSheet(activityItems: self.sharedItems)
+            }
         }
+        .fileImporter(isPresented: $showFilePicker, allowedContentTypes: filePickerTYpes) { result in
+            switch(filePickerType) {
+            case .image:
+                do {
+                    let tempURL = try result.get()
+                    let sourceURL = getFilename(tempURL.lastPathComponent)
+                    try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
+                    imageUrl = truncateFileURL(sourceURL!)
+                    image = UIImage(contentsOfFile: sourceURL!.path)!
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .sound:
+                do {
+                    let tempURL = try result.get()
+                    let sourceURL = getFilename(tempURL.lastPathComponent)
+                    try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
+                    soundUrl = truncateFileURL(sourceURL!)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            default: print("")
+            }
+        }
+
         .alert("Enter song name", isPresented: $showPandoraSong) {
             TextField("Enter song name", text: $pandoraSong)
             Button("OK", action: {
@@ -604,6 +724,27 @@ struct EditCell: View {
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
+            })
+            Button("Cancel", action: {})
+        }
+        .alert("Enter Phrase", isPresented: $showPhrase) {
+            TextField("Enter Phrase", text: $ttsPhrase).autocapitalization(.none).disableAutocorrection(true)
+            Button("OK", action: {
+                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "wav")
+                speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                    soundUrl = "\(userState.username)/Private Library/\(fileURL.lastPathComponent)"
+                }
+                var alternate: Bool? = alternateTTSVoice
+                speak.utter(ttsPhrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate, fileURL: fileURL)
+            })
+            Button("Test", action: {
+                speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                    DispatchQueue.main.async {
+                        showPhrase = true
+                    }
+                }
+                var alternate: Bool? = alternateTTSVoice
+                speak.utter(ttsPhrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
             })
             Button("Cancel", action: {})
         }
@@ -622,7 +763,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $skypePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "skype:\(skypePhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "skype:\(skypePhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -633,7 +774,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $smsPhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "sms:\(smsPhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "sms:\(smsPhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -644,7 +785,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $telephonePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "tel:\(telephonePhoneNumber.replacing("-", with: "").replacing(" ", with: "").replacing("(", with: "").replacing(")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "tel:\(telephonePhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -916,6 +1057,65 @@ struct EditCell: View {
                     })
                 ]
             )
+            case .ChildBoard: return ActionSheet(
+                title: Text("Child Board"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("New"), action: {
+                        //                        showPhotoLibrary = true
+                    }),
+                    .default(Text("Existing"), action: {
+                        //                        showCamera = true
+                    }),
+                    .default(Text("From Library"), action: {
+                        
+                    }),
+                    .default(Text("From File"), action: {
+                        
+                    })
+                ]
+            )
+            case .Video: return ActionSheet(
+                title: Text("Video"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Saved Photo Albums"), action: {
+                        //                        showPhotoLibrary = true
+                    }),
+                    .default(Text("Video Camera"), action: {
+                        //                        showCamera = true
+                    }),
+                    .default(Text("From Library"), action: {
+                        
+                    }),
+                    .default(Text("From File"), action: {
+                        
+                    })
+                ]
+            )
+            case .Sound: return ActionSheet(
+                title: Text("Sound"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Text-To-Speech"), action: {
+                        showPhrase = true
+                    }),
+                    .default(Text("Record Sound"), action: {
+                        showRecordAudio = true
+                    }),
+                    .default(Text("From Library"), action: {
+                        
+                    }),
+                    .default(Text("From File"), action: {
+                        filePickerType = .sound
+                        filePickerTYpes = [.aiff, .mp3, .wav]
+                        showFilePicker = true
+                    })
+                ]
+            )
             case .Image: return ActionSheet(
                 title: Text("Image"),
                 message: Text("Available Options"),
@@ -934,10 +1134,12 @@ struct EditCell: View {
                         
                     }),
                     .default(Text("From Library"), action: {
-                       
+                        
                     }),
                     .default(Text("From File"), action: {
-                        
+                        filePickerType = .image
+                        filePickerTYpes = [.jpeg, .png, .bmp]
+                        showFilePicker = true
                     }),
                     .default(Text("From Contacts"), action: {
                         
