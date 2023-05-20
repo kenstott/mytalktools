@@ -19,6 +19,16 @@
 		182702D529874ED1009C3B12 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D429874ED1009C3B12 /* Query.swift */; };
 		1843E630296BBFC800663122 /* SharingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843E62F296BBFC800663122 /* SharingDialog.swift */; };
 		18458DE32A0EBC4300BAF832 /* RecordSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18458DE22A0EBC4300BAF832 /* RecordSound.swift */; };
+		185E44E62A19134A00250399 /* VolumeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44E52A19134A00250399 /* VolumeObserver.swift */; };
+		185E44EA2A191F7700250399 /* WebBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44E92A191F7700250399 /* WebBrowser.swift */; };
+		185E44EC2A1920B000250399 /* WebViewNavigationDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44EB2A1920B000250399 /* WebViewNavigationDelete.swift */; };
+		185E44F02A19220200250399 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44EF2A19220200250399 /* WebViewModel.swift */; };
+		185E44F22A19223300250399 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44F12A19223300250399 /* WebView.swift */; };
+		185E44F62A19375400250399 /* TempFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44F52A19375400250399 /* TempFiles.swift */; };
+		185E44F82A193A8600250399 /* SnapshotUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44F72A193A8600250399 /* SnapshotUIView.swift */; };
+		185E44FB2A193F2B00250399 /* BrightroomEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 185E44FA2A193F2B00250399 /* BrightroomEngine */; };
+		185E44FD2A193F2B00250399 /* BrightroomUI in Frameworks */ = {isa = PBXBuildFile; productRef = 185E44FC2A193F2B00250399 /* BrightroomUI */; };
+		185E44FF2A1945E400250399 /* CropTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44FE2A1945E400250399 /* CropTool.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -84,6 +94,14 @@
 		182702D429874ED1009C3B12 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		18458DE22A0EBC4300BAF832 /* RecordSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSound.swift; sourceTree = "<group>"; };
+		185E44E52A19134A00250399 /* VolumeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeObserver.swift; sourceTree = "<group>"; };
+		185E44E92A191F7700250399 /* WebBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowser.swift; sourceTree = "<group>"; };
+		185E44EB2A1920B000250399 /* WebViewNavigationDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelete.swift; sourceTree = "<group>"; };
+		185E44EF2A19220200250399 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		185E44F12A19223300250399 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		185E44F52A19375400250399 /* TempFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFiles.swift; sourceTree = "<group>"; };
+		185E44F72A193A8600250399 /* SnapshotUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUIView.swift; sourceTree = "<group>"; };
+		185E44FE2A1945E400250399 /* CropTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropTool.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -144,8 +162,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185E44FB2A193F2B00250399 /* BrightroomEngine in Frameworks */,
 				18A6BE89296083450039B5D4 /* FMDB in Frameworks */,
 				18EA71BD2974E653005477CE /* AlertToast in Frameworks */,
+				185E44FD2A193F2B00250399 /* BrightroomUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +213,7 @@
 				18E15F2A2A0C7596002AEA3F /* CameraView.swift */,
 				18E15F442A0D3C9A002AEA3F /* NegateView.swift */,
 				18E15F462A0D4F7C002AEA3F /* PositiveView.swift */,
+				185E44F12A19223300250399 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +232,8 @@
 				18E15F082A06F6B7002AEA3F /* TypePhrase.swift */,
 				18458DE22A0EBC4300BAF832 /* RecordSound.swift */,
 				18C0C4D72A10545600A18334 /* ShareSheet.swift */,
+				185E44E92A191F7700250399 /* WebBrowser.swift */,
+				185E44FE2A1945E400250399 /* CropTool.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -224,6 +247,9 @@
 				18EA71BE2974FDFA005477CE /* AppState.swift */,
 				182702D02981E1F2009C3B12 /* PhraseBar.swift */,
 				18EA71CA2978EC19005477CE /* Speak.swift */,
+				185E44E52A19134A00250399 /* VolumeObserver.swift */,
+				185E44EB2A1920B000250399 /* WebViewNavigationDelete.swift */,
+				185E44EF2A19220200250399 /* WebViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +325,8 @@
 				18E02A2029D9E8030057E4C3 /* Rotate.swift */,
 				18E15F242A0B099D002AEA3F /* URL.swift */,
 				18E15F292A0C01A1002AEA3F /* ImageUtility.h */,
+				185E44F52A19375400250399 /* TempFiles.swift */,
+				185E44F72A193A8600250399 /* SnapshotUIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,6 +350,8 @@
 			packageProductDependencies = (
 				18A6BE88296083450039B5D4 /* FMDB */,
 				18EA71BC2974E653005477CE /* AlertToast */,
+				185E44FA2A193F2B00250399 /* BrightroomEngine */,
+				185E44FC2A193F2B00250399 /* BrightroomUI */,
 			);
 			productName = test;
 			productReference = 18CE4C52295FAC2000D349A3 /* test.app */;
@@ -355,6 +385,7 @@
 			packageReferences = (
 				18A6BE87296083450039B5D4 /* XCRemoteSwiftPackageReference "fmdb" */,
 				18EA71BB2974E653005477CE /* XCRemoteSwiftPackageReference "AlertToast" */,
+				185E44F92A193F2B00250399 /* XCRemoteSwiftPackageReference "Brightroom" */,
 			);
 			productRefGroup = 18CE4C53295FAC2000D349A3 /* Products */;
 			projectDirPath = "";
@@ -407,10 +438,12 @@
 				18A6BEA82960BCCB0039B5D4 /* ContentView.swift in Sources */,
 				18EA71C129750667005477CE /* VolumeSlider.swift in Sources */,
 				182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */,
+				185E44F22A19223300250399 /* WebView.swift in Sources */,
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				182702C3297C01BE009C3B12 /* About.swift in Sources */,
 				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
+				185E44F62A19375400250399 /* TempFiles.swift in Sources */,
 				18E02A2129D9E8030057E4C3 /* Rotate.swift in Sources */,
 				182702C9297C25F5009C3B12 /* UserValidation.swift in Sources */,
 				18E15F092A06F6B7002AEA3F /* TypePhrase.swift in Sources */,
@@ -427,17 +460,23 @@
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
 				18E15F472A0D4F7C002AEA3F /* PositiveView.swift in Sources */,
 				18C245A929FD814500008D38 /* BoardSortOrder.swift in Sources */,
+				185E44F02A19220200250399 /* WebViewModel.swift in Sources */,
 				18EA71CB2978EC19005477CE /* Speak.swift in Sources */,
+				185E44EA2A191F7700250399 /* WebBrowser.swift in Sources */,
+				185E44E62A19134A00250399 /* VolumeObserver.swift in Sources */,
 				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
+				185E44EC2A1920B000250399 /* WebViewNavigationDelete.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				182702D529874ED1009C3B12 /* Query.swift in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,
+				185E44F82A193A8600250399 /* SnapshotUIView.swift in Sources */,
 				1886DBB929CFBC4400CF4011 /* LibraryView.swift in Sources */,
 				18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */,
 				18458DE32A0EBC4300BAF832 /* RecordSound.swift in Sources */,
 				18E15F452A0D3C9A002AEA3F /* NegateView.swift in Sources */,
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
+				185E44FF2A1945E400250399 /* CropTool.swift in Sources */,
 				182702C5297C17F0009C3B12 /* User.swift in Sources */,
 				18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */,
 			);
@@ -663,6 +702,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		185E44F92A193F2B00250399 /* XCRemoteSwiftPackageReference "Brightroom" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/muukii/Brightroom.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		18A6BE87296083450039B5D4 /* XCRemoteSwiftPackageReference "fmdb" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ccgus/fmdb";
@@ -682,6 +729,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		185E44FA2A193F2B00250399 /* BrightroomEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185E44F92A193F2B00250399 /* XCRemoteSwiftPackageReference "Brightroom" */;
+			productName = BrightroomEngine;
+		};
+		185E44FC2A193F2B00250399 /* BrightroomUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 185E44F92A193F2B00250399 /* XCRemoteSwiftPackageReference "Brightroom" */;
+			productName = BrightroomUI;
+		};
 		18A6BE88296083450039B5D4 /* FMDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 18A6BE87296083450039B5D4 /* XCRemoteSwiftPackageReference "fmdb" */;

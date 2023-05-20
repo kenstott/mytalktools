@@ -67,6 +67,11 @@ class Media: ObservableObject {
         return url!
     }
     
+    static func truncateFileURL(_ url: URL, _ username: String) -> String {
+        let x = url.path.split(separator: username);
+        return "\(username)\(x[1])"
+    }
+    
     static func splitFileName(str: String) -> (String, String, String) {
         let path = str as NSString
         let directory = path.deletingLastPathComponent

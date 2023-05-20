@@ -45,6 +45,7 @@ struct EditCell: View {
     @State private var showFilePicker = false
     @State private var filePickerType: FilePickerType = .image
     @State private var filePickerTYpes: [UTType] = [.image]
+    @State private var mediaTypes: [UTType] = [.image]
     @State private var editedContent: Content
     @State private var isOpaque: Bool
     @State private var image: UIImage
@@ -100,16 +101,16 @@ struct EditCell: View {
     @State private var telephonePhoneNumber = ""
     @State private var showPhotoLibrary = false
     @State private var showCamera = false
+    @State private var showVideoCamera = false
     @State private var showRecordAudio = false
-    @State private var cameraImage: UIImage = UIImage()
+    @State private var cameraURL: String = ""
     @State private var showShareSheet = false
+    @State private var showWebBrowser = false
+    @State private var showCropTool = false
     @State public var sharedItems : [Any] = []
     
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
-    
-    
-    //    @Environment(\.dismiss) var dismiss
     
     init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
         self.content = content
@@ -189,7 +190,7 @@ struct EditCell: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     } header: {
-                        Text("Cell Type")
+                        Text("Type")
                     }
                     if contentType != .goHome && contentType != .goBack {
                         Section {
@@ -198,7 +199,7 @@ struct EditCell: View {
                                 Text("Text")
                             }
                         } header: {
-                            Text("Cell Text")
+                            Text("Text")
                         }
                         .textFieldStyle(.roundedBorder)
                         Section {
@@ -209,7 +210,7 @@ struct EditCell: View {
                                     }
                                 }
                                 HStack {
-                                    VStack(alignment :.leading) {
+                                    VStack(alignment :.leading, spacing: 10) {
                                         Button {
                                             print(imageUrl != "" ? "Swap" : "Add")
                                             showIntegrationIdeas = true
@@ -218,6 +219,13 @@ struct EditCell: View {
                                             Label(LocalizedStringKey(imageUrl != "" ? "Swap" : "Add"), systemImage: imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                         }
                                         if imageUrl != "" {
+                                            Button {
+                                                print("Crop")
+                                                showCropTool = true
+                                                
+                                            } label: {
+                                                Label(LocalizedStringKey("Crop"), systemImage: "crop").labelStyle(.iconOnly)
+                                            }
                                             Button(role: .destructive) {
                                                 imageUrl = ""
                                                 print("Delete")
@@ -251,7 +259,7 @@ struct EditCell: View {
                                             }
                                             Button {
                                                 print("Share")
-                                                var fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+                                                let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                                                     .first?.appendingPathComponent(imageUrl)
                                                 guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
                                                 let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -541,35 +549,19 @@ struct EditCell: View {
                 }
                 Spacer()
             }
-            .onChange(of: cameraImage) {
+            .onChange(of: cameraURL) {
                 newValue in
-                image = newValue
-                let regex : NSRegularExpression = try! NSRegularExpression(pattern:"[^A-Za-z0-9]", options: .caseInsensitive)
-                var modString = regex.stringByReplacingMatches(in: name, options: .reportProgress, range: NSMakeRange(0, name.count), withTemplate: "_")
-                if modString.count == 0 {
-                    modString = "temp"
+                if URL(string: newValue)?.containsVideo == true || URL(string: newValue)?.containsMovie == true  {
+                    print("!")
+                } else {
+                    image = UIImage(contentsOfFile: newValue)!
+                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                    let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                    let pngImageData = scaledImage!.pngData()
+                    FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                    imageUrl = truncateFileURL(fileURL)
+                    print(imageUrl)
                 }
-                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-                var url = documentsURL?
-                    .appendingPathComponent(userState.username)
-                    .appendingPathComponent("Private Library")
-                    .appendingPathComponent(modString)
-                    .appendingPathExtension("png")
-                var increment = 1
-                var isDirectory: ObjCBool = false
-                while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
-                    url = documentsURL?
-                        .appendingPathComponent(userState.username)
-                        .appendingPathComponent("Private Library")
-                        .appendingPathComponent("\(modString)\(increment)")
-                        .appendingPathExtension("png")
-                    increment += 1
-                }
-                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
-                let pngImageData = scaledImage!.pngData()
-                FileManager.default.createFile(atPath: url!.path, contents: pngImageData)
-                imageUrl = "\(userState.username)/Private Library/\(url!.lastPathComponent)"
-                print(imageUrl)
             }
             .onChange(of: alternateTTSVoice) {
                 newValue in
@@ -678,10 +670,13 @@ struct EditCell: View {
                 print(newValue)
             }
             .sheet(isPresented: $showPhotoLibrary) {
-                ImagePicker(sourceType: .savedPhotosAlbum, selectedImage: $cameraImage)
+                ImagePicker(sourceType: .savedPhotosAlbum, mediaTypes: mediaTypes, selectedURL: $cameraURL)
             }
             .sheet(isPresented: $showCamera) {
-                ImagePicker(sourceType: .camera, selectedImage: $cameraImage)
+                ImagePicker(sourceType: .camera, mediaTypes: [.image], cameraCaptureMode: .photo, selectedURL: $cameraURL)
+            }
+            .sheet(isPresented: $showVideoCamera) {
+                ImagePicker(sourceType: .camera, mediaTypes: [.movie], cameraCaptureMode: .video, selectedURL: $cameraURL)
             }
             .sheet(isPresented: $showRecordAudio) {
                 RecordSound(cellText: $name, filename: $soundUrl)
@@ -689,6 +684,12 @@ struct EditCell: View {
             }
             .sheet(isPresented: $showShareSheet) {
                 ShareSheet(activityItems: self.sharedItems)
+            }
+            .sheet(isPresented: $showWebBrowser) {
+                WebBrowser(imageUrl: $cameraURL, cellText: $name)
+            }
+            .sheet(isPresented: $showCropTool) {
+                CropTool(imageUrl: imageUrl, outUrl: $cameraURL)
             }
         }
         .fileImporter(isPresented: $showFilePicker, allowedContentTypes: filePickerTYpes) { result in
@@ -703,6 +704,8 @@ struct EditCell: View {
                 } catch {
                     print(error.localizedDescription)
                 }
+            case .video:
+                fallthrough
             case .sound:
                 do {
                     let tempURL = try result.get()
@@ -715,7 +718,7 @@ struct EditCell: View {
             default: print("")
             }
         }
-
+        
         .alert("Enter song name", isPresented: $showPandoraSong) {
             TextField("Enter song name", text: $pandoraSong)
             Button("OK", action: {
@@ -1082,16 +1085,19 @@ struct EditCell: View {
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Saved Photo Albums"), action: {
-                        //                        showPhotoLibrary = true
+                        mediaTypes = [.movie]
+                        showPhotoLibrary = true
                     }),
                     .default(Text("Video Camera"), action: {
-                        //                        showCamera = true
+                        showVideoCamera = true
                     }),
                     .default(Text("From Library"), action: {
                         
                     }),
                     .default(Text("From File"), action: {
-                        
+                        filePickerType = .video
+                        filePickerTYpes = [.video]
+                        showFilePicker = true
                     })
                 ]
             )
@@ -1122,6 +1128,7 @@ struct EditCell: View {
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("Saved Photo Albums"), action: {
+                        mediaTypes = [.image]
                         showPhotoLibrary = true
                     }),
                     .default(Text("Camera"), action: {
@@ -1131,7 +1138,7 @@ struct EditCell: View {
                         
                     }),
                     .default(Text("Web Page"), action: {
-                        
+                        showWebBrowser = true
                     }),
                     .default(Text("From Library"), action: {
                         

@@ -18,6 +18,7 @@ struct BoardView: View {
     @EnvironmentObject var phraseBarState: PhraseBarState
     @EnvironmentObject var userState: User
     @EnvironmentObject var speak: Speak
+    @EnvironmentObject var volume: VolumeObserver
     
     let padding = 0.0
     private var id: UInt = 0
@@ -62,6 +63,7 @@ struct BoardView: View {
     init(_ id: UInt = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
+//        print(volume.volume)
     }
     
     var body: some View {
@@ -211,7 +213,7 @@ struct BoardView: View {
                                 print("Volume")
                                 showVolume.toggle()
                             } label: {
-                                Label(LocalizedStringKey("Volume"), systemImage: "speaker.wave.1")
+                                Label(LocalizedStringKey("Volume"), systemImage: volume.volumeIcon)
                             }
                         } else {
                             EmptyView()

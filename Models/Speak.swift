@@ -53,7 +53,7 @@ class Speak: NSObject, ObservableObject, AVAudioPlayerDelegate {
         _ player: AVAudioPlayer,
         error: Error?
     ) {
-        print(error?.localizedDescription)
+        print(error?.localizedDescription ?? "")
     }
     
     func audioPlayerDidFinishPlaying(
