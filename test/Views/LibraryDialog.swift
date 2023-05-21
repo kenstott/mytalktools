@@ -9,6 +9,12 @@ import SwiftUI
 
 struct LibraryDialogTable: View {
     @EnvironmentObject var userState: User
+    @Environment(\.dismiss) var dismiss
+    @State var title: String = "Manage Libraries"
+    @State var filter: Filter = .all
+    @State var query = ""
+    @State var selectMode = false
+    @Binding var selectedURL: String
     
     func getLibraryTitle(_ row: LibraryRoot) -> String {
         var title = ""
@@ -49,7 +55,9 @@ struct LibraryDialogTable: View {
             List {
                 Section(header: Text("My Libraries")) {
                     ForEach((userState.myLibraries ?? []), id: \.self) { row in
-                        NavigationLink(row.Name, destination: LibraryView(root: row, username: userState.username))
+                        NavigationLink(row.Name, destination: LibraryView(selectMode: selectMode, query: query, filter: filter, root: row, username: userState.username, selectedURL: $selectedURL) {
+                            dismiss()
+                        })
                             .swipeActions {
                                 Button {
                                     print("Right on!")
@@ -62,11 +70,14 @@ struct LibraryDialogTable: View {
                 }
                 Section(header: Text("Libraries Shared With Me")) {
                     ForEach((userState.sharedLibraries ?? []), id: \.self) { row in
-                        NavigationLink(getLibraryTitle(row), destination: LibraryView(root: row, username: userState.username))
+                        NavigationLink(getLibraryTitle(row), destination: LibraryView(selectMode: selectMode, query: query, filter: filter, root: row, username: userState.username, selectedURL: $selectedURL) {
+                            dismiss()
+                        })
                     }
                 }
             }
-            .navigationTitle("Manage Libraries")
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
@@ -74,6 +85,14 @@ struct LibraryDialogTable: View {
                     } label: {
                         Label(LocalizedStringKey("Add Library"), systemImage: "plus")
                     }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(role: .destructive) {
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    
                 }
             }
             if (userState.myLibraries?.count ?? -1) == -1 {
@@ -91,7 +110,19 @@ struct LibraryDialog: View {
         Button {
             print("Library")
         } label: {
-            NavigationLink(destination: LibraryDialogTable()) { Label(LocalizedStringKey("Library"), systemImage: "building.columns") }
+            NavigationLink(destination: LibraryDialogTable(title: "Manage Libraries", filter: .all, selectedURL: .constant(""))) { Label(LocalizedStringKey("Library"), systemImage: "building.columns") }
+        }
+    }
+}
+
+struct NavigableLibraryDialog: View {
+    @EnvironmentObject var userState: User
+    @State var filter: Filter = .all
+    @State var query: String = ""
+    @Binding var selectedURL: String
+    var body: some View {
+        NavigationView {
+            LibraryDialogTable(title: "Select Libary Items", filter: filter, query: query, selectMode: true, selectedURL: $selectedURL)
         }
     }
 }

@@ -8,20 +8,34 @@
 import SwiftUI
 import AVKit
 
+enum Filter {
+    case image, sound, video, board, all
+}
 struct LibraryView: View {
+    
+    @StateObject private var library: Library
+    @Environment(\.editMode) private var editMode
+    @Environment(\.presentationMode) private var presentationMode
+    @EnvironmentObject private var boardState: BoardState
     
     @State var root: LibraryRoot
     @State var player = AVPlayer()
     @State var query = ""
+    @State var filter: Filter = .all
+    @State var selectMode = false
     @MainActor @State var searchResults: [LibraryItem] = []
     @State var searchTask: Task<[LibraryItem], Error>?
-    @ObservedObject var library: Library
-    @Environment(\.editMode) private var editMode
-    @EnvironmentObject private var boardState: BoardState
+    @Binding var selectedURL: String
+    private var done: () -> Void?
     
-    init(root: LibraryRoot, username: String) {
+    init(selectMode: Bool, query: String, filter: Filter, root: LibraryRoot, username: String, selectedURL: Binding<String>, done: @escaping () -> Void) {
         _root = State(initialValue: root)
-        self.library = Library(root, username: username)
+        _filter = State(initialValue: filter)
+        _query = State(initialValue: query)
+        _selectMode = State(initialValue: selectMode)
+        _library = StateObject(wrappedValue: Library(root, username: username))
+        _selectedURL = Binding(projectedValue: selectedURL)
+        self.done = done
     }
     
     func fixName(_ name: String) -> String {
@@ -31,16 +45,37 @@ struct LibraryView: View {
             return name
         }
     }
-        
+    
     func fuzzyMatch(items: [LibraryItem], searchText: String) throws -> [LibraryItem] {
         try items.filter {
             try Task.checkCancellation()
-            return $0.OriginalFilename.localizedCaseInsensitiveContains(searchText) ||
-            $0.TagString.localizedCaseInsensitiveContains(searchText) ||
-            $0.Content?.Text.localizedCaseInsensitiveContains(searchText) ?? false
+            return (
+                filter == .all ||
+                $0.ItemType == 3 && filter == .board ||
+                $0.ItemType == 1 && (filter == .sound || filter == .video) ||
+                $0.ItemType == 2 && filter == .image
+            ) &&
+            ($0.OriginalFilename.localizedCaseInsensitiveContains(searchText) ||
+             $0.TagString.localizedCaseInsensitiveContains(searchText) ||
+             $0.Content?.Text.localizedCaseInsensitiveContains(searchText) ?? false)
         }
     }
-        
+    
+    func search(query: String) {
+        Task {
+            while !library.loaded {
+                try await Task.sleep(for: .seconds(1))
+            }
+            searchTask?.cancel()
+            let task = Task.detached {
+                try await Task.sleep(nanoseconds: 1500)
+                return try await fuzzyMatch(items: library.items ?? [], searchText: query)
+            }
+            searchTask = task
+            searchResults = try await task.value
+        }
+    }
+    
     var body: some View {
         
         return GeometryReader { geo in
@@ -55,6 +90,19 @@ struct LibraryView: View {
                                         player = AVPlayer(url: URL(string: row.MediaUrl ?? "")!)
                                     }
                                     .navigationTitle(Library.cleanseFilename(row.OriginalFilename))
+                                    .navigationBarTitleDisplayMode(.inline)
+                                    .toolbar {
+                                        ToolbarItem {
+                                            Button {
+                                                print("Select")
+                                                selectedURL = row.MediaUrl!
+                                                done()
+                                            } label: {
+                                                Label(LocalizedStringKey("Select"), systemImage: "checkmark.circle.fill")
+                                            }
+                                            .disabled(selectMode == false)
+                                        }
+                                    }
                             case 2:
                                 AsyncImage(url: URL(string: row.MediaUrl ?? "")) { image in
                                     image
@@ -62,11 +110,26 @@ struct LibraryView: View {
                                         .aspectRatio(contentMode: .fit)
                                 } placeholder: {
                                     ProgressView()
-                                }.navigationTitle(Library.cleanseFilename(row.OriginalFilename))
+                                }
+                                .navigationTitle(Library.cleanseFilename(row.OriginalFilename))
+                                .navigationBarTitleDisplayMode(.inline)
+                                .toolbar {
+                                    ToolbarItem {
+                                        Button {
+                                            print("Select")
+                                            selectedURL = row.MediaUrl!
+                                            done()
+                                        } label: {
+                                            Label(LocalizedStringKey("Select"), systemImage: "checkmark.circle.fill")
+                                        }
+                                        .disabled(selectMode == false)
+                                    }
+                                }
                             case 3:
                                 
                                 ContentView(
                                     .constant(Content().copyLibraryContent(row.Content)),
+                                    selectMode: selectMode,
                                     onClick: { () -> Void in
                                         
                                     },
@@ -175,21 +238,16 @@ struct LibraryView: View {
                 .searchable(text: $query)
                 .onAppear {
                     boardState.editMode = false
+                    if query != "" {
+                        search(query: query)
+                    }
                 }
                 .onChange(of: query) {
                     newQuery in
-                    Task {
-                        searchTask?.cancel()
-                        let task = Task.detached {
-                            try await Task.sleep(nanoseconds: 1500)
-                            return try await fuzzyMatch(items: library.items ?? [], searchText: query)
-                        }
-                        searchTask = task
-                        searchResults = try await task.value
-                    }
+                    search(query: newQuery)
                 }
                 .toolbar {
-                    ToolbarItemGroup(placement: .bottomBar) {
+                    ToolbarItemGroup {
                         if library.rights.delete || library.rights.update {
                             EditButton()
                         }
@@ -209,4 +267,4 @@ struct LibraryView: View {
         }
         
     }
-    }
+}

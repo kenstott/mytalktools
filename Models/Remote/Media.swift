@@ -183,6 +183,46 @@ class Media: ObservableObject {
         }
     }
     
+    func truncateFileURL(_ url: URL) -> String {
+        let x = url.path.split(separator: "UserUploads/");
+        return String(x[1])
+    }
+    
+    func syncURL(url: URL) async {
+        let u = truncateFileURL(url)
+        let parts = u.split(separator: "/")
+        let name = String(parts[0])
+        print(name)
+        let mediaDirectory = documentsURL!.appendingPathComponent(name)
+        let media = documentsURL!.appendingPathComponent(u)
+        if !fileManager.fileExists(atPath: media.path) {
+            var isDirectory: ObjCBool = false
+            if !fileManager.fileExists(atPath: mediaDirectory.path, isDirectory: &isDirectory) {
+                do {
+                    try fileManager.createDirectory(at: mediaDirectory, withIntermediateDirectories: true)
+                } catch let error {
+                    print(error)
+                }
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")  // the request is JSON
+            urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")        // the expected response is also JSON
+            urlRequest.httpMethod = "GET"
+            do {
+                let (data, responseRaw ) = try await URLSession.shared.data(for: urlRequest)
+                let response = responseRaw as! HTTPURLResponse
+                if response.statusCode == 200 {
+                    self.fileManager.createFile(atPath: media.path, contents: data)
+                } else {
+                    print(response)
+                }
+            } catch let error {
+                print(error)
+            }
+            self.incrementProgress()
+        }
+    }
+    
     func syncMedia(_ directoryList: [FileListDirectory], syncApproach: 	SyncApproach = .merge) async {
         
         resetCounters(directoryList)

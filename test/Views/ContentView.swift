@@ -45,6 +45,7 @@ struct ContentView: View {
     @State var showEditActionSheet = false
     @State var showBoardSortOrderSheet = false
     @State var actionSheetType: ActionSheetType = .top
+    @State var selectMode = false
     
     private var separatorLines: CGFloat {
         get {
@@ -68,7 +69,7 @@ struct ContentView: View {
     private var contentId: Int = 0
     private var refresh = 0
     
-    init(_ content: Binding<Content>, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board>, refresh: Int ) {
+    init(_ content: Binding<Content>, selectMode: Bool, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board>, refresh: Int ) {
         self.contentId = content.id;
         self.onClick = onClick
         self._maximumCellHeight = maximumCellHeight
@@ -237,7 +238,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(.constant(Content().setPreview()), onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0).environmentObject(BoardState())
+            ContentView(.constant(Content().setPreview()), selectMode: false, onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0).environmentObject(BoardState())
         }
     }
 }

@@ -34,6 +34,7 @@ struct EditCell: View {
     
     @EnvironmentObject var userState: User
     @EnvironmentObject var speak: Speak
+    @EnvironmentObject var media: Media
     @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
     @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
@@ -108,6 +109,8 @@ struct EditCell: View {
     @State private var showWebBrowser = false
     @State private var showCropTool = false
     @State public var sharedItems : [Any] = []
+    @State private var showLibraries = false
+    @State private var libraryFilter: Filter = .all
     
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
@@ -173,8 +176,8 @@ struct EditCell: View {
     }
     
     func truncateFileURL(_ url: URL) -> String {
-        let x = url.path.split(separator: userState.username);
-        return "\(userState.username)\(x[1])"
+        let x = url.path.split(separator: "UserUploads/");
+        return String(x[1])
     }
     
     var body: some View {
@@ -553,14 +556,66 @@ struct EditCell: View {
                 newValue in
                 if URL(string: newValue)?.containsVideo == true || URL(string: newValue)?.containsMovie == true  {
                     print("!")
+                } else if URL(string: newValue)?.containsAudio == true {
+                    Task {
+                        if (cameraURL.starts(with: "http")) {
+                            let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
+                            let response = responseRaw as? HTTPURLResponse
+                            if response!.statusCode == 200 {
+                                if cameraURL.contains("\(userState.username)/Private%20Library") {
+                                    soundUrl = truncateFileURL(URL(string: cameraURL)!)
+                                    await media.syncURL(url: URL(string: cameraURL)!)
+                                } else {
+                                    let ext = URL(string: cameraURL)?.pathExtension ?? ""
+                                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext)
+                                    FileManager.default.createFile(atPath: fileURL.path, contents: data)
+                                    soundUrl = truncateFileURL(fileURL)
+                                    print(soundUrl)
+                                }
+                            } else {
+                                print(response!.statusCode)
+                            }
+                        } else {
+                            image = UIImage(contentsOfFile: cameraURL)!
+                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                            let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                            let pngImageData = scaledImage!.pngData()
+                            FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                            imageUrl = truncateFileURL(fileURL)
+                            print(imageUrl)
+                        }
+                    }
                 } else {
-                    image = UIImage(contentsOfFile: newValue)!
-                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                    let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
-                    let pngImageData = scaledImage!.pngData()
-                    FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                    imageUrl = truncateFileURL(fileURL)
-                    print(imageUrl)
+                    Task {
+                        if (cameraURL.starts(with: "http")) {
+                            let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
+                            let response = responseRaw as? HTTPURLResponse
+                            if response!.statusCode == 200 {
+                                image = UIImage(data: data)!
+                                if cameraURL.contains("\(userState.username)/Private%20Library") {
+                                    imageUrl = truncateFileURL(URL(string: cameraURL)!)
+                                    await media.syncURL(url: URL(string: cameraURL)!)
+                                } else {
+                                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                                    let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                                    let pngImageData = scaledImage!.pngData()
+                                    FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                                    imageUrl = truncateFileURL(fileURL)
+                                    print(imageUrl)
+                                }
+                            } else {
+                                print(response!.statusCode)
+                            }
+                        } else {
+                                image = UIImage(contentsOfFile: cameraURL)!
+                                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                                let pngImageData = scaledImage!.pngData()
+                                FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                                imageUrl = truncateFileURL(fileURL)
+                                print(imageUrl)
+                        }
+                    }
                 }
             }
             .onChange(of: alternateTTSVoice) {
@@ -690,6 +745,9 @@ struct EditCell: View {
             }
             .sheet(isPresented: $showCropTool) {
                 CropTool(imageUrl: imageUrl, outUrl: $cameraURL)
+            }
+            .sheet(isPresented: $showLibraries) {
+                NavigableLibraryDialog(filter: libraryFilter, query: name, selectedURL: $cameraURL)
             }
         }
         .fileImporter(isPresented: $showFilePicker, allowedContentTypes: filePickerTYpes) { result in
@@ -1072,7 +1130,8 @@ struct EditCell: View {
                         //                        showCamera = true
                     }),
                     .default(Text("From Library"), action: {
-                        
+                        libraryFilter = .board
+                        showLibraries = true
                     }),
                     .default(Text("From File"), action: {
                         
@@ -1092,7 +1151,8 @@ struct EditCell: View {
                         showVideoCamera = true
                     }),
                     .default(Text("From Library"), action: {
-                        
+                        libraryFilter = .video
+                        showLibraries = true
                     }),
                     .default(Text("From File"), action: {
                         filePickerType = .video
@@ -1113,7 +1173,8 @@ struct EditCell: View {
                         showRecordAudio = true
                     }),
                     .default(Text("From Library"), action: {
-                        
+                        libraryFilter = .sound
+                        showLibraries = true
                     }),
                     .default(Text("From File"), action: {
                         filePickerType = .sound
@@ -1141,7 +1202,8 @@ struct EditCell: View {
                         showWebBrowser = true
                     }),
                     .default(Text("From Library"), action: {
-                        
+                        libraryFilter = .image
+                        showLibraries = true
                     }),
                     .default(Text("From File"), action: {
                         filePickerType = .image

@@ -100,6 +100,7 @@ struct BoardView: View {
                             $item in
                             ContentView(
                                 $item,
+                                selectMode: false,
                                 onClick: { () -> Void in
                                     if (item.link != 0) {
                                         activeChildBoard = item.linkId
@@ -118,6 +119,7 @@ struct BoardView: View {
                                     $item in
                                     ContentView(
                                         $item,
+                                        selectMode: false,
                                         onClick: { () -> Void in
                                             switch item.contentType {
                                             case .goBack: dismiss()

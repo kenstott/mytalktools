@@ -148,8 +148,10 @@ class Library: Identifiable, ObservableObject {
     
     public func getLibraryItems() {
         if Library.cache[self.root?.LibraryId ?? 0] != nil {
-            items = Library.cache[self.root?.LibraryId ?? 0]
-            loaded = true
+            DispatchQueue.main.async {
+                self.items = Library.cache[self.root?.LibraryId ?? 0]
+                self.loaded = true
+            }
         } else {
             Task {
                 do {

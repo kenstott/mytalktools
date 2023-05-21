@@ -59,6 +59,7 @@ struct PhraseBarView: View {
                             ZStack(alignment: .center) {
                                 ContentView(
                                     .constant(item),
+                                    selectMode: false,
                                     onClick: { () -> Void in
                                     },
                                     maximumCellHeight: .constant(80),
