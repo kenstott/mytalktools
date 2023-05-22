@@ -76,7 +76,7 @@ class BoardState: ObservableObject {
             undoFiles.append(undoUrl)
             undoPointer = undoPointer + 1;
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
@@ -110,7 +110,7 @@ class BoardState: ObservableObject {
                 undoPointer = undoPointer - 1;
                 reloadDatabase(fileURL: dbUrl!)
             } catch let error {
-                print(error)
+                print(error.localizedDescription)
             }
             return
         }
@@ -146,7 +146,7 @@ class BoardState: ObservableObject {
                 undoPointer = undoPointer + 1;
                 reloadDatabase(fileURL: dbUrl!)
             } catch let error {
-                print(error)
+                print(error.localizedDescription)
             }
             return
         }
@@ -160,7 +160,7 @@ class BoardState: ObservableObject {
             try board?.d.DatabaseImageData.write(to: dbUrl!)
             await media.syncMedia(board?.d.DirectoryList ?? [], syncApproach: .merge)
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
@@ -175,7 +175,7 @@ class BoardState: ObservableObject {
                 self.board = board
             }
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
@@ -196,7 +196,7 @@ class BoardState: ObservableObject {
             do {
                 try fileManager.createDirectory(at: destURL!, withIntermediateDirectories: true)
             } catch let error {
-                print(error)
+                print(error.localizedDescription)
             }
         }
         if !fileManager.fileExists(atPath: dbUser.path, isDirectory: &isDirectory) {

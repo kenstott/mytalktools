@@ -165,7 +165,7 @@ struct Author: View {
                                     } catch let error {
                                         showLoginError = true
                                         loggingIn = false
-                                        print(error)
+                                        print(error.localizedDescription)
                                     }
                                 }
                             } label: {

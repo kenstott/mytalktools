@@ -44,7 +44,7 @@ class Network<Output: Decodable, Input: Encodable>: ObservableObject {
                 result = try JSONDecoder().decode(Output.self, from: data)
             }
             catch {
-                print(error)
+                print(error.localizedDescription)
             }
             return result
         } else {

@@ -184,7 +184,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                     }
                 }
                 catch let error {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
         }

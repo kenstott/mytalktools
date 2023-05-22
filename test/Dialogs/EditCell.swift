@@ -153,33 +153,6 @@ struct EditCell: View {
         self.editedContent.contentType = contentType
     }
     
-    func getFilename(_ name: String) -> URL? {
-        var modString = name.split(separator: ".")
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        var url = documentsURL?
-            .appendingPathComponent(userState.username)
-            .appendingPathComponent("Private Library")
-            .appendingPathComponent(String(modString[0]))
-            .appendingPathExtension(String(modString[1]))
-        var increment = 0
-        var isDirectory: ObjCBool = false
-        while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
-            increment += 1
-            modString[0] = "\(modString[0])\(increment)"
-            url = documentsURL?
-                .appendingPathComponent(userState.username)
-                .appendingPathComponent("Private Library")
-                .appendingPathComponent("\(modString[0])\(increment)")
-                .appendingPathExtension(String(modString[1]))
-        }
-        return url;
-    }
-    
-    func truncateFileURL(_ url: URL) -> String {
-        let x = url.path.split(separator: "UserUploads/");
-        return String(x[1])
-    }
-    
     var body: some View {
         UITextField.appearance().clearButtonMode = .always
         return NavigationView {
@@ -558,21 +531,13 @@ struct EditCell: View {
                 } else if URL(string: newValue)?.containsAudio == true {
                     Task {
                         if (cameraURL.starts(with: "http")) {
-                            let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
-                            let response = responseRaw as? HTTPURLResponse
-                            if response!.statusCode == 200 {
-                                soundUrl = truncateFileURL(URL(string: cameraURL)!)
-                                await media.syncURL(url: URL(string: cameraURL)!)
-                            } else {
-                                print(response!.statusCode)
-                            }
+                            soundUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
+                            await media.syncURL(url: URL(string: cameraURL)!)
                         } else {
                             let ext = URL(string: cameraURL)?.pathExtension
                             let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext!)
                             FileManager.default.createFile(atPath: fileURL.path, contents: try Data(contentsOf: URL(string: cameraURL)!))
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
-                            let filePath = fileURL.path
-                            soundUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
+                            soundUrl = Media.truncateLocalURL(fileURL)
                             print(soundUrl)
                         }
                     }
@@ -583,7 +548,7 @@ struct EditCell: View {
                             let response = responseRaw as? HTTPURLResponse
                             if response!.statusCode == 200 {
                                 image = UIImage(data: data)!
-                                imageUrl = truncateFileURL(URL(string: cameraURL)!)
+                                imageUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
                                 await media.syncURL(url: URL(string: cameraURL)!)
                             } else {
                                 print(response!.statusCode)
@@ -594,9 +559,7 @@ struct EditCell: View {
                             let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
                             let pngImageData = scaledImage!.pngData()
                             FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
-                            let filePath = fileURL.path
-                            imageUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
+                            imageUrl = Media.truncateLocalURL(fileURL)
                             print(imageUrl)
                         }
                     }
@@ -735,36 +698,22 @@ struct EditCell: View {
             }
         }
         .fileImporter(isPresented: $showFilePicker, allowedContentTypes: filePickerTYpes) { result in
-            switch(filePickerType) {
-            case .image:
-                do {
-                    let tempURL = try result.get()
-                    let sourceURL = getFilename(tempURL.lastPathComponent)
-                    try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
-                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
-                    let filePath = sourceURL!.path
-                    imageUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
-                    image = UIImage(contentsOfFile: sourceURL!.path)!
-                } catch {
-                    print(error.localizedDescription)
+            do {
+                let tempURL = try result.get()
+                switch(filePickerType) {
+                case .image:
+                    imageUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
+                    image = Media.uiImageFromShortPath(imageUrl)!
+                case .video:
+                    fallthrough
+                case .sound:
+                    soundUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
+                default: print("")
                 }
-            case .video:
-                fallthrough
-            case .sound:
-                do {
-                    let tempURL = try result.get()
-                    let sourceURL = getFilename(tempURL.lastPathComponent)
-                    try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
-                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
-                    let filePath = sourceURL!.path
-                    soundUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
-                } catch {
-                    print(error.localizedDescription)
-                }
-            default: print("")
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
-        
         .alert("Enter song name", isPresented: $showPandoraSong) {
             TextField("Enter song name", text: $pandoraSong)
             Button("OK", action: {
@@ -812,7 +761,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $skypePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "skype:\(skypePhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "skype:\(Media.cleansePhoneNumber(skypePhoneNumber))"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -823,7 +772,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $smsPhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "sms:\(smsPhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "sms:\(Media.cleansePhoneNumber(smsPhoneNumber))"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
@@ -834,7 +783,7 @@ struct EditCell: View {
             TextField("Enter Phone Number", text: $telephonePhoneNumber).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
                 activeSheet = .AppLinkCreated
-                testExternalUrl = "tel:\(telephonePhoneNumber.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")"
+                testExternalUrl = "tel:\(Media.cleansePhoneNumber(telephonePhoneNumber))"
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }

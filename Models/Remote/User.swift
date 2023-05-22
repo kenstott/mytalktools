@@ -300,7 +300,7 @@ class User: Identifiable, ObservableObject {
                 self.getLibraries()
             }
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
         return result
     }
@@ -315,7 +315,7 @@ class User: Identifiable, ObservableObject {
                     self.myLibraries = self.libraries?.filter { $0.OwnerId == self.username }.sorted { $0.Name > $1.Name }
                 }
             } catch let error {
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }

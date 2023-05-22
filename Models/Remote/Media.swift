@@ -67,9 +67,63 @@ class Media: ObservableObject {
         return url!
     }
     
-    static func truncateFileURL(_ url: URL, _ username: String) -> String {
-        let x = url.path.split(separator: username);
-        return "\(username)\(x[1])"
+    static func truncateRemoteURL(_ url: URL) -> String {
+        let x = url.path.split(separator: "UserUploads/");
+        return String(x[1])
+    }
+    
+    static func truncateLocalURL(_ url: URL) -> String {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+        return url.path.replacingOccurrences(of:documentsURL, with: "")
+    }
+    
+    static func cleansePhoneNumber(_ phoneNumber: String?) -> String {
+        return phoneNumber?
+                .replacingOccurrences(of: "-", with:"")
+                .replacingOccurrences(of: " ", with: "")
+                .replacingOccurrences(of: "(", with: "")
+                .replacingOccurrences(of: ")", with: "")
+                .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+    }
+    
+    static func getFilename(_ name: String, username: String) -> URL? {
+        var modString = name.split(separator: ".")
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        var url = documentsURL?
+            .appendingPathComponent(username)
+            .appendingPathComponent("Private Library")
+            .appendingPathComponent(String(modString[0]))
+            .appendingPathExtension(String(modString[1]))
+        var increment = 0
+        var isDirectory: ObjCBool = false
+        while (FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDirectory)) {
+            increment += 1
+            modString[0] = "\(modString[0])\(increment)"
+            url = documentsURL?
+                .appendingPathComponent(username)
+                .appendingPathComponent("Private Library")
+                .appendingPathComponent("\(modString[0])\(increment)")
+                .appendingPathExtension(String(modString[1]))
+        }
+        return url;
+    }
+    
+    static func copyTempUrl(_ tempURL: URL, username: String) -> String? {
+        do {
+            let sourceURL = Media.getFilename(tempURL.lastPathComponent, username: username)
+            let _ = tempURL.startAccessingSecurityScopedResource()
+            try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
+            let _ = tempURL.stopAccessingSecurityScopedResource()
+            return Media.truncateLocalURL(sourceURL!)
+        } catch let error {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    static func uiImageFromShortPath(_ path: String) -> UIImage? {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return UIImage(contentsOfFile: documentsURL.appendingPathComponent(path).path)
     }
     
     static func splitFileName(str: String) -> (String, String, String) {
@@ -201,7 +255,7 @@ class Media: ObservableObject {
                 do {
                     try fileManager.createDirectory(at: mediaDirectory, withIntermediateDirectories: true)
                 } catch let error {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
             var urlRequest = URLRequest(url: url)
@@ -217,7 +271,7 @@ class Media: ObservableObject {
                     print(response)
                 }
             } catch let error {
-                print(error)
+                print(error.localizedDescription)
             }
             self.incrementProgress()
         }
@@ -235,7 +289,7 @@ class Media: ObservableObject {
                 do {
                     try fileManager.createDirectory(at: mediaDirectory, withIntermediateDirectories: true)
                 } catch let error {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
             for z in d.FileList {
@@ -283,7 +337,7 @@ class Media: ObservableObject {
                             print(response)
                         }
                     } catch let error {
-                        print(error)
+                        print(error.localizedDescription)
                     }
                     self.incrementProgress()
                 } else {
@@ -314,7 +368,7 @@ class Media: ObservableObject {
                 incrementProgress(uploading: true)
             }
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
     }
     
@@ -365,7 +419,7 @@ class Media: ObservableObject {
                 print("Error: \(response.statusCode)")
             }
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
         }
     }
 }

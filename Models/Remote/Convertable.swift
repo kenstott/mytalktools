@@ -24,7 +24,7 @@ extension Convertable {
             dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>
 
         } catch {
-            print(error)
+            print(error.localizedDescription)
         }
 
         return dict

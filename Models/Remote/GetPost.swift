@@ -41,7 +41,7 @@ class GetPost<Output: Decodable, Input: Convertable>: ObservableObject {
             urlRequest.httpBody = httpBody
             return urlRequest
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
             return nil
         }
     }

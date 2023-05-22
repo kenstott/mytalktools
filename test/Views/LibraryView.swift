@@ -120,7 +120,7 @@ struct LibraryView: View {
                                             selectedURL = row.MediaUrl!
                                             done()
                                         } label: {
-                                            Label(LocalizedStringKey("Select"), systemImage: "checkmark.circle.fill")
+                                            Label(LocalizedStringKey("Select"), systemImage: "checkmark.circle.fill").labelStyle(.titleAndIcon)
                                         }
                                         .disabled(selectMode == false)
                                     }

@@ -178,7 +178,7 @@ class Library: Identifiable, ObservableObject {
                         self.loaded = true
                     }
                 } catch let error {
-                    print(error)
+                    print(error.localizedDescription)
                 }
             }
         }

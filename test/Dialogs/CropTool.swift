@@ -39,7 +39,7 @@ struct CropTool: View {
                         print(outUrl)
                         dismiss()
                     } catch let error {
-                        print(error)
+                        print(error.localizedDescription)
                     }
                 } onCancel: {
                     dismiss()

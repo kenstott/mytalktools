@@ -80,7 +80,7 @@ struct WebBrowser: View {
                             print(imageUrl)
                             dismiss()
                         } catch let error {
-                            print(error)
+                            print(error.localizedDescription)
                         }
                     } label: {
                         Text("Save")
