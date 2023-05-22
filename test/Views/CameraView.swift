@@ -20,7 +20,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         imagePicker.delegate = context.coordinator
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
-        imagePicker.cameraCaptureMode = cameraCaptureMode
+        if sourceType == .camera {
+            imagePicker.cameraCaptureMode = cameraCaptureMode
+        }
         return imagePicker
     }
     

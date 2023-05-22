@@ -266,7 +266,6 @@ struct EditCell: View {
                                                     .first?.appendingPathComponent(imageUrl)
                                                 guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
                                                 let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-                                                //                                                dismiss()
                                                 UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
                                             } label: {
                                                 Label(LocalizedStringKey("Share"), systemImage: "square.and.arrow.up").labelStyle(.iconOnly)
@@ -562,27 +561,19 @@ struct EditCell: View {
                             let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
                             let response = responseRaw as? HTTPURLResponse
                             if response!.statusCode == 200 {
-                                if cameraURL.contains("\(userState.username)/Private%20Library") {
-                                    soundUrl = truncateFileURL(URL(string: cameraURL)!)
-                                    await media.syncURL(url: URL(string: cameraURL)!)
-                                } else {
-                                    let ext = URL(string: cameraURL)?.pathExtension ?? ""
-                                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext)
-                                    FileManager.default.createFile(atPath: fileURL.path, contents: data)
-                                    soundUrl = truncateFileURL(fileURL)
-                                    print(soundUrl)
-                                }
+                                soundUrl = truncateFileURL(URL(string: cameraURL)!)
+                                await media.syncURL(url: URL(string: cameraURL)!)
                             } else {
                                 print(response!.statusCode)
                             }
                         } else {
-                            image = UIImage(contentsOfFile: cameraURL)!
-                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                            let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
-                            let pngImageData = scaledImage!.pngData()
-                            FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                            imageUrl = truncateFileURL(fileURL)
-                            print(imageUrl)
+                            let ext = URL(string: cameraURL)?.pathExtension
+                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext!)
+                            FileManager.default.createFile(atPath: fileURL.path, contents: try Data(contentsOf: URL(string: cameraURL)!))
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+                            let filePath = fileURL.path
+                            soundUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
+                            print(soundUrl)
                         }
                     }
                 } else {
@@ -592,28 +583,21 @@ struct EditCell: View {
                             let response = responseRaw as? HTTPURLResponse
                             if response!.statusCode == 200 {
                                 image = UIImage(data: data)!
-                                if cameraURL.contains("\(userState.username)/Private%20Library") {
-                                    imageUrl = truncateFileURL(URL(string: cameraURL)!)
-                                    await media.syncURL(url: URL(string: cameraURL)!)
-                                } else {
-                                    let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                                    let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
-                                    let pngImageData = scaledImage!.pngData()
-                                    FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                                    imageUrl = truncateFileURL(fileURL)
-                                    print(imageUrl)
-                                }
+                                imageUrl = truncateFileURL(URL(string: cameraURL)!)
+                                await media.syncURL(url: URL(string: cameraURL)!)
                             } else {
                                 print(response!.statusCode)
                             }
                         } else {
-                                image = UIImage(contentsOfFile: cameraURL)!
-                                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
-                                let pngImageData = scaledImage!.pngData()
-                                FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                                imageUrl = truncateFileURL(fileURL)
-                                print(imageUrl)
+                            image = UIImage(contentsOfFile: cameraURL)!
+                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                            let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                            let pngImageData = scaledImage!.pngData()
+                            FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+                            let filePath = fileURL.path
+                            imageUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
+                            print(imageUrl)
                         }
                     }
                 }
@@ -757,7 +741,9 @@ struct EditCell: View {
                     let tempURL = try result.get()
                     let sourceURL = getFilename(tempURL.lastPathComponent)
                     try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
-                    imageUrl = truncateFileURL(sourceURL!)
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+                    let filePath = sourceURL!.path
+                    imageUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
                     image = UIImage(contentsOfFile: sourceURL!.path)!
                 } catch {
                     print(error.localizedDescription)
@@ -769,7 +755,9 @@ struct EditCell: View {
                     let tempURL = try result.get()
                     let sourceURL = getFilename(tempURL.lastPathComponent)
                     try FileManager.default.copyItem(at: tempURL, to: sourceURL!)
-                    soundUrl = truncateFileURL(sourceURL!)
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
+                    let filePath = sourceURL!.path
+                    soundUrl = filePath.replacingOccurrences(of:documentsURL, with: "")
                 } catch {
                     print(error.localizedDescription)
                 }
