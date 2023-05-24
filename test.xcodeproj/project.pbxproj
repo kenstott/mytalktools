@@ -29,6 +29,8 @@
 		185E44FB2A193F2B00250399 /* BrightroomEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 185E44FA2A193F2B00250399 /* BrightroomEngine */; };
 		185E44FD2A193F2B00250399 /* BrightroomUI in Frameworks */ = {isa = PBXBuildFile; productRef = 185E44FC2A193F2B00250399 /* BrightroomUI */; };
 		185E44FF2A1945E400250399 /* CropTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44FE2A1945E400250399 /* CropTool.swift */; };
+		185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */; };
+		185E45032A1D621800250399 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45022A1D621700250399 /* EmbeddedContactPicker.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -102,6 +104,8 @@
 		185E44F52A19375400250399 /* TempFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempFiles.swift; sourceTree = "<group>"; };
 		185E44F72A193A8600250399 /* SnapshotUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUIView.swift; sourceTree = "<group>"; };
 		185E44FE2A1945E400250399 /* CropTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropTool.swift; sourceTree = "<group>"; };
+		185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPickerViewController.swift; sourceTree = "<group>"; };
+		185E45022A1D621700250399 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				18E15F442A0D3C9A002AEA3F /* NegateView.swift */,
 				18E15F462A0D4F7C002AEA3F /* PositiveView.swift */,
 				185E44F12A19223300250399 /* WebView.swift */,
+				185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */,
+				185E45022A1D621700250399 /* EmbeddedContactPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 			files = (
 				18E15EEF2A069AAC002AEA3F /* CreateEmail.swift in Sources */,
 				182702C1297BF871009C3B12 /* Author.swift in Sources */,
+				185E45032A1D621800250399 /* EmbeddedContactPicker.swift in Sources */,
 				18E15F282A0C0090002AEA3F /* ImageUtility.m in Sources */,
 				1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */,
 				18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */,
@@ -439,6 +446,7 @@
 				18EA71C129750667005477CE /* VolumeSlider.swift in Sources */,
 				182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */,
 				185E44F22A19223300250399 /* WebView.swift in Sources */,
+				185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */,
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				182702C3297C01BE009C3B12 /* About.swift in Sources */,

@@ -9,6 +9,7 @@ import SwiftUI
 import FMDB
 import AlertToast
 import AVFAudio
+import Contacts
 
 struct BoardView: View {
     
@@ -48,6 +49,8 @@ struct BoardView: View {
     @State var showTypePhrase = false
     @State var showSync = false
     @State var newDatabase = 0
+    @State private var contact = CNContact()
+    @State private var showContacts = false
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -186,6 +189,9 @@ struct BoardView: View {
                 .sheet(isPresented: $showVolume) {
                     VolumeDialog().presentationDetents([.medium])
                 }
+                .sheet(isPresented: $showContacts) {
+                    EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
+                }
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints
                     showUserHelp = !boardState.authorMode && userHints
@@ -315,6 +321,10 @@ struct BoardView: View {
             print(url)
             let command = url.absoluteString.replacingOccurrences(of: "mytalktools:/", with: "").replacingOccurrences(of: "mtt:/", with: "");
             switch(command) {
+            case "contacts:/":
+                fallthrough
+            case "contacts://":
+                showContacts = true
             case "home": appState.rootViewId = UUID()
             case "back": dismiss()
             case "type": showTypePhrase = true

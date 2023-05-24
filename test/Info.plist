@@ -88,19 +88,9 @@
 			<string>com.mytalktools.mobile</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mytalktools</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLIconFile</key>
-			<string>Icon-Small-50</string>
-			<key>CFBundleURLName</key>
-			<string>com.mytalktools.mobile</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
 				<string>mtt</string>
+				<string>contacts</string>
+				<string>mytalktools</string>
 			</array>
 		</dict>
 	</array>

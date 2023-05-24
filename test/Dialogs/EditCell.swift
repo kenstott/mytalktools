@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Contacts
 
 struct EditCell: View {
     
@@ -111,6 +112,8 @@ struct EditCell: View {
     @State public var sharedItems : [Any] = []
     @State private var showLibraries = false
     @State private var libraryFilter: Filter = .all
+    @State private var showContactPicker = false
+    @State private var contact: CNContact = CNContact()
     
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
@@ -524,6 +527,12 @@ struct EditCell: View {
                 }
                 Spacer()
             }
+            .onChange(of: contact) {
+                newValue in
+                let tempURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(UUID()).jpeg")
+                try? contact.imageData?.write(to: tempURL)
+                cameraURL = tempURL.path
+            }
             .onChange(of: cameraURL) {
                 newValue in
                 if URL(string: newValue)?.containsVideo == true || URL(string: newValue)?.containsMovie == true  {
@@ -670,6 +679,9 @@ struct EditCell: View {
                 newValue in
                 editedContent.soundURL = newValue
                 print(newValue)
+            }
+            .sheet(isPresented: $showContactPicker) {
+                EmbeddedContactPicker(contact: $contact, predicate: NSPredicate(format: "imageDataAvailable == %@", argumentArray: [true]))
             }
             .sheet(isPresented: $showPhotoLibrary) {
                 ImagePicker(sourceType: .savedPhotosAlbum, mediaTypes: mediaTypes, selectedURL: $cameraURL)
@@ -1148,7 +1160,7 @@ struct EditCell: View {
                         showFilePicker = true
                     }),
                     .default(Text("From Contacts"), action: {
-                        
+                        showContactPicker = true
                     })
                 ]
             )
