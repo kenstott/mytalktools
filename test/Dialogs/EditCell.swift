@@ -24,6 +24,7 @@ struct EditCell: View {
         case Sound
         case Video
         case ChildBoard
+        case NewBoard
     }
     
     enum FilePickerType {
@@ -114,6 +115,9 @@ struct EditCell: View {
     @State private var libraryFilter: Filter = .all
     @State private var showContactPicker = false
     @State private var contact: CNContact = CNContact()
+    @State private var showNewSimpleBoard = false
+    @State private var newRows = 3
+    @State private var newColumns = 3
     
     var save: ((Content) -> Void)? = nil
     var cancel:  (() -> Void)? = nil
@@ -377,7 +381,8 @@ struct EditCell: View {
                                 if childBoard > 0 {
                                     Button(role: .destructive) {
                                         print("Delete")
-                                        
+                                        childBoardId = 0
+                                        childBoardLink = 0
                                     } label: {
                                         Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                     }
@@ -654,11 +659,13 @@ struct EditCell: View {
             .onChange(of: childBoardId) {
                 newValue in
                 editedContent.childBoardId = newValue
+                childBoard = newValue
                 print(newValue)
             }
             .onChange(of: childBoardLink) {
                 newValue in
                 editedContent.childBoardLink = newValue
+                childBoard = newValue
                 print(newValue)
             }
             .onChange(of: name) {
@@ -707,6 +714,13 @@ struct EditCell: View {
             }
             .sheet(isPresented: $showLibraries) {
                 NavigableLibraryDialog(filter: libraryFilter, query: name, selectedURL: $cameraURL)
+            }
+            .sheet(isPresented: $showNewSimpleBoard) {
+                NewSimpleBoard(rows: $newRows, columns: $newColumns) { cancelled in
+                    if !cancelled {
+                        childBoardId = Board.createNewBoard(name: editedContent.name, rows: newRows, columns: newColumns, userId: userState.id).id
+                    }
+                }
             }
         }
         .fileImporter(isPresented: $showFilePicker, allowedContentTypes: filePickerTYpes) { result in
@@ -1073,7 +1087,10 @@ struct EditCell: View {
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
                     .default(Text("New"), action: {
-                        //                        showPhotoLibrary = true
+                        activeSheet = .NewBoard
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            showIntegrationIdeas = true
+                        }
                     }),
                     .default(Text("Existing"), action: {
                         //                        showCamera = true
@@ -1087,7 +1104,25 @@ struct EditCell: View {
                     })
                 ]
             )
-            case .Video: return ActionSheet(
+            case .NewBoard: return ActionSheet(
+                title: Text("New Child Board"),
+                message: Text("Available Options"),
+                buttons: [
+                    .cancel { print(self.showIntegrationIdeas) },
+                    .default(Text("Simple Board"), action: {
+                        showNewSimpleBoard = true
+                    }),
+                    .default(Text("Word Variant Board"), action: {
+                        
+                    }),
+                    .default(Text("Coded Word Variants Board"), action: {
+                        
+                    }),
+                    .default(Text("Hotspot Board"), action: {
+                        
+                    })
+                ]
+            )            case .Video: return ActionSheet(
                 title: Text("Video"),
                 message: Text("Available Options"),
                 buttons: [

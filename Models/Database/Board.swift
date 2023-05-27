@@ -69,11 +69,45 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
 
     private func getContents(id: UInt) -> [Content] {
         var result: [Content] = []
-        let s = BoardState.db?.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ?", withArgumentsIn: [id]) ?? FMResultSet();
+        var total = 0
+        var currentRow = 0
+        var currentColumn = 0
+        let s = BoardState.db?.executeQuery("SELECT iphone_content_id FROM content WHERE board_id = ? ORDER BY row_index ASC, clm_index ASC", withArgumentsIn: [id]) ?? FMResultSet();
         while s.next() {
-            result.append(Content().setId(s.long(forColumnIndex: 0)))
+            let content = Content().setId(s.long(forColumnIndex: 0))
+            result.append(content)
+            if (content.row > currentRow) {
+                currentRow = content.row
+            }
+            currentColumn = content.column
+            total += 1
         }
         s.close()
+        
+        var contentId = -1
+        let ss = BoardState.db?.executeQuery("select max(iphone_content_id) from content", withArgumentsIn: []) ?? FMResultSet();
+        while ss.next() {
+            contentId = ss.long(forColumnIndex: 0)
+        }
+        s.close()
+        let boardId = self.id
+        while rows * columns > total {
+            contentId += 1
+            if currentColumn + 1 > self.columns {
+                currentRow += 1
+                currentColumn = 0
+            }
+            let content = Content()
+            content.row = currentRow
+            content.column = currentColumn
+            content.id = contentId * -1
+            content.userId = 0
+            content.boardId = Int(boardId)
+            content.insert()
+            result.append(content)
+            total += 1
+            currentColumn += 1
+        }
         return result;
     }
 
@@ -136,10 +170,10 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
     func setId(_ id: UInt) -> Board {
         self.id = id;
-        self.contents = getContents(id: id)
-        if self.contents.count > 0 {
-            self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
+        self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
+        if self.columns > 0 {
             self.rows = getInt(id: id, column: "board_rows", defaultValue: -1)
+            self.contents = getContents(id: id)
             self.name = getString(id: id, column: "board_name", defaultValue: "Unknown")
             self.userId = getInt(id: id, column: "user_id", defaultValue: -1)
             self.sort = getSort(id: id)
@@ -242,6 +276,19 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             return true
         }
         return false
+    }
+    
+    static func createNewBoard(name: String, rows: Int, columns: Int, userId: Int) -> Board {
+        var boardId: Int = -1
+        let s = BoardState.db?.executeQuery("select seq from sqlite_sequence where name = 'board'", withArgumentsIn: []);
+        if s?.next() != nil {
+            boardId = s?.long(forColumnIndex: 0) ?? -1
+        }
+        s?.close()
+        boardId += 1
+        BoardState.db?.executeUpdate("insert into board (iphone_board_id,board_name,board_rows,board_clms,create_date,update_date,user_id, web_board_id,sort1,sort2,sort3) values(?,?,?,?,current_timestamp,current_timestamp,?, 0,0,0,0)", withArgumentsIn: [boardId, name, rows, columns, userId])
+        let b = Board().setId(UInt(boardId))
+        return b;
     }
 }
 

@@ -31,6 +31,7 @@
 		185E44FF2A1945E400250399 /* CropTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E44FE2A1945E400250399 /* CropTool.swift */; };
 		185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */; };
 		185E45032A1D621800250399 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45022A1D621700250399 /* EmbeddedContactPicker.swift */; };
+		185E45352A2239F100250399 /* NewSimpleBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45342A2239F100250399 /* NewSimpleBoard.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -106,6 +107,7 @@
 		185E44FE2A1945E400250399 /* CropTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropTool.swift; sourceTree = "<group>"; };
 		185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPickerViewController.swift; sourceTree = "<group>"; };
 		185E45022A1D621700250399 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
+		185E45342A2239F100250399 /* NewSimpleBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSimpleBoard.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				18C0C4D72A10545600A18334 /* ShareSheet.swift */,
 				185E44E92A191F7700250399 /* WebBrowser.swift */,
 				185E44FE2A1945E400250399 /* CropTool.swift */,
+				185E45342A2239F100250399 /* NewSimpleBoard.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				18A6BEA62960A8B70039B5D4 /* Content.swift in Sources */,
 				185E44FF2A1945E400250399 /* CropTool.swift in Sources */,
 				182702C5297C17F0009C3B12 /* User.swift in Sources */,
+				185E45352A2239F100250399 /* NewSimpleBoard.swift in Sources */,
 				18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

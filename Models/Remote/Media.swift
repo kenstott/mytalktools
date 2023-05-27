@@ -74,7 +74,7 @@ class Media: ObservableObject {
     
     static func truncateLocalURL(_ url: URL) -> String {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path
-        return url.path.replacingOccurrences(of:documentsURL, with: "")
+        return String(url.path.replacingOccurrences(of:documentsURL, with: "").dropFirst(1))
     }
     
     static func cleansePhoneNumber(_ phoneNumber: String?) -> String {

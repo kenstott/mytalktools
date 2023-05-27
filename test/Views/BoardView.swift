@@ -33,6 +33,7 @@ struct BoardView: View {
     @AppStorage("AuthorHints") var authorHints = true
     @AppStorage("DisplayAsList") var displayAsList = false
     @AppStorage("UserBarSync") var userBarSync = false
+    @AppStorage("UserBarSettings") var userBarSettings = false
     @AppStorage("UserBarWizard") var userBarWizard = false
     @AppStorage("VolumeButton") var volumeButton = true
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
@@ -282,7 +283,17 @@ struct BoardView: View {
                             } label: {
                                 Label(LocalizedStringKey("Back"), systemImage: "arrowshape.turn.up.backward")
                             }
-                            if (userBarSync) {
+                            if userBarSettings {
+                                Button {
+                                    print("Settings")
+                                    if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                                    }
+                                } label: {
+                                    Label(LocalizedStringKey("Sync"), systemImage: "gearshape")
+                                }
+                            }
+                            if userBarSync {
                                 Button {
                                     print("Sync")
                                     showSync = true

@@ -234,6 +234,20 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
+        <dict>
+            <key>DefaultValue</key>
+            <true/>
+            <key>FalseValue</key>
+            <false/>
+            <key>Key</key>
+            <string>UserBarSettings</string>
+            <key>Title</key>
+            <string>User Bar Settings</string>
+            <key>TrueValue</key>
+            <true/>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+        </dict>
 		<dict>
 			<key>DefaultValue</key>
 			<true/>

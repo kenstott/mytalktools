@@ -128,6 +128,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         return c
     }
     
+    func insert() -> Void {
+        BoardState.db?.executeUpdate("insert into content (web_content_id,content_name,content_url,content_url2,content_type,create_date,update_date,board_id,row_index,clm_index,child_board_id, user_id, child_board_link, total_uses, session_uses, background_color, foreground_color, font_size, zoom, do_not_add_to_phrasebar, do_not_zoom_pics, tts_speech, external_url, alternate_tts, hot_spot_style, iphone_content_id ) values (0,'','','',0,current_timestamp,current_timestamp,?,?,?,0,?,0,0,0,0,0,0,0,0,0,'','','',0,?)", withArgumentsIn: [self.boardId, self.row, self.column,self.userId,self.id])
+    }
+    
     func save() -> Void {
         setColumn(column: "content_name", value: self.name)
         setColumn(column: "content_url", value: self.imageURL)
@@ -658,5 +662,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         }
         return self;
     }
+    
+//    static func createNewContent(name: String, boardId: UInt, userId: Int, row: Int, column: Int) -> Board {
+//        var contentId: Int = -1
+//        BoardState.db?.executeUpdate("insert into content (content_name,content_url,content_url2,content_type,create_date,update_date,board_id,row_index,clm_index,child_board_id, user_id, child_board_link, background_color, foreground_color, font_size, zoom, do_not_add_to_phrasebar, do_not_zoom_pics, tts_speech, external_url, alternate_tts, hot_spot_style) values (?,"","",0,current_timestamp,current_timestamp,?,?,?,-1,?,-1,0,0,0,0,0,0,0,"",0,0)", withArgumentsIn: [name, boardId, row, column, userId])
+//    }
 }
 
