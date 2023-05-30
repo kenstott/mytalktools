@@ -32,6 +32,8 @@
 		185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */; };
 		185E45032A1D621800250399 /* EmbeddedContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45022A1D621700250399 /* EmbeddedContactPicker.swift */; };
 		185E45352A2239F100250399 /* NewSimpleBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45342A2239F100250399 /* NewSimpleBoard.swift */; };
+		185E45372A23EC4500250399 /* WordVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45362A23EC4500250399 /* WordVariants.swift */; };
+		185E45392A26A47100250399 /* StringError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45382A26A47100250399 /* StringError.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -108,6 +110,8 @@
 		185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPickerViewController.swift; sourceTree = "<group>"; };
 		185E45022A1D621700250399 /* EmbeddedContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedContactPicker.swift; sourceTree = "<group>"; };
 		185E45342A2239F100250399 /* NewSimpleBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSimpleBoard.swift; sourceTree = "<group>"; };
+		185E45362A23EC4500250399 /* WordVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordVariants.swift; sourceTree = "<group>"; };
+		185E45382A26A47100250399 /* StringError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringError.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				182702C4297C17F0009C3B12 /* User.swift */,
 				182702CC297D5FF4009C3B12 /* Media.swift */,
 				18E15F0A2A099FB9002AEA3F /* Sync.swift */,
+				185E45362A23EC4500250399 /* WordVariants.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				18E15F292A0C01A1002AEA3F /* ImageUtility.h */,
 				185E44F52A19375400250399 /* TempFiles.swift */,
 				185E44F72A193A8600250399 /* SnapshotUIView.swift */,
+				185E45382A26A47100250399 /* StringError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				185E44F22A19223300250399 /* WebView.swift in Sources */,
 				185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */,
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
+				185E45392A26A47100250399 /* StringError.swift in Sources */,
 				18A6BEA4296089CC0039B5D4 /* Board.swift in Sources */,
 				182702C3297C01BE009C3B12 /* About.swift in Sources */,
 				1843E630296BBFC800663122 /* SharingDialog.swift in Sources */,
@@ -477,6 +484,7 @@
 				185E44E62A19134A00250399 /* VolumeObserver.swift in Sources */,
 				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
 				185E44EC2A1920B000250399 /* WebViewNavigationDelete.swift in Sources */,
+				185E45372A23EC4500250399 /* WordVariants.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				182702D529874ED1009C3B12 /* Query.swift in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,

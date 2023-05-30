@@ -37,12 +37,16 @@ struct ContentGridCell: View {
                 case .goBack: Image(systemName: "arrowshape.backward").font(.system(size: 50)).imageScale(.medium)
                 default:
                     ZStack {
-                        Image(uiImage: content.image)
-                            .resizable()
-                            .font(.system(size: 100))
-                            .aspectRatio(contentMode: .fit)
-                            .background(.clear)
-                            .padding(5)
+                        if content.imageURL != "" {
+                            Image(uiImage: content.image)
+                                .resizable()
+                                .font(.system(size: 100))
+                                .aspectRatio(contentMode: .fit)
+                                .background(.clear)
+                                .padding(5)
+                        } else {
+                            EmptyView()
+                        }
                         if content.negate {
                             NegateView()
                         } else if (content.positive) {
@@ -50,11 +54,18 @@ struct ContentGridCell: View {
                         }
                     }
                 }
-                Spacer()
-                Text(content.name)
-                    .foregroundColor(foregroundColor)
-                    .background(.clear)
-                    .font(.system(size: defaultFontSize))
+                if content.name != "" && content.imageURL != "" {
+                    Spacer()
+                }
+                if content.name != "" {
+                    Text(content.name)
+                        .foregroundColor(foregroundColor)
+                        .background(.clear)
+                        .font(.system(size: defaultFontSize))
+                }
+                if content.name != "" && content.imageURL == "" {
+                    Spacer()
+                }
             }
             .background(.clear)
             if globalState.authorMode {

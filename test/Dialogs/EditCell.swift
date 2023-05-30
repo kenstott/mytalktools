@@ -57,6 +57,7 @@ struct EditCell: View {
     @State private var positive: Bool
     @State private var imageUrl: String
     @State private var soundUrl: String
+    @State private var boardId: Int
     @State private var childBoard: UInt
     @State private var childBoardId: UInt
     @State private var childBoardLink: UInt
@@ -119,8 +120,10 @@ struct EditCell: View {
     @State private var newRows = 3
     @State private var newColumns = 3
     
-    var save: ((Content) -> Void)? = nil
-    var cancel:  (() -> Void)? = nil
+    private var save: ((Content) -> Void)? = nil
+    private var cancel:  (() -> Void)? = nil
+    private let wordVariants = WordVariants()
+
     
     init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
         self.content = content
@@ -152,12 +155,14 @@ struct EditCell: View {
         self.alternateTTSVoice = content.alternateTTSVoice
         self.alternateTTS = content.alternateTTS
         self.externalUrl = content.externalUrl
+        self.boardId = content.boardId
         switch (content.contentType) {
         case .goBack: contentType = .goBack
         case .goHome: contentType = .goHome
         default: contentType = .imageSoundName
         }
         self.editedContent.contentType = contentType
+        self.editedContent.boardId = content.boardId
     }
     
     var body: some View {
@@ -659,12 +664,14 @@ struct EditCell: View {
             .onChange(of: childBoardId) {
                 newValue in
                 editedContent.childBoardId = newValue
+                editedContent.childBoardLink = 0
                 childBoard = newValue
                 print(newValue)
             }
             .onChange(of: childBoardLink) {
                 newValue in
                 editedContent.childBoardLink = newValue
+                editedContent.childBoardId = 0
                 childBoard = newValue
                 print(newValue)
             }
@@ -1113,7 +1120,16 @@ struct EditCell: View {
                         showNewSimpleBoard = true
                     }),
                     .default(Text("Word Variant Board"), action: {
-                        
+                        let word = String(editedContent.name.split(separator: " ")[0])
+                        Task {
+                            do {
+                                let words = try await WordVariants().findWordVariants(word)
+                                childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0).id
+                                print(words!)
+                            } catch let error {
+                                print(error.localizedDescription)
+                            }
+                        }
                     }),
                     .default(Text("Coded Word Variants Board"), action: {
                         

@@ -10,13 +10,14 @@ import Foundation
 class Network<Output: Decodable, Input: Encodable>: ObservableObject {
     
     let encoder = JSONEncoder()
-    let host = "https://www.mytalktools.com/dnn/sync.asmx"
+    var host = "https://www.mytalktools.com/dnn/sync.asmx"
     var service: String
     
     @Published var result: Output?
     
-    init(service: String) {
+    init(service: String, host: String = "https://www.mytalktools.com/dnn/sync.asmx") {
         self.service = service
+        self.host = host
     }
     
     func getUrlRequest() -> URLRequest {

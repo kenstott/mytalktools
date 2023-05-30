@@ -100,7 +100,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             let content = Content()
             content.row = currentRow
             content.column = currentColumn
-            content.id = contentId * -1
+            content.id = contentId
             content.userId = 0
             content.boardId = Int(boardId)
             content.insert()
@@ -289,6 +289,21 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         BoardState.db?.executeUpdate("insert into board (iphone_board_id,board_name,board_rows,board_clms,create_date,update_date,user_id, web_board_id,sort1,sort2,sort3) values(?,?,?,?,current_timestamp,current_timestamp,?, 0,0,0,0)", withArgumentsIn: [boardId, name, rows, columns, userId])
         let b = Board().setId(UInt(boardId))
         return b;
+    }
+    
+    static func createNewBoard(name: String, words: [String], userId: Int) throws -> Board {
+        if words.count == 0 {
+            throw "Must have a list of words"
+        }
+        let columns = Int(round(sqrt(Double(words.count))))
+        let rows = Int(round(Double(words.count / columns)))
+        let board = Board.createNewBoard(name: name, rows: rows, columns: columns, userId: userId)
+        let contents = board.getContents(id: board.id)
+        for i in 0..<words.count {
+            contents[i].name = words[i]
+            contents[i].save()
+        }
+        return board
     }
 }
 

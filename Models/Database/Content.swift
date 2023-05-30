@@ -133,6 +133,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     }
     
     func save() -> Void {
+        setColumn(column: "board_id", value: self.boardId)
         setColumn(column: "content_name", value: self.name)
         setColumn(column: "content_url", value: self.imageURL)
         setColumn(column: "content_url2", value: self.soundURL)
