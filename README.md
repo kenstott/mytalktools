@@ -57,14 +57,6 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- Set the maximum amount of movement allowed for a touch (for people who tend to drag, you would want to increase the allowable movement)|x||||
 |- Set the tap-time-out (for touch stutters, you can make it not register a second touch for a period of time).|x||||
 |- Allow a touch to be recognized immediately on the down press without waiting for the release of the finger. This can be useful for people with certain physical disabilities.|x||||
-|[Scanning](#_scanning)|||||
-|<p>- [Can use any 1 or 2 button switch](#_switches) to register the equivalent of a tap</p><p>&emsp;- Supports Ablenet & RJCooper switches by Bluetooth.</p><p>&emsp;- Supports Apple TV controller (as a 1-switch device)</p><p>&emsp;- Supports Apple Watch</p><p>&emsp;- Supports other Bluetooth devices (contact us to discuss how to enter the custom configuration values)</p>|<p>Uses iOS accessibility settings.</p><p></p>|x |||
-|- [Scan patterns](#_scanning_patterns) 1) Upper left to lower right, by cell, or 2) top to bottom, by row, tap-once, and then scan the row left to right by cell|||||
-|- [Scan speeds](#_scan_speeds) can be adjusted from 1 to 10 seconds per cell||x|||
-|- [Auditory Scanning](#_auditory_scanning) – as each cell is scanned, an optional, short, auditory cue can be voiced using text-to-speech. Useful for the visually impaired.||x|||
-|- [Automatically begin scanning OR start scanning after first tap](#_overview)||x|||
-|- [Optionally, scanning can automatically “go back”](#_scan_loops) after a set number of complete scans of a board. If a board does not have an explicit “go back” cell, this keeps the user from being trapped without a method to return to previous board. ||x|||
-|- [Select alternate scanning animations.](#_scan_animation) Use a “popout” animation or a background color change.|||||
 |[Text-To-Speech](#_text-to-speech)|||||
 |- [Generate a Text-To-Speech Recording](#_generate_a_text-to-speech) and attach to a cell (useful when sharing content with users who do not have TTS capability)|x|x|||
 |- [Voice cell text dynamically using Text-To-Speech](#_voice_cell_text)|x|x|x|x|
