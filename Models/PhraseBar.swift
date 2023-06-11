@@ -41,12 +41,3 @@ class PhraseBarState: NSObject, ObservableObject {
         
     }
 }
-
-extension PhraseBarState: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(
-        _ player: AVAudioPlayer,
-        flag: Bool
-    ) {
-        print("hmmmm")
-    }
-}
