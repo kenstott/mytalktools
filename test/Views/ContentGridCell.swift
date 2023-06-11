@@ -14,19 +14,22 @@ struct ContentGridCell: View {
     private var backgroundColor = Color.white
     private var maximumCellHeight: Double = 20
     private var cellWidth: Double = 20
-    private var separatorLines: CGFloat = 1
-    @AppStorage("CellMargin") var cellMargin: Double = 5.0
+    private var padding: CGFloat = 1
+    @AppStorage("CellMargin") var cellMargin = 1
+    @AppStorage("UseMarginForCoding") var useMarginForCoding = false
     @EnvironmentObject var globalState: BoardState
     @EnvironmentObject var media: Media
     
     init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat) {
         self.content = content
         self.defaultFontSize = defaultFontSize
+        if content.imageURL == "" {
+            self.defaultFontSize *= 1.2
+        }
         self.foregroundColor = Content.convertColor(value: content.foregroundColor) ?? foregroundColor
         self.maximumCellHeight = maximumCellHeight
         self.cellWidth = cellWidth
-        self.backgroundColor = Content.convertColor(value: content.backgroundColor) ?? backgroundColor
-        self.separatorLines = separatorLines
+        self.backgroundColor = Content.convertBackgroundColor(value: content.backgroundColor) ?? backgroundColor
     }
     var body: some View {
         ZStack(alignment: .center) {
@@ -106,10 +109,10 @@ struct ContentGridCell: View {
                 }
             }
         }
-        .padding(cellMargin)
+        .padding(Double(cellMargin))
         .frame(width: cellWidth, height: maximumCellHeight)
-        .border(foregroundColor, width: separatorLines)
-        .background(backgroundColor)
+        .border(useMarginForCoding && content.backgroundColor != 0 ? backgroundColor : foregroundColor, width: CGFloat(cellMargin))
+        .background(useMarginForCoding ? .clear : backgroundColor)
     }
 }
 struct ContentGridCell_Previews: PreviewProvider {

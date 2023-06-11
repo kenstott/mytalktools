@@ -344,7 +344,7 @@ struct BoardView: View {
             case "phraseBarToggle": phraseBarState.userPhraseModeToggle = !phraseBarState.userPhraseModeToggle
             case "phraseBarClear": phraseBarState.contents.removeAll()
             case "phraseBarBackspace": phraseBarState.contents.removeLast()
-            case "play": phraseBarView.speakPhrases(phraseBarState, speak)
+            case "play": phraseBarState.speakPhrases()
             default: print("Unknown command: \(url.absoluteString)")
             }
         }

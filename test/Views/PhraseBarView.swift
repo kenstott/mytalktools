@@ -20,34 +20,17 @@ struct PhraseBarView: View {
     @AppStorage("VoiceShape") var voiceShape: Double = 100
     @State var playing = false
     @State var lastInteraction = Date.now
-    @State var timer: Timer?
-    @State var proxy: ScrollViewProxy?
-    @State var speakingItem = 0
-    
-    func speakPhrases(_ pbs: PhraseBarState, _ spk: Speak, _ item: Int = 0) {
-        if pbs.contents.count > item {
-            if phraseBarAnimate {
-                DispatchQueue.main.async {
-                    withAnimation {
-                        proxy!.scrollTo(item)
-                    }
-                }
-            }
-            speakingItem = item + 1
-            pbs.contents[item].voice(spk, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
-                speakingItem = 0
-                speakPhrases(pbs, spk, item + 1)
-            }
-        } else if autoErase {
-            pbs.contents.removeAll()
-        } else if phraseBarAnimate {
+    @State var timer: Timer? = nil
+    @State var proxy: ScrollViewProxy? = nil
+
+    func animate(id: Int) -> Void {
+        if phraseBarAnimate {
             DispatchQueue.main.async {
                 withAnimation {
-                    proxy!.scrollTo(0)
+                    proxy!.scrollTo(id)
                 }
             }
         }
-        
     }
     
     var body: some View {
@@ -68,7 +51,7 @@ struct PhraseBarView: View {
                                     refresh: 0
                                 )
                                 .id(offset + 1)
-                                .overlay(offset + 1 == speakingItem ? Image(systemName: "speaker.wave.3").padding(0).foregroundColor(.gray).background(.clear).imageScale(.small) : nil, alignment: .topLeading)
+                                .overlay(offset + 1 == phraseBarState.speakingItem ? Image(systemName: "speaker.wave.3").padding(0).foregroundColor(.gray).background(.clear).imageScale(.small) : nil, alignment: .topLeading)
                             }
                         }
                     }
@@ -115,7 +98,7 @@ struct PhraseBarView: View {
             }
             Button {
                 print("play")
-                speakPhrases(phraseBarState, speak)
+                phraseBarState.speakPhrases()
             } label: {
                 Image(systemName: "play.fill")
                     .font(.system(size: 40))
@@ -127,6 +110,13 @@ struct PhraseBarView: View {
         .border(Color.gray)
         .onReceive(speak.$speaking) { speaking in
             print(speaking)
+        }
+        .onAppear {
+            phraseBarState.animate = animate
+            phraseBarState.ttsVoice = ttsVoice
+            phraseBarState.ttsVoiceAlternate = ttsVoiceAlternate
+            phraseBarState.speechRate = speechRate
+            phraseBarState.voiceShape = voiceShape
         }
     }
 }

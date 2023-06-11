@@ -42,6 +42,7 @@ struct EditCell: View {
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
     @AppStorage("SpeechRate") var speechRate: Double = 200
     @AppStorage("VoiceShape") var voiceShape: Double = 100
+    @AppStorage("ColorKey") var colorKey = "1"
     
     @State var content: Content
     @State var contentType: ContentType
@@ -439,8 +440,8 @@ struct EditCell: View {
                                 Stepper(value: $backgroundColor,
                                         in: 0...16,
                                         step: 1) {
-                                    if backgroundColor != Content.ForegroundColorMask.kfDefault.rawValue {
-                                        Text("Background Color").background(Content.convertColor(value: backgroundColor))
+                                    if backgroundColor != Content.BackgroundColorMask.kNone.rawValue {
+                                        Text("Background Color").background(Content.convertBackgroundColor(value: backgroundColor))
                                     } else  if backgroundColor != Content.ForegroundColorMask.kfClear.rawValue {
                                         Text("transparent background color").italic().font(.system(size: 14))
                                     } else {
@@ -1132,7 +1133,16 @@ struct EditCell: View {
                         }
                     }),
                     .default(Text("Coded Word Variants Board"), action: {
-                        
+                        let word = String(editedContent.name.split(separator: " ")[0])
+                        Task {
+                            do {
+                                let words = try await WordVariants().findWordVariantsWithDefinitions(word)
+                                childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0, colorKey: colorKey).id
+                                print(words!)
+                            } catch let error {
+                                print(error.localizedDescription)
+                            }
+                        }
                     }),
                     .default(Text("Hotspot Board"), action: {
                         

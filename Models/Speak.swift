@@ -9,61 +9,80 @@ import Foundation
 import AVFAudio
 import SwiftUI
 import AudioToolbox
+import AVFoundation
 
-class Speak: NSObject, ObservableObject, AVAudioPlayerDelegate {
+
+var player: AVAudioPlayer? = nil
+var speakData: SpeakData? = nil
+
+
+class SpeakData {
+    
+    var callback: (() -> Void)? = nil
+
+    init(data: Data, closure: @escaping () -> Void) {
+        do {
+            player = try AVAudioPlayer(data: data)
+            let durationInSeconds = player?.duration ?? 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + durationInSeconds) {
+                closure()
+            }
+            callback = closure
+        } catch let error {
+            print(error.localizedDescription)
+            closure()
+        }
+    }
+    
+    func play() {
+        player?.stop()
+        player?.prepareToPlay()
+        player?.play()
+    }
+    
+    func stop() {
+        player?.stop()
+    }
+}
+
+class Speak: NSObject, ObservableObject {
     
     override init() {
         super.init()
         self.speechSynthesizer.delegate = self
     }
     
-    @Published var ttsVoiceAlternate: String?
-    @Published var ttsVoice = ""
+    var ttsVoiceAlternate: String?
+    var ttsVoice = ""
     @Published var speaking = false
-    @Published var player: AVAudioPlayer? = nil
-    @Published var viewId: UUID?
+    var viewId: UUID?
     
-    private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
     let APPLE_SPEECH_PREFIX = "com.apple.ttsbundle."
     let APPLE_SPEECH_PREFIX_ALT = "com.apple.voice.compact."
     let speechSynthesizer = AVSpeechSynthesizer()
+    
     var callback: (() -> Void)? = nil
+    
     private var audioFileURL = URL(string: "")
     
-    func setAudioPlayer(_ player: AVAudioPlayer, closure: @escaping () -> Void ) {
-        self.player = player
-        self.player?.delegate = self
-        self.callback = closure
+    private func NilOrEmpty(_ s: String?) -> Bool { return s == nil || s == "" }
+    
+    func setAudioPlayer(_ data: Data, closure: @escaping () -> Void ) {
+        speakData = SpeakData(data: data) {
+            self.speaking = false
+            closure()
+        }
+        speakData?.play()
     }
     
     func play() {
         speaking = true
-        player!.stop()
-        player!.prepareToPlay()
-        player?.play()
     }
     
     func stop() {
         speaking = false
-        player?.stop()
+        speakData?.stop()
         speechSynthesizer.stopSpeaking(at: .immediate)
-    }
-    
-    func audioPlayerDecodeErrorDidOccur(
-        _ player: AVAudioPlayer,
-        error: Error?
-    ) {
-        print(error?.localizedDescription ?? "")
-    }
-    
-    func audioPlayerDidFinishPlaying(
-        _ player: AVAudioPlayer,
-        flag: Bool
-    ) {
-        self.speaking = false;
-        if callback != nil {
-            callback!()
-        }
     }
     
     func setVoices(_ ttsVoice: String, ttsVoiceAlternate: String?, closure: @escaping () -> Void ) {
@@ -149,4 +168,3 @@ extension Speak: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) { speaking = false}
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) { speaking = true }
 }
-

@@ -29,6 +29,22 @@ class Content: Identifiable, Hashable, ObservableObject {
     
     enum BackgroundColorMask: Int {
         case kNone = 0
+        case kBlack = 1
+        case kDarkGray = 2
+        case kLightGray = 3
+        case kWhite = 4
+        case kGray = 5
+        case kPink = 6
+        case kGreen = 7
+        case kBlue = 8
+        case kCyan = 9
+        case kYellow = 10
+        case kMagenta = 11
+        case kOrange = 12
+        case kPurple = 13
+        case kBrown = 14
+        case kClear = 15
+        case kRed = 16
         case kTop = 256
         case kBottom = 512
         case kRight = 1024
@@ -82,6 +98,27 @@ class Content: Identifiable, Hashable, ObservableObject {
         case .kfYellow: return Color.yellow
         case .kfDarkGray: return Color(red: 0.66, green: 0.66, blue: 0.66)
         case .kfLightGray: return Color(red: 0.82, green: 0.82, blue: 0.82)
+        default: return nil
+        }
+    }
+    
+    static func convertBackgroundColor(value: Int) -> Color? {
+        switch(BackgroundColorMask(rawValue: value) ?? BackgroundColorMask.kNone) {
+        case .kWhite: return Color.white
+        case .kRed: return Color.red
+        case .kBlue: return Color.blue
+        case .kCyan: return Color.cyan
+        case .kGray: return Color.gray
+        case .kPink: return Color.pink
+        case .kBlack: return Color.black
+        case .kBrown: return Color.brown
+        case .kClear: return Color.white.opacity(1.0)
+        case .kOrange: return Color.orange
+        case .kPurple: return Color.purple
+        case .kMagenta: return Color(red: 1.0, green: 0.0, blue: 1.0)
+        case .kYellow: return Color.yellow
+        case .kDarkGray: return Color(red: 0.66, green: 0.66, blue: 0.66)
+        case .kLightGray: return Color(red: 0.82, green: 0.82, blue: 0.82)
         default: return nil
         }
     }
@@ -595,7 +632,7 @@ class Content: Identifiable, Hashable, ObservableObject {
     }
     
     func setBackgroundColor(value: Int) -> Void {
-        color = (color & 0xFF00) | value
+        background = (background & 0xFF00) | value
         self.backgroundColor = self.backgroundColor & 0x00FF
     }
     
@@ -611,15 +648,14 @@ class Content: Identifiable, Hashable, ObservableObject {
             let soundFileURL = Media.getURL(soundURL)
             do {
                 if (soundFileURL != nil) {
-                    let data = try Data(contentsOf: soundFileURL!)
-                    speak.setAudioPlayer(try AVAudioPlayer(data: data)) {
+                    do {
+                        speak.setAudioPlayer(try Data(contentsOf: soundFileURL!), closure: callback)
+                        speak.play()
+                    } catch let error {
+                        print(error.localizedDescription)
                         callback()
                     }
-                    speak.play()
                 }
-            }
-            catch {
-                print("Problem playing: \(soundFileURL!)")
             }
         }
         else  {
@@ -663,10 +699,5 @@ class Content: Identifiable, Hashable, ObservableObject {
         }
         return self;
     }
-    
-//    static func createNewContent(name: String, boardId: UInt, userId: Int, row: Int, column: Int) -> Board {
-//        var contentId: Int = -1
-//        BoardState.db?.executeUpdate("insert into content (content_name,content_url,content_url2,content_type,create_date,update_date,board_id,row_index,clm_index,child_board_id, user_id, child_board_link, background_color, foreground_color, font_size, zoom, do_not_add_to_phrasebar, do_not_zoom_pics, tts_speech, external_url, alternate_tts, hot_spot_style) values (?,"","",0,current_timestamp,current_timestamp,?,?,?,-1,?,-1,0,0,0,0,0,0,0,"",0,0)", withArgumentsIn: [name, boardId, row, column, userId])
-//    }
 }
 

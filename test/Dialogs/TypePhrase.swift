@@ -25,6 +25,9 @@ struct TypePhrase: View {
     @AppStorage("VoiceShape") var voiceShape: Double = 100
     @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
+    @AppStorage("PhraseMode") var phraseMode = "0"
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var phraseBarState: PhraseBarState
     
     func jsonEncode(from object:Any) -> String? {
         guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
@@ -40,6 +43,26 @@ struct TypePhrase: View {
             return []
         }
     }
+    
+    func speakPhrase() {
+        if (history.count == 0) {
+            history = jsonDecode(from: historyState)
+        }
+        history.removeAll(where: {$0 == phrase})
+        history.append(phrase)
+        historyState = jsonEncode(from: history) ?? "[]"
+        if phraseMode == "1" {
+            var content = Content()
+            content.name = phrase
+            phraseBarState.contents.append(content)
+        } else {
+            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                print("Completed")
+            }
+            var alternate: Bool? = false
+            speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
+        }
+    }
 
     init(done: @escaping (String) -> Void, cancel: @escaping () -> Void) {
         self.done = done
@@ -50,6 +73,7 @@ struct TypePhrase: View {
             HStack {
                 Form {
                     TextEditor(text: $phrase)
+                        .textInputAutocapitalization(.none)
                         .focused($focusedField, equals: .phrase)
                         .toolbar {
                             ToolbarItemGroup(placement: .keyboard) {
@@ -63,23 +87,16 @@ struct TypePhrase: View {
                                     Spacer()
                                     Button {
                                         print("Speak")
-                                        if (history.count == 0) {
-                                            history = jsonDecode(from: historyState)
-                                        }
-                                        history.removeAll(where: {$0 == phrase})
-                                        history.append(phrase)
-                                        historyState = jsonEncode(from: history) ?? "[]"
-                                        speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
-                                            print("Completed")
-                                        }
-                                        var alternate: Bool? = false
-                                        speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
+                                        speakPhrase()
                                     } label: {
                                         Label(LocalizedStringKey("Speak"), systemImage: "bubble.right")
                                     }.buttonStyle(.bordered)
                                         .controlSize(.small)
                                     Spacer()
-                                    Button(action: {}) {
+                                    Button(action: {
+                                        speakPhrase()
+                                        dismiss()
+                                    }) {
                                         HStack {
                                             Image(systemName: "bubble.right")
                                             Text(" & Exit")
@@ -149,9 +166,14 @@ struct TypePhrase: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
+                            speakPhrase()
+                            dismiss()
                             done!(phrase)
                         } label: {
-                            Text("Save")
+                            HStack {
+                                Image(systemName: "bubble.right")
+                                Text(" & Exit")
+                            }
                         }
                         
                     }

@@ -20,7 +20,6 @@ struct RecordSound: View {
     @State var audioState: AudioState = .initial
     @State var recordingTimer = ""
     @State var runCount: TimeInterval = Date().timeIntervalSince1970
-    @State var audioPlayer: AVAudioPlayer? = nil
     @State var recorder: AVAudioRecorder? = nil
     @State var fileURL: URL? = nil
     @State var session: AVAudioSession? = nil
@@ -56,16 +55,20 @@ struct RecordSound: View {
                         
                     } label: {
                         Label(LocalizedStringKey("Record"), systemImage: "record.circle").foregroundColor(.red)
-                    }.disabled(audioState == .playing || audioState == .recording || speak.player?.isPlaying == true)
+                    }.disabled(audioState == .playing || audioState == .recording || speak.speaking == true)
                     Button {
                         print("Play")
                         runCount = Date().timeIntervalSince1970
                         audioState = .playing
-                        audioPlayer = try? AVAudioPlayer(contentsOf: fileURL!)
-                        speak.setAudioPlayer(audioPlayer!) {
+                        do {
+                            speak.setAudioPlayer(try Data(contentsOf: fileURL!)) {
+                                audioState = .stopped
+                            }
+                            speak.play()
+                        } catch let error {
+                            print(error.localizedDescription)
                             audioState = .stopped
                         }
-                        speak.play()
                     } label: {
                         Label(LocalizedStringKey("Play"), systemImage: "play.circle")
                     }.disabled(audioState == .recording || audioState == .initial || audioState == .playing)

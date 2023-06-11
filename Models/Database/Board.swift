@@ -305,5 +305,77 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         }
         return board
     }
+    
+    static func createNewBoard(name: String, words: [WordWithDefinition], userId: Int, colorKey: String) throws -> Board {
+        if words.count == 0 {
+            throw "Must have a list of words"
+        }
+        var wordDictionary: [String:PartOfSpeech] = [:]
+        for i in 0..<words.count {
+            wordDictionary.updateValue(PartOfSpeech(word: words[i].Value, partOfSpeech: words[i].cat, unInflected: words[i].unInfl), forKey: words[i].Value + words[i].cat)
+        }
+        let columns = Int(round(sqrt(Double(wordDictionary.count))))
+        var rows = Int(round(Double(wordDictionary.count / columns)))
+        if columns * rows < wordDictionary.count {
+            rows += 1
+        }
+        let board = Board.createNewBoard(name: name, rows: rows, columns: columns, userId: userId)
+        let contents = board.getContents(id: board.id)
+        let keys = Array(wordDictionary.keys)
+        for i in 0..<keys.count {
+            contents[i].name = wordDictionary[keys[i]]?.word ?? ""
+            let cat = wordDictionary[keys[i]]?.partOfSpeech ?? ""
+            let unInflected = wordDictionary[keys[i]]?.unInflected ?? ""
+            if cat == "adv" {
+                contents[i].setBackgroundColor(value: 8)
+            }
+            else if cat == "adj" {
+                contents[i].setBackgroundColor(value: 8)
+            }
+            else if cat == "noun" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+            }
+            else if cat == "nc" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+            }
+            else if cat == "ncpred" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+            }
+            else if cat == "np" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+            }
+            else if cat == "pronoun" {
+                if unInflected == "it" {
+                    contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+                }
+                else if unInflected == "those" {
+                    contents[i].setBackgroundColor(value: colorKey == "0" ? 12 : 10)
+                }
+                else {
+                    contents[i].setBackgroundColor(value: 10)
+                }
+            }
+            else if cat == "verb" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 7 : 6)
+            }
+            else if cat == "v" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 7 : 6)
+            }
+            else if cat == "aux" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 7 : 6)
+            }
+            else if cat == "preposition" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 4 : 7)
+            }
+            else if cat == "prep" {
+                contents[i].setBackgroundColor(value: colorKey == "0" ? 4 : 7)
+            }
+            else {
+                print("Unknown category: \(cat)");
+            }
+            contents[i].save()
+        }
+        return board
+    }
 }
 
