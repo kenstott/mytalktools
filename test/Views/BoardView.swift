@@ -67,7 +67,7 @@ struct BoardView: View {
     init(_ id: UInt = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
-//        print(volume.volume)
+        //        print(volume.volume)
     }
     
     var body: some View {
@@ -194,7 +194,7 @@ struct BoardView: View {
                     EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
                 }
                 .onAppear {
-                    showAuthorHelp = boardState.authorMode && authorHints
+                    showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                     showUserHelp = !boardState.authorMode && userHints
                     
                     _ = board.setId(id)
@@ -251,7 +251,7 @@ struct BoardView: View {
                                 print("Undo")
                             } label: {
                                 Label(LocalizedStringKey("Undo"), systemImage: "arrow.uturn.backward")
-                            }.disabled(!boardState.undoable)
+                            }.disabled(!boardState.undoable || !boardState.editMode)
                             Button {
                                 boardState.redo()
                                 Task {
@@ -261,7 +261,7 @@ struct BoardView: View {
                                 print("Redo")
                             } label: {
                                 Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
-                            }.disabled(!boardState.redoable)
+                            }.disabled(!boardState.redoable || !boardState.editMode)
                             Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
                                 print("Sync")

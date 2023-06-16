@@ -40,6 +40,7 @@ class BoardState: ObservableObject {
     @Published var db: FMDatabase?
     @Published var dbUrl: URL?
     @Published var undoPointer = -1
+    
     var undoable: Bool {
         get {
             return undoPointer != -1

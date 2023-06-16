@@ -125,6 +125,39 @@ struct ContentView: View {
         }
     }
     
+    func getButtons() -> [Alert.Button] {
+        var buttons: [Alert.Button] = [
+            .cancel { showEditActionSheet = false },
+            .default(Text("Sort Order"), action: {
+                showEditActionSheet = false
+                showBoardSortOrderSheet = true
+            }),
+            .default(Text("Add Row"), action: {
+                board.addRow(boardState: boardState)
+            }),
+            .default(Text("Add Column"), action: {
+                board.addColumn(boardState: boardState)
+            }),
+            .default(Text("Stretch Columns By 1"), action: {
+                board.stretchColumns(boardState: boardState)
+            })
+        ]
+        if board.columns > 1 {
+            buttons.append(.default(Text("Compress Columns By 1"), action: {
+                board.compressColumns(boardState: boardState)
+            }))
+            buttons.append(.default(Text("Delete Right Column"), action: {
+                board.deleteRightColumn(boardState: boardState)
+            }))
+        }
+        if board.rows > 1 {
+            buttons.append(.default(Text("Delete Last Row"), action: {
+                board.deleteLastRow(boardState: boardState)
+            }))
+        }
+        return buttons
+    }
+    
     var body: some View {
         ZStack {
             if content.boardId == -1 && content.linkId != 0 {
@@ -176,25 +209,7 @@ struct ContentView: View {
             switch(actionSheetType) {
             case .board: return ActionSheet(
                 title: Text("Change Board Dimensions"),
-                buttons: [
-                    .cancel { showEditActionSheet = false },
-                    .default(Text("Sort Order"), action: {
-                        showEditActionSheet = false
-                        showBoardSortOrderSheet = true
-                    }),
-                    .default(Text("Add Row"), action: {
-                    }),
-                    .default(Text("Add Column"), action: {
-                    }),
-                    .default(Text("Delete Last Row"), action: {
-                    }),
-                    .default(Text("Delete Right Column"), action: {
-                    }),
-                    .default(Text("Compress Columns By 1"), action: {
-                    }),
-                    .default(Text("Stretch Columns By 1"), action: {
-                    })
-                ]
+                buttons: getButtons()
             )
             case .top:
                 let repeatButton: [ActionSheet.Button] = [.default(Text("Repeat"), action: {})]

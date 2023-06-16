@@ -169,6 +169,10 @@ class Content: Identifiable, Hashable, ObservableObject {
         BoardState.db?.executeUpdate("insert into content (web_content_id,content_name,content_url,content_url2,content_type,create_date,update_date,board_id,row_index,clm_index,child_board_id, user_id, child_board_link, total_uses, session_uses, background_color, foreground_color, font_size, zoom, do_not_add_to_phrasebar, do_not_zoom_pics, tts_speech, external_url, alternate_tts, hot_spot_style, iphone_content_id ) values (0,'','','',0,current_timestamp,current_timestamp,?,?,?,0,?,0,0,0,0,0,0,0,0,0,'','','',0,?)", withArgumentsIn: [self.boardId, self.row, self.column,self.userId,self.id])
     }
     
+    func delete() -> Void {
+        BoardState.db?.executeUpdate("delete from content where iphone_content_id = ?", withArgumentsIn: [self.id])
+    }
+    
     func save() -> Void {
         setColumn(column: "board_id", value: self.boardId)
         setColumn(column: "content_name", value: self.name)

@@ -89,7 +89,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         while ss.next() {
             contentId = ss.long(forColumnIndex: 0)
         }
-        s.close()
+        ss.close()
         let boardId = self.id
         while rows * columns > total {
             contentId += 1
@@ -278,6 +278,118 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return false
     }
     
+    func addRow(boardState: BoardState) {
+        boardState.createUndoSlot()
+        rows += 1
+        save()
+        contents = getContents(id: id)
+    }
+    
+    func addColumn(boardState: BoardState) {
+        boardState.createUndoSlot()
+        columns += 1
+        save()
+        var contentId = -1
+        let ss = BoardState.db?.executeQuery("select max(iphone_content_id) from content", withArgumentsIn: []) ?? FMResultSet();
+        while ss.next() {
+            contentId = ss.long(forColumnIndex: 0)
+        }
+        ss.close()
+        let boardId = self.id
+        var newContents: [Content] = []
+        for rowIndex in 0..<rows {
+            for columnIndex in 0..<columns {
+                if columnIndex < columns - 1  {
+                    let oldIndex = (rowIndex * (columns - 1)) + columnIndex
+                    let newContent = contents[oldIndex]
+                    newContent.row = rowIndex
+                    newContent.column = columnIndex
+                    newContent.save()
+                    newContents.append(newContent)
+                } else {
+                    contentId += 1
+                    let newContent = Content()
+                    newContent.row = rowIndex
+                    newContent.column = columnIndex
+                    newContent.id = contentId
+                    newContent.userId = 0
+                    newContent.boardId = Int(boardId)
+                    newContent.insert()
+                    newContents.append(newContent)
+                }
+            }
+        }
+        contents = getContents(id: id)
+    }
+    
+    func deleteLastRow(boardState: BoardState) {
+        boardState.createUndoSlot()
+        rows -= 1
+        save()
+        contents = getContents(id: id)
+    }
+    
+    func compressColumns(boardState: BoardState) {
+        boardState.createUndoSlot()
+        columns -= 1
+        rows += 1
+        save()
+        var index = 0
+        for r in 0..<rows {
+            for c in 0..<columns {
+                if contents.count <= index {
+                    contents[index].row = r
+                    contents[index].column = c
+                    contents[index].save()
+                }
+                index += 1
+            }
+        }
+        contents = getContents(id: id)
+    }
+    
+    func stretchColumns(boardState: BoardState) {
+        boardState.createUndoSlot()
+        var oldCount = rows * columns
+        columns += 1
+        save()
+        var index = 0
+        for r in 0..<rows {
+            for c in 0..<columns {
+                if contents.count <= index {
+                    contents[index].row = r
+                    contents[index].column = c
+                    contents[index].save()
+                }
+                index += 1
+            }
+        }
+        contents = getContents(id: id)
+    }
+    
+    func deleteRightColumn(boardState: BoardState) {
+        boardState.createUndoSlot()
+        var index = 0
+        let deletedContents = contents.filter { ($0.column + 1) % columns == 0}
+        let newContents = contents.filter { ($0.column + 1) % columns != 0}
+        columns -= 1
+        for r in 0..<rows {
+            for c in 0..<columns {
+                if newContents.count <= index {
+                    newContents[index].row = r
+                    newContents[index].column = c
+                    newContents[index].save()
+                }
+                index += 1
+            }
+        }
+        for content in deletedContents {
+            content.delete()
+        }
+        save()
+        contents = getContents(id: id)
+    }
+
     static func createNewBoard(name: String, rows: Int, columns: Int, userId: Int) -> Board {
         var boardId: Int = -1
         let s = BoardState.db?.executeQuery("select seq from sqlite_sequence where name = 'board'", withArgumentsIn: []);
