@@ -350,7 +350,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
     func stretchColumns(boardState: BoardState) {
         boardState.createUndoSlot()
-        var oldCount = rows * columns
         columns += 1
         save()
         var index = 0

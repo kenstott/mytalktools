@@ -111,6 +111,7 @@ struct EditCell: View {
     @State private var cameraURL: String = ""
     @State private var showShareSheet = false
     @State private var showWebBrowser = false
+    @State private var showWebImageSearch = false
     @State private var showCropTool = false
     @State public var sharedItems : [Any] = []
     @State private var showLibraries = false
@@ -124,7 +125,7 @@ struct EditCell: View {
     private var save: ((Content) -> Void)? = nil
     private var cancel:  (() -> Void)? = nil
     private let wordVariants = WordVariants()
-
+    
     
     init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
         self.content = content
@@ -563,15 +564,35 @@ struct EditCell: View {
                     }
                 } else {
                     Task {
-                        if (cameraURL.starts(with: "http")) {
-                            let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
-                            let response = responseRaw as? HTTPURLResponse
-                            if response!.statusCode == 200 {
-                                image = UIImage(data: data)!
-                                imageUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
-                                await media.syncURL(url: URL(string: cameraURL)!)
+                        if cameraURL.starts(with: "http") {
+                            if cameraURL.contains("UserUploads/") {
+                                let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
+                                let response = responseRaw as? HTTPURLResponse
+                                if response!.statusCode == 200 {
+                                    image = UIImage(data: data)!
+                                    imageUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
+                                    await media.syncURL(url: URL(string: cameraURL)!)
+                                } else {
+                                    print(response!.statusCode)
+                                }
                             } else {
-                                print(response!.statusCode)
+                                Task {
+                                    let url = URL(string: cameraURL)
+                                    DispatchQueue.global (qos:.userInitiated).async {
+                                        let data = try? Data(contentsOf: url!)
+                                        DispatchQueue.main.async {
+                                        if let imageData = data {
+                                                image = UIImage(data: imageData)!
+                                                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
+                                                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                                                let pngImageData = scaledImage!.pngData()
+                                                FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
+                                                imageUrl = Media.truncateLocalURL(fileURL)
+                                                print(imageUrl)
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         } else {
                             image = UIImage(contentsOfFile: cameraURL)!
@@ -716,6 +737,9 @@ struct EditCell: View {
             }
             .sheet(isPresented: $showWebBrowser) {
                 WebBrowser(imageUrl: $cameraURL, cellText: $name)
+            }
+            .sheet(isPresented: $showWebImageSearch) {
+                ImageSearch(query: name, imageUrl: $cameraURL)
             }
             .sheet(isPresented: $showCropTool) {
                 CropTool(imageUrl: imageUrl, outUrl: $cameraURL)
@@ -1206,7 +1230,7 @@ struct EditCell: View {
                         showCamera = true
                     }),
                     .default(Text("Web Image Search"), action: {
-                        
+                        showWebImageSearch = true
                     }),
                     .default(Text("Web Page"), action: {
                         showWebBrowser = true

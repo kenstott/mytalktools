@@ -102,7 +102,7 @@ struct ContentView: View {
                 case .goHome:
                     break;
                 default:
-                    if (content.link == 0) {
+                    if !content.doNotAddToPhraseBar {
                         phraseBarState.contents.append(content)
                     }
                 }
