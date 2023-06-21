@@ -26,7 +26,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |[Security Management](#_security_management)|||||
 |- HIPAA compliant security|x|x|x|x|done|
 |- [Require Password to Make Content Changes](#_require_password_to)|x|x|x|x|done|
-|- [Login using ](#_login_using_touch)biometric identification|x||||TBD|
+|- [Login using ](#_login_using_touch)biometric identification|x||||done|
 |- [Show/Hide Author Login in User Interface](#_show/hide_author_login)|x|x|||TBD|
 |[Display Options](#_display_options)|||||
 |- [Display Content as 2 Dimensional Grids, or as a 1-Dimensional List](#_display_content_as) (high functioning adults sometimes prefer the list-style)|x|grid|grid|grid|done|
