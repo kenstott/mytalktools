@@ -221,7 +221,7 @@ struct Author: View {
                             username = storedUsername
                             password = storedPassword
                         }
-                        if (faceID) {
+                        if (faceID && username != "" && password != "") {
                             authenticate()
                         }
                     }
