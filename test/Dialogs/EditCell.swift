@@ -121,6 +121,7 @@ struct EditCell: View {
     @State private var showNewSimpleBoard = false
     @State private var newRows = 3
     @State private var newColumns = 3
+    @State private var showLocationPicker = false
     
     private var save: ((Content) -> Void)? = nil
     private var cancel:  (() -> Void)? = nil
@@ -392,6 +393,14 @@ struct EditCell: View {
                                         childBoardLink = 0
                                     } label: {
                                         Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
+                                    }
+                                    Spacer()
+                                    Button {
+                                        print("Location")
+                                        showLocationPicker = true
+                                    } label: {
+                                        
+                                        Label(LocalizedStringKey("Location"), systemImage: "mappin.and.ellipse").labelStyle(.iconOnly)
                                     }
                                     Spacer()
                                     Button {
@@ -746,6 +755,11 @@ struct EditCell: View {
             }
             .sheet(isPresented: $showLibraries) {
                 NavigableLibraryDialog(filter: libraryFilter, query: name, selectedURL: $cameraURL)
+            }
+            .sheet(isPresented: $showLocationPicker) {
+                NavigationView {
+                    FindLocation(urlResult: $externalUrl)
+                }
             }
             .sheet(isPresented: $showNewSimpleBoard) {
                 NewSimpleBoard(rows: $newRows, columns: $newColumns) { cancelled in

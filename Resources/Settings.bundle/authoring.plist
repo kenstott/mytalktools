@@ -44,7 +44,7 @@
 			<key>Key</key>
 			<string>TouchID</string>
 			<key>Title</key>
-			<string>Use Touch ID</string>
+			<string>Use Face ID</string>
 			<key>TrueValue</key>
 			<true/>
 			<key>Type</key>

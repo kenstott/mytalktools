@@ -222,5 +222,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>You may alternately use Face ID to unlock author mode</string>
 </dict>
 </plist>

@@ -35,6 +35,7 @@
 		185E45372A23EC4500250399 /* WordVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45362A23EC4500250399 /* WordVariants.swift */; };
 		185E45392A26A47100250399 /* StringError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185E45382A26A47100250399 /* StringError.swift */; };
 		187EBF142A3DEFAF00F35CEC /* ImageSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EBF132A3DEFAF00F35CEC /* ImageSearch.swift */; };
+		187EBF2E2A4072B700F35CEC /* FindLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187EBF2D2A4072B600F35CEC /* FindLocation.swift */; };
 		187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FFB0C29D85D6B00D91F66 /* EditCell.swift */; };
 		1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB229CFBC1D00CF4011 /* Convertable.swift */; };
 		1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886DBB329CFBC1D00CF4011 /* GetPost.swift */; };
@@ -60,6 +61,7 @@
 		18A6BF02296211FD0039B5D4 /* Yes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BEFA296211FD0039B5D4 /* Yes.mp3 */; };
 		18A6BF04296253060039B5D4 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6BF03296253060039B5D4 /* AppContainer.swift */; };
 		18A6BF06296359B40039B5D4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18A6BF05296359B30039B5D4 /* Settings.bundle */; };
+		18B480E82A40ECDD00AED8F5 /* RegionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B480E72A40ECDD00AED8F5 /* RegionMonitor.swift */; };
 		18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C4D72A10545600A18334 /* ShareSheet.swift */; };
 		18C245A929FD814500008D38 /* BoardSortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C245A829FD814500008D38 /* BoardSortOrder.swift */; };
 		18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE4C55295FAC2000D349A3 /* testApp.swift */; };
@@ -114,6 +116,7 @@
 		185E45362A23EC4500250399 /* WordVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordVariants.swift; sourceTree = "<group>"; };
 		185E45382A26A47100250399 /* StringError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringError.swift; sourceTree = "<group>"; };
 		187EBF132A3DEFAF00F35CEC /* ImageSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearch.swift; sourceTree = "<group>"; };
+		187EBF2D2A4072B600F35CEC /* FindLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocation.swift; sourceTree = "<group>"; };
 		187FFB0C29D85D6B00D91F66 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditCell.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Dialogs/EditCell.swift; sourceTree = "<group>"; };
 		1883BF872991B93D00395772 /* test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = test.entitlements; sourceTree = "<group>"; };
 		1883BF882991BA7600395772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 		18A6BEFA296211FD0039B5D4 /* Yes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Yes.mp3; sourceTree = "<group>"; };
 		18A6BF03296253060039B5D4 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		18A6BF05296359B30039B5D4 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		18B480E72A40ECDD00AED8F5 /* RegionMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionMonitor.swift; sourceTree = "<group>"; };
 		18C0C4D72A10545600A18334 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		18C245A829FD814500008D38 /* BoardSortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSortOrder.swift; sourceTree = "<group>"; };
 		18CE4C52295FAC2000D349A3 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +233,7 @@
 				185E44F12A19223300250399 /* WebView.swift */,
 				185E45002A1D61EE00250399 /* EmbeddedContactPickerViewController.swift */,
 				185E45022A1D621700250399 /* EmbeddedContactPicker.swift */,
+				18B480E72A40ECDD00AED8F5 /* RegionMonitor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				185E44FE2A1945E400250399 /* CropTool.swift */,
 				185E45342A2239F100250399 /* NewSimpleBoard.swift */,
 				187EBF132A3DEFAF00F35CEC /* ImageSearch.swift */,
+				187EBF2D2A4072B600F35CEC /* FindLocation.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				18EA71C129750667005477CE /* VolumeSlider.swift in Sources */,
 				182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */,
 				185E44F22A19223300250399 /* WebView.swift in Sources */,
+				187EBF2E2A4072B700F35CEC /* FindLocation.swift in Sources */,
 				185E45012A1D61EE00250399 /* EmbeddedContactPickerViewController.swift in Sources */,
 				182702CD297D5FF4009C3B12 /* Media.swift in Sources */,
 				187EBF142A3DEFAF00F35CEC /* ImageSearch.swift in Sources */,
@@ -478,6 +485,7 @@
 				182702C7297C1816009C3B12 /* Network.swift in Sources */,
 				1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
+				18B480E82A40ECDD00AED8F5 /* RegionMonitor.swift in Sources */,
 				18E15F252A0B099D002AEA3F /* URL.swift in Sources */,
 				18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */,
 				18E15F472A0D4F7C002AEA3F /* PositiveView.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct Author: View {
     
@@ -22,6 +23,7 @@ struct Author: View {
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     @AppStorage("PASSWORD") var storedPassword = ""
     @AppStorage("RememberMe") var rememberMe = true
+    @AppStorage("TouchID") var faceID = false
     @AppStorage("BoardName") var storedBoardName = ""
     @AppStorage("CachedBoardNames") var cachedBoardNames: String = "[]"
     @State var username = ""
@@ -31,7 +33,86 @@ struct Author: View {
     @State var loggingIn: Bool = false
     @State var isProfessional = false
     @State var showBoardName = false
+    @State var isUnlocked = false
     
+    func authenticate() {
+            let context = LAContext()
+            var error: NSError?
+
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "We need to unlock your data."
+
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                    DispatchQueue.main.async {
+                        if success {
+                            login()
+                        } else {
+                            // error
+                        }
+                    }
+                }
+            } else {
+                // no biometrics
+            }
+        }
+    
+    func login() {
+        showLoginError = false
+        loggingIn = true
+        Task {
+            do {
+                let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
+                print(result!.d)
+                if (result!.result == .Validated) {
+                    let profile = await userState.getProfile(username)
+                    if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
+                        let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
+                        setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
+                        if (getBoardNames().contains(boardName)) {
+                            isProfessional = false
+                            storedUsername = username
+                            storedPassword = password
+                            storedBoardName = boardName
+                            self.boardState.authorMode.toggle()
+                            await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                            appState.rootViewId = UUID()
+                            loggingIn = false
+                            dismiss()
+                        }
+                        else if (getBoardNames().contains(storedBoardName)) {
+                            isProfessional = false
+                            storedUsername = username
+                            storedPassword = password
+                            boardName = storedBoardName
+                            self.boardState.authorMode.toggle()
+                            await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                            appState.rootViewId = UUID()
+                            loggingIn = false
+                            dismiss()
+                        } else {
+                            isProfessional = true
+                            storedBoardName = ""
+                            loggingIn = false
+                        }
+                    } else {
+                        storedUsername = username
+                        storedPassword = password
+                        self.boardState.authorMode.toggle()
+                        await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
+                        loggingIn = false
+                        dismiss()
+                    }
+                } else {
+                    showLoginError = true
+                    loggingIn = false
+                }
+            } catch let error {
+                showLoginError = true
+                loggingIn = false
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     func getBoardNames() -> [String] {
         guard let result = try? JSONDecoder().decode([String].self, from: cachedBoardNames.data(using: .utf8, allowLossyConversion: false)!) else {
@@ -65,6 +146,9 @@ struct Author: View {
                         }
                         Toggle(isOn: $rememberMe) {
                             Text("Remember Me")
+                        }
+                        Toggle(isOn: $faceID) {
+                            Text("Use Face ID")
                         }
                         Button {
                             // Handle for got password action.
@@ -113,61 +197,7 @@ struct Author: View {
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             Button {
-                                showLoginError = false
-                                loggingIn = true
-                                Task {
-                                    do {
-                                        let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
-                                        print(result!.d)
-                                        if (result!.result == .Validated) {
-                                            let profile = await userState.getProfile(username)
-                                            if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
-                                                let boards = try await query.execute(params: QueryInput(query: professionalBoardNames(userid: username), site: "MyTalkDatabase"))
-                                                setBoardNames(boards?.dd.map { $0.txt ?? "" } ?? [])
-                                                if (getBoardNames().contains(boardName)) {
-                                                    isProfessional = false
-                                                    storedUsername = username
-                                                    storedPassword = password
-                                                    storedBoardName = boardName
-                                                    self.boardState.authorMode.toggle()
-                                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                                    appState.rootViewId = UUID()
-                                                    loggingIn = false
-                                                    dismiss()
-                                                }
-                                                else if (getBoardNames().contains(storedBoardName)) {
-                                                    isProfessional = false
-                                                    storedUsername = username
-                                                    storedPassword = password
-                                                    boardName = storedBoardName
-                                                    self.boardState.authorMode.toggle()
-                                                    await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                                    appState.rootViewId = UUID()
-                                                    loggingIn = false
-                                                    dismiss()
-                                                } else {
-                                                    isProfessional = true
-                                                    storedBoardName = ""
-                                                    loggingIn = false
-                                                }
-                                            } else {
-                                                storedUsername = username
-                                                storedPassword = password
-                                                self.boardState.authorMode.toggle()
-                                                await boardState.setUserDb(username: storedUsername, boardID: nil, media: media)
-                                                loggingIn = false
-                                                dismiss()
-                                            }
-                                        } else {
-                                            showLoginError = true
-                                            loggingIn = false
-                                        }
-                                    } catch let error {
-                                        showLoginError = true
-                                        loggingIn = false
-                                        print(error.localizedDescription)
-                                    }
-                                }
+                                login()
                             } label: {
                                 if loggingIn {
                                     ProgressView()
@@ -190,6 +220,9 @@ struct Author: View {
                         if (rememberMe) {
                             username = storedUsername
                             password = storedPassword
+                        }
+                        if (faceID) {
+                            authenticate()
                         }
                     }
             }

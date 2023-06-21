@@ -52,6 +52,8 @@ struct BoardView: View {
     @State var newDatabase = 0
     @State private var contact = CNContact()
     @State private var showContacts = false
+    @State private var enteredRegion: UInt = 0
+    @State private var showLocationBasedBoard = false
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -67,12 +69,13 @@ struct BoardView: View {
     init(_ id: UInt = 1, geometry: GeometryProxy) {
         self.id = id
         self.geometry = geometry
-        //        print(volume.volume)
     }
     
     var body: some View {
         let phraseBarView = PhraseBarView()
+        let regionMonitor = RegionMonitor(enteredRegion: $enteredRegion)
         return VStack {
+            regionMonitor
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
             }
@@ -86,6 +89,9 @@ struct BoardView: View {
                     Task {
                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                         _ = board.setId(id)
+                        Task {
+                            regionMonitor.startMonitor()
+                        }
                     }
                 }
             case .ready:
@@ -192,12 +198,19 @@ struct BoardView: View {
                 }
                 .sheet(isPresented: $showContacts) {
                     EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
+                }.sheet(isPresented: $showLocationBasedBoard) {
+                    NavigationView {
+                        BoardView(enteredRegion, geometry: geometry)
+                    }
                 }
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                     showUserHelp = !boardState.authorMode && userHints
                     
                     _ = board.setId(id)
+                    Task {
+                        regionMonitor.startMonitor()
+                    }
                     
                 }
                 .toolbar {
@@ -326,6 +339,12 @@ struct BoardView: View {
                         }
                     }
                 }
+            }
+        }
+        .onChange(of: enteredRegion) { newValue in
+            print(newValue)
+            if enteredRegion != 0 {
+                showLocationBasedBoard = true
             }
         }
         .onOpenURL { url in

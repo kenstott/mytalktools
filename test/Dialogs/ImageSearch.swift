@@ -38,7 +38,7 @@ struct ImageSearch: View {
                     }
                 }
                 .searchable(text: $query)
-                .navigationTitle("Bing Image Search")
+                .navigationTitle("Web Image Search")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem {

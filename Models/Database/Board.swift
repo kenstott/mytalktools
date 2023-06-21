@@ -285,6 +285,15 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         contents = getContents(id: id)
     }
     
+    static func getGeoMonitorBoards() -> [Content] {
+        var results = [Content]()
+        let ss = BoardState.db?.executeQuery("select * from content", withArgumentsIn: []) ?? FMResultSet();
+        while ss.next() {
+            results.append(Content().setId(ss.long(forColumn: "iphone_content_id")))
+        }
+        return results.filter { $0.link != 0 && $0.externalUrl.starts(with: "mtgeo") }
+    }
+    
     func addColumn(boardState: BoardState) {
         boardState.createUndoSlot()
         columns += 1
