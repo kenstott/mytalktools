@@ -36,25 +36,25 @@ struct Author: View {
     @State var isUnlocked = false
     
     func authenticate() {
-            let context = LAContext()
-            var error: NSError?
-
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = "We need to unlock your data."
-
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                    DispatchQueue.main.async {
-                        if success {
-                            login()
-                        } else {
-                            // error
-                        }
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "We need to unlock your data."
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        login()
+                    } else {
+                        // error
                     }
                 }
-            } else {
-                // no biometrics
             }
+        } else {
+            // no biometrics
         }
+    }
     
     func login() {
         showLoginError = false

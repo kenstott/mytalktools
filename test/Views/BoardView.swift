@@ -39,6 +39,7 @@ struct BoardView: View {
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     @AppStorage("BoardName") var storedBoardName = ""
     @AppStorage("PhraseMode") var phraseMode = "0"
+    @AppStorage("AuthoringAllowed") var authoringAllowed = false
     @State private var isActive = false
     @State private var activeChildBoard: UInt? = 0
     @State private var player: AVAudioPlayer?
@@ -214,18 +215,20 @@ struct BoardView: View {
                     
                 }
                 .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        if !boardState.authorMode {
-                            Button {
-                                
-                            } label: {
-                                NavigationLink(destination: Author()) { Text( LocalizedStringKey("Author"))
+                    if authoringAllowed {
+                        ToolbarItem(placement: .primaryAction) {
+                            if !boardState.authorMode {
+                                Button {
+                                    
+                                } label: {
+                                    NavigationLink(destination: Author()) { Text( LocalizedStringKey("Author"))
+                                    }
                                 }
-                            }
-                        } else {
-                            Button( LocalizedStringKey("Done")) {
-                                print("Done button tapped!")
-                                self.boardState.authorMode.toggle()
+                            } else {
+                                Button( LocalizedStringKey("Done")) {
+                                    print("Done button tapped!")
+                                    self.boardState.authorMode.toggle()
+                                }
                             }
                         }
                     }
