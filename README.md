@@ -27,7 +27,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- HIPAA compliant security|x|x|x|x|done|
 |- [Require Password to Make Content Changes](#_require_password_to)|x|x|x|x|done|
 |- [Login using ](#_login_using_touch)biometric identification|x||||done|
-|- [Show/Hide Author Login in User Interface](#_show/hide_author_login)|x|x|||TBD|
+|- [Show/Hide Author Login in User Interface](#_show/hide_author_login)|x|x|||done|
 |[Display Options](#_display_options)|||||
 |- [Display Content as 2 Dimensional Grids, or as a 1-Dimensional List](#_display_content_as) (high functioning adults sometimes prefer the list-style)|x|grid|grid|grid|done|
 |<p>- [Optionally display global commands](#_optionally_display_global) (for high functioning users)</p><p>&emsp;- Home</p><p>&emsp;- Back</p><p>&emsp;- Type Words - free form typing </p><p>&emsp;- Sync</p><p>&emsp;- Settings</p><p>&emsp;- Most Viewed - display a board of cells that are used most often)</p><p>&emsp;- Recents - display a board of cells that are the most recently used cells)</p><p>&emsp;- Wizard – shows likely next cells, based on previous cell selections</p>|x|x<br>(except for Wizard)|||TBD|
