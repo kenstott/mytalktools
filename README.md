@@ -19,7 +19,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |[Device Management](#_device_management)||||||
 |- Operating Systems/Browsers|iPad, iPad Pro, iPhone|Android 4+|Edge, Chrome, FF, Safari|Chrome, FF, Safari||
 |- [Synchronize Settings Across Devices with iCloud](#_synchronize_settings_across) (e.g. username, password, maximum rows, etc.)|x||||TBD|
-|- [Keep media content in device photo library](#_keep_media_content) (creates a local backup of related media on device)|x|x|||TBD|
+|- [Keep media content in device photo library](#_keep_media_content) (creates a local backup of related media on device)|x|x|||feature removed. All files are available in the File application|
 |- [Turn off screen rotation](#_turn_off_screen) (and stay in portrait or landscape always)|x||||done|
 |- [Spotlight searches include MyTalkTools content](#_spotlight_searches_include)|x||||done|
 |- Turn on “pinch gesture” setting. With pinch you can zoom in/out to cells. When zoomed in you can swipe right/left to pan. Good when trying to using large boards on smaller devices. Can also be applied for certain assessment scenarios.|x||||TBD|
