@@ -85,7 +85,7 @@ struct ContentView: View {
         content.save();
         self.content = content
         showEditCellActionSheet = false
-        let _ = board.setId(board.id)
+        let _ = board.setId(board.id, nil)
     }
     
     func cancel() {

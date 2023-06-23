@@ -2,6 +2,8 @@ import Foundation
 import AVFAudio
 import SwiftUI
 import FMDB
+import CoreSpotlight
+import MobileCoreServices
 
 enum ContentType: Int, CaseIterable, Identifiable {
     var id: Self { self }
@@ -489,6 +491,24 @@ class Content: Identifiable, Hashable, ObservableObject {
         }
         s?.close()
         return result
+    }
+    
+    func addToSpotlightSearch(username: String) {
+        DispatchQueue.global (qos:.userInitiated).async {
+            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+            attributeSet.value(forCustomKey: CSCustomAttributeKey(keyName: "com_mytalk_mytalktools_tts", searchable: true, searchableByDefault: true, unique: false, multiValued: true)!)
+            attributeSet.title = self.name
+            attributeSet.contentDescription = "\(self.ttsSpeech)\n\(self.alternateTTS)"
+            attributeSet.thumbnailData = Media.getImage(self.imageURL).jpegData(compressionQuality: 1)
+            let item = CSSearchableItem(uniqueIdentifier: "\(username):\(self.id)", domainIdentifier: "MyTalk.\(username)", attributeSet: attributeSet)
+            CSSearchableIndex.default().indexSearchableItems([item]) { error in
+                if let error = error {
+                    print("Error indexing item: \(error.localizedDescription)")
+                } else {
+                    print("Item indexed!")
+                }
+            }
+        }
     }
     
     func setId(_ id: Int) -> Content {

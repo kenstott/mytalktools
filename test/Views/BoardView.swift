@@ -89,7 +89,7 @@ struct BoardView: View {
                 ProgressView("Downloading your communication board...").onAppear {
                     Task {
                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                        _ = board.setId(id)
+                        _ = board.setId(id, storedUsername)
                         Task {
                             regionMonitor.startMonitor()
                         }
@@ -208,7 +208,7 @@ struct BoardView: View {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                     showUserHelp = !boardState.authorMode && userHints
                     
-                    _ = board.setId(id)
+                    _ = board.setId(id, storedUsername)
                     Task {
                         regionMonitor.startMonitor()
                     }
@@ -262,7 +262,7 @@ struct BoardView: View {
                                 boardState.undo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id)
+                                    _ = board.setId(id, storedUsername)
                                 }
                                 print("Undo")
                             } label: {
@@ -272,7 +272,7 @@ struct BoardView: View {
                                 boardState.redo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id)
+                                    _ = board.setId(id, storedUsername)
                                 }
                                 print("Redo")
                             } label: {

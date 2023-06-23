@@ -168,7 +168,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         columns = 0
     }
     
-    func setId(_ id: UInt) -> Board {
+    func setId(_ id: UInt, _ username: String?) -> Board {
         self.id = id;
         self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
         if self.columns > 0 {
@@ -179,6 +179,11 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             self.sort = getSort(id: id)
             calcCellSizes()
             sortContent()
+            if username != nil && username != "" {
+                for content in self.contents {
+                    content.addToSpotlightSearch(username: username!)
+                }
+            }
 //            self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
         } else {
             Task {
@@ -210,8 +215,12 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                                 currentRow += 1
                                 currentColumn = 1
                             }
+                            if username != nil {
+                                content.addToSpotlightSearch(username: username!)
+                            }
                             return content
                         } ?? []
+                        
                         self.calcCellSizes()
                         self.sortContent()
 //                        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
@@ -407,7 +416,7 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         s?.close()
         boardId += 1
         BoardState.db?.executeUpdate("insert into board (iphone_board_id,board_name,board_rows,board_clms,create_date,update_date,user_id, web_board_id,sort1,sort2,sort3) values(?,?,?,?,current_timestamp,current_timestamp,?, 0,0,0,0)", withArgumentsIn: [boardId, name, rows, columns, userId])
-        let b = Board().setId(UInt(boardId))
+        let b = Board().setId(UInt(boardId), nil)
         return b;
     }
     
