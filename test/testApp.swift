@@ -16,9 +16,24 @@ var appDefaults = [
     "MaximumRows": 3
 ] as [String : Any]
 
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    @AppStorage("DefaultRotation") var defaultRotation = "0"
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        print(defaultRotation)
+        switch defaultRotation {
+        case "1": return .portrait
+        case "2": return .landscape
+        default: return .all
+        }
+    }
+}
 
 @main
 struct testApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @StateObject private var boardState = BoardState();
     @ObservedObject var appState = AppState()

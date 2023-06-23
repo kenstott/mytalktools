@@ -52,7 +52,7 @@ struct TypePhrase: View {
         history.append(phrase)
         historyState = jsonEncode(from: history) ?? "[]"
         if phraseMode == "1" {
-            var content = Content()
+            let content = Content()
             content.name = phrase
             phraseBarState.contents.append(content)
         } else {
