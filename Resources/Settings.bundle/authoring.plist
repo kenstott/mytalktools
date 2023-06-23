@@ -76,20 +76,6 @@
 			<key>FalseValue</key>
 			<false/>
 			<key>Key</key>
-			<string>SaveToPhotoAlbum</string>
-			<key>Title</key>
-			<string>Save Images To Photo Album</string>
-			<key>TrueValue</key>
-			<true/>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>FalseValue</key>
-			<false/>
-			<key>Key</key>
 			<string>AppleiCloudSyncSettings</string>
 			<key>Title</key>
 			<string>iCloud Sync Account Settings</string>

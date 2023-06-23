@@ -10,6 +10,7 @@ import FMDB
 import AlertToast
 import AVFAudio
 import Contacts
+import CoreSpotlight
 
 struct BoardView: View {
     
@@ -55,6 +56,8 @@ struct BoardView: View {
     @State private var showContacts = false
     @State private var enteredRegion: UInt = 0
     @State private var showLocationBasedBoard = false
+    @State private var showSpotlightSearchBoard = false
+    @State private var spotlightSearchBoard: UInt = 0
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -203,6 +206,10 @@ struct BoardView: View {
                     NavigationView {
                         BoardView(enteredRegion, geometry: geometry)
                     }
+                }.sheet(isPresented: $showSpotlightSearchBoard) {
+                    NavigationView {
+                        BoardView(spotlightSearchBoard, geometry: geometry)
+                    }
                 }
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
@@ -350,13 +357,31 @@ struct BoardView: View {
                 showLocationBasedBoard = true
             }
         }
+        .onContinueUserActivity(CSSearchableItemActionType) { userActivity in
+                            if let identifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                                let items = identifier.split(separator: ":")
+                                if items.count == 2 && items[0] == storedUsername {
+                                    let c = Content().setId(Int(items[1]) ?? 0)
+                                    spotlightSearchBoard = UInt(c.boardId)
+                                    showSpotlightSearchBoard = true
+                                }
+                            }
+                        }
         .onOpenURL { url in
             print(url)
-            let command = url.absoluteString.replacingOccurrences(of: "mytalktools:/", with: "").replacingOccurrences(of: "mtt:/", with: "");
-            switch(command) {
-            case "contacts:/":
-                fallthrough
-            case "contacts://":
+            let command = url.absoluteString
+                .replacingOccurrences(of: "mytalktools://", with: "")
+                .replacingOccurrences(of: "mytalktools:/", with: "")
+                .replacingOccurrences(of: "mtt://", with: "")
+                .replacingOccurrences(of: "mtt:/", with: "")
+                .split(separator: "/")
+            switch(command[0]) {
+            case "board":
+                if command.count == 2 {
+                    spotlightSearchBoard = UInt(command[1]) ?? 0
+                    showSpotlightSearchBoard = true
+                }
+            case "contacts:":
                 showContacts = true
             case "home": appState.rootViewId = UUID()
             case "back": dismiss()

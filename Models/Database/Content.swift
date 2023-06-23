@@ -494,13 +494,13 @@ class Content: Identifiable, Hashable, ObservableObject {
     }
     
     func addToSpotlightSearch(username: String) {
-        DispatchQueue.global (qos:.userInitiated).async {
+        DispatchQueue.global (qos:.userInitiated).async { [self] in
             let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
             attributeSet.value(forCustomKey: CSCustomAttributeKey(keyName: "com_mytalk_mytalktools_tts", searchable: true, searchableByDefault: true, unique: false, multiValued: true)!)
-            attributeSet.title = self.name
-            attributeSet.contentDescription = "\(self.ttsSpeech)\n\(self.alternateTTS)"
+            attributeSet.title = name
+            attributeSet.contentDescription = "\(ttsSpeech)\n\(alternateTTS)"
             attributeSet.thumbnailData = Media.getImage(self.imageURL).jpegData(compressionQuality: 1)
-            let item = CSSearchableItem(uniqueIdentifier: "\(username):\(self.id)", domainIdentifier: "MyTalk.\(username)", attributeSet: attributeSet)
+            let item = CSSearchableItem(uniqueIdentifier: "\(username):\(id)", domainIdentifier: "MyTalk.\(username)", attributeSet: attributeSet)
             CSSearchableIndex.default().indexSearchableItems([item]) { error in
                 if let error = error {
                     print("Error indexing item: \(error.localizedDescription)")

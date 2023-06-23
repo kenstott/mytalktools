@@ -85,7 +85,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string>Icon-Small-50</string>
 			<key>CFBundleURLName</key>
-			<string>com.mytalktools.mobile</string>
+			<string>com.mytalk.mytalktools.test</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>mtt</string>
