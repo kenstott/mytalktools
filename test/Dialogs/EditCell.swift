@@ -122,6 +122,8 @@ struct EditCell: View {
     @State private var newRows = 3
     @State private var newColumns = 3
     @State private var showLocationPicker = false
+    @State private var showScheduler = false
+    @State private var scheduleCommand = ""
     
     private var save: ((Content) -> Void)? = nil
     private var cancel:  (() -> Void)? = nil
@@ -158,6 +160,9 @@ struct EditCell: View {
         self.alternateTTSVoice = content.alternateTTSVoice
         self.alternateTTS = content.alternateTTS
         self.externalUrl = content.externalUrl
+        if content.externalUrl.starts(with: "mtschedule") {
+            self.scheduleCommand = content.externalUrl
+        }
         self.boardId = content.boardId
         switch (content.contentType) {
         case .goBack: contentType = .goBack
@@ -404,6 +409,14 @@ struct EditCell: View {
                                     }
                                     Spacer()
                                     Button {
+                                        print("Schedule")
+                                        showScheduler = true
+                                    } label: {
+                                        
+                                        Label(LocalizedStringKey("Schedule"), systemImage: "clock").labelStyle(.iconOnly)
+                                    }
+                                    Spacer()
+                                    Button {
                                         print("Share")
                                     } label: {
                                         
@@ -590,7 +603,7 @@ struct EditCell: View {
                                     DispatchQueue.global (qos:.userInitiated).async {
                                         let data = try? Data(contentsOf: url!)
                                         DispatchQueue.main.async {
-                                        if let imageData = data {
+                                            if let imageData = data {
                                                 image = UIImage(data: imageData)!
                                                 let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
                                                 let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
@@ -613,6 +626,14 @@ struct EditCell: View {
                             print(imageUrl)
                         }
                     }
+                }
+            }
+            .onChange(of: scheduleCommand) {
+                newValue in
+                if newValue != "" {
+                    externalUrl = scheduleCommand
+                } else if externalUrl.starts(with: "mtschedule") {
+                    scheduleCommand = externalUrl
                 }
             }
             .onChange(of: alternateTTSVoice) {
@@ -759,6 +780,11 @@ struct EditCell: View {
             .sheet(isPresented: $showLocationPicker) {
                 NavigationView {
                     FindLocation(urlResult: $externalUrl)
+                }
+            }
+            .sheet(isPresented: $showScheduler) {
+                NavigationView {
+                    Schedule(urlResult: $scheduleCommand)
                 }
             }
             .sheet(isPresented: $showNewSimpleBoard) {
