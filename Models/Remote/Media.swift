@@ -246,7 +246,6 @@ class Media: ObservableObject {
         let u = truncateFileURL(url)
         let parts = u.split(separator: "/")
         let name = String(parts[0])
-        print(name)
         let mediaDirectory = documentsURL!.appendingPathComponent(name)
         let media = documentsURL!.appendingPathComponent(u)
         if !fileManager.fileExists(atPath: media.path) {
@@ -282,7 +281,6 @@ class Media: ObservableObject {
         resetCounters(directoryList)
         
         for d in directoryList {
-            print(d.Name)
             let mediaDirectory = documentsURL!.appendingPathComponent(d.Name)
             var isDirectory: ObjCBool = false
             if !fileManager.fileExists(atPath: mediaDirectory.path, isDirectory: &isDirectory) {

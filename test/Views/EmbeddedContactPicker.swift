@@ -25,7 +25,7 @@ struct EmbeddedContactPicker: UIViewControllerRepresentable {
         }
         
         func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController) {
-            print("canceled")
+//            print("canceled")
             self.parent.dismiss()
         }
     }

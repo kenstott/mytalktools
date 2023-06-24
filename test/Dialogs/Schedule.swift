@@ -175,7 +175,7 @@ struct Schedule: View {
                 }
             }
             .onAppear {
-                print("form appeared")
+//                print("form appeared")
                 initSchedule()
             }
         }
@@ -197,8 +197,8 @@ struct Schedule: View {
             ToolbarItem {
                 Button {
                     urlResult = setUrl()
-                    print("result=\(setUrl())")
-                    print("result=\(urlResult)")
+//                    print("result=\(setUrl())")
+//                    print("result=\(urlResult)")
                     dismiss()
                 } label: {
                     Text("Save")
@@ -214,7 +214,7 @@ struct Schedule_Previews: PreviewProvider {
         NavigationView {
             Schedule(urlResult: $x).onChange(of: x) {
                 newValue in
-                print("x=\(x)")
+//                print("x=\(x)")
             }
         }
     }

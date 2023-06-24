@@ -208,7 +208,7 @@ struct EditCell: View {
                                 HStack {
                                     VStack(alignment :.leading, spacing: 10) {
                                         Button {
-                                            print(imageUrl != "" ? "Swap" : "Add")
+//                                            print(imageUrl != "" ? "Swap" : "Add")
                                             showIntegrationIdeas = true
                                             activeSheet = .Image
                                         } label: {
@@ -216,7 +216,7 @@ struct EditCell: View {
                                         }
                                         if imageUrl != "" {
                                             Button {
-                                                print("Crop")
+//                                                print("Crop")
                                                 showCropTool = true
                                                 
                                             } label: {
@@ -224,12 +224,12 @@ struct EditCell: View {
                                             }
                                             Button(role: .destructive) {
                                                 imageUrl = ""
-                                                print("Delete")
+//                                                print("Delete")
                                             } label: {
                                                 Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                             }
                                             Button {
-                                                print("Rotate")
+//                                                print("Rotate")
                                                 image = image.rotate(radians: 1.57079633)!
                                                 if let data = image.pngData() {
                                                     var (_, filename, _) = Media.splitFileName(str: imageUrl)
@@ -254,7 +254,7 @@ struct EditCell: View {
                                                 Label(LocalizedStringKey("Rotate"), systemImage: "rotate.right").labelStyle(.iconOnly)
                                             }
                                             Button {
-                                                print("Share")
+//                                                print("Share")
                                                 let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                                                     .first?.appendingPathComponent(imageUrl)
                                                 guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
@@ -299,7 +299,7 @@ struct EditCell: View {
                             Section {
                                 HStack {
                                     Button {
-                                        print(soundUrl != "" ? "Swap" : "Add")
+//                                        print(soundUrl != "" ? "Swap" : "Add")
                                         showIntegrationIdeas = true
                                         activeSheet = .Sound
                                     } label: {
@@ -308,7 +308,7 @@ struct EditCell: View {
                                     Spacer()
                                     if soundUrl != "" {
                                         Button(role: .destructive) {
-                                            print("Delete")
+//                                            print("Delete")
                                             soundUrl = ""
                                         } label: {
                                             Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
@@ -337,7 +337,7 @@ struct EditCell: View {
                             Section {
                                 HStack {
                                     Button {
-                                        print(soundUrl != "" ? "Swap" : "Add")
+//                                        print(soundUrl != "" ? "Swap" : "Add")
                                         showIntegrationIdeas = true
                                         activeSheet = .Video
                                     } label: {
@@ -346,7 +346,7 @@ struct EditCell: View {
                                     Spacer()
                                     if soundUrl != "" {
                                         Button(role: .destructive) {
-                                            print("Delete")
+//                                            print("Delete")
                                             soundUrl = ""
                                         } label: {
                                             Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
@@ -384,7 +384,7 @@ struct EditCell: View {
                             }
                             HStack {
                                 Button {
-                                    print(childBoard > 0 ? "Swap" : "Add")
+//                                    print(childBoard > 0 ? "Swap" : "Add")
                                     showIntegrationIdeas = true
                                     activeSheet = .ChildBoard
                                 } label: {
@@ -393,7 +393,7 @@ struct EditCell: View {
                                 Spacer()
                                 if childBoard > 0 {
                                     Button(role: .destructive) {
-                                        print("Delete")
+//                                        print("Delete")
                                         childBoardId = 0
                                         childBoardLink = 0
                                     } label: {
@@ -401,7 +401,7 @@ struct EditCell: View {
                                     }
                                     Spacer()
                                     Button {
-                                        print("Location")
+//                                        print("Location")
                                         showLocationPicker = true
                                     } label: {
                                         
@@ -409,7 +409,7 @@ struct EditCell: View {
                                     }
                                     Spacer()
                                     Button {
-                                        print("Schedule")
+//                                        print("Schedule")
                                         showScheduler = true
                                     } label: {
                                         
@@ -526,7 +526,7 @@ struct EditCell: View {
                             HStack {
                                 TextField(LocalizedStringKey("Tap + for ideas"), text: $externalUrl)
                                 Button {
-                                    print("show ideas")
+//                                    print("show ideas")
                                     activeSheet = .Main
                                     showIntegrationIdeas = true
                                 } label: {
@@ -570,7 +570,7 @@ struct EditCell: View {
             .onChange(of: cameraURL) {
                 newValue in
                 if URL(string: newValue)?.containsVideo == true || URL(string: newValue)?.containsMovie == true  {
-                    print("!")
+//                    print("!")
                 } else if URL(string: newValue)?.containsAudio == true {
                     Task {
                         if (cameraURL.starts(with: "http")) {
@@ -581,7 +581,7 @@ struct EditCell: View {
                             let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext!)
                             FileManager.default.createFile(atPath: fileURL.path, contents: try Data(contentsOf: URL(string: cameraURL)!))
                             soundUrl = Media.truncateLocalURL(fileURL)
-                            print(soundUrl)
+//                            print(soundUrl)
                         }
                     }
                 } else {
@@ -610,7 +610,7 @@ struct EditCell: View {
                                                 let pngImageData = scaledImage!.pngData()
                                                 FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
                                                 imageUrl = Media.truncateLocalURL(fileURL)
-                                                print(imageUrl)
+//                                                print(imageUrl)
                                             }
                                         }
                                     }
@@ -623,7 +623,7 @@ struct EditCell: View {
                             let pngImageData = scaledImage!.pngData()
                             FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
                             imageUrl = Media.truncateLocalURL(fileURL)
-                            print(imageUrl)
+//                            print(imageUrl)
                         }
                     }
                 }
@@ -658,7 +658,7 @@ struct EditCell: View {
                 if positive {
                     negate = false
                 }
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: negate) {
                 newValue in
@@ -666,7 +666,7 @@ struct EditCell: View {
                 if negate {
                     positive = false
                 }
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: isOpaque) {
                 newValue in
@@ -676,75 +676,75 @@ struct EditCell: View {
             .onChange(of: hidden) {
                 newValue in
                 editedContent.setHidden(value: newValue)
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: doNotAddToPhraseBar) {
                 newValue in
                 editedContent.doNotAddToPhraseBar = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: zoom) {
                 newValue in
                 editedContent.zoom = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: doNotZoomPics) {
                 newValue in
                 editedContent.doNotZoomPics = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: foregroundColor) {
                 newValue in
                 editedContent.setColor(value: newValue)
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: backgroundColor) {
                 newValue in
                 editedContent.setBackgroundColor(value: newValue)
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: fontSize) {
                 newValue in
                 editedContent.fontSize = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: contentType) {
                 newValue in
                 editedContent.contentType = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: childBoardId) {
                 newValue in
                 editedContent.childBoardId = newValue
                 editedContent.childBoardLink = 0
                 childBoard = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: childBoardLink) {
                 newValue in
                 editedContent.childBoardLink = newValue
                 editedContent.childBoardId = 0
                 childBoard = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: name) {
                 newValue in
                 editedContent.name = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: imageUrl) {
                 newValue in
                 editedContent.imageURL = newValue
-                print(newValue)
+//                print(newValue)
             }
             .onChange(of: image) {
                 newValue in
-                print("Image changed")
+//                print("Image changed")
             }
             .onChange(of: soundUrl) {
                 newValue in
                 editedContent.soundURL = newValue
-                print(newValue)
+//                print(newValue)
             }
             .sheet(isPresented: $showContactPicker) {
                 EmbeddedContactPicker(contact: $contact, predicate: NSPredicate(format: "imageDataAvailable == %@", argumentArray: [true]))
@@ -976,11 +976,11 @@ struct EditCell: View {
                 DispatchQueue.main.async {
                     showIntegrationIdeas = true
                 }
-                print("Save")
+//                print("Save")
             }
             func cancel() {
                 showEmail = false
-                print("Cancel")
+//                print("Cancel")
             }
             return Email(save: save, cancel: cancel)
         }
@@ -1190,7 +1190,7 @@ struct EditCell: View {
                             do {
                                 let words = try await WordVariants().findWordVariants(word)
                                 childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0).id
-                                print(words!)
+//                                print(words!)
                             } catch let error {
                                 print(error.localizedDescription)
                             }
@@ -1202,7 +1202,7 @@ struct EditCell: View {
                             do {
                                 let words = try await WordVariants().findWordVariantsWithDefinitions(word)
                                 childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0, colorKey: colorKey).id
-                                print(words!)
+//                                print(words!)
                             } catch let error {
                                 print(error.localizedDescription)
                             }

@@ -36,7 +36,7 @@ struct CropTool: View {
                         let temp = try TemporaryFile(creatingTempDirectoryForFilename: "crop.png")
                         FileManager.default.createFile(atPath: temp.fileURL.path, contents: image.pngData())
                         outUrl = temp.fileURL.path
-                        print(outUrl)
+//                        print(outUrl)
                         dismiss()
                     } catch let error {
                         print(error.localizedDescription)

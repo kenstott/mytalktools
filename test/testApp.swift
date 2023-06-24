@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @AppStorage("DefaultRotation") var defaultRotation = "0"
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        print(defaultRotation)
+//        print(defaultRotation)
         switch defaultRotation {
         case "1": return .portrait
         case "2": return .landscape

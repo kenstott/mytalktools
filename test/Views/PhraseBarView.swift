@@ -97,7 +97,7 @@ struct PhraseBarView: View {
                 }
             }
             Button {
-                print("play")
+//                print("play")
                 phraseBarState.speakPhrases()
             } label: {
                 Image(systemName: "play.fill")
@@ -109,7 +109,7 @@ struct PhraseBarView: View {
         .frame(minHeight: 100)
         .border(Color.gray)
         .onReceive(speak.$speaking) { speaking in
-            print(speaking)
+//            print(speaking)
         }
         .onAppear {
             phraseBarState.animate = animate

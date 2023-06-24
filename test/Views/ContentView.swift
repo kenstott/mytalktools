@@ -80,7 +80,7 @@ struct ContentView: View {
     }
     
     func save(content: Content) {
-        print("Save")
+//        print("Save")
         boardState.createUndoSlot();
         content.save();
         self.content = content
@@ -89,7 +89,7 @@ struct ContentView: View {
     }
     
     func cancel() {
-        print("Cancel")
+//        print("Cancel")
         showEditCellActionSheet = false
     }
     
@@ -108,7 +108,7 @@ struct ContentView: View {
                 }
             } else {
                 content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
-                    print("done")
+//                    print("done")
                 }
                 if content.boardId == -1 && content.linkId != 0 {
                     self.linkID = content.linkId
@@ -177,7 +177,7 @@ struct ContentView: View {
                         return item
                     }
                     .onTapGesture {
-                        print("Show edit menu")
+//                        print("Show edit menu")
                         showEditActionSheet = false
                         DispatchQueue.main.async {
                             actionSheetType = .top
@@ -214,7 +214,10 @@ struct ContentView: View {
             case .top:
                 let repeatButton: [ActionSheet.Button] = [.default(Text("Repeat"), action: {})]
                 var buttons: [ActionSheet.Button] = [
-                    .cancel { print("cancel") },
+                    .cancel {
+//                        print("cancel")
+                        
+                    },
                     .default(Text("Edit Cell-\(content.name)"), action: {
                         showEditActionSheet = false
                         showEditCellActionSheet = true

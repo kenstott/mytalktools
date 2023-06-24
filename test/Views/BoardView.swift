@@ -233,7 +233,7 @@ struct BoardView: View {
                                 }
                             } else {
                                 Button( LocalizedStringKey("Done")) {
-                                    print("Done button tapped!")
+//                                    print("Done button tapped!")
                                     self.boardState.authorMode.toggle()
                                 }
                             }
@@ -242,7 +242,7 @@ struct BoardView: View {
                     ToolbarItem(placement: .automatic) {
                         if (volumeButton) {
                             Button {
-                                print("Volume")
+//                                print("Volume")
                                 showVolume.toggle()
                             } label: {
                                 Label(LocalizedStringKey("Volume"), systemImage: volume.volumeIcon)
@@ -271,7 +271,7 @@ struct BoardView: View {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                                     _ = board.setId(id, storedUsername)
                                 }
-                                print("Undo")
+//                                print("Undo")
                             } label: {
                                 Label(LocalizedStringKey("Undo"), systemImage: "arrow.uturn.backward")
                             }.disabled(!boardState.undoable || !boardState.editMode)
@@ -281,13 +281,13 @@ struct BoardView: View {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                                     _ = board.setId(id, storedUsername)
                                 }
-                                print("Redo")
+//                                print("Redo")
                             } label: {
                                 Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
                             }.disabled(!boardState.redoable || !boardState.editMode)
                             Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
-                                print("Sync")
+//                                print("Sync")
                                 showSync = true
                             } label: {
                                 Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
@@ -295,20 +295,20 @@ struct BoardView: View {
                             
                         } else if (advancedUseBar) {
                             Button {
-                                print("Home")
+//                                print("Home")
                                 appState.rootViewId = UUID()
                             } label: {
                                 Label(LocalizedStringKey("Home"), systemImage: "house")
                             }
                             Button {
-                                print("Back")
+//                                print("Back")
                                 dismiss()
                             } label: {
                                 Label(LocalizedStringKey("Back"), systemImage: "arrowshape.turn.up.backward")
                             }
                             if userBarSettings {
                                 Button {
-                                    print("Settings")
+//                                    print("Settings")
                                     if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                                         UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                                     }
@@ -318,7 +318,7 @@ struct BoardView: View {
                             }
                             if userBarSync {
                                 Button {
-                                    print("Sync")
+//                                    print("Sync")
                                     showSync = true
                                 } label: {
                                     Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
@@ -352,7 +352,7 @@ struct BoardView: View {
             }
         }
         .onChange(of: enteredRegion) { newValue in
-            print(newValue)
+//            print(newValue)
             if enteredRegion != 0 {
                 showLocationBasedBoard = true
             }
@@ -368,7 +368,7 @@ struct BoardView: View {
                             }
                         }
         .onOpenURL { url in
-            print(url)
+//            print(url)
             let command = url.absoluteString
                 .replacingOccurrences(of: "mytalktools://", with: "")
                 .replacingOccurrences(of: "mytalktools:/", with: "")

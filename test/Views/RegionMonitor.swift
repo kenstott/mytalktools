@@ -42,11 +42,11 @@ struct RegionMonitor: UIViewControllerRepresentable {
         }
         
         func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-            print("Entered region with identifier: \(region.identifier)")
+//            print("Entered region with identifier: \(region.identifier)")
             self.parent.enteredRegion = UInt(region.identifier) ?? 0
         }
         func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-            print("Exited region with identifier: \(region.identifier)")
+//            print("Exited region with identifier: \(region.identifier)")
             self.parent.enteredRegion = 0
         }
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -505,7 +505,7 @@ class Content: Identifiable, Hashable, ObservableObject {
                 if let error = error {
                     print("Error indexing item: \(error.localizedDescription)")
                 } else {
-                    print("Item indexed!")
+//                    print("Item indexed!")
                 }
             }
         }

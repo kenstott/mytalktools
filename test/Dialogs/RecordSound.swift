@@ -48,7 +48,7 @@ struct RecordSound: View {
                 Spacer()
                 HStack {
                     Button {
-                        print("Record")
+//                        print("Record")
                         runCount = Date().timeIntervalSince1970
                         audioState = .recording
                         recorder?.record()
@@ -57,7 +57,7 @@ struct RecordSound: View {
                         Label(LocalizedStringKey("Record"), systemImage: "record.circle").foregroundColor(.red)
                     }.disabled(audioState == .playing || audioState == .recording || speak.speaking == true)
                     Button {
-                        print("Play")
+//                        print("Play")
                         runCount = Date().timeIntervalSince1970
                         audioState = .playing
                         do {
@@ -73,7 +73,7 @@ struct RecordSound: View {
                         Label(LocalizedStringKey("Play"), systemImage: "play.circle")
                     }.disabled(audioState == .recording || audioState == .initial || audioState == .playing)
                     Button {
-                        print("Stop")
+//                        print("Stop")
                         audioState = .stopped
                         recorder?.stop()
                         speak.stop()

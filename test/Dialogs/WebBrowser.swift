@@ -77,7 +77,7 @@ struct WebBrowser: View {
                             let temp = try TemporaryFile(creatingTempDirectoryForFilename: "web-page.png")
                             FileManager.default.createFile(atPath: temp.fileURL.path, contents: image.pngData())
                             imageUrl = temp.fileURL.path
-                            print(imageUrl)
+//                            print(imageUrl)
                             dismiss()
                         } catch let error {
                             print(error.localizedDescription)

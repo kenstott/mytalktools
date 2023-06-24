@@ -108,7 +108,7 @@ struct LibraryDialog: View {
     
     var body: some View {
         Button {
-            print("Library")
+//            print("Library")
         } label: {
             NavigationLink(destination: LibraryDialogTable(title: "Manage Libraries", filter: .all, selectedURL: .constant(""))) { Label(LocalizedStringKey("Library"), systemImage: "building.columns") }
         }

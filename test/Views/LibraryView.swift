@@ -94,7 +94,6 @@ struct LibraryView: View {
                                     .toolbar {
                                         ToolbarItem {
                                             Button {
-                                                print("Select")
                                                 selectedURL = row.MediaUrl!
                                                 done()
                                             } label: {
@@ -116,7 +115,6 @@ struct LibraryView: View {
                                 .toolbar {
                                     ToolbarItem {
                                         Button {
-                                            print("Select")
                                             selectedURL = row.MediaUrl!
                                             done()
                                         } label: {

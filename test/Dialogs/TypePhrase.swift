@@ -57,7 +57,7 @@ struct TypePhrase: View {
             phraseBarState.contents.append(content)
         } else {
             speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
-                print("Completed")
+//                print("Completed")
             }
             var alternate: Bool? = false
             speak.utter(phrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
@@ -86,7 +86,7 @@ struct TypePhrase: View {
                                         .controlSize(.small)
                                     Spacer()
                                     Button {
-                                        print("Speak")
+//                                        print("Speak")
                                         speakPhrase()
                                     } label: {
                                         Label(LocalizedStringKey("Speak"), systemImage: "bubble.right")
@@ -112,7 +112,7 @@ struct TypePhrase: View {
                                         .controlSize(.small)
                                     Spacer()
                                     Button {
-                                        print("Previous")
+//                                        print("Previous")
                                         if (history.count == 0) {
                                             history = jsonDecode(from: historyState)
                                         }
@@ -134,7 +134,7 @@ struct TypePhrase: View {
                                     }.buttonStyle(.bordered)
                                         .controlSize(.small)
                                     Button {
-                                        print("Next")
+//                                        print("Next")
                                         if (history.count == 0) {
                                             history = jsonDecode(from: historyState)
                                         }

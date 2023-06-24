@@ -62,7 +62,7 @@ struct Author: View {
         Task {
             do {
                 let result = try await isValidUser.execute(params: UserValidationInput(username: username, password: password))
-                print(result!.d)
+//                print(result!.d)
                 if (result!.result == .Validated) {
                     let profile = await userState.getProfile(username)
                     if (((profile?.Roles.contains("Professional"))) ?? false == true ) {
@@ -135,7 +135,7 @@ struct Author: View {
                         SecureField("Password", text: $password).autocorrectionDisabled().autocapitalization(.none)
                         if showBoardName || storedBoardName != "" {
                             Picker("Board Name", selection: Binding(get: { boardName != "" ? boardName : storedBoardName }, set: { selectedItem in
-                                print(selectedItem)
+//                                print(selectedItem)
                                 boardName = selectedItem
                             })) {
                                 Text(boardName != "" ? boardName : storedBoardName).tag(boardName != "" ? boardName : storedBoardName)

@@ -57,7 +57,7 @@ struct FindLocation: View {
                     if let error = error {
                         print(error.localizedDescription)
                     } else if let placemark = placemarks?.first {
-                        print(placemark)
+//                        print(placemark)
                         address = "\(placemark.subThoroughfare ?? "") \(placemark.thoroughfare ?? ""), \(placemark.locality ?? ""), \(placemark.administrativeArea ?? "") \(placemark.postalCode ?? ""), \(placemark.country ?? "")"
                     }
                 }
@@ -134,7 +134,7 @@ struct FindLocation: View {
             ToolbarItem {
                 Button {
                     urlResult = "mtgeo2:/\(region.center.latitude)/\(region.center.longitude)/\(region.span.latitudeDelta)/\(region.span.longitudeDelta)"
-                    print(urlResult)
+//                    print(urlResult)
                     dismiss()
                 } label: {
                     Text("Save")

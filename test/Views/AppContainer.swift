@@ -39,7 +39,7 @@ struct AppContainer: View {
                 .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
                     guard let scene = UIApplication.shared.windows.first?.windowScene else { return }
                     globalState.isPortrait = scene.interfaceOrientation.isPortrait
-                    print("Is portrait: \(globalState.isPortrait)")
+//                    print("Is portrait: \(globalState.isPortrait)")
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
             }
