@@ -151,10 +151,10 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Use images submitted by other users from the submissions library](#_from_a_workspace_1)|x|x|x|x|done
 |- [Use images from Bing © image searches](#_from_your_web)|x|x|x|x|done|
 |- [Scheduling/Time-Based](#_schedules) ||||||
-|- Add a schedule to a cell with a child board. When the set time arrives, a notification will be display on the phone. Click the notification and you will be taken to the cell’s child board.|x|x|||TBD|
-|- Notifications on device – when tapped will display board on device|x|x|||TBD|
-|- Supports start date/time, supports periodicity (weekly, weekday, monthly, etc.), Supports repeat (once, forever, until)|x|x|||TBD|
-|- Notifications do not require app to be active to be triggered. |x|x|||TBD|
+|- Add a schedule to a cell with a child board. When the set time arrives, a notification will be display on the phone. Click the notification and you will be taken to the cell’s child board.|x|x|||done|
+|- Notifications on device – when tapped will display board on device|x|x|||done|
+|- Supports start date/time, supports periodicity (weekly, weekday, monthly, etc.), Supports repeat (once, forever, until)|x|x|||done|
+|- Notifications do not require app to be active to be triggered. |x|x|||done|
 |- [Locations](#_locations)||||||
 |- Add a location to a cell with a child board. When the device is within 100 meters of the location a notification will be displayed on the phone or the apple watch. Click the notification and you will be taken to the cell’s child board.|x|x|||done|
 |- Search for a location based on a location name – like “McDonald’s” or “Wendy’s”.|x|x|||TBD|

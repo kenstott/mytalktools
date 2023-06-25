@@ -21,6 +21,7 @@ struct ContentView: View {
     @EnvironmentObject var phraseBarState: PhraseBarState
     @EnvironmentObject var speak: Speak
     @EnvironmentObject var media: Media
+    @EnvironmentObject var scheduleMonitor: ScheduleMonitor
     @AppStorage("SeparatorLines") var _separatorLines = true
     @AppStorage("PhraseMode") var phraseMode = "0"
     @AppStorage("ForegroundColor") var _foregroundColor = "Black"
@@ -86,6 +87,7 @@ struct ContentView: View {
         self.content = content
         showEditCellActionSheet = false
         let _ = board.setId(board.id, nil)
+        scheduleMonitor.createSchedule()
     }
     
     func cancel() {

@@ -303,6 +303,17 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return results.filter { $0.link != 0 && $0.externalUrl.starts(with: "mtgeo") }
     }
     
+    static func getScheduleBoards() -> [Content] {
+        var results = [Content]()
+        let ss = BoardState.db?.executeQuery("select * from content where external_url LIKE 'mtschedule%'", withArgumentsIn: []) ?? FMResultSet();
+        while ss.next() {
+            results.append(Content().setId(ss.long(forColumn: "iphone_content_id")))
+        }
+        return results.filter {
+            $0.link != 0 && $0.externalUrl.starts(with: "mtschedule")
+        }
+    }
+    
     func addColumn(boardState: BoardState) {
         boardState.createUndoSlot()
         columns += 1

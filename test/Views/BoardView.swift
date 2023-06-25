@@ -21,6 +21,7 @@ struct BoardView: View {
     @EnvironmentObject var userState: User
     @EnvironmentObject var speak: Speak
     @EnvironmentObject var volume: VolumeObserver
+    @EnvironmentObject var scheduleMonitor: ScheduleMonitor
     
     let padding = 0.0
     private var id: UInt = 0
@@ -43,6 +44,7 @@ struct BoardView: View {
     @AppStorage("AuthoringAllowed") var authoringAllowed = false
     @State private var isActive = false
     @State private var activeChildBoard: UInt? = 0
+    @State private var scheduleChildBoard: UInt? = 0
     @State private var player: AVAudioPlayer?
     @State var rowsToDisplay = 0
     @State private var showSharingActionSheet = false
@@ -79,7 +81,7 @@ struct BoardView: View {
         let phraseBarView = PhraseBarView()
         let regionMonitor = RegionMonitor(enteredRegion: $enteredRegion)
         return VStack {
-            regionMonitor
+            
             if media.downloading {
                 ProgressView(value: media.fileLoadingProgress, total: 1.0)
             }
@@ -106,7 +108,17 @@ struct BoardView: View {
                     ForEach($board.contents, id: \.id) {
                         $item in
                         if $item.childBoardId.wrappedValue != 0 {
-                            NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard) { EmptyView() }
+                            NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard)
+                            {
+                                EmptyView()
+                                
+                            }
+                        }
+                    }
+                    if scheduleMonitor.boardId != 0 {
+                        NavigationLink(destination: BoardView(scheduleMonitor.boardId ?? 0, geometry: geometry), tag: scheduleMonitor.boardId ?? 0, selection: $scheduleChildBoard)
+                        {
+                            EmptyView()
                         }
                     }
                     if (displayAsList) {
@@ -202,10 +214,10 @@ struct BoardView: View {
                 }
                 .sheet(isPresented: $showContacts) {
                     EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
-                }.sheet(isPresented: $showLocationBasedBoard) {
-                    NavigationView {
-                        BoardView(enteredRegion, geometry: geometry)
-                    }
+//                }.sheet(isPresented: $showLocationBasedBoard) {
+//                    NavigationView {
+//                        BoardView(enteredRegion, geometry: geometry)
+//                    }
                 }.sheet(isPresented: $showSpotlightSearchBoard) {
                     NavigationView {
                         BoardView(spotlightSearchBoard, geometry: geometry)
@@ -216,8 +228,15 @@ struct BoardView: View {
                     showUserHelp = !boardState.authorMode && userHints
                     
                     _ = board.setId(id, storedUsername)
+                    scheduleMonitor.createSchedule()
                     Task {
                         regionMonitor.startMonitor()
+                    }
+                    let center = UNUserNotificationCenter.current()
+                    center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
                     }
                     
                 }
@@ -233,7 +252,7 @@ struct BoardView: View {
                                 }
                             } else {
                                 Button( LocalizedStringKey("Done")) {
-//                                    print("Done button tapped!")
+                                    //                                    print("Done button tapped!")
                                     self.boardState.authorMode.toggle()
                                 }
                             }
@@ -242,7 +261,7 @@ struct BoardView: View {
                     ToolbarItem(placement: .automatic) {
                         if (volumeButton) {
                             Button {
-//                                print("Volume")
+                                //                                print("Volume")
                                 showVolume.toggle()
                             } label: {
                                 Label(LocalizedStringKey("Volume"), systemImage: volume.volumeIcon)
@@ -271,7 +290,7 @@ struct BoardView: View {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                                     _ = board.setId(id, storedUsername)
                                 }
-//                                print("Undo")
+                                //                                print("Undo")
                             } label: {
                                 Label(LocalizedStringKey("Undo"), systemImage: "arrow.uturn.backward")
                             }.disabled(!boardState.undoable || !boardState.editMode)
@@ -281,13 +300,13 @@ struct BoardView: View {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
                                     _ = board.setId(id, storedUsername)
                                 }
-//                                print("Redo")
+                                //                                print("Redo")
                             } label: {
                                 Label(LocalizedStringKey("Redo"), systemImage: "arrow.uturn.forward")
                             }.disabled(!boardState.redoable || !boardState.editMode)
                             Toggle(LocalizedStringKey("Edit"), isOn: $boardState.editMode)
                             Button {
-//                                print("Sync")
+                                //                                print("Sync")
                                 showSync = true
                             } label: {
                                 Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
@@ -295,20 +314,20 @@ struct BoardView: View {
                             
                         } else if (advancedUseBar) {
                             Button {
-//                                print("Home")
+                                //                                print("Home")
                                 appState.rootViewId = UUID()
                             } label: {
                                 Label(LocalizedStringKey("Home"), systemImage: "house")
                             }
                             Button {
-//                                print("Back")
+                                //                                print("Back")
                                 dismiss()
                             } label: {
                                 Label(LocalizedStringKey("Back"), systemImage: "arrowshape.turn.up.backward")
                             }
                             if userBarSettings {
                                 Button {
-//                                    print("Settings")
+                                    //                                    print("Settings")
                                     if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                                         UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                                     }
@@ -318,7 +337,7 @@ struct BoardView: View {
                             }
                             if userBarSync {
                                 Button {
-//                                    print("Sync")
+                                    //                                    print("Sync")
                                     showSync = true
                                 } label: {
                                     Label(LocalizedStringKey("Sync"), systemImage: "arrow.triangle.2.circlepath")
@@ -349,26 +368,33 @@ struct BoardView: View {
                         }
                     }
                 }
+                regionMonitor
+            }
+        }
+        .onChange(of: scheduleMonitor.boardId) { newValue in
+            Task {
+                if newValue != 0 {
+                    scheduleChildBoard = scheduleMonitor.boardId
+                }
             }
         }
         .onChange(of: enteredRegion) { newValue in
-//            print(newValue)
             if enteredRegion != 0 {
                 showLocationBasedBoard = true
             }
         }
         .onContinueUserActivity(CSSearchableItemActionType) { userActivity in
-                            if let identifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                                let items = identifier.split(separator: ":")
-                                if items.count == 2 && items[0] == storedUsername {
-                                    let c = Content().setId(Int(items[1]) ?? 0)
-                                    spotlightSearchBoard = UInt(c.boardId)
-                                    showSpotlightSearchBoard = true
-                                }
-                            }
-                        }
+            if let identifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                let items = identifier.split(separator: ":")
+                if items.count == 2 && items[0] == storedUsername {
+                    let c = Content().setId(Int(items[1]) ?? 0)
+                    spotlightSearchBoard = UInt(c.boardId)
+                    showSpotlightSearchBoard = true
+                }
+            }
+        }
         .onOpenURL { url in
-//            print(url)
+            //            print(url)
             let command = url.absoluteString
                 .replacingOccurrences(of: "mytalktools://", with: "")
                 .replacingOccurrences(of: "mytalktools:/", with: "")

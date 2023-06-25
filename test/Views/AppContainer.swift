@@ -17,6 +17,7 @@ struct AppContainer: View {
     @EnvironmentObject var speak: Speak
     @EnvironmentObject var media: Media
     @EnvironmentObject var volume: VolumeObserver
+    @EnvironmentObject var scheduleMonitor: ScheduleMonitor
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
     init() {

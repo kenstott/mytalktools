@@ -42,11 +42,16 @@ struct RegionMonitor: UIViewControllerRepresentable {
         }
         
         func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//            print("Entered region with identifier: \(region.identifier)")
             self.parent.enteredRegion = UInt(region.identifier) ?? 0
+            let content = UNMutableNotificationContent()
+            content.title = "Entered Monitored Area"
+            content.subtitle = "There is a communication board you can use."
+            content.sound = UNNotificationSound.default
+            content.userInfo = ["boardId": UInt(region.identifier) ?? 0]
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request)
         }
         func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-//            print("Exited region with identifier: \(region.identifier)")
             self.parent.enteredRegion = 0
         }
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -84,7 +89,6 @@ class RegionMonitorController: UIViewController {
                     radius = Double.maximum(deltaMetersLatitude, deltaMetersLongitude) * 1000 * 1000
                 }
                 let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), radius: radius, identifier: "\(content.link)")
-                print(region)
                 locationManager.startMonitoring(for: region)
             }
         }
