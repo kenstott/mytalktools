@@ -30,7 +30,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Show/Hide Author Login in User Interface](#_show/hide_author_login)|x|x|||done|
 |[Display Options](#_display_options)|||||
 |- [Display Content as 2 Dimensional Grids, or as a 1-Dimensional List](#_display_content_as) (high functioning adults sometimes prefer the list-style)|x|grid|grid|grid|done|
-|<p>- [Optionally display global commands](#_optionally_display_global) (for high functioning users)</p><p>&emsp;- Home</p><p>&emsp;- Back</p><p>&emsp;- Type Words - free form typing </p><p>&emsp;- Sync</p><p>&emsp;- Settings</p><p>&emsp;- Most Viewed - display a board of cells that are used most often)</p><p>&emsp;- Recents - display a board of cells that are the most recently used cells)</p><p>&emsp;- Wizard – shows likely next cells, based on previous cell selections</p>|x|x<br>(except for Wizard)|||TBD|
+|<p>- [Optionally display global commands](#_optionally_display_global) (for high functioning users)</p><p>&emsp;- Home</p><p>&emsp;- Back</p><p>&emsp;- Type Words - free form typing </p><p>&emsp;- Sync</p><p>&emsp;- Settings</p><p>&emsp;- Most Viewed - display a board of cells that are used most often)</p><p>&emsp;- Recents - display a board of cells that are the most recently used cells)</p><p>&emsp;- Wizard – shows likely next cells, based on previous cell selections</p>|x|x<br>(except for Wizard)|||home,back,type words, recents - done, Most Viewed & Wizard - TBD|
 |- [Control spacing between grid cells](#_control_spacing_between) (margin width)|x|x|||done|
 |- [Show/Hide cell dividing lines](#_show/hide_cell_dividing)|x||||TBD|
 |- <a name="ole_link1"></a><a name="ole_link2"></a>[Show/Hide Popup User Hints](#_show/hide_popup_user)|x||||done|
@@ -39,7 +39,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Switch from white/black to black/white color schemes](#_switch_from_white/black) to support certain visual impairments|x|x|||done|
 |- Use [Goosen or Fitzgerald color coding](#_goosen_or_fitzgerald) as cell background color, or alternatively as a margin color (appears as a colored rectangle that surrounds the cell).|x|x|x|x|done|
 |- [Cells can have multiple touch areas](#_hotspots) (referred to as hotspots), you can show the hotspots explicitly, or otherwise they are implicit to user.|x|x|x|x|TBD|
-|- When tapping a cell – you can have it “[zoom](#_zoom)” (cover the entire screen), and then explicitly return, or have it go back based on a timer. For example, tapping a cell might zoom it), wait for 5 seconds, and then return the original board.|x|x|x|x|TBD|
+|- When tapping a cell – you can have it “[zoom](#_zoom)” (cover the entire screen), and then explicitly return, or have it go back based on a timer. For example, tapping a cell might zoom it), wait for 5 seconds, and then return the original board.|x|x|x|x|done|
 |- Supports split screen on iPad and iPad Pro|x|n/a|n/a|n/a|TBD|
 |- Display cells using a cards and folders metaphor (instead of a flat grid).|x||||TBD|
 |[Sharing Content & Collaborating with Parents, Family and Caregivers](#_sharing_content_&)||||||
@@ -121,7 +121,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [A cell can use other apps openUrl support to integrate with other applications](#_launch_other_applications_1). For example – you can program a cell to start a Facetime conversation.|x|x|||done|
 |- [Cells can be copied/pasted](#_copy_&_paste) to create duplicates|x|x|x|x|TBD|
 |- [Cells can be cleared](#_clear_cells) (remove text, images, etc.)|x|x|x|x|TBD|
-|- [Cells can override the device “zoom” setting – to always or never “zoom”.](#_managing_cell_properties_6)|x|x|x|x|TBD|
+|- [Cells can override the device “zoom” setting – to always or never “zoom”.](#_managing_cell_properties_6)|x|x|x|x|done|
 |- [Cells can contain a child board](#_create_a_board_2). Tapping a cell with a child board, displays the child board.|x|x|x|x|done|
 |- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|TBD|
 |- [Cell size – a cell can occupy an adjacent space. If you give a cell a size of 2 it will occupy 2 cell spaces.](#_managing_cell_properties_7)|x||||done|
