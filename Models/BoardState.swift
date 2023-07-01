@@ -41,6 +41,32 @@ class BoardState: ObservableObject {
     @Published var dbUrl: URL?
     @Published var undoPointer = -1
     
+    func updateMru(_ content: Content, _ username: String ) {
+        let key = "mru.\(username)"
+        do {
+            var result: [LibraryContent] = try JSONDecoder().decode([LibraryContent].self, from: Data((UserDefaults.standard.string(forKey: key) ?? "[]").utf8))
+            let index = result.firstIndex(of: LibraryContent.convert(content))
+            if index != nil {
+                result.remove(at: index!)
+            }
+            result.insert(LibraryContent.convert(content), at: 0)
+            let mru = String(data: try! JSONEncoder().encode(result), encoding: .utf8) ?? "[]"
+            UserDefaults.standard.set(mru, forKey: key)
+        } catch {
+            UserDefaults.standard.set("[]", forKey: key)
+        }
+    }
+    
+    func getMru(_ username: String) -> [Content] {
+        let key = "mru.\(username)"
+        do {
+            let result: [LibraryContent] = try JSONDecoder().decode([LibraryContent].self, from: Data((UserDefaults.standard.string(forKey: key) ?? "[]").utf8))
+            return result.map { Content().copyLibraryContent($0) }
+        } catch {
+            return []
+        }
+    }
+    
     var undoable: Bool {
         get {
             return undoPointer != -1

@@ -6,6 +6,11 @@ struct LibraryBoardIdInput: Convertable {
     var boardId: UInt
 }
 
+enum SpecialBoardType: UInt {
+    case MostRecent = 99999999999
+    case MostUsed =   99999999998
+}
+
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
     var getBoardPost = GetPost<LibraryBoard, LibraryBoardIdInput>(service: "GetBoard")
@@ -169,6 +174,29 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     }
     
     func setId(_ id: UInt, _ username: String?) -> Board {
+        return setId(id, username, nil)
+    }
+    
+    func setId(_ id: UInt, _ username: String?, _ boardState: BoardState?) -> Board {
+        if id == SpecialBoardType.MostRecent.rawValue && boardState != nil {
+            self.id = SpecialBoardType.MostRecent.rawValue
+            self.rows = 10
+            self.columns = 3
+            self.name = NSLocalizedString("Recents", comment: "")
+            var row = 1, column = 1
+            self.contents = boardState!.getMru(username ?? "").map {
+                $0.row = row
+                $0.column = column
+                if column > 3 {
+                    column = 1
+                    row += 1
+                } else {
+                    column += 1
+                }
+                return $0
+            }
+            return self;
+        }
         self.id = id;
         self.columns = getInt(id: id, column: "board_clms", defaultValue: -1)
         if self.columns > 0 {

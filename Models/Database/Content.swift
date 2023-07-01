@@ -189,6 +189,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         setColumn(column: "foreground_color", value: self.color)
         setColumn(column: "font_size", value: self.fontSize)
         setColumn(column: "zoom", value: self.zoom)
+        setColumn(column: "hot_spot_style", value: self.hotSpotStyle ? 1 : 0)
         setColumn(column: "do_not_add_to_phrasebar", value: self.doNotAddToPhraseBar)
         setColumn(column: "do_not_zoom_pics", value: self.doNotZoomPics)
         setColumn(column: "tts_speech", value: self.ttsSpeech)
@@ -247,6 +248,23 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var isOpaque: Bool = false
     @Published var isRepeatBoard: Bool = false
     @Published var isRepeatChildBoards: Bool = false
+    @Published var hotSpotStyle: Bool = false
+    
+    func setBackground(_ z: Int) {
+        self.background = z
+    }
+    
+    func getBackground() -> Int {
+        return self.background
+    }
+    
+    func setColor(_ z: Int) {
+        self.color = z
+    }
+    
+    func getColor() -> Int {
+        return self.color
+    }
     
     var isVideo: Bool {
         get {
@@ -530,6 +548,7 @@ class Content: Identifiable, Hashable, ObservableObject {
         self.foregroundColor = self.color & 0x00FF
         self.fontSize = getInt(column: "font_size", defaultValue: 0)
         self.zoom = getInt(column: "zoom", defaultValue: 0) == 1
+        self.hotSpotStyle = getInt(column: "hot_spot_style", defaultValue: 0) == 1
         self.doNotAddToPhraseBar = getInt(column: "do_not_add_to_phrasebar", defaultValue: 0) == 1
         self.doNotZoomPics = getInt(column: "do_not_zoom_pics", defaultValue: 0) == 1
         self.ttsSpeech = getString(column: "tts_speech", defaultValue: "")
@@ -705,6 +724,7 @@ class Content: Identifiable, Hashable, ObservableObject {
             self.foregroundColor = self.color & 0x00FF
             self.fontSize = content!.FontSize
             self.zoom = content!.Zoom
+            self.hotSpotStyle = content!.HotSpotStyle
             self.doNotAddToPhraseBar = content!.DoNotAddToPhraseBar
             self.doNotZoomPics = content!.DoNotZoomPics
             self.externalUrl = content!.ExternalUrl

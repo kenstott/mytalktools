@@ -72,6 +72,29 @@ struct LibraryContent: Decodable, Encodable, Hashable {
     var ExternalUrl: String = ""
     var TtsSpeechPrompt: String = ""
     var ChildBoardColumnCount: Int = 0
+    
+    static func convert(_ content: Content) -> LibraryContent {
+        var libraryContent = LibraryContent()
+        libraryContent.Text = content.name
+        libraryContent.ContentId = content.id
+        libraryContent.ChildBoardLinkId = content.childBoardLink
+        libraryContent.ChildBoardId = content.childBoardId
+        libraryContent.Picture = content.imageURL
+        libraryContent.Sound = content.soundURL
+        libraryContent.DoNotAddToPhraseBar = content.doNotAddToPhraseBar
+        libraryContent.DoNotZoomPics = content.doNotZoomPics
+        libraryContent.Zoom = content.zoom
+        libraryContent.ToHome = content.cellType == ContentType.goHome
+        libraryContent.Back = content.cellType == ContentType.goBack
+        libraryContent.HotSpotStyle = content.hotSpotStyle
+        libraryContent.Background = content.getBackground()
+        libraryContent.Foreground = content.getColor()
+        libraryContent.FontSize = content.fontSize
+        libraryContent.AlternateTtsText = content.alternateTTS
+        libraryContent.ExternalUrl = content.externalUrl
+        libraryContent.TtsSpeechPrompt = content.ttsSpeechPrompt
+        return libraryContent
+    }
 }
 struct LibraryItem: Decodable, Encodable, Hashable {
     var OriginalFilename: String

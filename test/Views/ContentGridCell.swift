@@ -15,10 +15,16 @@ struct ContentGridCell: View {
     private var maximumCellHeight: Double = 20
     private var cellWidth: Double = 20
     private var padding: CGFloat = 1
+    private var unzoomInternal: Int = 0
+    
     @AppStorage("CellMargin") var cellMargin = 1
     @AppStorage("UseMarginForCoding") var useMarginForCoding = false
+    
     @EnvironmentObject var globalState: BoardState
     @EnvironmentObject var media: Media
+    
+    @Environment(\.dismiss) var dismiss
+    
     
     init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat) {
         self.content = content
@@ -31,6 +37,20 @@ struct ContentGridCell: View {
         self.cellWidth = cellWidth
         self.backgroundColor = Content.convertBackgroundColor(value: content.backgroundColor) ?? backgroundColor
     }
+    
+    init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat, unzoomInterval: Int) {
+        self.content = content
+        self.defaultFontSize = defaultFontSize
+        if content.imageURL == "" {
+            self.defaultFontSize *= 1.2
+        }
+        self.foregroundColor = Content.convertColor(value: content.foregroundColor) ?? foregroundColor
+        self.maximumCellHeight = maximumCellHeight
+        self.cellWidth = cellWidth
+        self.backgroundColor = Content.convertBackgroundColor(value: content.backgroundColor) ?? backgroundColor
+        self.unzoomInternal = unzoomInterval
+    }
+    
     var body: some View {
         ZStack(alignment: .center) {
             VStack(alignment: .center) {
@@ -113,6 +133,13 @@ struct ContentGridCell: View {
         .frame(width: cellWidth, height: maximumCellHeight)
         .border(useMarginForCoding && content.backgroundColor != 0 ? backgroundColor : foregroundColor, width: CGFloat(cellMargin))
         .background(useMarginForCoding ? .clear : backgroundColor)
+        .onAppear {
+            if unzoomInternal > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + Double(unzoomInternal)) {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 struct ContentGridCell_Previews: PreviewProvider {

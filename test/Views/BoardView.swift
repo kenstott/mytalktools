@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  BoardView.swift
 //  test
 //
 //  Created by Kenneth Stott on 12/30/22.
@@ -42,6 +42,7 @@ struct BoardView: View {
     @AppStorage("BoardName") var storedBoardName = ""
     @AppStorage("PhraseMode") var phraseMode = "0"
     @AppStorage("AuthoringAllowed") var authoringAllowed = false
+    
     @State private var isActive = false
     @State private var activeChildBoard: UInt? = 0
     @State private var scheduleChildBoard: UInt? = 0
@@ -94,7 +95,7 @@ struct BoardView: View {
                 ProgressView("Downloading your communication board...").onAppear {
                     Task {
                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                        _ = board.setId(id, storedUsername)
+                        _ = board.setId(id, storedUsername, boardState)
                         Task {
                             regionMonitor.startMonitor()
                         }
@@ -111,9 +112,11 @@ struct BoardView: View {
                             NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard)
                             {
                                 EmptyView()
-                                
                             }
                         }
+                    }
+                    NavigationLink(destination: BoardView(SpecialBoardType.MostRecent.rawValue, geometry: geometry), tag: SpecialBoardType.MostRecent.rawValue, selection: $activeChildBoard) {
+                        EmptyView()
                     }
                     if scheduleMonitor.boardId != 0 {
                         NavigationLink(destination: BoardView(scheduleMonitor.boardId ?? 0, geometry: geometry), tag: scheduleMonitor.boardId ?? 0, selection: $scheduleChildBoard)
@@ -135,7 +138,9 @@ struct BoardView: View {
                                 maximumCellHeight: .constant(maximumCellHeight),
                                 cellWidth: .constant(0),
                                 board: .constant(self.board),
-                                refresh: newDatabase
+                                refresh: newDatabase,
+                                zoomHeight: Double(geometry.size.height) - 40.0,
+                                zoomWidth: Double(geometry.size.width)
                             )
                         }
                     } else {
@@ -151,6 +156,7 @@ struct BoardView: View {
                                             case .goBack: dismiss()
                                             case .goHome: appState.rootViewId = UUID()
                                             default:
+                                                boardState.updateMru(item, storedUsername)
                                                 if (item.linkId != 0) {
                                                     activeChildBoard = item.linkId
                                                 }
@@ -159,7 +165,9 @@ struct BoardView: View {
                                         maximumCellHeight: .constant(maximumCellHeight),
                                         cellWidth: .constant(cellWidth * Double(item.cellSize)),
                                         board: .constant(self.board),
-                                        refresh: newDatabase
+                                        refresh: newDatabase,
+                                        zoomHeight: Double(geometry.size.height) - 40.0,
+                                        zoomWidth: Double(geometry.size.width)
                                     )
                                     if item.cellSize > 1 { Color.clear }
                                 }
@@ -227,7 +235,7 @@ struct BoardView: View {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                     showUserHelp = !boardState.authorMode && userHints
                     
-                    _ = board.setId(id, storedUsername)
+                    _ = board.setId(id, storedUsername, boardState)
                     scheduleMonitor.createSchedule()
                     Task {
                         regionMonitor.startMonitor()
@@ -288,7 +296,7 @@ struct BoardView: View {
                                 boardState.undo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id, storedUsername)
+                                    _ = board.setId(id, storedUsername, boardState)
                                 }
                                 //                                print("Undo")
                             } label: {
@@ -298,7 +306,7 @@ struct BoardView: View {
                                 boardState.redo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id, storedUsername)
+                                    _ = board.setId(id, storedUsername, boardState)
                                 }
                                 //                                print("Redo")
                             } label: {
@@ -350,6 +358,7 @@ struct BoardView: View {
                             }
                             Button {
                                 print("Recents")
+                                activeChildBoard = SpecialBoardType.MostRecent.rawValue
                             } label: {
                                 Label(LocalizedStringKey("Recents"), systemImage: "clock")
                             }

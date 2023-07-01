@@ -35,18 +35,25 @@ struct ContentView: View {
     @AppStorage("SpeechRate") var speechRate: Double = 200
     @AppStorage("VoiceShape") var voiceShape: Double = 100
     @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
+    @AppStorage("ZoomPictures") var zoomPictures = false
+    @AppStorage("UnzoomInterval") var unzoomInterval = 0
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
     @Binding var content: Content
+    private var zoomHeight: Double = 250
+    private var zoomWidth: Double = 250
     @State var targeted: Bool = true
     @State var id = UUID()
     @State var linkID: UInt?
     @State var showEditCellActionSheet = false
     @State var showEditActionSheet = false
     @State var showBoardSortOrderSheet = false
+    @State var zoomId: Int? = -1
     @State var actionSheetType: ActionSheetType = .top
     @State var selectMode = false
+    
+    @Environment(\.presentationMode) var presentationMode
     
     private var separatorLines: CGFloat {
         get {
@@ -70,7 +77,17 @@ struct ContentView: View {
     private var contentId: Int = 0
     private var refresh = 0
     
-    init(_ content: Binding<Content>, selectMode: Bool, onClick: @escaping () -> Void, maximumCellHeight: Binding<Double>, cellWidth: Binding<Double>, board: Binding<Board>, refresh: Int ) {
+    init(
+        _ content: Binding<Content>,
+        selectMode: Bool,
+        onClick: @escaping () -> Void,
+        maximumCellHeight: Binding<Double>,
+        cellWidth: Binding<Double>,
+        board: Binding<Board>,
+        refresh: Int,
+        zoomHeight: Double,
+        zoomWidth: Double
+    ) {
         self.contentId = content.id;
         self.onClick = onClick
         self._maximumCellHeight = maximumCellHeight
@@ -78,10 +95,11 @@ struct ContentView: View {
         self._board = board
         self._content = content
         self.refresh = refresh
+        self.zoomHeight = zoomHeight
+        self.zoomWidth = zoomWidth
     }
     
     func save(content: Content) {
-//        print("Save")
         boardState.createUndoSlot();
         content.save();
         self.content = content
@@ -91,7 +109,6 @@ struct ContentView: View {
     }
     
     func cancel() {
-//        print("Cancel")
         showEditCellActionSheet = false
     }
     
@@ -109,8 +126,11 @@ struct ContentView: View {
                     }
                 }
             } else {
+                if content.linkId == 0 && content.externalUrl == "" && ((zoomPictures && !content.doNotZoomPics) || content.zoom) {
+                    zoomId = content.id
+                }
                 content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
-//                    print("done")
+                    //                    print("done")
                 }
                 if content.boardId == -1 && content.linkId != 0 {
                     self.linkID = content.linkId
@@ -161,11 +181,33 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
+        return ZStack {
             if content.boardId == -1 && content.linkId != 0 {
                 GeometryReader { geometry in
                     NavigationLink(destination: BoardView(content.linkId, geometry: geometry), tag: content.linkId, selection: $linkID) { EmptyView() }
                 }
+            }
+            if content.linkId == 0 && content.externalUrl == "" && ((zoomPictures && !content.doNotZoomPics) || content.zoom) {
+                NavigationLink(
+                    destination: ContentGridCell(
+                        content,
+                        defaultFontSize: defaultFontSize * 2,
+                        foregroundColor: foregroundColor,
+                        backgroundColor: backgroundColor,
+                        maximumCellHeight: zoomHeight,
+                        cellWidth: zoomWidth,
+                        separatorLines: separatorLines,
+                        unzoomInterval: unzoomInterval
+                    )
+                        .onTapGesture {
+                            content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
+                                //                    print("done")
+                            }
+                        },
+                    tag: content.id,
+                    selection: $zoomId) {
+                        EmptyView() }
+                
             }
             if boardState.authorMode && boardState.editMode {
                 MainView
@@ -179,7 +221,7 @@ struct ContentView: View {
                         return item
                     }
                     .onTapGesture {
-//                        print("Show edit menu")
+                        //                        print("Show edit menu")
                         showEditActionSheet = false
                         DispatchQueue.main.async {
                             actionSheetType = .top
@@ -217,7 +259,7 @@ struct ContentView: View {
                 let repeatButton: [ActionSheet.Button] = [.default(Text("Repeat"), action: {})]
                 var buttons: [ActionSheet.Button] = [
                     .cancel {
-//                        print("cancel")
+                        //                        print("cancel")
                         
                     },
                     .default(Text("Edit Cell-\(content.name)"), action: {
@@ -259,7 +301,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(.constant(Content().setPreview()), selectMode: false, onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0).environmentObject(BoardState())
+            ContentView(.constant(Content().setPreview()), selectMode: false, onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0, zoomHeight: 250.0, zoomWidth: 250.0).environmentObject(BoardState())
         }
     }
 }
