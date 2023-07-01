@@ -30,10 +30,10 @@
          contextName = "closure #1 in closure #1 in Network.isValidUser(username:password:):Network.swift">
       </ContextState>
       <ContextState
-         contextName = "User.getProfile(_:):User.swift">
+         contextName = "closure #1 in Library.getLibraryItems():Library.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in Library.getLibraryItems():Library.swift">
+         contextName = "User.getProfile(_:):User.swift">
       </ContextState>
       <ContextState
          contextName = "Library.init(_:):Library.swift">
@@ -72,6 +72,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in ScheduleMonitor.init():ScheduleMonitor.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in User.getLibraries():User.swift">
       </ContextState>
       <ContextState
@@ -95,6 +98,14 @@
          contextName = "Content.image.getter:Content.swift">
       </ContextState>
       <ContextState
+         contextName = "AppDelegate.didThisWork(notification:):testApp.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "notification.request">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
          <PersistentStrings>
             <PersistentString
@@ -107,6 +118,17 @@
       </ContextState>
       <ContextState
          contextName = "GetPost.getUrlRequest(_:):GetPost.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ScheduleMonitor.createSchedule():ScheduleMonitor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "components.month">
+            </PersistentString>
+            <PersistentString
+               value = "components.day">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in Author.body.getter:Author.swift">
@@ -131,6 +153,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static Board.getScheduleBoards():Board.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "BoardState.db">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -185,10 +215,10 @@
                value = "_item">
             </PersistentString>
             <PersistentString
-               value = "_item.linkId">
+               value = "_activeChildBoard">
             </PersistentString>
             <PersistentString
-               value = "_activeChildBoard">
+               value = "_item.linkId">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -235,10 +265,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NotificationDelegate.userNotificationCenter(_:didReceive:withCompletionHandler:):testApp.swift">
+      </ContextState>
+      <ContextState
          contextName = "LibraryDialog.init():LibraryDialog.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in closure #1 in ContentView.body.getter:ContentView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
       </ContextState>
       <ContextState
          contextName = "Network.isValidUser(username:password:):Network.swift">
@@ -253,9 +289,6 @@
       </ContextState>
       <ContextState
          contextName = "LibraryView.init(root:):LibraryView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #4 in closure #1 in BoardView.body.getter:BoardView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in Network.isValidUser(username:password:):Network.swift">
@@ -293,15 +326,18 @@
          contextName = "closure #3 in ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString
+               value = "self._content.id">
+            </PersistentString>
+            <PersistentString
                value = "provider.first.id">
             </PersistentString>
             <PersistentString
                value = "self.targeted">
             </PersistentString>
-            <PersistentString
-               value = "self._content.id">
-            </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ScheduleMonitor.body.getter:ScheduleMonitor.swift">
       </ContextState>
       <ContextState
          contextName = "ContentView.init(_:onClick:maximumCellHeight:cellWidth:board:):ContentView.swift">

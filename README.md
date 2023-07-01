@@ -40,7 +40,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- Use [Goosen or Fitzgerald color coding](#_goosen_or_fitzgerald) as cell background color, or alternatively as a margin color (appears as a colored rectangle that surrounds the cell).|x|x|x|x|done|
 |- [Cells can have multiple touch areas](#_hotspots) (referred to as hotspots), you can show the hotspots explicitly, or otherwise they are implicit to user.|x|x|x|x|TBD|
 |- When tapping a cell – you can have it “[zoom](#_zoom)” (cover the entire screen), and then explicitly return, or have it go back based on a timer. For example, tapping a cell might zoom it), wait for 5 seconds, and then return the original board.|x|x|x|x|done|
-|- Supports split screen on iPad and iPad Pro|x|n/a|n/a|n/a|TBD|
+|- Supports split screen on iPad and iPad Pro|x|n/a|n/a|n/a|done|
 |- Display cells using a cards and folders metaphor (instead of a flat grid).|x||||TBD|
 |[Sharing Content & Collaborating with Parents, Family and Caregivers](#_sharing_content_&)||||||
 |- [Share printed board links](#_share_printed_board) (URLs) through email, facebook, twitter, SMS, etc.|x||x|x|TBD|
