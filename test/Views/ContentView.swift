@@ -150,30 +150,30 @@ struct ContentView: View {
     func getButtons() -> [Alert.Button] {
         var buttons: [Alert.Button] = [
             .cancel { showEditActionSheet = false },
-            .default(Text("Sort Order"), action: {
+            .default(Text(LocalizedStringKey("Sort Order")), action: {
                 showEditActionSheet = false
                 showBoardSortOrderSheet = true
             }),
-            .default(Text("Add Row"), action: {
+            .default(Text(LocalizedStringKey("Add Row")), action: {
                 board.addRow(boardState: boardState)
             }),
-            .default(Text("Add Column"), action: {
+            .default(Text(LocalizedStringKey("Add Column")), action: {
                 board.addColumn(boardState: boardState)
             }),
-            .default(Text("Stretch Columns By 1"), action: {
+            .default(Text(LocalizedStringKey("Stretch Columns By 1")), action: {
                 board.stretchColumns(boardState: boardState)
             })
         ]
         if board.columns > 1 {
-            buttons.append(.default(Text("Compress Columns By 1"), action: {
+            buttons.append(.default(Text(LocalizedStringKey("Compress Columns By 1")), action: {
                 board.compressColumns(boardState: boardState)
             }))
-            buttons.append(.default(Text("Delete Right Column"), action: {
+            buttons.append(.default(Text(LocalizedStringKey("Delete Right Column")), action: {
                 board.deleteRightColumn(boardState: boardState)
             }))
         }
         if board.rows > 1 {
-            buttons.append(.default(Text("Delete Last Row"), action: {
+            buttons.append(.default(Text(LocalizedStringKey("Delete Last Row")), action: {
                 board.deleteLastRow(boardState: boardState)
             }))
         }
@@ -252,24 +252,24 @@ struct ContentView: View {
         .actionSheet(isPresented: $showEditActionSheet) {
             switch(actionSheetType) {
             case .board: return ActionSheet(
-                title: Text("Change Board Dimensions"),
+                title: Text(LocalizedStringKey("Change Board Dimensions")),
                 buttons: getButtons()
             )
             case .top:
-                let repeatButton: [ActionSheet.Button] = [.default(Text("Repeat"), action: {})]
+                let repeatButton: [ActionSheet.Button] = [.default(Text(LocalizedStringKey("Repeat")), action: {})]
                 var buttons: [ActionSheet.Button] = [
                     .cancel {
                         //                        print("cancel")
                         
                     },
-                    .default(Text("Edit Cell-\(content.name)"), action: {
+                    .default(Text("\(NSLocalizedString("Edit Cell", comment: ""))-\(content.name)"), action: {
                         showEditActionSheet = false
                         showEditCellActionSheet = true
                     }),
-                    .default(Text("Perform Action-\(content.name)"), action: {
+                    .default(Text("\(NSLocalizedString("Perform Action", comment: ""))-\(content.name)"), action: {
                         cellAction()
                     }),
-                    .default(Text("Edit Board-\(board.name)"), action: {
+                    .default(Text("\(NSLocalizedString("Edit Board", comment: ""))-\(board.name)"), action: {
                         showEditActionSheet = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             actionSheetType = .board
@@ -280,7 +280,7 @@ struct ContentView: View {
                     buttons.append(repeatButton[0])
                 }
                 return ActionSheet(
-                    title: Text("Edit Options"),
+                    title: Text(LocalizedStringKey("Edit Options")),
                     buttons: buttons
                 )
             }

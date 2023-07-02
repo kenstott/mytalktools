@@ -1,0 +1,2318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="en.lproj/Localizable.strings" source-language="en" target-language="fr" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3" build-num="14E222b"/>
+    </header>
+    <body>
+      <trans-unit id=" &amp; Exit" xml:space="preserve">
+        <source> &amp; Exit</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ &quot;%@&quot; in which format?" xml:space="preserve">
+        <source>%@ "%@" in which format?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@-%@" xml:space="preserve">
+        <source>%@-%@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%lld %@" xml:space="preserve">
+        <source>%lld %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About" xml:space="preserve">
+        <source>About</source>
+        <target>A propos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Actors Born Today" xml:space="preserve">
+        <source>Actors Born Today</source>
+        <target>Acteurs nés aujourd'hui</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add" xml:space="preserve">
+        <source>Add</source>
+        <target>Ajouter</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Column" xml:space="preserve">
+        <source>Add Column</source>
+        <target>Ajouter Colonne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Destination" xml:space="preserve">
+        <source>Add Destination</source>
+        <target>Ajouter Destination</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Integration" xml:space="preserve">
+        <source>Add Integration</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Library" xml:space="preserve">
+        <source>Add Library</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add Row" xml:space="preserve">
+        <source>Add Row</source>
+        <target>Ajouter Ligne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Albums" xml:space="preserve">
+        <source>Albums</source>
+        <target>Albums</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="All Contacts" xml:space="preserve">
+        <source>All Contacts</source>
+        <target>All Contacts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Alphabetic" xml:space="preserve">
+        <source>Alphabetic</source>
+        <target>alphabétique</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Alternate TTS Voice" xml:space="preserve">
+        <source>Alternate TTS Voice</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Always Zoom" xml:space="preserve">
+        <source>Always Zoom</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="App Link Created" xml:space="preserve">
+        <source>App Link Created</source>
+        <target>Lien vers App créé</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Apple ID" xml:space="preserve">
+        <source>Apple ID</source>
+        <target>Apple ID</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Artist" xml:space="preserve">
+        <source>Artist</source>
+        <target>Artiste</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Author" xml:space="preserve">
+        <source>Author</source>
+        <target>Création</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Available Integrations" xml:space="preserve">
+        <source>Available Integrations</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Available Options" xml:space="preserve">
+        <source>Available Options</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Back" xml:space="preserve">
+        <source>Back</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Background Color" xml:space="preserve">
+        <source>Background Color</source>
+        <target>Couleur de fond</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Beginning on..." xml:space="preserve">
+        <source>Beginning on...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Board &quot;%@&quot;" xml:space="preserve">
+        <source>Board "%@"</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Board Name" xml:space="preserve">
+        <source>Board Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Board Sort Order" xml:space="preserve">
+        <source>Board Sort Order</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Box Office" xml:space="preserve">
+        <source>Box Office</source>
+        <target>Box Office</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Camera" xml:space="preserve">
+        <source>Camera</source>
+        <target>Appareil Photo</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>Annuler</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cell Text" xml:space="preserve">
+        <source>Cell Text</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cell Touch" xml:space="preserve">
+        <source>Cell Touch</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cell Type" xml:space="preserve">
+        <source>Cell Type</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cell Width" xml:space="preserve">
+        <source>Cell Width</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Change Board Dimensions" xml:space="preserve">
+        <source>Change Board Dimensions</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Child Board" xml:space="preserve">
+        <source>Child Board</source>
+        <target>Sous-tableau</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Clipart" xml:space="preserve">
+        <source>Clipart</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Coded Word Variants Board" xml:space="preserve">
+        <source>Coded Word Variants Board</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Columns" xml:space="preserve">
+        <source>Columns</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Coming Soon" xml:space="preserve">
+        <source>Coming Soon</source>
+        <target>Bientôt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Compress Columns By 1" xml:space="preserve">
+        <source>Compress Columns By 1</source>
+        <target>Compresser moins une colonne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Contacts" xml:space="preserve">
+        <source>Contacts</source>
+        <target>Contacts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Copy" xml:space="preserve">
+        <source>Copy</source>
+        <target>Copier</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create Email" xml:space="preserve">
+        <source>Create Email</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create new user name" xml:space="preserve">
+        <source>Create new user name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Crop" xml:space="preserve">
+        <source>Crop</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Crop Image" xml:space="preserve">
+        <source>Crop Image</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Current" xml:space="preserve">
+        <source>Current</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Decrease Volume" xml:space="preserve">
+        <source>Decrease Volume</source>
+        <target>Decrease Volume</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete" xml:space="preserve">
+        <source>Delete</source>
+        <target>Supprimer </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete Last Row" xml:space="preserve">
+        <source>Delete Last Row</source>
+        <target>Supprimer dernière ligne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete Right Column" xml:space="preserve">
+        <source>Delete Right Column</source>
+        <target>Supprimer colonne de droite</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Directions" xml:space="preserve">
+        <source>Directions</source>
+        <target>Directions</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Display Keyboard" xml:space="preserve">
+        <source>Display Keyboard</source>
+        <target>Montrer le clavier</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do Not Add To Phrase Bar" xml:space="preserve">
+        <source>Do Not Add To Phrase Bar</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Done" xml:space="preserve">
+        <source>Done</source>
+        <target>Effectué</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Download" xml:space="preserve">
+        <source>Download</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Downloading your communication board..." xml:space="preserve">
+        <source>Downloading your communication board...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit" xml:space="preserve">
+        <source>Edit</source>
+        <target>Editer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit Board" xml:space="preserve">
+        <source>Edit Board</source>
+        <target>Editer le tableau</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit Cell" xml:space="preserve">
+        <source>Edit Cell</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit Options" xml:space="preserve">
+        <source>Edit Options</source>
+        <target>Options de Modification</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email" xml:space="preserve">
+        <source>Email</source>
+        <target>Email</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email Address" xml:space="preserve">
+        <source>Email Address</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email is not valid" xml:space="preserve">
+        <source>Email is not valid</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Apple ID" xml:space="preserve">
+        <source>Enter Apple ID</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Comma-Separated Name List" xml:space="preserve">
+        <source>Enter Comma-Separated Name List</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Contact Name" xml:space="preserve">
+        <source>Enter Contact Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Email" xml:space="preserve">
+        <source>Enter Email</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Phone Number" xml:space="preserve">
+        <source>Enter Phone Number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Phrase" xml:space="preserve">
+        <source>Enter Phrase</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter SMS Phone Number" xml:space="preserve">
+        <source>Enter SMS Phone Number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Skype Name" xml:space="preserve">
+        <source>Enter Skype Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Skype Phone Number" xml:space="preserve">
+        <source>Enter Skype Phone Number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter Telephone Number" xml:space="preserve">
+        <source>Enter Telephone Number</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter a name" xml:space="preserve">
+        <source>Enter a name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter address" xml:space="preserve">
+        <source>Enter address</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter artist name" xml:space="preserve">
+        <source>Enter artist name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter list" xml:space="preserve">
+        <source>Enter list</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter song name" xml:space="preserve">
+        <source>Enter song name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter the Skype name" xml:space="preserve">
+        <source>Enter the Skype name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Enter the address" xml:space="preserve">
+        <source>Enter the address</source>
+        <target>Entrer l'addresse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Events" xml:space="preserve">
+        <source>Events</source>
+        <target>Evenements</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Existing" xml:space="preserve">
+        <source>Existing</source>
+        <target>Existant</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Exit MyTalk" xml:space="preserve">
+        <source>Exit MyTalk</source>
+        <target>Quitter MyTalk</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Facebook" xml:space="preserve">
+        <source>Facebook</source>
+        <target>Facebook</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Facetime" xml:space="preserve">
+        <source>Facetime</source>
+        <target>Facetime</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Find" xml:space="preserve">
+        <source>Find</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="First Sort" xml:space="preserve">
+        <source>First Sort</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Font Size" xml:space="preserve">
+        <source>Font Size</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Foreground Color" xml:space="preserve">
+        <source>Foreground Color</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Forever" xml:space="preserve">
+        <source>Forever</source>
+        <target>Toujours</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Forgot password" xml:space="preserve">
+        <source>Forgot password</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Friend Requests" xml:space="preserve">
+        <source>Friend Requests</source>
+        <target>Demandes d'amis</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Friends" xml:space="preserve">
+        <source>Friends</source>
+        <target>Amis</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="From Contacts" xml:space="preserve">
+        <source>From Contacts</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="From File" xml:space="preserve">
+        <source>From File</source>
+        <target>From File</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="From Library" xml:space="preserve">
+        <source>From Library</source>
+        <target>Depuis la bibliothèque</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Go Back" xml:space="preserve">
+        <source>Go Back</source>
+        <target>Retour en arrière</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Go Home" xml:space="preserve">
+        <source>Go Home</source>
+        <target>Retour Accueil</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Go To Home" xml:space="preserve">
+        <source>Go To Home</source>
+        <target>Retour Accueil</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Header" xml:space="preserve">
+        <source>Header</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello, World!" xml:space="preserve">
+        <source>Hello, World!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Help" xml:space="preserve">
+        <source>Help</source>
+        <target>Aide</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide Phrase Bar" xml:space="preserve">
+        <source>Hide Phrase Bar</source>
+        <target>Cacher la barre de phrase</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide from User" xml:space="preserve">
+        <source>Hide from User</source>
+        <target>Cacher de l'utilisateur</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="History" xml:space="preserve">
+        <source>History</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Home" xml:space="preserve">
+        <source>Home</source>
+        <target>Retour au début</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hotspot Board" xml:space="preserve">
+        <source>Hotspot Board</source>
+        <target>Tableau Hotspot</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="IMDB" xml:space="preserve">
+        <source>IMDB</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="IMDB (Movies)" xml:space="preserve">
+        <source>IMDB (Movies)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Image" xml:space="preserve">
+        <source>Image</source>
+        <target>Image</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Include Repeated Cells" xml:space="preserve">
+        <source>Include Repeated Cells</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Increase Volume" xml:space="preserve">
+        <source>Increase Volume</source>
+        <target>Increase Volume</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Integration and Automation" xml:space="preserve">
+        <source>Integration and Automation</source>
+        <target>Intégration et Automatisation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Integrations" xml:space="preserve">
+        <source>Integrations</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Libraries Shared With Me" xml:space="preserve">
+        <source>Libraries Shared With Me</source>
+        <target>Librairies partagées avec moi</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Library" xml:space="preserve">
+        <source>Library</source>
+        <target>Library</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Loading Library" xml:space="preserve">
+        <source>Loading Library</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Location" xml:space="preserve">
+        <source>Location</source>
+        <target>Localisation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Login" xml:space="preserve">
+        <source>Login</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Login Error" xml:space="preserve">
+        <source>Login Error</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Media" xml:space="preserve">
+        <source>Media</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Merge Local Device and Remote Workspace" xml:space="preserve">
+        <source>Merge Local Device and Remote Workspace</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Message" xml:space="preserve">
+        <source>Message</source>
+        <target>Message</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Monochrome" xml:space="preserve">
+        <source>Monochrome</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Most Used" xml:space="preserve">
+        <source>Most Used</source>
+        <target>Plus utilisés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Most Viewed" xml:space="preserve">
+        <source>Most Viewed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Music Player" xml:space="preserve">
+        <source>Music Player</source>
+        <target>Lecteur Musique</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="My Libraries" xml:space="preserve">
+        <source>My Libraries</source>
+        <target>Mes Librairies</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="MyTalkTools" xml:space="preserve">
+        <source>MyTalkTools</source>
+        <target>MyTalkTools</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nearby" xml:space="preserve">
+        <source>Nearby</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Never Zoom" xml:space="preserve">
+        <source>Never Zoom</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New" xml:space="preserve">
+        <source>New</source>
+        <target>Nouveau</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New Board" xml:space="preserve">
+        <source>New Board</source>
+        <target>Nouveau Tableau</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New Child Board" xml:space="preserve">
+        <source>New Child Board</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="News Feed" xml:space="preserve">
+        <source>News Feed</source>
+        <target>Nouveau champ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Next" xml:space="preserve">
+        <source>Next</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No" xml:space="preserve">
+        <source>No</source>
+        <target>non</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Not Sorted" xml:space="preserve">
+        <source>Not Sorted</source>
+        <target>Pas de classement</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="One Contact" xml:space="preserve">
+        <source>One Contact</source>
+        <target>One Contact</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opaque" xml:space="preserve">
+        <source>Opaque</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Overwrite Local Device" xml:space="preserve">
+        <source>Overwrite Local Device</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Overwrite Remote Workspace" xml:space="preserve">
+        <source>Overwrite Remote Workspace</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF" xml:space="preserve">
+        <source>PDF</source>
+        <target>PDF</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pandora" xml:space="preserve">
+        <source>Pandora</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Password" xml:space="preserve">
+        <source>Password</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Perform Action" xml:space="preserve">
+        <source>Perform Action</source>
+        <target>Exécuter l'action</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phone Number" xml:space="preserve">
+        <source>Phone Number</source>
+        <target>Numéro de téléphone</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Photo" xml:space="preserve">
+        <source>Photo</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phrase Bar Backspace" xml:space="preserve">
+        <source>Phrase Bar Backspace</source>
+        <target>Phrase Bar Backspace</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phrase Bar Clear" xml:space="preserve">
+        <source>Phrase Bar Clear</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phrase Bar Keypress" xml:space="preserve">
+        <source>Phrase Bar Keypress</source>
+        <target>Phrase Bar Keypress</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phrase Bar Make Word" xml:space="preserve">
+        <source>Phrase Bar Make Word</source>
+        <target>Phrase Bar Make Word</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Phrase Bar Play" xml:space="preserve">
+        <source>Phrase Bar Play</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Play" xml:space="preserve">
+        <source>Play</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Popup Style Board" xml:space="preserve">
+        <source>Popup Style Board</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Portrait" xml:space="preserve">
+        <source>Portrait</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Previous" xml:space="preserve">
+        <source>Previous</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Print" xml:space="preserve">
+        <source>Print</source>
+        <target>Imprimer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Professional Account" xml:space="preserve">
+        <source>Professional Account</source>
+        <target>Compte Professionnel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Profile" xml:space="preserve">
+        <source>Profile</source>
+        <target>Profil</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Prompt" xml:space="preserve">
+        <source>Prompt</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Random" xml:space="preserve">
+        <source>Random</source>
+        <target>Aléatoire</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rate this app" xml:space="preserve">
+        <source>Rate this app</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Recents" xml:space="preserve">
+        <source>Recents</source>
+        <target>Utilisés récemment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Record" xml:space="preserve">
+        <source>Record</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Record Sound" xml:space="preserve">
+        <source>Record Sound</source>
+        <target>Enregistrer Son</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Redo" xml:space="preserve">
+        <source>Redo</source>
+        <target>refaire</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Remember Me" xml:space="preserve">
+        <source>Remember Me</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Repeat" xml:space="preserve">
+        <source>Repeat</source>
+        <target>Répéter</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Repeating..." xml:space="preserve">
+        <source>Repeating...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Restore purchases at no cost" xml:space="preserve">
+        <source>Restore purchases at no cost</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rotate" xml:space="preserve">
+        <source>Rotate</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rows" xml:space="preserve">
+        <source>Rows</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="SMS" xml:space="preserve">
+        <source>SMS</source>
+        <target>SMS</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Saved Photo Albums" xml:space="preserve">
+        <source>Saved Photo Albums</source>
+        <target>Albums Photos Sauvés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Schedule" xml:space="preserve">
+        <source>Schedule</source>
+        <target>Planning</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Search" xml:space="preserve">
+        <source>Search</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Second Sort" xml:space="preserve">
+        <source>Second Sort</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select" xml:space="preserve">
+        <source>Select</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select a board name from Login" xml:space="preserve">
+        <source>Select a board name from Login</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Selected Contacts" xml:space="preserve">
+        <source>Selected Contacts</source>
+        <target>Selected Contacts</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Share" xml:space="preserve">
+        <source>Share</source>
+        <target>Partager</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Share Library" xml:space="preserve">
+        <source>Share Library</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sharing" xml:space="preserve">
+        <source>Sharing</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show Phrase Bar" xml:space="preserve">
+        <source>Show Phrase Bar</source>
+        <target>Montrer la barre de phrase</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Show Times" xml:space="preserve">
+        <source>Show Times</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Simple Board" xml:space="preserve">
+        <source>Simple Board</source>
+        <target>Tableaux Simple</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Skype" xml:space="preserve">
+        <source>Skype</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Song" xml:space="preserve">
+        <source>Song</source>
+        <target>Chanson</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sort Order" xml:space="preserve">
+        <source>Sort Order</source>
+        <target>Ordre de tri</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sound" xml:space="preserve">
+        <source>Sound</source>
+        <target>Son</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Speak" xml:space="preserve">
+        <source>Speak</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Stop" xml:space="preserve">
+        <source>Stop</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Stretch Columns By 1" xml:space="preserve">
+        <source>Stretch Columns By 1</source>
+        <target>Etirer d'une colonne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Styles" xml:space="preserve">
+        <source>Styles</source>
+        <target>Styles</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Subject" xml:space="preserve">
+        <source>Subject</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Swap" xml:space="preserve">
+        <source>Swap</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sync" xml:space="preserve">
+        <source>Sync</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Synchronize with Workspace" xml:space="preserve">
+        <source>Synchronize with Workspace</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TTS" xml:space="preserve">
+        <source>TTS</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TV Show Recaps" xml:space="preserve">
+        <source>TV Show Recaps</source>
+        <target>TV Show Résumé</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tag" xml:space="preserve">
+        <source>Tag</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tap + for ideas" xml:space="preserve">
+        <source>Tap + for ideas</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Telephone" xml:space="preserve">
+        <source>Telephone</source>
+        <target>Téléphone</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tell a friend" xml:space="preserve">
+        <source>Tell a friend</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Test" xml:space="preserve">
+        <source>Test</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Test App Link" xml:space="preserve">
+        <source>Test App Link</source>
+        <target>Tester le lien d'application</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Text" xml:space="preserve">
+        <source>Text</source>
+        <target>Texte</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Text-To-Speech" xml:space="preserve">
+        <source>Text-To-Speech</source>
+        <target>Synthèse Vocale</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Text-to-Speech" xml:space="preserve">
+        <source>Text-to-Speech</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Third Sort" xml:space="preserve">
+        <source>Third Sort</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Toggle Phrase Bar" xml:space="preserve">
+        <source>Toggle Phrase Bar</source>
+        <target>Changer de barre de phrase</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type" xml:space="preserve">
+        <source>Type</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type Words" xml:space="preserve">
+        <source>Type Words</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type a URL" xml:space="preserve">
+        <source>Type a URL</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="URL" xml:space="preserve">
+        <source>URL</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Undo" xml:space="preserve">
+        <source>Undo</source>
+        <target>annuler</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unknown error" xml:space="preserve">
+        <source>Unknown error</source>
+        <target>Erreur inconnue</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Until" xml:space="preserve">
+        <source>Until</source>
+        <target>Jusqu'à</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Use Face ID" xml:space="preserve">
+        <source>Use Face ID</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Use Frequency" xml:space="preserve">
+        <source>Use Frequency</source>
+        <target>Fréquence d'utilisation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="User Name" xml:space="preserve">
+        <source>User Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Video" xml:space="preserve">
+        <source>Video</source>
+        <target>Visio</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Video Camera" xml:space="preserve">
+        <source>Video Camera</source>
+        <target>Caméra Vidéo</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Video Player" xml:space="preserve">
+        <source>Video Player</source>
+        <target>Lecteur vidéo</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Locations" xml:space="preserve">
+        <source>View Locations</source>
+        <target>Voir les  Localisations</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Most Recent Cells" xml:space="preserve">
+        <source>View Most Recent Cells</source>
+        <target>Voir les cellules récemment utilisées</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Most Used Cells" xml:space="preserve">
+        <source>View Most Used Cells</source>
+        <target>Voir les cellules les plus utilisées</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Phrase Bar History" xml:space="preserve">
+        <source>View Phrase Bar History</source>
+        <target>Voir l'historique de la barre de phrase</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Schedules" xml:space="preserve">
+        <source>View Schedules</source>
+        <target>Voir les plannings</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="View Wizard" xml:space="preserve">
+        <source>View Wizard</source>
+        <target>Vue Magicien</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Voice" xml:space="preserve">
+        <source>Voice</source>
+        <target>Voix</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Voice a Phrase" xml:space="preserve">
+        <source>Voice a Phrase</source>
+        <target>Lire une pharse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Volume" xml:space="preserve">
+        <source>Volume</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Image Search" xml:space="preserve">
+        <source>Web Image Search</source>
+        <target>Recherche Image Web</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page" xml:space="preserve">
+        <source>Web Page</source>
+        <target>Page Web</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wizard" xml:space="preserve">
+        <source>Wizard</source>
+        <target>Magicien</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word Variant Board" xml:space="preserve">
+        <source>Word Variant Board</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes" xml:space="preserve">
+        <source>Yes</source>
+        <target>oui</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="[%@]" xml:space="preserve">
+        <source>[%@]</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="chevron" xml:space="preserve">
+        <source>chevron</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="column" xml:space="preserve">
+        <source>column</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="columns" xml:space="preserve">
+        <source>columns</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="default background color" xml:space="preserve">
+        <source>default background color</source>
+        <target>couleur de fond par défaut</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="default foreground color" xml:space="preserve">
+        <source>default foreground color</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="default size" xml:space="preserve">
+        <source>default size</source>
+        <target>taille par défaut</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="pixels" xml:space="preserve">
+        <source>pixels</source>
+        <target>Pixel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="transparent background color" xml:space="preserve">
+        <source>transparent background color</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="{%@}" xml:space="preserve">
+        <source>{%@}</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Resources/Settings.bundle/en.lproj/Root.strings" source-language="en" target-language="fr" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3" build-num="14E222b"/>
+    </header>
+    <body>
+      <trans-unit id="1 Second" xml:space="preserve">
+        <source>1 Second</source>
+        <target>1 Seconde</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="1 Time" xml:space="preserve">
+        <source>1 Time</source>
+        <target>1 Fois</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="2 Seconds" xml:space="preserve">
+        <source>2 Seconds</source>
+        <target>2 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="2 Times" xml:space="preserve">
+        <source>2 Times</source>
+        <target>2 Fois</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="3 Seconds" xml:space="preserve">
+        <source>3 Seconds</source>
+        <target>3 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="3 Times" xml:space="preserve">
+        <source>3 Times</source>
+        <target>3 Fois</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="4 Seconds" xml:space="preserve">
+        <source>4 Seconds</source>
+        <target>4 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="4 Times" xml:space="preserve">
+        <source>4 Times</source>
+        <target>4 Fois</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="5 Seconds" xml:space="preserve">
+        <source>5 Seconds</source>
+        <target>5 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="5 Times" xml:space="preserve">
+        <source>5 Times</source>
+        <target>5 Fois</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="10 Seconds" xml:space="preserve">
+        <source>10 Seconds</source>
+        <target>10 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Addresses" xml:space="preserve">
+        <source>Addresses</source>
+        <target>Adresses</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Adjust Volume" xml:space="preserve">
+        <source>Adjust Volume</source>
+        <target>Ajuster le Volume</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Alphabetically" xml:space="preserve">
+        <source>Alphabetically</source>
+        <target>Ordre alphabétique</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Alternate TTS Voice" xml:space="preserve">
+        <source>Alternate TTS Voice</source>
+        <target>Voix de synthèse alternative</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Animate" xml:space="preserve">
+        <source>Animate</source>
+        <target>Animer</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Arabic (Saudi Arabia) - Leila - Female/Adult" xml:space="preserve">
+        <source>Arabic (Saudi Arabia) - Leila - Female/Adult</source>
+        <target>Arabe (Saudi Arabia) - Leila - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Arabic (Saudi Arabia) - Mehdi - Male/Adult" xml:space="preserve">
+        <source>Arabic (Saudi Arabia) - Mehdi - Male/Adult</source>
+        <target>Arabe (Saudi Arabia) - Mehdi - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Arabic (Saudi Arabia) - Nizar - Male/Adult" xml:space="preserve">
+        <source>Arabic (Saudi Arabia) - Nizar - Male/Adult</source>
+        <target>Arabe(Saudi Arabia) - Nizar - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Arabic (Saudi Arabia) - Salma - Female/Adult" xml:space="preserve">
+        <source>Arabic (Saudi Arabia) - Salma - Female/Adult</source>
+        <target>Arabe (Saudi Arabia) - Salma - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auditory Scan" xml:space="preserve">
+        <source>Auditory Scan</source>
+        <target>Balayage auditif</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Australian English - Lisa - Female/Adult" xml:space="preserve">
+        <source>Australian English - Lisa - Female/Adult</source>
+        <target>Anglais Australien - Lisa - Femmet</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Australian English - Tyler - Male/Adult" xml:space="preserve">
+        <source>Australian English - Tyler - Male/Adult</source>
+        <target>Anglais Australien - Tyler - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Authoring" xml:space="preserve">
+        <source>Authoring</source>
+        <target>Modification</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Authoring Allowed" xml:space="preserve">
+        <source>Authoring Allowed</source>
+        <target>Création autorisée</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto - 5 Seconds" xml:space="preserve">
+        <source>Auto - 5 Seconds</source>
+        <target>Auto - 5 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto - 10 Seconds" xml:space="preserve">
+        <source>Auto - 10 Seconds</source>
+        <target>Auto - 10 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto - 20 Seconds" xml:space="preserve">
+        <source>Auto - 20 Seconds</source>
+        <target>Auto - 20 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto - 30 Seconds" xml:space="preserve">
+        <source>Auto - 30 Seconds</source>
+        <target>Auto - 30 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto - 60 Seconds" xml:space="preserve">
+        <source>Auto - 60 Seconds</source>
+        <target>Auto - 60 Secondes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto Speech Parts" xml:space="preserve">
+        <source>Auto Speech Parts</source>
+        <target>Codage des nature de mots</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto Word Variation" xml:space="preserve">
+        <source>Auto Word Variation</source>
+        <target>Mots dérivés</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto-Scan Loops" xml:space="preserve">
+        <source>Auto-Scan Loops</source>
+        <target>Boucles de balayage auto</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Auto-Start Auto-Scan" xml:space="preserve">
+        <source>Auto-Start Auto-Scan</source>
+        <target>Démarrage auto du balayage automatique</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Automatically Sync Content" xml:space="preserve">
+        <source>Automatically Sync Content</source>
+        <target>Synchronisez automatiquement le contenu</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Background Color" xml:space="preserve">
+        <source>Background Color</source>
+        <target>couleur de fond</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Belgian Dutch - Jeroen - Male/Adult" xml:space="preserve">
+        <source>Belgian Dutch - Jeroen - Male/Adult</source>
+        <target>Flamand - Jeroen - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Belgian Dutch - Jeroen Happy - Male/Adult" xml:space="preserve">
+        <source>Belgian Dutch - Jeroen Happy - Male/Adult</source>
+        <target>Flamand - Jeroen Happy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Belgian Dutch - Jeroen Sad - Male/Adult" xml:space="preserve">
+        <source>Belgian Dutch - Jeroen Sad - Male/Adult</source>
+        <target>Flamand - Jeroen Sad - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Belgian Dutch - Sofie - Female/Adult" xml:space="preserve">
+        <source>Belgian Dutch - Sofie - Female/Adult</source>
+        <target>Flamand - Sofie - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Belgian Dutch - Zoe - Female/Adult" xml:space="preserve">
+        <source>Belgian Dutch - Zoe - Female/Adult</source>
+        <target>Flamand - Zoe - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Black" xml:space="preserve">
+        <source>Black</source>
+        <target>Noir</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Board Name" xml:space="preserve">
+        <source>Board Name</source>
+        <target>Nom du tableau</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Graham - Male/Adult" xml:space="preserve">
+        <source>British English - Graham - Male/Adult</source>
+        <target>Anglais GB - Graham - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Lucy - Female/Adult" xml:space="preserve">
+        <source>British English - Lucy - Female/Adult</source>
+        <target>Anglais GB - Lucy - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Nizareng - Male/Adult" xml:space="preserve">
+        <source>British English - Nizareng - Male/Adult</source>
+        <target>Anglais GB - Nizareng Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Peter - Male/Adult" xml:space="preserve">
+        <source>British English - Peter - Male/Adult</source>
+        <target>Anglais GB - Peter - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Peter Happy - Male/Adult" xml:space="preserve">
+        <source>British English - Peter Happy - Male/Adult</source>
+        <target>Anglais GB - Peter Happy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Peter Sad - Male/Adult" xml:space="preserve">
+        <source>British English - Peter Sad - Male/Adult</source>
+        <target>Anglais GB - Peter Sad - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Queen Elizabeth - Male/Adult" xml:space="preserve">
+        <source>British English - Queen Elizabeth - Male/Adult</source>
+        <target>Anglais GB - Queen Elizabeth - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="British English - Rachel - Female/Adult" xml:space="preserve">
+        <source>British English - Rachel - Female/Adult</source>
+        <target>Anglais GB - Rachel - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="By Cell" xml:space="preserve">
+        <source>By Cell</source>
+        <target>Par cellule</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Catalan - Laia - Female/Adult" xml:space="preserve">
+        <source>Catalan - Laia - Female/Adult</source>
+        <target>Catalan - Laia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Cell Margin" xml:space="preserve">
+        <source>Cell Margin</source>
+        <target>Marge cellule</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Code Community Predictions" xml:space="preserve">
+        <source>Code Community Predictions</source>
+        <target>Coder les prédictions de la communauté</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Color Key" xml:space="preserve">
+        <source>Color Key</source>
+        <target>Codage couleur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Custom Config" xml:space="preserve">
+        <source>Custom Config</source>
+        <target>Configuration personnalisée</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Czech - Eliska - Female/Adult" xml:space="preserve">
+        <source>Czech - Eliska - Female/Adult</source>
+        <target>Tchèque - Eliska - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Danish - Mette - Female/Adult" xml:space="preserve">
+        <source>Danish - Mette - Female/Adult</source>
+        <target>Danois - Mette - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Danish - Rasmus - Male/Adult" xml:space="preserve">
+        <source>Danish - Rasmus - Male/Adult</source>
+        <target>Danois - Rasmus - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Default Email Recipient" xml:space="preserve">
+        <source>Default Email Recipient</source>
+        <target>Courriel par défaut</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Default Font Size" xml:space="preserve">
+        <source>Default Font Size</source>
+        <target>taille de texte</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Default SMS Recipient" xml:space="preserve">
+        <source>Default SMS Recipient</source>
+        <target>SMS par défaut</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Default Username" xml:space="preserve">
+        <source>Default Username</source>
+        <target>Utilisateur par défaut</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Delete after delay" xml:space="preserve">
+        <source>Delete after delay</source>
+        <target>Effacer après délai</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Delete after play" xml:space="preserve">
+        <source>Delete after play</source>
+        <target>Effacer après lecture</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Directory Includes Cells" xml:space="preserve">
+        <source>Directory Includes Cells</source>
+        <target>Index inclue les Cellules</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Directory On Swipe - Author Mode" xml:space="preserve">
+        <source>Directory On Swipe - Author Mode</source>
+        <target>Index en glissant - Mode créateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Directory On Swipe - User Mode" xml:space="preserve">
+        <source>Directory On Swipe - User Mode</source>
+        <target>Index en glissant - Mode utilisateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display" xml:space="preserve">
+        <source>Display</source>
+        <target>Affichage</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display As List" xml:space="preserve">
+        <source>Display As List</source>
+        <target>Afficher comme Liste</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Author Hints" xml:space="preserve">
+        <source>Display Author Hints</source>
+        <target>Afficher frappe créateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Menu Screen" xml:space="preserve">
+        <source>Display Menu Screen</source>
+        <target>Afficher le menu</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Most Used As..." xml:space="preserve">
+        <source>Display Most Used As...</source>
+        <target>Afficher poulaires comme...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Popup Boards As..." xml:space="preserve">
+        <source>Display Popup Boards As...</source>
+        <target>Afficher les tableaux Popup comme...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Predictions As..." xml:space="preserve">
+        <source>Display Predictions As...</source>
+        <target>Afficher les prédictions comme...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Recents As..." xml:space="preserve">
+        <source>Display Recents As...</source>
+        <target>Afficher récents comme...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display User Bar" xml:space="preserve">
+        <source>Display User Bar</source>
+        <target>Afficher la barre de l'utilisateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display User Hints" xml:space="preserve">
+        <source>Display User Hints</source>
+        <target>Afficher frappe utilisateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Welcome Screen" xml:space="preserve">
+        <source>Display Welcome Screen</source>
+        <target>Afficher l’écran de bienvenue</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Display Word Variants As..." xml:space="preserve">
+        <source>Display Word Variants As...</source>
+        <target>Afficher les mots dérivés comme...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Do Not Scan" xml:space="preserve">
+        <source>Do Not Scan</source>
+        <target>Aucun</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Dutch - Daan - Male/Adult" xml:space="preserve">
+        <source>Dutch - Daan - Male/Adult</source>
+        <target>Néerlandais - Daan - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Dutch - Femke - Female/Adult" xml:space="preserve">
+        <source>Dutch - Femke - Female/Adult</source>
+        <target>Néerlandais (NL)- Femke - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Dutch - Jasmijn - Female/Adult" xml:space="preserve">
+        <source>Dutch - Jasmijn - Female/Adult</source>
+        <target>Néerlandais - Jasmijn - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Dutch - Max - Male/Adult" xml:space="preserve">
+        <source>Dutch - Max - Male/Adult</source>
+        <target>Néerlandais (NL) - Max - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Finnish - Sanna - Female/Adult" xml:space="preserve">
+        <source>Finnish - Sanna - Female/Adult</source>
+        <target>Finlandais - Sanna - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French (Canada) - Louise - Female/Adult" xml:space="preserve">
+        <source>French (Canada) - Louise - Female/Adult</source>
+        <target>Français (Canada) - Louise - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Alice - Female/Adult" xml:space="preserve">
+        <source>French - Alice - Female/Adult</source>
+        <target>Français - Alice - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Antoine - Male/Adult" xml:space="preserve">
+        <source>French - Antoine - Male/Adult</source>
+        <target>Français - Antoine - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Antoine Happy - Male/Adult" xml:space="preserve">
+        <source>French - Antoine Happy - Male/Adult</source>
+        <target>Français - Antoine Happy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Antoine Sad - Male/Adult" xml:space="preserve">
+        <source>French - Antoine Sad - Male/Adult</source>
+        <target>Français - Antoine Sad - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Antoine from afar - Male/Adult" xml:space="preserve">
+        <source>French - Antoine from afar - Male/Adult</source>
+        <target>Français - Antoine from afar - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Antoine up close - Male/Adult" xml:space="preserve">
+        <source>French - Antoine up close - Male/Adult</source>
+        <target>Français - Antoine up close - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Bruno - Male/Adult" xml:space="preserve">
+        <source>French - Bruno - Male/Adult</source>
+        <target>Français - Bruno - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Claire - Female/Adult" xml:space="preserve">
+        <source>French - Claire - Female/Adult</source>
+        <target>Français - Claire - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Julie - Female/Adult" xml:space="preserve">
+        <source>French - Julie - Female/Adult</source>
+        <target>Français - Julie - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Manon - Female/Adult" xml:space="preserve">
+        <source>French - Manon - Female/Adult</source>
+        <target>Français - Manon - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Margaux - Female/Adult" xml:space="preserve">
+        <source>French - Margaux - Female/Adult</source>
+        <target>Français - Margaux - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Margaux Happy - Female/Adult" xml:space="preserve">
+        <source>French - Margaux Happy - Female/Adult</source>
+        <target>Français - Margaux Happy - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Margaux Sad - Female/Adult" xml:space="preserve">
+        <source>French - Margaux Sad - Female/Adult</source>
+        <target>Français - Margaux Sad - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="French - Robot - Male/Adult" xml:space="preserve">
+        <source>French - Robot - Male/Adult</source>
+        <target>Français - Robot - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="German - Andreas - Male/Adult" xml:space="preserve">
+        <source>German - Andreas - Male/Adult</source>
+        <target>Allemand - Andreas - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="German - Claudia - Female/Adult" xml:space="preserve">
+        <source>German - Claudia - Female/Adult</source>
+        <target>Allemand - Claudia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="German - Julia - Female/Adult" xml:space="preserve">
+        <source>German - Julia - Female/Adult</source>
+        <target>Allemand- Julia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="German - Klaus - Male/Adult" xml:space="preserve">
+        <source>German - Klaus - Male/Adult</source>
+        <target>Allemand- Klaus - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="German - Sarah - Female/Adult" xml:space="preserve">
+        <source>German - Sarah - Female/Adult</source>
+        <target>Allemand - Sarah - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Get Support" xml:space="preserve">
+        <source>Get Support</source>
+        <target>Accéder au support</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Greek - Dimitris - Male/Adult" xml:space="preserve">
+        <source>Greek - Dimitris - Male/Adult</source>
+        <target>Grec - Dimitris - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Greek - Dimitris Happy - Male/Adult" xml:space="preserve">
+        <source>Greek - Dimitris Happy - Male/Adult</source>
+        <target>Grec - Dimitris Happy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Greek - Dimitris Sad - Male/Adult" xml:space="preserve">
+        <source>Greek - Dimitris Sad - Male/Adult</source>
+        <target>Grec - Dimitris Sad - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Hotspots Visible" xml:space="preserve">
+        <source>Hotspots Visible</source>
+        <target>Grille Hotspots Visible</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Indian (English) - Deepa - Female/Adult" xml:space="preserve">
+        <source>Indian (English) - Deepa - Female/Adult</source>
+        <target>Hindî (English) - Deepa - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Italian - Chiara - Female/Adult" xml:space="preserve">
+        <source>Italian - Chiara - Female/Adult</source>
+        <target>Italien - Chiara - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Italian - Fabiana - Female/Adult" xml:space="preserve">
+        <source>Italian - Fabiana - Female/Adult</source>
+        <target>Italien - Fabiana - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Italian - Vittorio - Male/Adult" xml:space="preserve">
+        <source>Italian - Vittorio - Male/Adult</source>
+        <target>Italien - Vittorio - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Japanese - Sakura - Female/Adult" xml:space="preserve">
+        <source>Japanese - Sakura - Female/Adult</source>
+        <target>Japanese - Sakura - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Landscape" xml:space="preserve">
+        <source>Landscape</source>
+        <target>Panoramique</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Long Press Word Variation" xml:space="preserve">
+        <source>Long Press Word Variation</source>
+        <target>Appui long propose des mots dérivés</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Mandarin - Lulu - Female/Adult" xml:space="preserve">
+        <source>Mandarin - Lulu - Female/Adult</source>
+        <target>Mandarin - Lulu - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Manual" xml:space="preserve">
+        <source>Manual</source>
+        <target>Manuellement</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Max Movement on Press" xml:space="preserve">
+        <source>Max Movement on Press</source>
+        <target>Mouvement maximal lors de l'appui</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Maximum Predictions" xml:space="preserve">
+        <source>Maximum Predictions</source>
+        <target>Nombre maximum de prédictions</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Maximum Rows" xml:space="preserve">
+        <source>Maximum Rows</source>
+        <target>Maximum de lignes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Minimum Press Duration" xml:space="preserve">
+        <source>Minimum Press Duration</source>
+        <target>Durée minimum d'appui</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="None" xml:space="preserve">
+        <source>None</source>
+        <target>Aucun(e)</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Norwegian - Bente - Female/Adult" xml:space="preserve">
+        <source>Norwegian - Bente - Female/Adult</source>
+        <target>Norvégien - Bente - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Norwegian - Kari - Female/Adult" xml:space="preserve">
+        <source>Norwegian - Kari - Female/Adult</source>
+        <target>Norvégien - Kari - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Norwegian - Olav - Male/Adult" xml:space="preserve">
+        <source>Norwegian - Olav - Male/Adult</source>
+        <target>Norvégien - Olav - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Off" xml:space="preserve">
+        <source>Off</source>
+        <target>Inactif</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="On" xml:space="preserve">
+        <source>On</source>
+        <target>Actif</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="On-Alternate" xml:space="preserve">
+        <source>On-Alternate</source>
+        <target>Actif alternance</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Other" xml:space="preserve">
+        <source>Other</source>
+        <target>Autre</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Password" xml:space="preserve">
+        <source>Password</source>
+        <target>Mot de passe</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Phrase Mode" xml:space="preserve">
+        <source>Phrase Mode</source>
+        <target>Construction de phrase</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Pics in Phrase Mode" xml:space="preserve">
+        <source>Pics in Phrase Mode</source>
+        <target>Images en mode Phrase</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Polish - Ania - Female/Adult" xml:space="preserve">
+        <source>Polish - Ania - Female/Adult</source>
+        <target>polonais - Ania - Fille/Adulte</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Polish - Monika - Female/Adult" xml:space="preserve">
+        <source>Polish - Monika - Female/Adult</source>
+        <target>Polonais - Monika - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Popout Cells" xml:space="preserve">
+        <source>Popout Cells</source>
+        <target>Mise en avant de la cellule</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Popup Board" xml:space="preserve">
+        <source>Popup Board</source>
+        <target>Tableau Popup</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Popup List" xml:space="preserve">
+        <source>Popup List</source>
+        <target>Liste Popup</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Portrait" xml:space="preserve">
+        <source>Portrait</source>
+        <target>Portrait</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Portuguese (Brazil) - Marcia - Female/Adult" xml:space="preserve">
+        <source>Portuguese (Brazil) - Marcia - Female/Adult</source>
+        <target>Portugais (Brésil) - Marcia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Portuguese - Celia - Female/Adult" xml:space="preserve">
+        <source>Portuguese - Celia - Female/Adult</source>
+        <target>Portugais - Celia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Probability" xml:space="preserve">
+        <source>Probability</source>
+        <target>Probabilité</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Rate App" xml:space="preserve">
+        <source>Rate App</source>
+        <target>Noter cette appli</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Remember Me" xml:space="preserve">
+        <source>Remember Me</source>
+        <target>Se souvenir de moi</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Reverse Colors" xml:space="preserve">
+        <source>Reverse Colors</source>
+        <target>Couleurs inversées</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Rotate" xml:space="preserve">
+        <source>Rotate</source>
+        <target>Rotation automatique</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Rotation" xml:space="preserve">
+        <source>Rotation</source>
+        <target>Rotation</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Row then Column" xml:space="preserve">
+        <source>Row then Column</source>
+        <target>Lignes puis colonnes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Russian - Alyona - Female/Adult" xml:space="preserve">
+        <source>Russian - Alyona - Female/Adult</source>
+        <target>Russe - Alyona - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Save Images To Photo Album" xml:space="preserve">
+        <source>Save Images To Photo Album</source>
+        <target>Sauvegarder les images dans l’album photo</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Scan Animation" xml:space="preserve">
+        <source>Scan Animation</source>
+        <target>Animation du balayage</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Scan Navigation" xml:space="preserve">
+        <source>Scan Navigation</source>
+        <target>Mode de balayage</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Scanian - Mia - Female/Adult" xml:space="preserve">
+        <source>Scanian - Mia - Female/Adult</source>
+        <target>Scanian - Mia - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Scottish English - Rhona - Female/Adult" xml:space="preserve">
+        <source>Scottish English - Rhona - Female/Adult</source>
+        <target>Anglais Ecossais - Rhona - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Send eMail" xml:space="preserve">
+        <source>Send eMail</source>
+        <target>Envoyer un courriel</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Separator Lines" xml:space="preserve">
+        <source>Separator Lines</source>
+        <target>Séparateur des lignes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Sort By" xml:space="preserve">
+        <source>Sort By</source>
+        <target>Classer par</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Spanish (US) - Rodrigo - Male/Adult" xml:space="preserve">
+        <source>Spanish (US) - Rodrigo - Male/Adult</source>
+        <target>Espagnol (US) - Rodrigo - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Spanish (US) - Rosa - Female/Adult" xml:space="preserve">
+        <source>Spanish (US) - Rosa - Female/Adult</source>
+        <target>Espagnol (US) - Rosa - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Spanish - Antonio - Male/Adult" xml:space="preserve">
+        <source>Spanish - Antonio - Male/Adult</source>
+        <target>Espagnol - Antonio - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Spanish - Ines - Female/Adult" xml:space="preserve">
+        <source>Spanish - Ines - Female/Adult</source>
+        <target>Espagnol - Ines - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Spanish - Maria - Female/Adult" xml:space="preserve">
+        <source>Spanish - Maria - Female/Adult</source>
+        <target>Espagnol - Maria - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Start Up" xml:space="preserve">
+        <source>Start Up</source>
+        <target>Démarrer</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish (Finland) - Samuel - Male/Adult" xml:space="preserve">
+        <source>Swedish (Finland) - Samuel - Male/Adult</source>
+        <target>Suédois (Finland) - Samuel - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish (Gothenburg) - Kal - Male/Adult" xml:space="preserve">
+        <source>Swedish (Gothenburg) - Kal - Male/Adult</source>
+        <target>Suédois (Gothenburg) - Kal - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish - Elin - Female/Adult" xml:space="preserve">
+        <source>Swedish - Elin - Female/Adult</source>
+        <target>Suédois - Elin - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish - Emil - Male/Adult" xml:space="preserve">
+        <source>Swedish - Emil - Male/Adult</source>
+        <target>Suédois - Emil - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish - Emma - Female/Adult" xml:space="preserve">
+        <source>Swedish - Emma - Female/Adult</source>
+        <target>Suédois - Emma -Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Swedish - Erik - Male/Adult" xml:space="preserve">
+        <source>Swedish - Erik - Male/Adult</source>
+        <target>Suédois - Erik - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Switch Auto-Scan Interval" xml:space="preserve">
+        <source>Switch Auto-Scan Interval</source>
+        <target>Vitesse de balayage automatique</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Switch Type" xml:space="preserve">
+        <source>Switch Type</source>
+        <target>Type de contacteur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Switch/Scanning" xml:space="preserve">
+        <source>Switch/Scanning</source>
+        <target>Mode contacteur/balayage</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Sync Service" xml:space="preserve">
+        <source>Sync Service</source>
+        <target>Synchronisation</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="TTS Voice" xml:space="preserve">
+        <source>TTS Voice</source>
+        <target>Voix de synthèse</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="TTS Voice Shaping" xml:space="preserve">
+        <source>TTS Voice Shaping</source>
+        <target>Fréquence fondamentale voix</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="TTS Words Per Minute" xml:space="preserve">
+        <source>TTS Words Per Minute</source>
+        <target>Nombre de mots par minute</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Tap Time Out" xml:space="preserve">
+        <source>Tap Time Out</source>
+        <target>Tape Temps écoulé</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Text &amp; Separator Color" xml:space="preserve">
+        <source>Text &amp; Separator Color</source>
+        <target>Texte &amp; Couleur de séparation</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Text-To-Speech" xml:space="preserve">
+        <source>Text-To-Speech</source>
+        <target>Synthétiseur vocal</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Tips &amp; Tricks" xml:space="preserve">
+        <source>Tips &amp; Tricks</source>
+        <target>trucs et astuces</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Touch" xml:space="preserve">
+        <source>Touch</source>
+        <target>Appui</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Track Usage" xml:space="preserve">
+        <source>Track Usage</source>
+        <target>Suivi d'activité</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Turkish - Ipek - Female/Adult" xml:space="preserve">
+        <source>Turkish - Ipek - Female/Adult</source>
+        <target>turc - Ipek -Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Heather - Female/Adult" xml:space="preserve">
+        <source>US English - Heather - Female/Adult</source>
+        <target>Anglais US – Heather – Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Karen - Female/Adult" xml:space="preserve">
+        <source>US English - Karen - Female/Adult</source>
+        <target>Anglais US - Karen - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Kenny - Male/Child" xml:space="preserve">
+        <source>US English - Kenny - Male/Child</source>
+        <target>Anglais US – Kenny – Garçon</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Laura - Female/Adult" xml:space="preserve">
+        <source>US English - Laura - Female/Adult</source>
+        <target>Anglais US - Laura - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Micah - Male/Adult" xml:space="preserve">
+        <source>US English - Micah - Male/Adult</source>
+        <target>Anglais US - Micah - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Nelly - Female/Child" xml:space="preserve">
+        <source>US English - Nelly - Female/Child</source>
+        <target>Anglais US – Nelly – Fille</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Rod - Male/Adult" xml:space="preserve">
+        <source>US English - Rod - Male/Adult</source>
+        <target>Anglais US - Rod - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Ryan - Male/Adult" xml:space="preserve">
+        <source>US English - Ryan - Male/Adult</source>
+        <target>Anglais US – Ryan – Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Saul - Male/Adult" xml:space="preserve">
+        <source>US English - Saul - Male/Adult</source>
+        <target>Anglais US - Saul - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Sharon - Female/Adult" xml:space="preserve">
+        <source>US English - Sharon - Female/Adult</source>
+        <target>Anglais US - Sharon - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Tracy - Female/Adult" xml:space="preserve">
+        <source>US English - Tracy - Female/Adult</source>
+        <target>Anglais US - Tracy - Femme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will - Male/Adult" xml:space="preserve">
+        <source>US English - Will - Male/Adult</source>
+        <target>Anglais US - Will - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will Bad Guy - Male/Adult" xml:space="preserve">
+        <source>US English - Will Bad Guy - Male/Adult</source>
+        <target>Anglais US - Will Bad Guy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will Happy - Male/Adult" xml:space="preserve">
+        <source>Anglais US - Will Happy - Homme</source>
+        <target>Anglais US - Will Happy - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will Little Creature - Male/Adult" xml:space="preserve">
+        <source>US English - Will Little Creature - Male/Adult</source>
+        <target>Anglais US - Will Little Creature - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will Old Man - Male/Adult" xml:space="preserve">
+        <source>US English - Will Old Man - Male/Adult</source>
+        <target>Anglais US - Will Old Man - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will Sad - Male/Adult" xml:space="preserve">
+        <source>US English - Will Sad - Male/Adult</source>
+        <target>Anglais US - Will Sad - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will from afar - Male/Adult" xml:space="preserve">
+        <source>US English - Will from afar - Male/Adult</source>
+        <target>Anglais US - Will from afar - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="US English - Will up close - Male/Adult" xml:space="preserve">
+        <source>US English - Will up close - Male/Adult</source>
+        <target>Anglais US - Will up close - Homme</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Unzoom Interval" xml:space="preserve">
+        <source>Unzoom Interval</source>
+        <target>Intervalle Annuler le zoom</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Use Community Predictions" xml:space="preserve">
+        <source>Use Community Predictions</source>
+        <target>Utiliser les prédictions de la communauté</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Use Folder Metaphor" xml:space="preserve">
+        <source>Use Folder Metaphor</source>
+        <target>Utiliser le dossier Metaphore</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Use Margin For Color Coding" xml:space="preserve">
+        <source>Use Margin For Color Coding</source>
+        <target>Utilisez Marge pour le codage couleur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Use Touch ID" xml:space="preserve">
+        <source>Use Touch ID</source>
+        <target>Utiliser Touch ID</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="User Bar Settings" xml:space="preserve">
+        <source>User Bar Settings</source>
+        <target>Paramètres de la barre d'utilisateurs</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="User Bar Sync" xml:space="preserve">
+        <source>User Bar Sync</source>
+        <target>Synchronisation de la barre utilisateur</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Voice adding to phrase" xml:space="preserve">
+        <source>Voice adding to phrase</source>
+        <target>Ajouter voix à la phrase</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="White" xml:space="preserve">
+        <source>White</source>
+        <target>Blanc</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Wizard Gesture" xml:space="preserve">
+        <source>Wizard Gesture</source>
+        <target>Gestes magiques</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Word Prediction" xml:space="preserve">
+        <source>Word Prediction</source>
+        <target>Prévision de mots</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Zoom Pictures" xml:space="preserve">
+        <source>Zoom Pictures</source>
+        <target>Images en plein écran</target>
+        <note>A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences.</note>
+      </trans-unit>
+      <trans-unit id="iCloud Sync Account Settings" xml:space="preserve">
+        <source>iCloud Sync Account Settings</source>
+        <target>Réglages de synchronisation iCloud</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="test/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="14.3" build-num="14E222b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>test</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleGetInfoString" xml:space="preserve">
+        <source/>
+        <note>Get Info string</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>test</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="MyTalkTools Cell" xml:space="preserve">
+        <source>MyTalkTools Cell</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>MyTalk needs access to your camera to use this feature.</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSContactsUsageDescription" xml:space="preserve">
+        <source>MyTalk needs access to your contacts to display them.</source>
+        <note>Privacy - Contacts Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSFaceIDUsageDescription" xml:space="preserve">
+        <source>You may alternately use Face ID to unlock author mode</source>
+        <note>Privacy - Face ID Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysAndWhenInUseUsageDescription" xml:space="preserve">
+        <source>If you have selected usage tracking. This device will track your location at all times to help you make your communication boards more helpful.</source>
+        <note>Privacy - Location Always and When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysUsageDescription" xml:space="preserve">
+        <source>MyTalk needs access to your location to use this feature</source>
+        <note>Privacy - Location Always Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationWhenInUseUsageDescription" xml:space="preserve">
+        <source>If you have selected usage tracking. This device will track your location to help you make your communication boards more helpful.</source>
+        <note>Privacy - Location When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSMicrophoneUsageDescription" xml:space="preserve">
+        <source>MyTalk needs access to your microphone to use this feature.</source>
+        <note>Privacy - Microphone Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryAddUsageDescription" xml:space="preserve">
+        <source>We are adding images to your photo library. You may turn off this setting.</source>
+        <note>Privacy - Photo Library Additions Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>MyTalk needs access to your photo library to use this feature.</source>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+      <trans-unit id="OpenBoardFormat Board" xml:space="preserve">
+        <source>OpenBoardFormat Board</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="OpenBoardFormat Board Set" xml:space="preserve">
+        <source>OpenBoardFormat Board Set</source>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

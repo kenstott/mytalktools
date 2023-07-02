@@ -179,44 +179,42 @@ struct EditCell: View {
             HStack {
                 Form {
                     Section {
-                        Picker(selection: $contentType, label: Text("Cell Type")) {
-                            Text("Media").tag(ContentType.imageSoundName)
-                            Text("Go Home").tag(ContentType.goHome)
-                            Text("Go Back").tag(ContentType.goBack)
+                        Picker(selection: $contentType, label: Text(LocalizedStringKey("Cell Type"))) {
+                            Text(LocalizedStringKey("Media")).tag(ContentType.imageSoundName)
+                            Text(LocalizedStringKey("Go Home")).tag(ContentType.goHome)
+                            Text(LocalizedStringKey("Go Back")).tag(ContentType.goBack)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     } header: {
-                        Text("Type")
+                        Text(LocalizedStringKey("Type"))
                     }
                     if contentType != .goHome && contentType != .goBack {
                         Section {
-                            TextField(text: $name, prompt: Text("Cell Text"))
+                            TextField(text: $name, prompt: Text(LocalizedStringKey("Cell Text")))
                             {
-                                Text("Text")
+                                Text(LocalizedStringKey("Text"))
                             }
                         } header: {
-                            Text("Text")
+                            Text(LocalizedStringKey("Text"))
                         }
                         .textFieldStyle(.roundedBorder)
                         Section {
                             VStack {
                                 if imageUrl != "" {
                                     Toggle(isOn: $isOpaque) {
-                                        Text("Opaque").frame(maxWidth: .infinity, alignment: .trailing)
+                                        Text(LocalizedStringKey("Opaque")).frame(maxWidth: .infinity, alignment: .trailing)
                                     }
                                 }
                                 HStack {
                                     VStack(alignment :.leading, spacing: 10) {
                                         Button {
-//                                            print(imageUrl != "" ? "Swap" : "Add")
                                             showIntegrationIdeas = true
                                             activeSheet = .Image
                                         } label: {
-                                            Label(LocalizedStringKey(imageUrl != "" ? "Swap" : "Add"), systemImage: imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                            Label(imageUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                         }
                                         if imageUrl != "" {
                                             Button {
-//                                                print("Crop")
                                                 showCropTool = true
                                                 
                                             } label: {
@@ -224,12 +222,10 @@ struct EditCell: View {
                                             }
                                             Button(role: .destructive) {
                                                 imageUrl = ""
-//                                                print("Delete")
                                             } label: {
                                                 Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                             }
                                             Button {
-//                                                print("Rotate")
                                                 image = image.rotate(radians: 1.57079633)!
                                                 if let data = image.pngData() {
                                                     var (_, filename, _) = Media.splitFileName(str: imageUrl)
@@ -254,7 +250,6 @@ struct EditCell: View {
                                                 Label(LocalizedStringKey("Rotate"), systemImage: "rotate.right").labelStyle(.iconOnly)
                                             }
                                             Button {
-//                                                print("Share")
                                                 let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                                                     .first?.appendingPathComponent(imageUrl)
                                                 guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
@@ -269,10 +264,10 @@ struct EditCell: View {
                                     if imageUrl != "" {
                                         VStack {
                                             Toggle(isOn: $negate) {
-                                                Text("No").frame(maxWidth: .infinity, alignment: .trailing)
+                                                Text(LocalizedStringKey("No")).frame(maxWidth: .infinity, alignment: .trailing)
                                             }
                                             Toggle(isOn: $positive) {
-                                                Text("Yes").frame(maxWidth: .infinity, alignment: .trailing)
+                                                Text(LocalizedStringKey("Yes")).frame(maxWidth: .infinity, alignment: .trailing)
                                             }
                                         }
                                         Spacer()
@@ -293,22 +288,20 @@ struct EditCell: View {
                                 }
                             }
                         } header: {
-                            Text("Image")
+                            Text(LocalizedStringKey("Image"))
                         }
                         if soundUrl == "" || !content.isVideo(soundURL: soundUrl) {
                             Section {
                                 HStack {
                                     Button {
-//                                        print(soundUrl != "" ? "Swap" : "Add")
                                         showIntegrationIdeas = true
                                         activeSheet = .Sound
                                     } label: {
-                                        Label(LocalizedStringKey(soundUrl != "" ? "Swap" : "Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                        Label(soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
                                     Spacer()
                                     if soundUrl != "" {
                                         Button(role: .destructive) {
-//                                            print("Delete")
                                             soundUrl = ""
                                         } label: {
                                             Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
@@ -330,7 +323,7 @@ struct EditCell: View {
                                     }
                                 }.buttonStyle(BorderlessButtonStyle())
                             } header: {
-                                Text("Sound")
+                                Text(LocalizedStringKey("Sound"))
                             }
                         }
                         if soundUrl == "" || content.isVideo(soundURL: soundUrl) {
@@ -341,7 +334,7 @@ struct EditCell: View {
                                         showIntegrationIdeas = true
                                         activeSheet = .Video
                                     } label: {
-                                        Label(LocalizedStringKey(soundUrl != "" ? "Swap" : "Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                        Label(soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
                                     Spacer()
                                     if soundUrl != "" {
@@ -368,7 +361,7 @@ struct EditCell: View {
                                     }
                                 }.buttonStyle(BorderlessButtonStyle())
                             } header: {
-                                Text("Video")
+                                Text(LocalizedStringKey("Video"))
                             }
                         }
                         Section {
@@ -384,16 +377,14 @@ struct EditCell: View {
                             }
                             HStack {
                                 Button {
-//                                    print(childBoard > 0 ? "Swap" : "Add")
                                     showIntegrationIdeas = true
                                     activeSheet = .ChildBoard
                                 } label: {
-                                    Label(LocalizedStringKey(childBoard > 0 ? "Swap" : "Add"), systemImage: childBoard > 0 ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                    Label(childBoard > 0 ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: childBoard > 0 ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                 }
                                 Spacer()
                                 if childBoard > 0 {
                                     Button(role: .destructive) {
-//                                        print("Delete")
                                         childBoardId = 0
                                         childBoardLink = 0
                                     } label: {
@@ -401,7 +392,6 @@ struct EditCell: View {
                                     }
                                     Spacer()
                                     Button {
-//                                        print("Location")
                                         showLocationPicker = true
                                     } label: {
                                         
@@ -409,7 +399,6 @@ struct EditCell: View {
                                     }
                                     Spacer()
                                     Button {
-//                                        print("Schedule")
                                         showScheduler = true
                                     } label: {
                                         
@@ -432,19 +421,23 @@ struct EditCell: View {
                                 }
                             }.buttonStyle(BorderlessButtonStyle())
                         } header: {
-                            Text("Child Board")
+                            Text(LocalizedStringKey("Child Board"))
                         }
                         Section {
                             VStack {
                                 HStack {
-                                    Text("Font Size")
+                                    Text(LocalizedStringKey("Font Size"))
                                     Stepper(value: $fontSize,
                                             in: 0...50,
                                             step: 1) {
                                         if fontSize != 0 {
-                                            Text("\(fontSize) pixels").italic().font(.system(size: 14))
+                                            Text("\(fontSize) \(NSLocalizedString("pixels", comment: ""))")
+                                                .italic()
+                                                .font(.system(size: 14))
                                         } else {
-                                            Text("default size").italic().font(.system(size: 14))
+                                            Text(LocalizedStringKey("default size"))
+                                                .italic()
+                                                .font(.system(size: 14))
                                         }
                                     }
                                             .padding(5)
@@ -454,9 +447,9 @@ struct EditCell: View {
                                         in: 0...16,
                                         step: 1) {
                                     if foregroundColor != Content.ForegroundColorMask.kfDefault.rawValue {
-                                        Text("Foreground Color").foregroundColor(Content.convertColor(value: foregroundColor))
+                                        Text(LocalizedStringKey("Foreground Color")).foregroundColor(Content.convertColor(value: foregroundColor))
                                     } else {
-                                        Text("default foreground color").font(.system(size: 14))
+                                        Text(LocalizedStringKey("default foreground color")).font(.system(size: 14))
                                     }
                                 }
                                         .padding(5)
@@ -464,21 +457,21 @@ struct EditCell: View {
                                         in: 0...16,
                                         step: 1) {
                                     if backgroundColor != Content.BackgroundColorMask.kNone.rawValue {
-                                        Text("Background Color").background(Content.convertBackgroundColor(value: backgroundColor))
+                                        Text(LocalizedStringKey("Background Color")).background(Content.convertBackgroundColor(value: backgroundColor))
                                     } else  if backgroundColor != Content.ForegroundColorMask.kfClear.rawValue {
-                                        Text("transparent background color").italic().font(.system(size: 14))
+                                        Text(LocalizedStringKey("transparent background color")).italic().font(.system(size: 14))
                                     } else {
-                                        Text("default background color").italic().font(.system(size: 14))
+                                        Text(LocalizedStringKey("default background color")).italic().font(.system(size: 14))
                                     }
                                 }
                                         .padding(5)
                                 HStack {
-                                    Text("Cell Width")
+                                    Text(LocalizedStringKey("Cell Width"))
                                     Stepper(value: $cellSize,
                                             in: 1...15,
                                             step: 1) {
                                         
-                                        Text("\(cellSize) \(cellSize == 0 ? "column" : "columns")").italic().font(.system(size: 14))
+                                        Text("\(cellSize) \(cellSize == 0 ? NSLocalizedString("column", comment: "") : NSLocalizedString("columns", comment: ""))").italic().font(.system(size: 14))
                                         
                                     }
                                             .padding(5)
@@ -487,17 +480,17 @@ struct EditCell: View {
                                 
                             }
                         } header: {
-                            Text("Styles")
+                            Text(LocalizedStringKey("Styles"))
                         }
                         Section {
                             VStack {
-                                Toggle("Never Zoom", isOn: $doNotZoomPics)
-                                Toggle("Always Zoom", isOn: $zoom)
-                                Toggle("Do Not Add To Phrase Bar", isOn: $doNotAddToPhraseBar)
-                                Toggle("Hide from User", isOn: $hidden)
+                                Toggle(LocalizedStringKey("Never Zoom"), isOn: $doNotZoomPics)
+                                Toggle(LocalizedStringKey("Always Zoom"), isOn: $zoom)
+                                Toggle(LocalizedStringKey("Do Not Add To Phrase Bar"), isOn: $doNotAddToPhraseBar)
+                                Toggle(LocalizedStringKey("Hide from User"), isOn: $hidden)
                             }
                         } header: {
-                            Text("Cell Touch")
+                            Text(LocalizedStringKey("Cell Touch"))
                         }
                         Section {
                             VStack {
@@ -520,13 +513,12 @@ struct EditCell: View {
                                 Toggle(LocalizedStringKey("Alternate TTS Voice"), isOn: $alternateTTSVoice)
                             }
                         } header: {
-                            Text("Text-to-Speech")
+                            Text(LocalizedStringKey("Text-to-Speech"))
                         }
                         Section {
                             HStack {
                                 TextField(LocalizedStringKey("Tap + for ideas"), text: $externalUrl)
                                 Button {
-//                                    print("show ideas")
                                     activeSheet = .Main
                                     showIntegrationIdeas = true
                                 } label: {
@@ -535,18 +527,18 @@ struct EditCell: View {
                             }
                             
                         } header: {
-                            Text("Integration and Automation")
+                            Text(LocalizedStringKey("Integration and Automation"))
                         }
                     }
                 }
-                .navigationBarTitle("Edit Cell")
+                .navigationBarTitle(LocalizedStringKey("Edit Cell"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
                             save!(editedContent)
                         } label: {
-                            Text("Save")
+                            Text(LocalizedStringKey("Save"))
                         }
                         
                     }
@@ -554,7 +546,7 @@ struct EditCell: View {
                         Button(role: .destructive) {
                             cancel!()
                         } label: {
-                            Text("Cancel")
+                            Text(LocalizedStringKey("Cancel"))
                         }
                         
                     }
@@ -570,7 +562,6 @@ struct EditCell: View {
             .onChange(of: cameraURL) {
                 newValue in
                 if URL(string: newValue)?.containsVideo == true || URL(string: newValue)?.containsMovie == true  {
-//                    print("!")
                 } else if URL(string: newValue)?.containsAudio == true {
                     Task {
                         if (cameraURL.starts(with: "http")) {
@@ -581,7 +572,6 @@ struct EditCell: View {
                             let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext!)
                             FileManager.default.createFile(atPath: fileURL.path, contents: try Data(contentsOf: URL(string: cameraURL)!))
                             soundUrl = Media.truncateLocalURL(fileURL)
-//                            print(soundUrl)
                         }
                     }
                 } else {
@@ -610,7 +600,6 @@ struct EditCell: View {
                                                 let pngImageData = scaledImage!.pngData()
                                                 FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
                                                 imageUrl = Media.truncateLocalURL(fileURL)
-//                                                print(imageUrl)
                                             }
                                         }
                                     }
@@ -623,7 +612,6 @@ struct EditCell: View {
                             let pngImageData = scaledImage!.pngData()
                             FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
                             imageUrl = Media.truncateLocalURL(fileURL)
-//                            print(imageUrl)
                         }
                     }
                 }
@@ -658,7 +646,6 @@ struct EditCell: View {
                 if positive {
                     negate = false
                 }
-//                print(newValue)
             }
             .onChange(of: negate) {
                 newValue in
@@ -666,7 +653,6 @@ struct EditCell: View {
                 if negate {
                     positive = false
                 }
-//                print(newValue)
             }
             .onChange(of: isOpaque) {
                 newValue in
@@ -676,75 +662,58 @@ struct EditCell: View {
             .onChange(of: hidden) {
                 newValue in
                 editedContent.setHidden(value: newValue)
-//                print(newValue)
             }
             .onChange(of: doNotAddToPhraseBar) {
                 newValue in
                 editedContent.doNotAddToPhraseBar = newValue
-//                print(newValue)
             }
             .onChange(of: zoom) {
                 newValue in
                 editedContent.zoom = newValue
-//                print(newValue)
             }
             .onChange(of: doNotZoomPics) {
                 newValue in
                 editedContent.doNotZoomPics = newValue
-//                print(newValue)
             }
             .onChange(of: foregroundColor) {
                 newValue in
                 editedContent.setColor(value: newValue)
-//                print(newValue)
             }
             .onChange(of: backgroundColor) {
                 newValue in
                 editedContent.setBackgroundColor(value: newValue)
-//                print(newValue)
             }
             .onChange(of: fontSize) {
                 newValue in
                 editedContent.fontSize = newValue
-//                print(newValue)
             }
             .onChange(of: contentType) {
                 newValue in
                 editedContent.contentType = newValue
-//                print(newValue)
             }
             .onChange(of: childBoardId) {
                 newValue in
                 editedContent.childBoardId = newValue
                 editedContent.childBoardLink = 0
                 childBoard = newValue
-//                print(newValue)
             }
             .onChange(of: childBoardLink) {
                 newValue in
                 editedContent.childBoardLink = newValue
                 editedContent.childBoardId = 0
                 childBoard = newValue
-//                print(newValue)
             }
             .onChange(of: name) {
                 newValue in
                 editedContent.name = newValue
-//                print(newValue)
             }
             .onChange(of: imageUrl) {
                 newValue in
                 editedContent.imageURL = newValue
-//                print(newValue)
-            }
-            .onChange(of: image) {
-                newValue in
-//                print("Image changed")
             }
             .onChange(of: soundUrl) {
                 newValue in
                 editedContent.soundURL = newValue
-//                print(newValue)
             }
             .sheet(isPresented: $showContactPicker) {
                 EmbeddedContactPicker(contact: $contact, predicate: NSPredicate(format: "imageDataAvailable == %@", argumentArray: [true]))
@@ -987,44 +956,44 @@ struct EditCell: View {
         .actionSheet(isPresented: $showIntegrationIdeas) {
             switch(activeSheet) {
             case .Main: return ActionSheet(
-                title: Text("Integrations"),
-                message: Text("Available Integrations"),
+                title: Text(LocalizedStringKey("Integrations")),
+                message: Text(LocalizedStringKey("Available Integrations")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Directions"), action: {
+                    .default(Text(LocalizedStringKey("Directions")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showDirections = true
                         }
                     }),
-                    .default(Text("Email"), action: {
+                    .default(Text(LocalizedStringKey("Email")), action: {
                         showEmail = true
                     }),
-                    .default(Text("Facebook"), action: {
+                    .default(Text(LocalizedStringKey("Facebook")), action: {
                         activeSheet = .Facebook
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Contacts"), action: {
+                    .default(Text(LocalizedStringKey("Contacts")), action: {
                         activeSheet = .Contacts
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Facetime"), action: {
+                    .default(Text(LocalizedStringKey("Facetime")), action: {
                         activeSheet = .Facetime
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("IMDB (Movies)"), action: {
+                    .default(Text(LocalizedStringKey("IMDB (Movies)")), action: {
                         activeSheet = .IMDB
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Music Player"), action: {
+                    .default(Text(LocalizedStringKey("Music Player")), action: {
                         testExternalUrl = "music://"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -1037,69 +1006,69 @@ struct EditCell: View {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Pandora"), action: {
+                    .default(Text(LocalizedStringKey("Pandora")), action: {
                         activeSheet = .Pandora
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Skype"), action: {
+                    .default(Text(LocalizedStringKey("Skype")), action: {
                         activeSheet = .Skype
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("SMS"), action: {
+                    .default(Text(LocalizedStringKey("SMS")), action: {
                         showSMS = true
                     }),
-                    .default(Text("Telephone"), action: {
+                    .default(Text(LocalizedStringKey("Telephone")), action: {
                         showTelephone = true
                     }),
-                    .default(Text("Video Player"), action: {
+                    .default(Text(LocalizedStringKey("Video Player")), action: {
                         testExternalUrl = "videos://"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    
+
                 ]
             )
-                
+
             case .IMDB: return ActionSheet(
-                title: Text("IMDB"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("IMDB")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Show Times"), action: {
+                    .default(Text(LocalizedStringKey("Show Times")), action: {
                         testExternalUrl = "imdb:///showtimes"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Box Office"), action: {
+                    .default(Text(LocalizedStringKey("Box Office")), action: {
                         testExternalUrl = "imdb:///boxoffice"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Coming Soon"), action: {
+                    .default(Text(LocalizedStringKey("Coming Soon")), action: {
                         testExternalUrl = "imdb:///feature/comingsoon"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Actors Born Today"), action: {
+                    .default(Text(LocalizedStringKey("Actors Born Today")), action: {
                         testExternalUrl = "imdb:///feature/borntoday"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("TV Show Recaps"), action: {
+                    .default(Text(LocalizedStringKey("TV Show Recaps")), action: {
                         testExternalUrl = "imdb:///feature/tvrecaps"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -1109,24 +1078,24 @@ struct EditCell: View {
                 ]
             )
             case .Contacts: return ActionSheet(
-                title: Text("Contacts"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Contacts")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("All Contacts"), action: {
+                    .default(Text(LocalizedStringKey("All Contacts")), action: {
                         testExternalUrl = "contacts://"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("One Contact"), action: {
+                    .default(Text(LocalizedStringKey("One Contact")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showContact = true
                         }
                     }),
-                    .default(Text("Selected Contacts"), action: {
+                    .default(Text(LocalizedStringKey("Selected Contacts")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showContacts = true
@@ -1135,17 +1104,17 @@ struct EditCell: View {
                 ]
             )
             case .Skype: return ActionSheet(
-                title: Text("Skype"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Skype")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Voice"), action: {
+                    .default(Text(LocalizedStringKey("Voice")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showSkypePhoneNumber = true
                         }
                     }),
-                    .default(Text("Video"), action: {
+                    .default(Text(LocalizedStringKey("Video")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showSkypePhoneNumber = true
@@ -1154,37 +1123,37 @@ struct EditCell: View {
                 ]
             )
             case .ChildBoard: return ActionSheet(
-                title: Text("Child Board"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Child Board")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("New"), action: {
+                    .default(Text(LocalizedStringKey("New")), action: {
                         activeSheet = .NewBoard
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Existing"), action: {
+                    .default(Text(LocalizedStringKey("Existing")), action: {
                         //                        showCamera = true
                     }),
-                    .default(Text("From Library"), action: {
+                    .default(Text(LocalizedStringKey("From Library")), action: {
                         libraryFilter = .board
                         showLibraries = true
                     }),
-                    .default(Text("From File"), action: {
-                        
+                    .default(Text(LocalizedStringKey("From File")), action: {
+
                     })
                 ]
             )
             case .NewBoard: return ActionSheet(
-                title: Text("New Child Board"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("New Child Board")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Simple Board"), action: {
+                    .default(Text(LocalizedStringKey("Simple Board")), action: {
                         showNewSimpleBoard = true
                     }),
-                    .default(Text("Word Variant Board"), action: {
+                    .default(Text(LocalizedStringKey("Word Variant Board")), action: {
                         let word = String(editedContent.name.split(separator: " ")[0])
                         Task {
                             do {
@@ -1196,7 +1165,7 @@ struct EditCell: View {
                             }
                         }
                     }),
-                    .default(Text("Coded Word Variants Board"), action: {
+                    .default(Text(LocalizedStringKey("Coded Word Variants Board")), action: {
                         let word = String(editedContent.name.split(separator: " ")[0])
                         Task {
                             do {
@@ -1208,27 +1177,27 @@ struct EditCell: View {
                             }
                         }
                     }),
-                    .default(Text("Hotspot Board"), action: {
-                        
+                    .default(Text(LocalizedStringKey("Hotspot Board")), action: {
+
                     })
                 ]
             )            case .Video: return ActionSheet(
-                title: Text("Video"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Video")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Saved Photo Albums"), action: {
+                    .default(Text(LocalizedStringKey("Saved Photo Albums")), action: {
                         mediaTypes = [.movie]
                         showPhotoLibrary = true
                     }),
-                    .default(Text("Video Camera"), action: {
+                    .default(Text(LocalizedStringKey("Video Camera")), action: {
                         showVideoCamera = true
                     }),
-                    .default(Text("From Library"), action: {
+                    .default(Text(LocalizedStringKey("From Library")), action: {
                         libraryFilter = .video
                         showLibraries = true
                     }),
-                    .default(Text("From File"), action: {
+                    .default(Text(LocalizedStringKey("From File")), action: {
                         filePickerType = .video
                         filePickerTYpes = [.video]
                         showFilePicker = true
@@ -1236,21 +1205,21 @@ struct EditCell: View {
                 ]
             )
             case .Sound: return ActionSheet(
-                title: Text("Sound"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Sound")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Text-To-Speech"), action: {
+                    .default(Text(LocalizedStringKey("Text-To-Speech")), action: {
                         showPhrase = true
                     }),
-                    .default(Text("Record Sound"), action: {
+                    .default(Text(LocalizedStringKey("Record Sound")), action: {
                         showRecordAudio = true
                     }),
-                    .default(Text("From Library"), action: {
+                    .default(Text(LocalizedStringKey("From Library")), action: {
                         libraryFilter = .sound
                         showLibraries = true
                     }),
-                    .default(Text("From File"), action: {
+                    .default(Text(LocalizedStringKey("From File")), action: {
                         filePickerType = .sound
                         filePickerTYpes = [.aiff, .mp3, .wav]
                         showFilePicker = true
@@ -1258,78 +1227,78 @@ struct EditCell: View {
                 ]
             )
             case .Image: return ActionSheet(
-                title: Text("Image"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Image")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Saved Photo Albums"), action: {
+                    .default(Text(LocalizedStringKey("Saved Photo Albums")), action: {
                         mediaTypes = [.image]
                         showPhotoLibrary = true
                     }),
-                    .default(Text("Camera"), action: {
+                    .default(Text(LocalizedStringKey("Camera")), action: {
                         showCamera = true
                     }),
-                    .default(Text("Web Image Search"), action: {
+                    .default(Text(LocalizedStringKey("Web Image Search")), action: {
                         showWebImageSearch = true
                     }),
-                    .default(Text("Web Page"), action: {
+                    .default(Text(LocalizedStringKey("Web Page")), action: {
                         showWebBrowser = true
                     }),
-                    .default(Text("From Library"), action: {
+                    .default(Text(LocalizedStringKey("From Library")), action: {
                         libraryFilter = .image
                         showLibraries = true
                     }),
-                    .default(Text("From File"), action: {
+                    .default(Text(LocalizedStringKey("From File")), action: {
                         filePickerType = .image
                         filePickerTYpes = [.jpeg, .png, .bmp]
                         showFilePicker = true
                     }),
-                    .default(Text("From Contacts"), action: {
+                    .default(Text(LocalizedStringKey("From Contacts")), action: {
                         showContactPicker = true
                     })
                 ]
             )
             case .Facebook: return ActionSheet(
-                title: Text("Facebook"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Facebook")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Profile"), action: {
+                    .default(Text(LocalizedStringKey("Profile")), action: {
                         testExternalUrl = "fb://profile"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Friends"), action: {
+                    .default(Text(LocalizedStringKey("Friends")), action: {
                         testExternalUrl = "fb://friends"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Friend Requests"), action: {
+                    .default(Text(LocalizedStringKey("Friend Requests")), action: {
                         testExternalUrl = "fb://requests"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Events"), action: {
+                    .default(Text(LocalizedStringKey("Events")), action: {
                         testExternalUrl = "fb://events"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("News Feed"), action: {
+                    .default(Text(LocalizedStringKey("News Feed")), action: {
                         testExternalUrl = "fb://feed"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Albums"), action: {
+                    .default(Text(LocalizedStringKey("Albums")), action: {
                         testExternalUrl = "fb://albums"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -1339,23 +1308,23 @@ struct EditCell: View {
                 ]
             )
             case .Facetime: return ActionSheet(
-                title: Text("Facetime"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Facetime")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Apple ID"), action: {
+                    .default(Text(LocalizedStringKey("Apple ID")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showAppleID = true
                         }
                     }),
-                    .default(Text("Email"), action: {
+                    .default(Text(LocalizedStringKey("Email")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showFacetimeEmail = true
                         }
                     }),
-                    .default(Text("Phone Number"), action: {
+                    .default(Text(LocalizedStringKey("Phone Number")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPhoneNumber = true
@@ -1364,17 +1333,17 @@ struct EditCell: View {
                 ]
             )
             case .Pandora: return ActionSheet(
-                title: Text("Pandora"),
-                message: Text("Available Options"),
+                title: Text(LocalizedStringKey("Pandora")),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Artist"), action: {
+                    .default(Text(LocalizedStringKey("Artist")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPandoraArtist = true
                         }
                     }),
-                    .default(Text("Song"), action: {
+                    .default(Text(LocalizedStringKey("Song")), action: {
                         showIntegrationIdeas = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showPandoraSong = true
@@ -1384,93 +1353,93 @@ struct EditCell: View {
             )
             case .MyTalk: return ActionSheet(
                 title: Text("MyTalkTools"),
-                message: Text("Available Options"),
+                message: Text(LocalizedStringKey("Available Options")),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Go To Home"), action: {
+                    .default(Text(LocalizedStringKey("Go To Home")), action: {
                         testExternalUrl = "mtt:/home"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Go Back"), action: {
+                    .default(Text(LocalizedStringKey("Go Back")), action: {
                         testExternalUrl = "mtt:/back"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Show Phrase Bar"), action: {
+                    .default(Text(LocalizedStringKey("Show Phrase Bar")), action: {
                         testExternalUrl = "mtt:/phraseBarOn"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Phrase Bar Backspace"), action: {
+                    .default(Text(LocalizedStringKey("Phrase Bar Backspace")), action: {
                         testExternalUrl = "mtt:/phraseBarBackspace"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Phrase Bar Clear"), action: {
+                    .default(Text(LocalizedStringKey("Phrase Bar Clear")), action: {
                         testExternalUrl = "mtt:/phraseBarClear"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Phrase Bar Play"), action: {
+                    .default(Text(LocalizedStringKey("Phrase Bar Play")), action: {
                         testExternalUrl = "mtt:/play"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Phrase Bar Keypress"), action: { print("Music Player") }),
-                    .default(Text("Phrase Bar Make Word"), action: { print("Music Player") }),
-                    .default(Text("Hide Phrase Bar"), action: {
+                    .default(Text(LocalizedStringKey("Phrase Bar Keypress")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Phrase Bar Make Word")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Hide Phrase Bar")), action: {
                         testExternalUrl = "mtt:/phraseBarOff"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Toggle Phrase Bar"), action: {
+                    .default(Text(LocalizedStringKey("Toggle Phrase Bar")), action: {
                         testExternalUrl = "mtt:/phraseBarToggle"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("View Phrase Bar History"), action: { print("Music Player") }),
-                    .default(Text("Display Keyboard"), action: {
+                    .default(Text(LocalizedStringKey("View Phrase Bar History")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Display Keyboard")), action: {
                         testExternalUrl = "mtt:/type"
                         activeSheet = .AppLinkCreated
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("Voice a Phrase"), action: { print("Music Player") }),
-                    .default(Text("Exit MyTalk"), action: { print("Music Player") }),
-                    .default(Text("Print"), action: { print("Music Player") }),
-                    .default(Text("View Schedules"), action: { print("Music Player") }),
-                    .default(Text("View Locations"), action: { print("Music Player") }),
-                    .default(Text("View Most Used Cells"), action: { print("Music Player") }),
-                    .default(Text("View Most Recent Cells"), action: { print("Music Player") }),
-                    .default(Text("View Wizard"), action: { print("Music Player") }),
-                    .default(Text("Increase Volume"), action: { print("Music Player") }),
-                    .default(Text("Decrease Volume"), action: { print("Music Player") })
+                    .default(Text(LocalizedStringKey("Voice a Phrase")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Exit MyTalk")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Print")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("View Schedules")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("View Locations")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("View Most Used Cells")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("View Most Recent Cells")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("View Wizard")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Increase Volume")), action: { print("Music Player") }),
+                    .default(Text(LocalizedStringKey("Decrease Volume")), action: { print("Music Player") })
                 ]
             )
             case .AppLinkCreated: return ActionSheet(
-                title: Text("App Link Created"),
+                title: Text(LocalizedStringKey("App Link Created")),
                 message: Text(testExternalUrl),
                 buttons: [
                     .cancel { print(self.showIntegrationIdeas) },
-                    .default(Text("Test App Link"), action: {
+                    .default(Text(LocalizedStringKey("Test App Link")), action: {
                         activeSheet = .AppLinkCreated
                         if let url = URL(string: testExternalUrl) {
                             if UIApplication.shared.canOpenURL(url) {
@@ -1481,7 +1450,7 @@ struct EditCell: View {
                             showIntegrationIdeas = true
                         }
                     }),
-                    .default(Text("OK"), action: {
+                    .default(Text(LocalizedStringKey("OK")), action: {
                         externalUrl = testExternalUrl
                     })
                 ])

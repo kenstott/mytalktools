@@ -145,15 +145,15 @@ struct Author: View {
                             }
                         }
                         Toggle(isOn: $rememberMe) {
-                            Text("Remember Me")
+                            Text(LocalizedStringKey("Remember Me"))
                         }
                         Toggle(isOn: $faceID) {
-                            Text("Use Face ID")
+                            Text(LocalizedStringKey("Use Face ID"))
                         }
                         Button {
                             // Handle for got password action.
                         } label: {
-                            Text("Forgot password")
+                            Text(LocalizedStringKey("Forgot password"))
                         }
                     }
                     .textFieldStyle(.roundedBorder)
@@ -164,36 +164,36 @@ struct Author: View {
                         Button {
                             // Handle for forgot password action.
                         } label: {
-                            Text("Create new user name")
+                            Text(LocalizedStringKey("Create new user name"))
                         }
                         Button {
                             // Handle for About action.
                         }
                     label: {
                         NavigationLink(destination: About()) {
-                            Text("About")
+                            Text(LocalizedStringKey("About"))
                         }
                     }
                         Button {
                             // Handle for got password action.
                         } label: {
-                            Text("Tell a friend")
+                            Text(LocalizedStringKey("Tell a friend"))
                         }
                         Button {
                             // Handle for got password action.
                         } label: {
-                            Text("Rate this app")
+                            Text(LocalizedStringKey("Rate this app"))
                         }
                         Button {
                             // Handle for got password action.
                         } label: {
-                            Text("Restore purchases at no cost")
+                            Text(LocalizedStringKey("Restore purchases at no cost"))
                         }
                     }
                     .alert("Login Error", isPresented: $showLoginError) {} message: {
-                        Text(isValidUser.result?.errorMessage ?? "Unknown error")
+                        Text(isValidUser.result?.errorMessage ?? NSLocalizedString("Unknown error", comment: ""))
                     }
-                }.navigationBarTitle("Login")
+                }.navigationBarTitle(LocalizedStringKey("Login"))
                     .toolbar {
                         ToolbarItem(placement: .primaryAction) {
                             Button {
@@ -206,9 +206,9 @@ struct Author: View {
                                 }
                             }
                             .alert(isPresented: $isProfessional, content: {
-                                Alert(title: Text("Professional Account"),
-                                      message: Text("Select a board name from Login"),
-                                      dismissButton: Alert.Button.default(Text("OK"),
+                                Alert(title: Text(LocalizedStringKey("Professional Account")),
+                                      message: Text(LocalizedStringKey("Select a board name from Login")),
+                                      dismissButton: Alert.Button.default(Text(LocalizedStringKey("OK")),
                                                                           action: {
                                     showBoardName = true
                                 }))

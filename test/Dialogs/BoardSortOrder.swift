@@ -30,35 +30,35 @@ struct BoardSortOrder: View {
         NavigationView {
             HStack {
                 Form {
-                    Picker("First Sort", selection: $firstSort) {
-                        Text("Not Sorted").tag(SortTypes.notSorted)
-                        Text("Random").tag(SortTypes.random)
-                        Text("Alphabetic").tag(SortTypes.alphabetic)
-                        Text("Use Frequency").tag(SortTypes.useFrequency)
-                        Text("Background Color").tag(SortTypes.backgroundColor)
+                    Picker(LocalizedStringKey("First Sort"), selection: $firstSort) {
+                        Text(LocalizedStringKey("Not Sorted")).tag(SortTypes.notSorted)
+                        Text(LocalizedStringKey("Random")).tag(SortTypes.random)
+                        Text(LocalizedStringKey("Alphabetic")).tag(SortTypes.alphabetic)
+                        Text(LocalizedStringKey("Use Frequency")).tag(SortTypes.useFrequency)
+                        Text(LocalizedStringKey("Background Color")).tag(SortTypes.backgroundColor)
                     }
-                    Picker("Second Sort", selection: $secondSort) {
-                        Text("Not Sorted").tag(SortTypes.notSorted)
-                        Text("Random").tag(SortTypes.random)
-                        Text("Alphabetic").tag(SortTypes.alphabetic)
-                        Text("Use Frequency").tag(SortTypes.useFrequency)
-                        Text("Background Color").tag(SortTypes.backgroundColor)
+                    Picker(LocalizedStringKey("Second Sort"), selection: $secondSort) {
+                        Text(LocalizedStringKey("Not Sorted")).tag(SortTypes.notSorted)
+                        Text(LocalizedStringKey("Random")).tag(SortTypes.random)
+                        Text(LocalizedStringKey("Alphabetic")).tag(SortTypes.alphabetic)
+                        Text(LocalizedStringKey("Use Frequency")).tag(SortTypes.useFrequency)
+                        Text(LocalizedStringKey("Background Color")).tag(SortTypes.backgroundColor)
                     }
-                    Picker("Third Sort", selection: $thirdSort) {
-                        Text("Not Sorted").tag(SortTypes.notSorted)
-                        Text("Random").tag(SortTypes.random)
-                        Text("Alphabetic").tag(SortTypes.alphabetic)
-                        Text("Use Frequency").tag(SortTypes.useFrequency)
-                        Text("Background Color").tag(SortTypes.backgroundColor)
+                    Picker(LocalizedStringKey("Third Sort"), selection: $thirdSort) {
+                        Text(LocalizedStringKey("Not Sorted")).tag(SortTypes.notSorted)
+                        Text(LocalizedStringKey("Random")).tag(SortTypes.random)
+                        Text(LocalizedStringKey("Alphabetic")).tag(SortTypes.alphabetic)
+                        Text(LocalizedStringKey("Use Frequency")).tag(SortTypes.useFrequency)
+                        Text(LocalizedStringKey("Background Color")).tag(SortTypes.backgroundColor)
                     }
                 }
-                .navigationBarTitle("Board Sort Order")
+                .navigationBarTitle(LocalizedStringKey("Board Sort Order"))
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
                             save!()
                         } label: {
-                            Text("Save")
+                            Text(LocalizedStringKey("Save"))
                         }
                         
                     }
@@ -66,7 +66,7 @@ struct BoardSortOrder: View {
                         Button(role: .destructive) {
                             cancel!()
                         } label: {
-                            Text("Cancel")
+                            Text(LocalizedStringKey("Cancel"))
                         }
                         
                     }

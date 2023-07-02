@@ -140,12 +140,12 @@ struct Schedule: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Beginning on...")) {
+                Section(header: Text(LocalizedStringKey("Beginning on..."))) {
                     DatePicker("", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(.graphical)
                         .frame(maxHeight: 400)
                 }
-                Section(header: Text("Repeating...")) {
+                Section(header: Text(LocalizedStringKey("Repeating..."))) {
                     Picker("", selection: $selectedRepeat) {
                         ForEach(0 ..< 8) {
                             Text(repeats[$0]).tag($0)
@@ -159,10 +159,10 @@ struct Schedule: View {
                             Toggle("", isOn: $foreverUntil)
                                 .labelsHidden()
                             HStack {
-                                Text("Forever")
+                                Text(LocalizedStringKey("Forever"))
                                     .foregroundColor(foreverUntil ? .secondary : .primary)
                                 Spacer()
-                                Text("Until")
+                                Text(LocalizedStringKey("Until"))
                                     .foregroundColor(foreverUntil ? .primary : .secondary)
                             }
                         }
@@ -191,7 +191,7 @@ struct Schedule: View {
                     urlResult = ""
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(LocalizedStringKey("Cancel"))
                 }
             }
             ToolbarItem {
@@ -201,7 +201,7 @@ struct Schedule: View {
 //                    print("result=\(urlResult)")
                     dismiss()
                 } label: {
-                    Text("Save")
+                    Text(LocalizedStringKey("Save"))
                 }
             }
         }

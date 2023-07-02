@@ -79,18 +79,18 @@ struct FindLocation: View {
                             Button {
                                 getCoordinates()
                             } label: {
-                                Text("Find")
+                                Text(LocalizedStringKey("Find"))
                             }
                             Spacer()
                             Button {
                                 
                             } label: {
-                                Text("Nearby")
+                                Text(LocalizedStringKey("Nearby"))
                             }
                             Button {
                                 
                             } label: {
-                                Text("Current")
+                                Text(LocalizedStringKey("Current"))
                             }
                         }
                     }
@@ -121,14 +121,14 @@ struct FindLocation: View {
             }
             .padding()
         }
-        .navigationTitle("Location")
+        .navigationTitle(LocalizedStringKey("Location"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text(LocalizedStringKey("Cancel"))
                 }
             }
             ToolbarItem {
@@ -137,7 +137,7 @@ struct FindLocation: View {
 //                    print(urlResult)
                     dismiss()
                 } label: {
-                    Text("Save")
+                    Text(LocalizedStringKey("Save"))
                 }
                 .disabled(region.center.latitude == 0.0 && region.center.longitude == 0.0)
             }

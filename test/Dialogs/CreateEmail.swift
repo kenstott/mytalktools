@@ -41,18 +41,18 @@ struct Email: View {
                         if !self.isEmailValid {
                             HStack {
                                 Spacer()
-                                Text("Email is not valid").font(.system(size: 12)).foregroundColor(Color.red)
+                                Text(LocalizedStringKey("Email is not valid")).font(.system(size: 12)).foregroundColor(Color.red)
                                 Spacer()
                             }
                         }
-                        TextField("Subject", text: $subject)
+                        TextField(LocalizedStringKey("Subject"), text: $subject)
                     } header: {
-                        Text("Header")
+                        Text(LocalizedStringKey("Header"))
                     }
                     Section {
                         TextEditor(text: $emailBody)
                     } header: {
-                        Text("Message")
+                        Text(LocalizedStringKey("Message"))
                     }
                 }
             }
@@ -60,20 +60,20 @@ struct Email: View {
                 newValue in
                 isEmailValid = textFieldValidatorEmail(newValue)
             }
-            .navigationBarTitle("Create Email")
+            .navigationBarTitle(LocalizedStringKey("Create Email"))
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         save!(emailAddress, subject, emailBody)
                     } label: {
-                        Text("Save")
+                        Text(LocalizedStringKey("Save"))
                     }.disabled(!isEmailValid || subject == "" || emailBody == "")
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(role: .destructive) {
                         cancel!()
                     } label: {
-                        Text("Cancel")
+                        Text(LocalizedStringKey("Cancel"))
                     }
                     
                 }

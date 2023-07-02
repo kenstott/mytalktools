@@ -52,7 +52,7 @@ struct ImageSearch: View {
                         Button(role: .destructive) {
                             dismiss()
                         } label: {
-                            Text("Cancel")
+                            Text(LocalizedStringKey("Cancel"))
                         }
                         
                     }

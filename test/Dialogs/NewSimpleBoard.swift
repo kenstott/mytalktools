@@ -36,7 +36,7 @@ struct NewSimpleBoard: View {
                             dismiss()
                             done(false)
                         } label: {
-                            Text("Save")
+                            Text(LocalizedStringKey("Save"))
                         }
                         
                     }
@@ -45,7 +45,7 @@ struct NewSimpleBoard: View {
                             dismiss()
                             done(true)
                         } label: {
-                            Text("Cancel")
+                            Text(LocalizedStringKey("Cancel"))
                         }
                         
                     }

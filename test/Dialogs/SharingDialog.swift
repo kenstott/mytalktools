@@ -29,26 +29,26 @@ struct SharingDialog: View {
             Button {
                 // Handle import action.
             } label: {
-                Text("URL")
+                Text(LocalizedStringKey("URL"))
             }
             Button {
                 // Handle import action.
             } label: {
-                Text("PDF")
+                Text(LocalizedStringKey("PDF"))
             }
             Button {
                 // Handle import action.
             } label: {
-                Text("Image")
+                Text(LocalizedStringKey("Image"))
             }
-            Button("Cancel", role: .cancel) {
+            Button(LocalizedStringKey("Cancel"), role: .cancel) {
                 
             }
             
         } message: { detail in
             Text(
                 """
-                Share \"\(dialogDetail.name)\" in which format?
+                \(NSLocalizedString("Share", comment: "")) \"\(dialogDetail.name)\" in which format?
                 """)
         }
         

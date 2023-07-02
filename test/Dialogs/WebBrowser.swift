@@ -83,7 +83,7 @@ struct WebBrowser: View {
                             print(error.localizedDescription)
                         }
                     } label: {
-                        Text("Save")
+                        Text(LocalizedStringKey("Save"))
                     }
                     
                 }
@@ -91,7 +91,7 @@ struct WebBrowser: View {
                     Button(role: .destructive) {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(LocalizedStringKey("Cancel"))
                     }
                     
                 }

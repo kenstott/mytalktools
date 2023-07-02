@@ -1,0 +1,27 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "test";
+/* Get Info string */
+"CFBundleGetInfoString" = "";
+/* Bundle name */
+"CFBundleName" = "test";
+"MyTalkTools Cell" = "MyTalkTools Cell";
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "MyTalk needs access to your camera to use this feature.";
+/* Privacy - Contacts Usage Description */
+"NSContactsUsageDescription" = "MyTalk needs access to your contacts to display them.";
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "You may alternately use Face ID to unlock author mode";
+/* Privacy - Location Always and When In Use Usage Description */
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "If you have selected usage tracking. This device will track your location at all times to help you make your communication boards more helpful.";
+/* Privacy - Location Always Usage Description */
+"NSLocationAlwaysUsageDescription" = "MyTalk needs access to your location to use this feature";
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "If you have selected usage tracking. This device will track your location to help you make your communication boards more helpful.";
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "MyTalk needs access to your microphone to use this feature.";
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "We are adding images to your photo library. You may turn off this setting.";
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "MyTalk needs access to your photo library to use this feature.";
+"OpenBoardFormat Board" = "OpenBoardFormat Board";
+"OpenBoardFormat Board Set" = "OpenBoardFormat Board Set";

@@ -53,7 +53,7 @@ struct LibraryDialogTable: View {
     var body: some View {
         ZStack {
             List {
-                Section(header: Text("My Libraries")) {
+                Section(header: Text(LocalizedStringKey("My Libraries"))) {
                     ForEach((userState.myLibraries ?? []), id: \.self) { row in
                         NavigationLink(row.Name, destination: LibraryView(selectMode: selectMode, query: query, filter: filter, root: row, username: userState.username, selectedURL: $selectedURL) {
                             dismiss()
@@ -68,7 +68,7 @@ struct LibraryDialogTable: View {
                             }
                     }
                 }
-                Section(header: Text("Libraries Shared With Me")) {
+                Section(header: Text(LocalizedStringKey("Libraries Shared With Me"))) {
                     ForEach((userState.sharedLibraries ?? []), id: \.self) { row in
                         NavigationLink(getLibraryTitle(row), destination: LibraryView(selectMode: selectMode, query: query, filter: filter, root: row, username: userState.username, selectedURL: $selectedURL) {
                             dismiss()
@@ -90,7 +90,7 @@ struct LibraryDialogTable: View {
                     Button(role: .destructive) {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(LocalizedStringKey("Cancel"))
                     }
                     
                 }

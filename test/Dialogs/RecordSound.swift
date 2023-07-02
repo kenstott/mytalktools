@@ -101,7 +101,7 @@ struct RecordSound: View {
                         filename = "\(userState.username)/Private Library/\(fileURL!.lastPathComponent)"
                         dismiss()
                     } label: {
-                        Text("Save")
+                        Text(LocalizedStringKey("Save"))
                     }
                     
                 }
@@ -109,7 +109,7 @@ struct RecordSound: View {
                     Button(role: .destructive) {
                         dismiss()
                     } label: {
-                        Text("Cancel")
+                        Text(LocalizedStringKey("Cancel"))
                     }
                     
                 }

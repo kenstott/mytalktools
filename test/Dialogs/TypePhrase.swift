@@ -99,7 +99,7 @@ struct TypePhrase: View {
                                     }) {
                                         HStack {
                                             Image(systemName: "bubble.right")
-                                            Text(" & Exit")
+                                            Text(LocalizedStringKey(" & Exit"))
                                         }
                                     }.buttonStyle(.bordered)
                                         .controlSize(.small)
@@ -172,7 +172,7 @@ struct TypePhrase: View {
                         } label: {
                             HStack {
                                 Image(systemName: "bubble.right")
-                                Text(" & Exit")
+                                Text(LocalizedStringKey(" & Exit"))
                             }
                         }
                         
@@ -181,7 +181,7 @@ struct TypePhrase: View {
                         Button(role: .destructive) {
                             cancel!()
                         } label: {
-                            Text("Cancel")
+                            Text(LocalizedStringKey("Cancel"))
                         }
                         
                     }

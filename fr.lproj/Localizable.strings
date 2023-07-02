@@ -1,0 +1,2180 @@
+/* History */
+" History" = " Historique";
+
+/* and Exit */
+" and Exit" = " et Quitter";
+
+/* %@ version %@\ncopyright (c) MyTalk LLC 2009-2017\n\nconnected to internet %@\n\nUses Acapela speech technologies licensed from the Acapela Group */
+"%@ version %@
+copyright (c) MyTalk LLC 2009-2017
+
+connected to internet %@" = "%@ version %@
+copyright (c) MyTalk LLC 2009-2023
+
+connected to internet %@
+
+Uses Acapela speech technologies licensed from the Acapela Group";
+
+/* %d days ago */
+"%d days ago" = "%d jours il ya";
+
+/* ...Creating new account... */
+"...Creating new account..." = "...Création d’un nouveau compte...";
+
+/* ...Logging In... */
+"...Logging In..." = "...Se connecter...";
+
+/* 1 cell */
+"1 cell" = "1 cellule";
+
+/* 90 Deg CCW */
+"90 Deg CCW" = "Rotation 90 degrés à gauche";
+
+/* 90 Deg CW */
+"90 Deg CW" = "Rotation 90 degrés à droite";
+
+/* 180 Deg Rotation */
+"180 Deg Rotation" = "Rotation de 180 degrés";
+
+/* ADD MEDIA */
+"ADD MEDIA" = "Ajouter Media";
+
+/* About */
+"About" = "A propos";
+
+/* Acapela Error */
+"Acapela Error" = "Acapela Error";
+
+/* Action Options */
+"Action Options" = "Action Options";
+
+/* Actors Born Today */
+"Actors Born Today" = "Acteurs nés aujourd'hui";
+
+/* Add */
+"Add" = "Ajouter";
+
+/* Add Apple ID */
+"Add Apple ID" = "Ajouter Apple ID";
+
+/* Add Artist */
+"Add Artist" = "Ajouter un Artiste";
+
+/* Add Body */
+"Add Body" = "Ajouter texte";
+
+/* Add Column */
+"Add Column" = "Ajouter Colonne";
+
+/* Add Destination */
+"Add Destination" = "Ajouter Destination";
+
+/* Add Email */
+"Add Email" = "Ajouter Courriel";
+
+/* Add Just Video to Cell */
+"Add Just Video to Cell" = "Ajouter juste la vidéo dans la cellule";
+
+/* Add Location */
+"Add Location" = "Ajouter Localisation";
+
+/* Add Phone Number */
+"Add Phone Number" = "Ajouter numéro de téléphone";
+
+/* Add Phrase */
+"Add Phrase" = "Ajouter une phrase";
+
+/* Add Row */
+"Add Row" = "Ajouter Ligne";
+
+/* Add Schedule */
+"Add Schedule" = "Ajouter planning";
+
+/* Add Shared User */
+"Add Shared User" = "Add Shared User";
+
+/* Add Skype Name */
+"Add Skype Name" = "Ajouter un nom Skype";
+
+/* Add Song */
+"Add Song" = "Ajouter une chanson";
+
+/* Add Sound to Cell */
+"Add Sound to Cell" = "Ajouter un son à la cellule";
+
+/* Add Subject */
+"Add Subject" = "Ajouter un sujet";
+
+/* Add Thumbnail and Video to Cell */
+"Add Thumbnail and Video to Cell" = "Ajouter une image miniature et la vidéo à la cellule";
+
+/* Add as Recorded Sound */
+"Add as Recorded Sound" = "Ajouter comme son enregistré";
+
+/* Add to Cell */
+"Add to Cell" = "Ajouter à la cellule";
+
+/* Advanced Properties */
+"Advanced Properties" = "Propriétés avancées";
+
+/* Albums */
+"Albums" = "Albums";
+
+/* Alert */
+"Alert" = "Alerte";
+
+/* All */
+"All" = "All";
+
+/* Alphabetic */
+"Alphabetic" = "alphabétique";
+
+/* App Link */
+"App Link" = "Lien vers App";
+
+/* App Link Created */
+"App Link Created" = "Lien vers App créé";
+
+/* App Link Options */
+"App Link Options" = "Options de liens d'app";
+
+/* Apple ID */
+"Apple ID" = "Apple ID";
+
+/* Are you sure you want to merge your device and workspace data? */
+"Are you sure you want to merge your device and workspace data?" = "Etes-vous sûr de vouloir fusionner les données de votre tablette avec celles de Workspace?";
+
+/* Are you sure you want to overwrite your device with workspace data? */
+"Are you sure you want to overwrite your device with workspace data?" = "Etes-vous sûr de vouloir écraser le contenu de votre tablette par les données de Workspace?";
+
+/* Are you sure you want to overwrite your workspace data? */
+"Are you sure you want to overwrite your workspace data?" = "Etes-vous sûr de vouloir écraser le contenu de Workspace ?";
+
+/* (No Commment) */
+"Are you sure you want to restore from backup?" = "Êtes-vous sûr de vouloir restaurer à partir d'une sauvegarde?";
+
+/* Are you sure you want to restore from backup? This will update both your mobile device and workspace. */
+"Are you sure you want to restore from backup? This will update both your mobile device and workspace." = "Êtes-vous sûr de vouloir restaurer à partir de la sauvegarde? Cela mettra à jour à la fois votre appareil mobile et l'espace de travail.";
+
+/* Are you sure? */
+"Are you sure?" = "Etes-vous sûr?";
+
+/* Artist */
+"Artist" = "Artiste";
+
+/* (No Commment) */
+"Attached is an image of a MyTalkTools Board" = "La pièce jointe est une image du tableau MyTalkTools";
+
+/* Audio */
+"Audio" = "Audio";
+
+/* Audio Error */
+"Audio Error" = "Erreur Audio";
+
+/* Authentication required to access Author mode */
+"Authentication required to access Author mode" = "Authentification requise pour passer en Mode Création";
+
+/* Author */
+"Author" = "Création";
+
+/* Authoring Account Login */
+"Authoring Account Login" = "Identification Créateur";
+
+/* Back */
+"Back " = "Retour ";
+
+/* Back Cell */
+"Back Cell" = "Cellule Retour";
+
+/* Background Color */
+"Background Color" = "Couleur de fond";
+
+/* Backup Restore Complete */
+"Backup Restore Complete" = "Restauration de sauvegarde complète";
+
+/* Begin Purchase Process */
+"Begin Purchase Process" = "Démarrage de la procedure d’achat";
+
+/* Black */
+"Black" = "noir";
+
+/* Blue (Descriptions) */
+"Blue (Descriptions)" = "bleu (descriptions)";
+
+/* Blue (Descriptors) */
+"Blue (Descriptors)" = "bleu (descripteurs)";
+
+/* Board
+   Child Board */
+"Board" = "Sous-tableau";
+
+/* Board Image */
+"Board Image" = "Image du tableau";
+
+/* Board Options */
+"Board Options" = "Options Sous-tableau";
+
+/* Board PDF */
+"Board PDF" = "Tableau PDF";
+
+/* Boards */
+"Boards" = "Tableaux";
+
+/* Box Office */
+"Box Office" = "Box Office";
+
+/* Brown */
+"Brown" = "brun";
+
+/* Buy */
+"Buy" = "Acheter";
+
+/* abbrevation for Create
+   abbreviation for Create */
+"C" = "C";
+
+/* Calibrating Voice Recognition */
+"Calibrating Voice Recognition" = "Reconnaissance vocale calibrage";
+
+/* Camera */
+"Camera" = "Appareil Photo";
+
+/* Cancel */
+"Cancel" = "Annuler";
+
+/* Cell */
+"Cell" = "Cellule";
+
+/* Cell Text: */
+"Cell Text: " = "Texte de cellule: ";
+
+/* Change board dimensions */
+"Change board dimensions" = "Changer les dimensions du tableau";
+
+/* Change board name */
+"Change board name" = "Changer le nom du tableau";
+
+/* Change current board: %@? */
+"Change current board: %@?" = "Changer le tableau actuel: %@?";
+
+/* Child Board */
+"Child Board" = "Sous-tableau";
+
+/* Children */
+"Children" = "Sous-tableaux";
+
+/* Children or All */
+"Children or All" = "Sous-tableaux ou Tous";
+
+/* Choose the integration option below */
+"Choose the integration option below" = "Choisir les options d'intégration ci-dessous";
+
+/* Choose the type of email below */
+"Choose the type of email below" = "Choisir le type de courriel ci-dessous";
+
+/* Choose the type of image below */
+"Choose the type of image below" = "Choisir le type d'image ci-dessous";
+
+/* Choose the type of sound below */
+"Choose the type of sound below" = "Choisir le type de son ci-dessous";
+
+/* (No Commment) */
+"Clear" = "Effacer";
+
+/* Clear Cell Img/Sound/Text */
+"Clear Cell Img/Sound/Text" = "Effacer Cellule Image/Son/Texte";
+
+/* Click this link to preview the MyTalkTools Board from %@. */
+"Click this link to preview the MyTalkTools Board from %@." = "Cliquer ce lien pour voir l'aperçu du tableau MyTalkTools de %@.";
+
+/* (No Commment) */
+"Click this link to preview the MyTalkTools Board:" = "Cliquer sur ce lien pour voir l'aperçu du tableau MyTalkTools:";
+
+/* Click this link to print the MyTalkTools Board from %@. */
+"Click this link to print the MyTalkTools Board from %@." = "Cliquer ce lien pour imprimer le tableau MyTalkTools de %@.";
+
+/* (No Commment) */
+"Click this link to print the MyTalkTools Board:" = "Cliquer sur ce lien pour imprimer le tableau MyTalkTools:";
+
+/* (No Commment) */
+"Click to preview MyTalkTools:" = "Cliquer pour un aperçu de MyTalkTools:";
+
+/* (No Commment) */
+"Click to print MyTalkTools:" = "Cliquer pour imprimer MyTalkTools:";
+
+/* Closing database */
+"Closing database" = "Fermeture de la base de donnée";
+
+/* Coded Word Variations Board */
+"Coded Word Variations Board" = "Tableau des mots dérivés codés";
+
+/* Coded word variation board created */
+"Coded word variation board created" = "Tableau des mots dérivés codés créé";
+
+/* Coming Soon */
+"Coming Soon" = "Bientôt";
+
+/* Compress Columns By 1 */
+"Compress Columns By 1" = "Compresser moins une colonne";
+
+/* Confirm Backup Restore */
+"Confirm Backup Restore" = "Confirmer la restauration de la sauvegarde";
+
+/* Confirmation */
+"Confirmation" = "Confirmation";
+
+/* Confirmation */
+"Confirmation " = "Confirmation ";
+
+/* Confirmation */
+"Confirmation  " = "Confirmation  ";
+
+/* Contact Information */
+"Contact Information" = "Coordonnées du Contact";
+
+/* No comment provided by engineer. */
+"Continue" = "Continuer";
+
+/* Copy */
+"Copy" = "Copier";
+
+/* Copy Cell */
+"Copy Cell" = "Copier Cellule";
+
+/* Copy Cell to Library */
+"Copy Cell to Library" = "Ajouter la cellule à la bibliothèque";
+
+/* Copy Existing Board */
+"Copy Existing Board" = "Insérer Tableau Existant";
+
+/* Copy or Link Child Board */
+"Copy or Link Child Board" = "Copier ou lier sous-tableau";
+
+/* Copying cell to %@ */
+"Copying cell to %@" = "Copier la cellule vers %@";
+
+/* (No Commment) */
+"Copying cell to Submissions Library" = "Copier la cellule dansla bibliothèque proposée ";
+
+/* Could not find that word in our dictionary */
+"Could not find that word in our dictionary" = "Impossible de trouver ce mot dans notre dictionnaire";
+
+/* Create */
+"Create" = "Créer";
+
+/* Create */
+"Create " = "Créer ";
+
+/* Create Library */
+"Create Library" = "Créer librairie";
+
+/* Create child board from phrase */
+"Create child board from phrase" = "Créer un sous-tableau depuis la phrase";
+
+/* Created Account */
+"Created Account" = "Compte créé";
+
+/* Creating Account */
+"Creating Account" = "Créer un compte";
+
+/* Creating directory: %@ */
+"Creating directory: %@" = "Création d’un annuaire : %@";
+
+/* Creating new account */
+"Creating new account" = "Création d’un nouveau compte";
+
+/* Cyan */
+"Cyan" = "Cyan";
+
+/* abbrevation for Delete
+   abbreviation for Delete */
+"D" = "D";
+
+/* Dark Gray */
+"Dark Gray" = "Gris foncé";
+
+/* Day %ld of every month */
+"Day %ld of every month" = "Jour %ld de chaque mois";
+
+/* Delete */
+"Delete" = "Supprimer ";
+
+/* Delete */
+"Delete " = "Supprimer ";
+
+/* Delete Board */
+"Delete Board" = "Supprimer Tableau";
+
+/* Delete Image */
+"Delete Image" = "Supprimer Image";
+
+/* Delete Last Row */
+"Delete Last Row" = "Supprimer dernière ligne";
+
+/* Delete Library */
+"Delete Library" = "Supprimer librairie";
+
+/* Delete Library Item */
+"Delete Library Item" = "Supprimer élément librairie";
+
+/* Delete Location */
+"Delete Location" = "Supprimer Localisation";
+
+/* Delete Phrase */
+"Delete Phrase" = "Supprimer la phrase";
+
+/* Delete Right Column */
+"Delete Right Column" = "Supprimer colonne de droite";
+
+/* Delete Schedule */
+"Delete Schedule" = "Supprimer planning";
+
+/* Delete Sound */
+"Delete Sound" = "Supprimer Son";
+
+/* (No Commment) */
+"Delete User" = "Supprimer utilisateur";
+
+/* Device Overwrite Complete */
+"Device Overwrite Complete" = "Ecrasement de l'appareil complet";
+
+/* (No Commment) */
+"Device is unable to send email." = "L'appareil est incapable d'envoyer un courriel.";
+
+/* Device is unable to send message. */
+"Device is unable to send message." = "L'appareil est incapable d'envoyer un message.";
+
+/* Directions */
+"Directions" = "Directions";
+
+/* Display Keyboard */
+"Display Keyboard" = "Montrer le clavier";
+
+/* Do you want to just add the child cells, or do you also want to copy the parent cell media? */
+"Do you want to just add the child cells, or do you also want to copy the parent cell media?" = "Voulez-vous juste ajouter les cellules filles, ou voulez-vous aussi copier la cellule media principale?";
+
+/* Do you want to make a copy of this board, or do you want to link to his board? */
+"Do you want to make a copy of this board, or do you want to link to his board?" = "Voulez-vous faire une copie de ce tableau, ou voulez-vous créer un lien vers ce tableau?";
+
+/* Done */
+"Done" = "Effectué";
+
+/* Double tap to see recent phrases */
+"Double tap to see recent phrases" = "Double tape pour voir les phrases récentes";
+
+/* Downloading */
+"Downloading" = "Téléchargement";
+
+/* Downloading board */
+"Downloading board" = "Téléchargement de tableau";
+
+/* Downloading: %@ */
+"Downloading: %@" = "Téléchargement: %@";
+
+/* Edit */
+"Edit" = "Editer";
+
+/* Edit Board */
+"Edit Board" = "Editer le tableau";
+
+/* Edit Image */
+"Edit Image" = "Editer l'image";
+
+/* Edit Location */
+"Edit Location" = "Editer Localisation";
+
+/* Edit Options */
+"Edit Options" = "Options de Modification";
+
+/* Edit Schedule */
+"Edit Schedule" = "Editer Planning";
+
+/* Edit the cell or the hotspot? */
+"Edit the cell or the hotspot?" = "Editer la cellule ou la grille hotspot?";
+
+/* Email */
+"Email" = "Email";
+
+/* Empty */
+"Empty" = "Vide";
+
+/* Enter Filename */
+"Enter Filename" = "Saisissez le nom du fichier";
+
+/* Enter Information */
+"Enter Information" = "Saisissez l’information";
+
+/* Enter Password */
+"Enter Password" = "Entrer mot de passe";
+
+/* Enter Sample Name */
+"Enter Sample Name" = "Donner un nom à l’échantillon";
+
+/* Enter Sample Name */
+"Enter Sample Name " = "Enter un exemple de Nom ";
+
+/* Enter URL, tap Go, tap Capture */
+"Enter URL, tap Go, tap Capture" = "Entrer URL, Valider, Tape Capture";
+
+/* Enter a Phrase */
+"Enter a Phrase" = "Entrer une Phrase";
+
+/* Enter a board name */
+"Enter a board name" = "Entrer un nom de tableau";
+
+/* Enter a filename for this image\n\n */
+"Enter a filename for this image
+
+" = "Saisir un nom pour cette image
+
+";
+
+/* Enter a filename for this recording\n\n */
+"Enter a filename for this recording
+
+" = "Saisir un nom pour cet enregistrement.
+
+";
+
+/* Enter a new library name */
+"Enter a new library name" = "Entrer nouveau nom de librairie";
+
+/* Enter a phrase */
+"Enter a phrase" = "Entrer une phrase";
+
+/* Enter a word */
+"Enter a word" = "Entrez un mot";
+
+/* Enter a word. */
+"Enter a word." = "Entrer un mot.";
+
+/* Enter an English Phrase */
+"Enter an English Phrase" = "Entre une phrase en français";
+
+/* Enter an English Phrase to be Voiced */
+"Enter an English Phrase to be Voiced" = "Entrer phrase en francais à synthétiser";
+
+/* Enter board name or tags */
+"Enter board name or tags" = "Entre nom de tableau ou Tags";
+
+/* Enter image name or tags */
+"Enter image name or tags" = "Entrer nom d'image ou Tags";
+
+/* Enter sound name or tags */
+"Enter sound name or tags" = "Entrer nom de son ou Tags";
+
+/* Enter tags */
+"Enter tags" = "Entrer tags";
+
+/* Enter the Apple ID */
+"Enter the Apple ID" = "Entrer votre ID Apple";
+
+/* Enter the address */
+"Enter the address" = "Entrer l'addresse";
+
+/* Enter the artist's name */
+"Enter the artist's name" = "Entrer le nom de l'artiste";
+
+/* Enter the body */
+"Enter the body" = "Entrer le texte";
+
+/* Enter the email address */
+"Enter the email address" = "Entrer l'addresse email";
+
+/* Enter the facetime email */
+"Enter the facetime email" = "Entrer l'email facetime";
+
+/* Enter the facetime phone number */
+"Enter the facetime phone number" = "Entrer le numéro de téléphone Facetime";
+
+/* Enter the phone number */
+"Enter the phone number" = "Entrer le numéro de téléphone";
+
+/* Enter the phrase */
+"Enter the phrase" = "Entrer une phrase";
+
+/* Enter the skype name */
+"Enter the skype name" = "Entrer le nom Skype";
+
+/* Enter the skype phone number */
+"Enter the skype phone number" = "Entrer le numéro de téléphone Skype";
+
+/* Enter the song's title */
+"Enter the song's title" = "Entrer le titre de la chanson";
+
+/* Enter the subject */
+"Enter the subject" = "Entrer le sujet";
+
+/* Enter username or email */
+"Enter username or email" = "Entrer identifiant ou email";
+
+/* Enter video name or tags */
+"Enter video name or tags" = "Entrer nom de vidéo ou Tags";
+
+/* Error */
+"Error" = "Erreur";
+
+/* Error */
+"Error " = "Erreur ";
+
+/* Error while attempting to undo. */
+"Error while attempting to redo." = "Erreur lors de la tentative de refaire.";
+
+/* Error while attempting to undo. */
+"Error while attempting to undo." = "Erreur lors de la tentative d'annulation.";
+
+/* Events */
+"Events" = "Evenements";
+
+/* Every %@ */
+"Every %@" = "Tous %@";
+
+/* Every %@ %@ of the month */
+"Every %@ %@ of the month" = "Tous les %@ %@ du mois";
+
+/* Every Day */
+"Every Day" = "Chaque jour";
+
+/* Every Weekday */
+"Every Weekday" = "Lundi au vendredi";
+
+/* Every Weekend */
+"Every Weekend" = "Samedi Dimanche";
+
+/* Existing */
+"Existing" = "Existant";
+
+/* Exit */
+"Exit" = "Quitter";
+
+/* Exit MyTalk */
+"Exit MyTalk" = "Quitter MyTalk";
+
+/* FAILED! due to error in domain %@ with error code %ld */
+"FAILED! due to error in domain %@ with error code %ld" = "ECHEC! du à une erreur du domaine %@ avec un code erreur %ld";
+
+/* Facebook */
+"Facebook" = "Facebook";
+
+/* Facebook Options */
+"Facebook Options" = "Options Facebook";
+
+/* Facetime */
+"Facetime" = "Facetime";
+
+/* Facetime Options */
+"Facetime Options" = "Options Facetime";
+
+/* Fix and then Retry */
+"Fix and then Retry" = "Rémédiez au problème et rééssayez";
+
+/* Font Color */
+"Font Color" = "Couleur de la police";
+
+/* Forever */
+"Forever" = "Toujours";
+
+/* Free Language Download */
+"Free Language Download" = "Langue gratuite à Télécharger";
+
+/* Friend Requests */
+"Friend Requests" = "Demandes d'amis";
+
+/* Friends */
+"Friends" = "Amis";
+
+/* From Library */
+"From Library" = "Depuis la bibliothèque";
+
+/* Getting boards from server */
+"Getting boards from server" = "Récupération des tables sur le serveur";
+
+/* Go */
+"Go" = "Go";
+
+/* Go Back */
+"Go Back" = "Retour en arrière";
+
+/* Go Home */
+"Go Home" = "Retour Accueil";
+
+/* Go To Home */
+"Go To Home" = "Retour Accueil";
+
+/* Go to Child Board */
+"Go to Child Board" = "Aller sous-tableau";
+
+/* Gray */
+"Gray" = "Gris";
+
+/* Green (Prepositions) */
+"Green (Prepositions)" = "vert (prépositions)";
+
+/* Green (Verbs) */
+"Green (Verbs)" = "vert (verbes)";
+
+/* (No Commment) */
+"Help" = "Aide";
+
+/* Hide Children */
+"Hide Children" = "Masquer le sous-tableau";
+
+/* Hide Phrase Bar */
+"Hide Phrase Bar" = "Cacher la barre de phrase";
+
+/* Hide from User */
+"Hide from User" = "Cacher de l'utilisateur";
+
+/* Home */
+"Home" = "Retour au début";
+
+/* Home */
+"Home " = "Retour Accueil ";
+
+/* Home Cell */
+"Home Cell" = "Cellule Retour Accueil";
+
+/* Hotspot */
+"Hotspot" = "Hotspot";
+
+/* Hotspot Board */
+"Hotspot Board" = "Tableau Hotspot";
+
+/* Hotspot Board Options */
+"Hotspot Board Options" = "Option des Tableaux Hotspot";
+
+/* Hotspot Edit Options */
+"Hotspot Edit Options" = "Modifier les options Hotspot";
+
+/* I will type in name */
+"I will type in name" = "Je vais taper dans Nom";
+
+/* IMBD (Movies) */
+"IMBD (Movies)" = "IMBD (Films)";
+
+/* IMDB Options */
+"IMDB Options" = "IMDB Options";
+
+/* If you add a location to this cell it will overwrite your existing application link. */
+"If you add a location to this cell it will overwrite your existing application link." = "Si vous ajouter une localisation à cette cellule vous supprimerez votre lien d'application existant.";
+
+/* If you add a schedule to this cell it will overwrite your existing application link. */
+"If you add a schedule to this cell it will overwrite your existing application link." = "Si vous ajouter un planning à cette cellule vous supprimerez votre lien d'application existant.";
+
+/* (No Commment) */
+"If you previously purchased Voice Recognition you do not need to purchase again. Press Cancel. Otherwise, Press the OK button to start the purchase process of %@. Press OK to display pricing and purchase confirmation." = "Si vous avez acheté des reconnaissances vocales précédemment, vous n'avez pas besoin de les racheter. Appuyer sur Annuler, ou bien, appuyez sur OK pour démarrer la procédure d'achat of %@. Appuyez sur OK pour afficher le prix et confirmer l'achat.";
+
+/* If you previously purchased Workspace using MyTalkTools Lite you do not need to purchase again. Press Cancel. Otherwise, Press the OK button to start the purchase process of Workspace. %@ \n\nPress OK to display pricing and purchase confirmation. */
+"If you previously purchased Workspace using MyTalkTools Lite you do not need to purchase again. Press Cancel. Otherwise, Press the OK button to start the purchase process of Workspace. %@
+
+Press OK to display pricing and purchase confirmation." = "Si vous avez déjà acheté Workspace en utilisant MyTalkTools Lite vous n'avez pas besoin de l'acheter à nouveau. Appuyez sur Annuler. Dans le cas contraire, appuyez sur le bouton OK pour commencer le processus d'achat de Workspace. %@
+
+Appuyez sur OK pour afficher les prix et la confirmation d'achat.";
+
+/* Image */
+"Image" = "Image";
+
+/* Image Options */
+"Image Options" = "Options Image";
+
+/* Image Rotation Options */
+"Image Rotation Options" = "Options de Rotation d’Image";
+
+/* Image saved */
+"Image saved" = "Image enregistrée";
+
+/* Images */
+"Images" = "Images";
+
+/* Integration and Automation */
+"Integration and Automation" = "Intégration et Automatisation";
+
+/* Just exit, I will sync later */
+"Just exit, I will sync later" = "Juste quitter, je synchroniserai plus tard";
+
+/* Just once */
+"Just once" = "Une seule fois";
+
+/* Libraries Shared With Me */
+"Libraries Shared With Me" = "Librairies partagées avec moi";
+
+/* Library Board Search */
+"Library Board Search" = "Recherche dans bibliothèque de tableaux";
+
+/* Library Image Search */
+"Library Image Search" = "Recherche dans Bibliothèque d’Images";
+
+/* Library Name */
+"Library Name" = "Nom de librairie";
+
+/* Library Video Search */
+"Library Video Search" = "Recherche dans bibliothèque vidéo";
+
+/* Light Gray */
+"Light Gray" = "Gris clair";
+
+/* Link */
+"Link" = "Lien";
+
+/* Link Cell to this Board */
+"Link Cell to this Board" = "Lier la cellule à ce tableau";
+
+/* Link or Copy? */
+"Link or Copy?" = "Lier ou Copier?";
+
+/* Listen */
+"Listen" = "Écouter";
+
+/* Loading Language */
+"Loading Language" = "Chargement de la langue";
+
+/* Location */
+"Location" = "Localisation";
+
+/* Location Options */
+"Location Options" = "Options de localisation";
+
+/* Locations */
+"Locations" = "Localisations";
+
+/* Magenta */
+"Magenta" = "magenta";
+
+/* InAppSettingsKit
+   Mail not configured */
+"Mail not configured" = "e-mail n'est pas configuré";
+
+/* Manage Libraries */
+"Manage Libraries" = "Gérer les librairies";
+
+/* Menu */
+"Menu" = "Menu";
+
+/* Merge */
+"Merge" = "Fusionner";
+
+/* Merge Complete */
+"Merge Complete" = "Fusion Complète";
+
+/* Merging */
+"Merging" = "Fusion en cours";
+
+/* Merging has too many conflicts. You must overwrite device or overwrite workspace */
+"Merging has too many conflicts. You must overwrite device or overwrite workspace" = "La fusion a trop de conflits. Vous devez écraser les données appareil ou écraser Workspace.";
+
+/* Merging workspace and device... */
+"Merging workspace and device..." = "Fusion de workspace et de la tablette...";
+
+/* Message */
+"Message" = "Message";
+
+/* Message Options */
+"Message Options" = "Options du Message";
+
+/* Message Status */
+"Message Status" = "Etat du message";
+
+/* Message failed. */
+"Message failed." = "Erreur Message.";
+
+/* Message failed. %@ */
+"Message failed. %@" = "Erreur Message. %@";
+
+/* Message saved. */
+"Message saved." = "Message enregistré.";
+
+/* Message sent. */
+"Message sent." = "Message envoyé.";
+
+/* Messaging */
+"Messaging" = "Messagerie";
+
+/* Messaging a preview board is not supported in our Lite version */
+"Messaging a preview board is not supported in our Lite version" = "Communiquer un aperçu du tableau n'est pas possible avec la Version Lite";
+
+/* Messaging a printed board is not supported in our Lite version */
+"Messaging a printed board is not supported in our Lite version" = "Communiquer un tableau imprimé n'est pas possible avec la Version Lite";
+
+/* Microphone not available */
+"Microphone not available" = "Microphone non disponible";
+
+/* Most Used */
+"Most Used" = "Plus utilisés";
+
+/* Most Used Cells */
+"Most Used Cells" = "Cellules les plus utilisés";
+
+/* Move */
+"Move" = "Déplacer";
+
+/* Move To */
+"Move To" = "Déplacer vers";
+
+/* Music Player */
+"Music Player" = "Lecteur Musique";
+
+/* My Libraries */
+"My Libraries" = "Mes Librairies";
+
+/* (No Commment) */
+"MyTalk Board from %@" = "Mon tableau MyTalk de  %@";
+
+/* MyTalk Message from %@ */
+"MyTalk Message from %@" = "MyTalk Message de %@";
+
+/* MyTalkTools */
+"MyTalkTools" = "MyTalkTools";
+
+/* (No Commment) */
+"MyTalkTools Board" = "Tableau MyTalkTools";
+
+/* MyTalkTools Options */
+"MyTalkTools Options" = "Options MyTalkTools";
+
+/* MyTalkTools has updated your access rights to workspace. */
+"MyTalkTools has updated your access rights to workspace." = "MyTalkTools a mis à jour vos droits d'accès à l'espace de travail.";
+
+/* MyTalkTools is a great AAC app. Check it out at http://www.mytalktools.com */
+"MyTalkTools is a great AAC app. Check it out at http://www.mytalktools.com" = "MyTalkTools est une application AAC intéressante. La voir à http://www.mytalktools.com.";
+
+/* NO */
+"NO" = "Non";
+
+/* Navigate to Child Board */
+"Navigate to Child Board" = "Naviguer vers sous-tableau";
+
+/* Navigate to Word Variation Board */
+"Navigate to Word Variation Board" = "Naviguer vers Tableau des mots dérivés";
+
+/* Network Problem */
+"Network Problem" = "problème de réseau";
+
+/* New */
+"New" = "Nouveau";
+
+/* New Board */
+"New Board" = "Nouveau Tableau";
+
+/* New Board Name */
+"New Board Name" = "Nom du nouveau tableau";
+
+/* New boards are only available after syncing */
+"New boards are only available after syncing" = "Les nouveaux tableaux sont disponibles uniquement après synchronisation";
+
+/* News Feed */
+"News Feed" = "Nouveau champ";
+
+/* No */
+"No" = "non";
+
+/* No Apps Available */
+"No Apps Available" = "Pas d'application utilisable";
+
+/* No Color */
+"No Color" = "Pas de couleur";
+
+/* No camera on this device. */
+"No camera on this device." = "Pas d'appareil photo sur cette tablette";
+
+/* No video camera on this device. */
+"No video camera on this device." = "Pas de caméra sur cette tablette";
+
+/* Not Open Now */
+"Not Open Now" = "Ne pas ouvrir maintenant";
+
+/* Not Sorted */
+"Not Sorted" = "Pas de classement";
+
+/* Not enough history to make a suggestion */
+"Not enough history to make a suggestion" = "Historique trop court pour faire une suggestion";
+
+/* InAppSettingsKit
+   OK */
+"OK" = "OK";
+
+/* OK & Forget */
+"OK & Forget" = "OK & Oublier";
+
+/* OK & Remember */
+"OK & Remember" = "OK & Se souvenir";
+
+/* (No Commment) */
+"Ok" = "Ok";
+
+/* On your first login you must have an internet connection to verify your MyTalkTools account. Please establish an internet connection and try again. */
+"On your first login you must have an internet connection to verify your MyTalkTools account. Please establish an internet connection and try again." = "Lors de votre première connection, vous devez avoir une connection internet pour verifier votre compte MyTalkTools. Veuillez établir une connection internet et essayer de nouveau.";
+
+/* Open Now */
+"Open Now" = "Ouvrir maintenant";
+
+/* Opening new database */
+"Opening new database" = "Ouverture d’une nouvelle base de données ";
+
+/* Optionally enter tags */
+"Optionally enter tags" = "Tags optionels";
+
+/* Orange (Miscellaneous) */
+"Orange (Miscellaneous)" = "orange (Divers)";
+
+/* Orange (Nouns) */
+"Orange (Nouns)" = "orange (noms)";
+
+/* Out of memory. Suggest you quit. */
+"Out of memory. Suggest you quit." = "Mémoire pleine. Il est conseillé de quitter.";
+
+/* Overwrite Device */
+"Overwrite Device" = "Copier vers appareil";
+
+/* Overwrite From Sample */
+"Overwrite From Sample" = "Copier à partir de l’exemple";
+
+/* Overwrite Workspace */
+"Overwrite Workspace" = "Copier vers Workspace";
+
+/* Overwriting Device */
+"Overwriting Device" = "Ecraser les données de l'appareil";
+
+/* Overwriting device with sample... */
+"Overwriting device with sample..." = "Copie vers l'appareil depuis un modèle...";
+
+/* Overwriting workspace from device... */
+"Overwriting workspace from device..." = "Copie de l'appareil vers workspace...";
+
+/* PDF */
+"PDF" = "PDF";
+
+/* Page %ld */
+"Page %ld" = "Page %ld";
+
+/* Pandora Options */
+"Pandora Options" = "Options Pandora";
+
+/* Parent & Children */
+"Parent & Children" = "Parent & Sous-tableaux";
+
+/* Password does not match your MyTalkTools account. Please verify your username/password or go to http://www.mytalktools.com/login. */
+"Password does not match your MyTalkTools account. Please verify your username/password or go to http://www.mytalktools.com/login." = "Le mot de passe ne correspond pas à votre compte MyTalkTools. Veuillez vérifier votre identifiant / mot de passe ou allez sur http://www.mytalktools.com/login";
+
+/* Paste */
+"Paste" = "Coller";
+
+/* Paste Cell */
+"Paste Cell" = "Coller Cellule";
+
+/* Paste Image */
+"Paste Image" = "Coller Image";
+
+/* Paste Sound */
+"Paste Sound" = "Coller Son";
+
+/* Perform Action */
+"Perform Action" = "Exécuter l'action";
+
+/* Phone Call */
+"Phone Call" = "Appel téléphonique";
+
+/* Phone Number */
+"Phone Number" = "Numéro de téléphone";
+
+/* Phrase History */
+"Phrase History" = "Historique des phrases";
+
+/* Phrases */
+"Phrases" = "Phrases";
+
+/* Pick an option... */
+"Pick an option..." = "Choisir une option...";
+
+/* Pink (Social) */
+"Pink (Social)" = "rose (social)";
+
+/* Pink (Verbs) */
+"Pink (Verbs)" = "rose (verbes)";
+
+/* Play Phrase */
+"Play Phrase" = "Lire la phrase";
+
+/* Play Phrase Bar */
+"Play Phrase Bar" = "Lire la barre de phrase";
+
+/* Play Sound */
+"Play Sound" = "Jouer un son";
+
+/* Played Sound */
+"Played Sound" = "Son joué";
+
+/* Playing... */
+"Playing..." = "Lecture...";
+
+/* Please enter Username and Password. */
+"Please enter Username and Password." = "Veuillez saisir votre identifiant et mot de passe";
+
+/* Please re-enter your password */
+"Please re-enter your password" = "Entrer à nouveau votre mot de passe SVP";
+
+/* (No Commment) */
+"Press the OK button to start the purchase process of Workspace. %@
+
+Press OK to display pricing and purchase confirmation." = "Appuyez sur le bouton OK pour commencer le processus d'achat de Workspace. %@
+
+Appuyez sur OK pour afficher les prix et la confirmation d'achat.";
+
+/* Press the OK button to start the purchase process of the Acapela Voice upgrade. %@ \n\nPress OK to display pricing and purchase confirmation. */
+"Press the OK button to start the purchase process of the Acapela Voice upgrade. %@
+
+Press OK to display pricing and purchase confirmation." = "Pressez le bouton OK pour démarrer la procédure d’achat de la mise à jour de la voix Acapela. %@
+
+ Pressez le bouton OK pour afficher le prix et la confirmation d’achat.";
+
+/* Preview Board */
+"Preview Board" = "Apperçu du tableau";
+
+/* Preview Cell */
+"Preview Cell" = "Aperçu cellule";
+
+/* Preview URL */
+"Preview URL" = "Aperçu URL";
+
+/* Print */
+"Print" = "Imprimer";
+
+/* Print URL */
+"Print URL" = "Imprimer URL";
+
+/* Printed Board */
+"Printed Board" = "Imprimer Tableau";
+
+/* Printing is not supported in our Lite version */
+"Printing is not supported in our Lite version" = "Imprimer n'est pas possible avec la version Lite";
+
+/* (No Commment) */
+"Private Library" = "Bibliothèque privée";
+
+/* Problem */
+"Problem" = "Problème";
+
+/* Problem communicating with MyTalkTools server. Contact customer support to resolve. */
+"Problem communicating with MyTalkTools server. Contact customer support to resolve." = "Problème de communication avec le serveur MyTalkTools. Contactez le support client à résoudre.";
+
+/* Problem connecting to app store. */
+"Problem connecting to app store." = "Problème de connexion au magasin d'applications.";
+
+/* Problem creating account: %@ */
+"Problem creating account: %@" = "Problème lors de la creation de votre compte.: %@";
+
+/* Problem downloading voice. Make sure you are connected to the internet. */
+"Problem downloading voice. Make sure you are connected to the internet." = "Problème lors du téléchargement de voix. Vérifiez que vous êtes bien connecté à internet.";
+
+/* Problem launching app */
+"Problem launching app" = "Problème de lancement de l'application ";
+
+/* Problem transmitting file:%@, %@ */
+"Problem transmitting file:%@, %@" = "Problème lors du transfert de fichier:%@, %@";
+
+/* Problem with voice. */
+"Problem with voice." = "Problème avec la voix.";
+
+/* Professional Account */
+"Professional Account" = "Compte Professionnel";
+
+/* Profile */
+"Profile" = "Profil";
+
+/* Public Submissions Library */
+"Public Submissions Library" = "Bibliothèque publique des propositions";
+
+/* Purchase Acapela Voices */
+"Purchase Acapela Voices" = "Achetez voix Acapela";
+
+/* Purchase Family Workspace */
+"Purchase Family Workspace" = "Acheter Workspace familial";
+
+/* Purchase Professional Workspace */
+"Purchase Professional Workspace" = "Acheter Workspace Pro";
+
+/* Purchase Upgrade */
+"Purchase Upgrade" = "Achat de la mise à jour";
+
+/* Purchase Workspace */
+"Purchase Workspace" = "Achat de Workspace";
+
+/* Purple */
+"Purple" = "violet";
+
+/* No comment provided by engineer. */
+"Quit" = "Quitter";
+
+/* abbrevation for Read
+   abbreviation for Read */
+"R" = "R";
+
+/* Random */
+"Random" = "Aléatoire";
+
+/* (No Commment) */
+"Rate %@" = "Notez %@";
+
+/* Re-Downloading: %@ */
+"Re-Downloading: %@" = "Re-Télécharge: %@";
+
+/* Read */
+"Read " = "Lire ";
+
+/* Recents */
+"Recents" = "Utilisés récemment";
+
+/* Record Sound */
+"Record Sound" = "Enregistrer Son";
+
+/* Recording */
+"Recording" = "Enregistrement";
+
+/* Red */
+"Red" = "Rouge";
+
+/* Redo */
+"Redo" = "refaire";
+
+/* Reminder */
+"Reminder" = "Rappel";
+
+/* Remove */
+"Remove" = "Enlever";
+
+/* Remove Board Name */
+"Remove Board Name" = "Annuler le nom du tableau";
+
+/* Remove Repeat Column */
+"Remove Repeat Column" = "Annuler répéter colonne";
+
+/* Remove Repeat Row */
+"Remove Repeat Row" = "Enlever répéter ligne";
+
+/* Remove Repeating Cell */
+"Remove Repeating Cell" = "Annuler répéter cellule";
+
+/* Repeat */
+"Repeat" = "Répéter";
+
+/* Repeat Cell */
+"Repeat Cell" = "Répéter Cellule";
+
+/* Repeat Cell on Bottom */
+"Repeat Cell on Bottom" = "Répéter cellule en bas";
+
+/* Repeat Cell on Left */
+"Repeat Cell on Left" = "Répéter cellule à gauche";
+
+/* Repeat Cell on Right */
+"Repeat Cell on Right" = "Répéter cellule à droite";
+
+/* Repeat Cell on Top */
+"Repeat Cell on Top" = "Répéter cellule en haut";
+
+/* Repeat Column */
+"Repeat Column" = "Répéter colonne";
+
+/* Repeat Row */
+"Repeat Row" = "Répéter ligne";
+
+/* Repeat and Overlay */
+"Repeat and Overlay" = "Répéter et recouvrir";
+
+/* Repeat at Bottom */
+"Repeat at Bottom" = "Répéter en bas";
+
+/* Repeat at Top */
+"Repeat at Top" = "Répéter en haut";
+
+/* Repeat on Left */
+"Repeat on Left" = "Répéter à gauche";
+
+/* Repeat on Right */
+"Repeat on Right" = "Répéter à droite";
+
+/* Replace */
+"Replace" = "Remplacer";
+
+/* Replace Child Board */
+"Replace Child Board" = "Remplacer sous-tableau";
+
+/* Replace Image */
+"Replace Image" = "Remplacer Image";
+
+/* Replace Sound */
+"Replace Sound" = "Remplacer Son";
+
+/* (No Commment) */
+"Replace Sound or Video" = "Remplacer Son ou Vidéo";
+
+/* Replace Video */
+"Replace Video" = "Remplacer Vidéo";
+
+/* Restore from Backup */
+"Restore from Backup" = "Restaurer depuis une sauvegarde";
+
+/* Restoring Backup */
+"Restoring Backup" = "Restauration depuis sauvegarde";
+
+/* Restoring backup... */
+"Restoring backup..." = "Restauration d'une sauvegarde ...";
+
+/* Restoring device from workspace... */
+"Restoring device from workspace..." = "Restauration de l'appareil à partir de workspace...";
+
+/* Rotate Image */
+"Rotate Image" = "Pivoter Image";
+
+/* SMS */
+"SMS" = "SMS";
+
+/* Save Cell */
+"Save Cell" = "Enregistrer cellule";
+
+/* Save Cell & Children */
+"Save Cell & Children" = "Enregistrer cellule et sous-tableau";
+
+/* Save Children */
+"Save Children" = "Sauver les sous-tableaux";
+
+/* Saved Photo Albums */
+"Saved Photo Albums" = "Albums Photos Sauvés";
+
+/* Schedule */
+"Schedule" = "Planning";
+
+/* Schedule Options */
+"Schedule Options" = "Options du planning";
+
+/* Schedules */
+"Schedules" = "Plannings";
+
+/* Scribe */
+"Scribe" = "Ecrire";
+
+/* Search Related Library Media */
+"Search Related Library Media" = "Chercher la bibliothèque media correspondante";
+
+/* Search Related Web Images */
+"Search Related Web Images" = "Chercher l'image web correspondante";
+
+/* Search Sound Library */
+"Search Sound Library" = "Recherche dans la bibliothèque sonore";
+
+/* Searched */
+"Searched" = "Recherche";
+
+/* Select Item to Change */
+"Select Item to Change" = "Sélectionnez élément à modifier";
+
+/* Select a Board Type */
+"Select a Board Type" = "Sélectionnez un type tableau";
+
+/* Select a Starter Board */
+"Select a Starter Board" = "Selectionner un Tableau de Départ";
+
+/* Select a board name */
+"Select a board name" = "Selectionner un nom de tableau";
+
+/* Select a word variant */
+"Select a word variant" = "Selectionner mot dérivé";
+
+/* (No Commment) */
+"Select an item" = "Selectionner un élément";
+
+/* Sending boards */
+"Sending boards" = "Transfert des tableaux";
+
+/* Sending file:'%@' */
+"Sending file:'%@'" = "Fichier en cours de transfert:'%@'";
+
+/* Service Upgrade */
+"Service Upgrade" = "Mise à jour du service";
+
+/* No comment provided by engineer. */
+"Settings" = "Réglages";
+
+/* Share */
+"Share" = "Partager";
+
+/* Share your board as a... */
+"Share your board as a..." = "Partager votre tableau comme...";
+
+/* Show Phrase Bar */
+"Show Phrase Bar" = "Montrer la barre de phrase";
+
+/* Show in Map */
+"Show in Map" = "Montrer sur la carte";
+
+/* Show to User */
+"Show to User" = "Montrer à l'utilisateur";
+
+/* Showtimes */
+"Showtimes" = "Showtimes";
+
+/* Sign-In Information */
+"Sign-In Information" = "Information d’inscription";
+
+/* No comment provided by engineer. */
+"Signal %d was raised." = "Signal %d a été augmenté.";
+
+/* Simple Board */
+"Simple Board" = "Tableaux Simple";
+
+/* Simple Properties */
+"Simple Properties" = "Propriétés simples";
+
+/* Skipping: %@ */
+"Skipping: %@" = "Sauter: %@";
+
+/* Skype Options */
+"Skype Options" = "Options Skype";
+
+/* Song */
+"Song" = "Chanson";
+
+/* Sorry */
+"Sorry" = "Désolé";
+
+/* Sort Order */
+"Sort Order" = "Ordre de tri";
+
+/* Sound */
+"Sound" = "Son";
+
+/* Sound Options */
+"Sound Options" = "Options Sons";
+
+/* Stretch Columns By 1 */
+"Stretch Columns By 1" = "Etirer d'une colonne";
+
+/* Styles */
+"Styles" = "Styles";
+
+/* Success */
+"Success" = "succès";
+
+/* (No Commment) */
+"Swipe up to use previous phrases" = "Faire glisser pour utiliser les phrases précédentes";
+
+/* Swipe up to use previous phrases, double-tap for list */
+"Swipe up to use previous phrases, double-tap for list" = "Faire glisser pour utiliser les phrases précédentes, double-tap pour une liste";
+
+/* Sync Error */
+"Sync Error" = "Erreur de synchronisation";
+
+/* Sync Options */
+"Sync Options" = "Options Synchro";
+
+/* Sync to Workspace */
+"Sync to Workspace" = "Copier vers Workspace";
+
+/* Synchronizing Files... */
+"Synchronizing Files..." = "Synchronise les fichiers...";
+
+/* Syncing content files */
+"Syncing content files" = "Synchronisation du contenu des fichiers";
+
+/* TTS Voice Upgrade */
+"TTS Voice Upgrade" = "Mise à jour de la synthèse vocale";
+
+/* TV Show Recaps */
+"TV Show Recaps" = "TV Show Résumé";
+
+/* Tags */
+"Tags" = "Tags";
+
+/* Tap 'View' to begin editing */
+"Tap 'View' to begin editing" = "Cliquer 'Vue' pour commencer à éditer";
+
+/* Tap Undo to back out your change */
+"Tap Undo to back out your change" = "Choisir Annulation pour annuler vos changements";
+
+/* Tap a choice to change the cell */
+"Tap a choice to change the cell" = "Taper un choix pour changer la cellule";
+
+/* Tap a choice to change the hotspot */
+"Tap a choice to change the hotspot" = "Saisir un choix pour changer hotspot";
+
+/* Tap a choice to change the location */
+"Tap a choice to change the location" = "Cliquer pour choisir une localisation";
+
+/* Tap a choice to change the schedule */
+"Tap a choice to change the schedule" = "Cliquer pour Choisir un planning";
+
+/* Tap an item for more information. */
+"Tap an item for more information." = "Cliquer un objet pour plus d'informations.";
+
+/* Tap any cell to edit it */
+"Tap any cell to edit it" = "Cliquez sur une cellule pour l'éditer";
+
+/* Tap info for ideas on linking to other apps */
+"Tap info for ideas on linking to other apps" = "Taper info pour proposer des liens vers d'autres apps";
+
+/* Tap sync to retrieve workspace changes */
+"Tap sync to retrieve workspace changes" = "sync pour retrouver les changements de workspace";
+
+/* Tap to choose... */
+"Tap to choose..." = "Cliquer pour choisir...";
+
+/* Telephone */
+"Telephone" = "Téléphone";
+
+/* Test App Link */
+"Test App Link" = "Tester le lien d'application";
+
+/* Text */
+"Text" = "Texte";
+
+/* (No Commment) */
+"Text Color" = "Couleur du texte";
+
+/* Text is limited to 100 characters */
+"Text Field length can not be more than 100" = "Le texte ne doit pas dépasser 100 caractères";
+
+/* Edit Cell
+   Text and Other Properties */
+"Text and Other Properties" = "Editer la cellule";
+
+/* Text-To-Speech */
+"Text-To-Speech" = "Synthèse Vocale";
+
+/* Text-to-Speech Options */
+"Text-to-Speech Options" = "Options Synthèse Vocale";
+
+/* That cell does not exist any longer. It was probably deleted. */
+"That cell does not exist any longer. It was probably deleted." = "Cellule non disponible.";
+
+/* That cell no longer has a child board. The child board was probably deleted. */
+"That cell no longer has a child board. The child board was probably deleted." = "Cette cellule n'accède plus à un sous-tableau.";
+
+/* That sound is not available. It was probably deleted. */
+"That sound is not available. It was probably deleted." = "Son indisponible.";
+
+/* (No Commment) */
+"The Lite version is limited to 20 cells. You are using %d cells and requested %d additional cells. You can use Board/Delete to remove cells, then Sync/Merge to release the space. Then try to add a board again." = "La version 'Lite' est limitée à 20 cellules. Vous avez utilisé %d cellules et avez demandé %d cellules supplémentaires. Vous pouvez utiliser 'Tableau/Effacer' pour supprimer des cellules. Puis 'Synchro/Fusionner' pour libérer de l’espace. Vous pouvez alors rééssayer de rajouter un nouveau tableau.";
+
+/* The Lite version is limited to 20 cells. You are using %ld cells and requested %ld additional cells. You can use Board/Delete to remove cells, then Sync/Merge to release the space. Then try to add a board again. */
+"The Lite version is limited to 20 cells. You are using %ld cells and requested %ld additional cells. You can use Board/Delete to remove cells, then Sync/Merge to release the space. Then try to add a board again." = "La version Lite est limitée à 20 cellules. Vous utilisez %ld cellules en demandez %ld de plus. Vous pouvez utiliser Tableau/Effacer pour enlever des cellules, puis synchronisation/fusionner pour faire de la place. Ensuite essayez d'ajouter un tableau à nouveau.";
+
+/* The Lite version is limited to 20 cells. You can use Board/Delete to remove cells, then Sync/Merge to release the space. Then try to add this board again. */
+"The Lite version is limited to 20 cells. You can use Board/Delete to remove cells, then Sync/Merge to release the space. Then try to add this board again." = "La version 'Lite' est limitée à 20 cellules. Vous pouvez utiliser Tableau/Effacer pour supprimer des cellules. Puis Synchro./Fusionner pour libérer l’espace. Puis essayer de rajouter le tableau de nouveau .";
+
+/* The content on your iPhone has been sent to our new web authoring service. You may now login to www.mytalktools.com with your current username and password to author new content. Please contact customer support if you have any problems. */
+"The content on your iPhone has been sent to our new web authoring service. You may now login to www.mytalktools.com with your current username and password to author new content. Please contact customer support if you have any problems." = "Le contenu de votre iphone a été transféré à notre service de creation en ligne. Vous pouvez maintenant vous connecter sur www.mytalktools.com avec votre identifiant etvotre mot de passe pour enrichir votre création. Veuillez contacter le service après vente si vous rencontrer des problèmes.";
+
+/* (No Commment) */
+"The required application has not be installed on this device." = "L'application requise n'est pas installée sur cet appareil.";
+
+/* The required application has not be installed or has not been authorized on this device. */
+"The required application has not be installed or has not been authorized on this device." = "L'application requise n'est pas installée sur cet appareil ou n'a pas été autorisée sur cet appareil.";
+
+/* There are no location items */
+"There are no location items" = "Il n'y a pas d'éléments de localisation";
+
+/* There are no scheduled items */
+"There are no scheduled items" = "Il n'y a pas d'éléments de planning";
+
+/* InAppSettingsKit
+   This device is not configured for sending Email. Please configure the Mail settings in the Settings app. */
+"This device is not configured for sending Email. Please configure the Mail settings in the Settings app." = "Ce périphérique n'est pas configuré pour envoyer des e-mail. S'il vous plaît configurez les paramètres de messagerie dans les réglages de l'application.";
+
+/* This is not the username and password you used the last time you logged in.  If we had internet access we could check to see if it matches your username/password on the web. But we don’t have internet access right now. 1. Re-enter your username and password. 2. Check and reconnect your internet connection. */
+"This is not the username and password you used the last time you logged in.  If we had internet access we could check to see if it matches your username/password on the web. But we don’t have internet access right now. 1. Re-enter your username and password. 2. Check and reconnect your internet connection." = "Ce n'est pas le nom d'utilisateur et mot de passe que vous avez utilisé la dernière fois que vous vous êtes connecté. Si vous aviez accès au Web nous pourions vérifier pour voir si elle correspond à votre nom d'utilisateur courant / mot de passe sur le web. Mais nous n'avons pas accès à internet en ce moment. 1. Entrez à nouveau votre identifiant et votre mot de passe. 2. Vérifiez et rebranchez votre connexion Internet.";
+
+/* This will overwrite both your mobile device and your workspace. */
+"This will overwrite both your mobile device and your workspace." = "Cela va écraser à la fois votre appareil et votre espace de travail.";
+
+/* This will put a copy of this cell and its child boards into a public library accessible to other users of MyTalkTools. */
+"This will put a copy of this cell and its child boards into a public library accessible to other users of MyTalkTools." = "Ceci crée une copie de cette cellule et de ses sous-dossiers dans une bibliothèque publique accessible par les autres utilisateurs de MyTalkTools.";
+
+/* To Home */
+"To Home" = "Retour au début";
+
+/* To create your account you must have an internet connection to MyTalkTools. Please establish an internet connection and try again. */
+"To create your account you must have an internet connection to MyTalkTools. Please establish an internet connection and try again." = "Pour créer votre compte vous devez vous connecter à MyTalkTools. Veuillez établir une liaison internet et essayez de nouveau.";
+
+/* To retrieve your password you must have an internet connection to MyTalkTools. Please establish an internet connection and try again. */
+"To retrieve your password you must have an internet connection to MyTalkTools. Please establish an internet connection and try again." = "Pour récupérer votre mot de passe, vous devez être connecté à MyTalkTools. Veuillez vous connecter à internet et essayez de nouveau.";
+
+/* Today */
+"Today" = "aujourd'hui";
+
+/* Toggle Phrase Bar */
+"Toggle Phrase Bar" = "Changer de barre de phrase";
+
+/* Touch Options */
+"Touch Options" = "Options d'appui";
+
+/* Transfer Service */
+"Transfer Service" = "Service de transfert";
+
+/* Transfered account to new server */
+"Transfered account to new server" = "Compte transféré sur le nouveau serveur";
+
+/* Transferring */
+"Transferring" = "Transfert en cours";
+
+/* Transferring service... */
+"Transferring service..." = "Service de transfert...";
+
+/* Twitter */
+"Twitter" = "Twitter";
+
+/* abbrevation for Update
+   abbreviation for Update */
+"U" = "U";
+
+/* Unable to access MyTalk site. */
+"Unable to access MyTalk site." = "Impossible d'accéder au site MyTalk.";
+
+/* Undo */
+"Undo" = "annuler";
+
+/* Undo you changes */
+"Undo your changes" = "Annuler vos changements";
+
+/* No comment provided by engineer. */
+"Unhandled exception" = "Exception non gérée";
+
+/* (No Commment) */
+"Unknown" = "Inconnu";
+
+/* Unknown Error */
+"Unknown Error" = "Erreur inconnue";
+
+/* Unknown error */
+"Unknown error" = "Erreur inconnue";
+
+/* Until */
+"Until" = "Jusqu'à";
+
+/* Untitled */
+"Untitled" = "Sans nom";
+
+/* Update */
+"Update" = "Update";
+
+/* Update */
+"Update " = "Update ";
+
+/* Update Alternate TTS Text */
+"Update Alternate TTS Text" = "Mettre à jour le texte TTS à verbaliser";
+
+/* Update Auditory Cue */
+"Update Auditory Cue" = "Mettre à jour le repère auditif";
+
+/* Update Cell Text */
+"Update Cell Text" = "Mettre à jour le texte de la cellule";
+
+/* Update Library Item Tags */
+"Update Library Item Tags" = "Mettre à jour les tags des éléments de la librairie";
+
+/* Update Location */
+"Update Location" = "Mettre à jour la localisation";
+
+/* Update Schedule */
+"Update Schedule" = "Mettre à jour le planning";
+
+/* Usage History */
+"Usage History" = "Historique d'activités";
+
+/* Usage tracking is not turned on. Would you like to start tracking usage? */
+"Usage tracking is not turned on. Would you like to start tracking usage?" = "Suivi d'activité inactif.Voulez-vous activer le suivi d'activité?";
+
+/* Use Frequency */
+"Use Frequency" = "Fréquence d'utilisation";
+
+/* Use New Board Name */
+"Use New Board Name" = "Utiliser le nom du nouveau tableau";
+
+/* Username is not a valid MyTalkTools account username. Please verify your username/password or go to http://www.mytalktools.com/login. */
+"Username is not a valid MyTalkTools account username. Please verify your username/password or go to http://www.mytalktools.com/login." = "Votre identifiant ne correspond pas à un compte MyTalkTools. Veuillez vérifier votre identifiant / mot de passe ou allez sur http://www.mytalktools.com/login";
+
+/* Video */
+"Video" = "Visio";
+
+/* Video Camera */
+"Video Camera" = "Caméra Vidéo";
+
+/* Video Player */
+"Video Player" = "Lecteur vidéo";
+
+/* View */
+"View" = "Aperçu";
+
+/* View Children */
+"View Children" = "Voir le sous-tableau";
+
+/* View Locations */
+"View Locations" = "Voir les  Localisations";
+
+/* View Most Recent Cells */
+"View Most Recent Cells" = "Voir les cellules récemment utilisées";
+
+/* View Most Used Cells */
+"View Most Used Cells" = "Voir les cellules les plus utilisées";
+
+/* View Phrase */
+"View Phrase" = "Voir Phrase";
+
+/* View Phrase Bar History */
+"View Phrase Bar History" = "Voir l'historique de la barre de phrase";
+
+/* View Schedules */
+"View Schedules" = "Voir les plannings";
+
+/* View Sound or Video */
+"View Sound or Video" = "Voir son ou vidéo";
+
+/* View Video */
+"View Video" = "Voir la vidéo";
+
+/* View Wizard */
+"View Wizard" = "Vue Magicien";
+
+/* Voice */
+"Voice" = "Voix";
+
+/* Voice Recognition Upgrade */
+"Voice Recognition Upgrade" = "Reconnaissance vocale mise à niveau";
+
+/* Voice a Phrase */
+"Voice a Phrase" = "Lire une pharse";
+
+/* Voiced Entered Text */
+"Voiced Entered Text" = "Texte entré lu";
+
+/* Voiced Phrase */
+"Voiced Phrase" = "Phrase prononcée";
+
+/* Voiced TTS from Cell */
+"Voiced TTS from Cell" = " TTS de la cellule lu";
+
+/* Warning */
+"Warning" = "Mise en garde";
+
+/* We've already entered your new username and password, just press 'Done' to begin authoring. */
+"We've already entered your new username and password, just press 'Done' to begin authoring." = "Nous venons d’enregistrer votre identifiant et votre mot de passe. Veuillez apuyer sur 'Suivant' pour commencer votre création.";
+
+/* Web Image Search */
+"Web Image Search" = "Recherche Image Web";
+
+/* Web Page */
+"Web Page" = "Page Web";
+
+/* Web Site */
+"Web Site" = "Site Web";
+
+/* White */
+"White" = "Blanc";
+
+/* White (Miscellaneous) */
+"White (Miscellaneous)" = "Blanc (Divers)";
+
+/* Wizard */
+"Wizard" = "Magicien";
+
+/* Word Variation Board */
+"Word Variation Board" = "Tableau de mots dérivés";
+
+/* Word Variations Board */
+"Word Variations Board" = "Tableau de mots dérivés";
+
+/* Word variation board created */
+"Word variation board created" = "Tableau de mots dérivés créé";
+
+/* Workspace Overwrite Complete */
+"Workspace Overwrite Complete" = "Ecrasement de Workspace effectué";
+
+/* Would you like to copy the parent cell media in addition to linking the child cells? */
+"Would you like to copy the parent cell media in addition to linking the child cells?" = "Voulez-vous copier les infos de la cellule mère en plus de lier les cellules filles?";
+
+/* (No Commment) */
+"Would you like to...?" = "Voulez-vous...?";
+
+/* Would you like to? */
+"Would you like to?" = "Voulez-vous?";
+
+/* Would you like try again? */
+"Would you like try again?" = "Voulez-vous essayer à nouveau?";
+
+/* YES */
+"YES" = "OUI";
+
+/* Yellow (Nouns) */
+"Yellow (Nouns)" = "jaune (noms)";
+
+/* Yellow (People) */
+"Yellow (People)" = "jaune (personnes)";
+
+/* Yes */
+"Yes" = "oui";
+
+/* Yesterday */
+"Yesterday" = "Hier";
+
+/* You already have a family account. */
+"You already have a family account." = "Vous avez déjà un compte Famille.";
+
+/* You already have a family account. If you would like to change to professional contact support for assistance. */
+"You already have a family account. If you would like to change to professional contact support for assistance." = "Vous avez déjà un compte Famille. Si vous voulez passer à un compte professionel contactez le support pour vous aider.";
+
+/* You already have a professional account */
+"You already have a professional account" = "Vous avez déjà un compte professionnel";
+
+/* You already have a professional account. If you would like to change to family contact support for assistance. */
+"You already have a professional account. If you would like to change to family contact support for assistance." = "Vous avez déjà un compte Professionnel. Si vous voulez passer à un compte Famille contactez le support pour vous aider.";
+
+/* You already purchased this language. */
+"You already purchased this language." = "Vous avez déjà acheté cette langue.";
+
+/* (No Commment) */
+"You are not connected to internet!" = "Vous n’êtes pas connecté à internet";
+
+/* (No Commment) */
+"You can not 'copy children' or 'link children' to a hotspot board. You may only 'copy all'." = "Vous ne pouvez pas 'copier sous-tableau' ou 'copier lien vers sous-tableau' pour un tableau Hotspot. Vous pouvez seulement 'copier tout'.";
+
+/* You can not add a modified cell to a library. Please sync first. */
+"You can not add a modified cell to a library. Please sync first." = "Vous ne pouvez pas ajouter une cellule modifiée à la librairie. Synchroniser d'abord SVP.";
+
+/* You can only add a location if the cell has a child board */
+"You can only add a location if the cell has a child board" = "Vous pouvez ajouter une localisation seulement si la cellule possède un sous-tableau";
+
+/* You can only add a schedule if the cell has a child board */
+"You can only add a schedule if the cell has a child board" = "Vous pouvez ajouter un planning seulement si la cellule possède un sous-tableau";
+
+/* You can only have 1 location item in the Lite version */
+"You can only have 1 location item in the Lite version" = "Vous ne pouvez utiliser qu'une seule localisation avec la version Lite";
+
+/* You can only have 1 scheduled item in the Lite version */
+"You can only have 1 scheduled item in the Lite version" = "Vous ne pouvez utiliser qu'un seul planning avec la version Lite";
+
+/* You cannot add a child board to a Back cell */
+"You cannot add a child board to a Back cell" = "Vous ne pouvez pas ajouter un sous-tableau dans une cellule retour";
+
+/* You cannot add a child board to a Home cell */
+"You cannot add a child board to a Home cell" = "Vous ne pouvez pas ajouter un sous-tableau dans une cellule retour Accueil";
+
+/* You cannot change Go Back cell properties */
+"You cannot change Go Back cell properties" = "Vous ne pouvez pas changer les propriétés de la cellule retour";
+
+/* You cannot change Home cell properties. */
+"You cannot change Home cell properties." = "Vous ne pouvez pas modifier les propriétés de la cellule retour Accueil.";
+
+/* You cannot copy a child board to a Back cell */
+"You cannot copy a child board to a Back cell" = "Vous ne pouvez pas copier un sous-tableau dans une cellule retour";
+
+/* You cannot copy a child board to a Home cell */
+"You cannot copy a child board to a Home cell" = "Vous ne pouvez pas copier un sous-tableau dans une cellule retour Accueil";
+
+/* You cannot purchase workspace unless you have previously logged in. */
+"You cannot purchase workspace unless you have previously logged in." = "Vous ne pouvez pas acheter Workspace, tant que vous n'êtes pas identifié.";
+
+/* You do not have any apps installed that can open PNG files. */
+"You do not have any apps installed that can open PNG files." = "Vous n'avez aucune application installée capable d'ouvrir les fichiers PNG.";
+
+/* (No Commment) */
+"You have made changes" = "Vous avez effectué des changements";
+
+/* You have selected a TTS voice but have not purchased the TTS Voice upgrade for that language. TTS Voices will not work. */
+"You have selected a TTS voice but have not purchased the TTS Voice upgrade for that language. TTS Voices will not work." = "Vous avez sélectionné une voix de synthèse, mais vous n'avez pas acheté cette langue en option, la voix ne fonctionnera pas.";
+
+/* (No Commment) */
+"You have selected a TTS voice but have not purchased the TTS Voice upgrade. TTS Voices will not work." = "Vous avez sélectionné une synthèse vocale mais, vous n’avez pas acheté cette option. Par conséquent, celle-ci ne fonctionnera pas.";
+
+/* You have selected voice recognition but have not purchased the Voice Recognition upgrade. Voice Recognition will not work. */
+"You have selected voice recognition but have not purchased the Voice Recognition upgrade. Voice Recognition will not work." = "Vous avez choisi la reconnaissance vocale, mais n'avez pas acheté cette option. Reconnaissance vocale ne fonctionnera pas.";
+
+/* You have to be connected to the internet to sync your device. */
+"You have to be connected to the internet to sync your device." = "Vous devez être connecté à Internet pour synchroniser votre appareil.";
+
+/* You have to be connected to the internet to use messaging. */
+"You have to be connected to the internet to use messaging." = "Vous devez être connecté à internet pour utiliser l'envoi de messages.";
+
+/* You have to delete all the items in the library before you can delete it. */
+"You have to delete all the items in the library before you can delete it." = "You have to delete all the items in the library before you can delete it.";
+
+/* You have to have a user account associated with the device to use this feature */
+"You have to have a user account associated with the device to use this feature" = "Vous devez avoir un compte associé à votre tablette pour pouvoir utiliser cette option.";
+
+/* You have to have previously logged in to overwrite your device from workspace. */
+"You have to have previously logged in to overwrite your device from workspace." = "Vous devez vous identifier préalablement pour remplacer votre appareil à partir de l'espace de travail.";
+
+/* You have to sync first before you can copy this cell to a library. */
+"You have to sync first before you can copy this cell to a library." = "Vous devez d'abord synchroniser avant de pouvoir copier cette cellule dans la bibliothèque.";
+
+/* You made changes, would you like to? */
+"You made changes, would you like to?" = "Vous avez fait des changements, vous voulez?";
+
+/* You may not insert a hotspot board under a hotspot. */
+"You may not insert a hotspot board under a hotspot." = "Vous ne pouvez pas insérer un tableau Hotspot sous un tableau Hotspot.";
+
+/* You must enable location services for this app in settings. */
+"You must enable location services for this app in settings." = "Vous devez autoriser le service de localisation dans les réglages pour cette application.";
+
+/* You need a Family or Professional workspace license to create libraries */
+"You need a Family or Professional workspace license to create libraries" = "You need a Family or Professional workspace license to create libraries";
+
+/* You purchased: %@. You can now use these voices. */
+"You purchased: %@. You can now use these voices." = "Vous avez acheté: %@. Vous pouvez maintenant utiliser ces voix.";
+
+/* Your email and confirmed email are not the same. They must be the same to register. */
+"Your email and confirmed email are not the same. They must be the same to register." = "Votre courriel et la confirmation de celui-ci ne sont pas pareils. Il faut qu’ils soient identiques pour vous enregistrer.";
+
+/* Your email does not appear to be a valid address. Please reenter and try again. */
+"Your email does not appear to be a valid address. Please reenter and try again." = "Votre courriel n’est pas valide. Veuillez le ressaisir.";
+
+/* Your license has %d free remaining Acapela Voice language upgrade */
+"Your license has %d free remaining Acapela Voice language upgrade" = "Votre licence a %d libre restant Acapela Voix mise à niveau de la langue";
+
+/* Your name must be at least 4 characters with a space separating your first and last name. */
+"Your name must be at least 4 characters with a space separating your first and last name." = "Votre nom doit au moins avoir 4 caractères avec un espace séparant votre nom et votre prénom.";
+
+/* Your password and confirmed password are not the same. They must be the same to register. */
+"Your password and confirmed password are not the same. They must be the same to register." = "Votre mot de passe et la confirmation de celui-ci ne sont pas les mêmes. Il faut qu’ils soient identiques pour vous enregistrer.";
+
+/* Your password must be at least 3 characters */
+"Your password must be at least 3 characters" = "Votre mot de passe doit faire au moins 3 caractères";
+
+/* Your username cannot be more than 8 characters */
+"Your username cannot be more than 8 characters" = "Votre identifiant ne doit pas dépasser 8 caractères.";
+
+/* Your username cannot contain punctuation characters */
+"Your username cannot contain punctuation characters" = "Votre identifiant ne doit pas contenir de caractère de ponctuation";
+
+/* Your username cannot contain spaces or tabs */
+"Your username cannot contain spaces or tabs" = "Votre identifiant ne doit pas contenir d'espace ou de tabulation.";
+
+/* Your username cannot contain these characters =#@!$%^&*()/\\ */
+"Your username cannot contain these characters =#@!$%^&*()/\\" = "Votre nom d'utilisateur ne doit pas contenir les caractères =#@!$%^&*()/\\";
+
+/* Your username must be at least 4 characters */
+"Your username must be at least 4 characters" = "Votre identifiant doit avoir au moins 4 caractères.";
+
+/* (No Commment) */
+"call a phone" = "appeler un téléphone";
+
+/* cells */
+"cells" = "cellules";
+
+/* default background color */
+"default background color" = "couleur de fond par défaut";
+
+/* (No Commment) */
+"default color" = "couleur par défaut";
+
+/* default font color */
+"default font color" = "couleur de premier plan par défaut";
+
+/* default size */
+"default size" = "taille par défaut";
+
+/* (No Commment) */
+"facebook" = "facebook";
+
+/* (No Commment) */
+"facebook friends" = "amis facebook";
+
+/* (No Commment) */
+"facebook requests" = "demandes facebook";
+
+/* (No Commment) */
+"facetime - Apple ID" = "FaceTime - Apple ID";
+
+/* (No Commment) */
+"facetime - email address" = "FaceTime - adresse e-mail";
+
+/* (No Commment) */
+"facetime - phone number" = "FaceTime - le numéro de téléphone";
+
+/* fifth */
+"fifth" = "cinquième";
+
+/* first */
+"first" = "premier";
+
+/* fourth */
+"fourth" = "quatrième";
+
+/* (No Commment) */
+"go to any web site" = "aller à tout site web";
+
+/* (No Commment) */
+"imdb - actors born today" = "imdb - acteurs nés aujourd'hui";
+
+/* (No Commment) */
+"imdb - tv show recaps" = "imdb - tv show recaps";
+
+/* (No Commment) */
+"music player" = "lecteur de musique";
+
+/* (No Commment) */
+"mytalktools - display keyboard" = "mytalktools - Montrer le clavier";
+
+/* (No Commment) */
+"mytalktools - exit mytalk" = "mytalktools - Quitter mytalk";
+
+/* (No Commment) */
+"mytalktools - go back 1 board" = "mytalktools - retour Yableau précédent";
+
+/* (No Commment) */
+"mytalktools - go to home board" = "mytalktools - retour tableau Accueil";
+
+/* (No Commment) */
+"mytalktools - hide phrase bar" = "mytalktools - Cacher la barre de phrase";
+
+/* (No Commment) */
+"mytalktools - play phrase bar" = "mytalktools - Lire la barre de phrase";
+
+/* (No Commment) */
+"mytalktools - print" = "mytalktools - imprimer";
+
+/* (No Commment) */
+"mytalktools - show phrase bar" = "mytalktools - Montrer la barre de phrase";
+
+/* (No Commment) */
+"mytalktools - toggle phrase bar" = "mytalktools - Changer la barre de phrase";
+
+/* (No Commment) */
+"mytalktools - view locations" = "mytalktools - voir les localisations";
+
+/* (No Commment) */
+"mytalktools - view most used cells" = "mytalktools - voir les cellules les plus utilisées";
+
+/* (No Commment) */
+"mytalktools - view schedules" = "mytalktools - voir les plannings";
+
+/* (No Commment) */
+"mytalktools - voice a word" = "mytalktools - Lire un mot";
+
+/* navigated to a word variant board */
+"navigated to a word variant board" = "navigated to a word variant board";
+
+/* navigated to child board */
+"navigated to child board" = "naviguer vers sous-tableau";
+
+/* navigated to most used */
+"navigated to most used" = "plus utilisés atteints";
+
+/* navigated to phrase history */
+"navigated to phrase history" = "historique des phrases atteint";
+
+/* navigated to recents */
+"navigated to recents" = "récemment utilisés atteints";
+
+/* no rating */
+"no rating" = "non noté";
+
+/* (No Commment) */
+"pandora - artist" = "pandora - artiste";
+
+/* (No Commment) */
+"pandora - song" = "pandora - chanson";
+
+/* pixels */
+"pixels" = "Pixel";
+
+/* played a sound */
+"played a sound" = "son joué";
+
+/* second */
+"second" = "second";
+
+/* (No Commment) */
+"send SMS message" = "envoyer un message SMS";
+
+/* (No Commment) */
+"send an email" = "envoyer un email";
+
+/* (No Commment) */
+"skype - video" = "skype - Appel visio";
+
+/* (No Commment) */
+"skype - voice" = "Skype - Appel vocal";
+
+/* third */
+"third" = "troisième";
+
+/* transparent background */
+"transparent background" = "fond transparent";
+
+/* username */
+"username" = "username";
+
+/* (No Commment) */
+"video player" = "lecteur vidéo";
+
+/* visited */
+"visited" = "visité";
+
+/* voiced TTS */
+"voiced TTS" = "TTS lu";
+
+/* voiced a phrase */
+"voiced a phrase" = "phrase prononcée";
+
+/* voiced entered text */
+"voiced entered text" = "Texte entré prononcé";
+
+/* (No Commment) */
+"youtube" = "youtube";
+
+
+"Authentication Error" = "Authentication Error";
+"MTT File" = "MTT File";
+"You have to be connected to the internet to use this feature." = "You have to be connected to the internet to use this feature.";
+"You cannot send your home board. Navigate to a child board and try again." = "You cannot send your home board. Navigate to a child board and try again.";
+"You cannot send a board that has not been synced. Sync and then try again." = "You cannot send a board that has not been synced. Sync and then try again.";
+"Cell has been added to your paste buffer" = "Cell has been added to your paste buffer";
+"From File" = "From File";
+"Sharing a MyTalkTools Board" = "Sharing a MyTalkTools Board";
+"<p>From your iPhone or iPad, click on the attachment.</p><p><a href='%@'>Click here to Download MyTalkTools</a></p>" = "<p>From your iPhone or iPad, click on the attachment.</p><p><a href='%@'>Click here to Download MyTalkTools</a></p>";
+"From your iPhone or iPad, click on the attachment to view it. If you need to download MyTalkTools click here. " = "From your iPhone or iPad, click on the attachment to view it. If you need to download MyTalkTools click here. ";
+"Root" = "Root";
+"Select a folder..." = "Select a folder...";
+"Google Drive" = "Google Drive";
+"Share by..." = "Share by...";
+"You can not share a modified cell. Please sync first." = "You can not share a modified cell. Please sync first.";
+"Clear Phrase Bar" = "Clear Phrase Bar";
+"Increase Volume" = "Increase Volume";
+"Decrease Volume" = "Decrease Volume";
+"Simple" = "Simple";
+"Advanced" = "Advanced";
+"Phrase Bar Backspace" = "Phrase Bar Backspace";
+"Phrase Bar Keypress" = "Phrase Bar Keypress";
+"Phrase Bar Make Word" = "Phrase Bar Make Word";
+"Add Child Board" = "Add Child Board";
+"More ..." = "More ...";
+"Add Sound" = "Add Sound";
+"Swipe <-- Add Favorites" = "Swipe <-- Add Favorites";
+"Directory" = "Directory";
+"Favorites" = "Favorites";
+"Optimizing - step 1" = "Optimizing - step 1";
+"Optimizing - step 2" = "Optimizing - step 2";
+"Recent Phrases" = "Recent Phrases";
+"Suggestions" = "Suggestions";
+"Add Optional Tags" = "Add Optional Tags";
+"Added media to buffer" = "Added media to buffer";
+"Added image to buffer" = "Added image to buffer";
+"Select a Sample" = "Select a Sample";
+"Delete Library Items" = "Delete Library Items";
+"Deleting Items" = "Deleting Items";
+"Create New Board" = "Create New Board";
+"Enter name" = "Enter name";
+"You must enter a name" = "You must enter a name";
+"You already have a board with that name" = "You already have a board with that name";
+"Add Video" = "Add Video";
+"Preview" = "Preview";
+"Library" = "Library";
+"Voice Call" = "Voice Call";
+"Map" = "Map";
+"Contacts" = "Contacts";
+"Contact Options" = "Contact Options";
+"All Contacts" = "All Contacts";
+"One Contact" = "One Contact";
+"Name" = "Name";
+"Enter the name" = "Enter the name";
+"Selected Contacts" = "Selected Contacts";
+"Name List" = "Name List";
+"Comma-Separated List of Names" = "Comma-Separated List of Names";
