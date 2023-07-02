@@ -61,6 +61,7 @@ struct BoardView: View {
     @State private var showLocationBasedBoard = false
     @State private var showSpotlightSearchBoard = false
     @State private var spotlightSearchBoard: UInt = 0
+    @State private var showLogin = false
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -228,14 +229,17 @@ struct BoardView: View {
                 }
                 .sheet(isPresented: $showContacts) {
                     EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
-//                }.sheet(isPresented: $showLocationBasedBoard) {
-//                    NavigationView {
-//                        BoardView(enteredRegion, geometry: geometry)
-//                    }
+                    //                }.sheet(isPresented: $showLocationBasedBoard) {
+                    //                    NavigationView {
+                    //                        BoardView(enteredRegion, geometry: geometry)
+                    //                    }
                 }.sheet(isPresented: $showSpotlightSearchBoard) {
                     NavigationView {
                         BoardView(spotlightSearchBoard, geometry: geometry)
                     }
+                }
+                .sheet(isPresented: $showLogin) {
+                    Author()
                 }
                 .onAppear {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
@@ -259,14 +263,12 @@ struct BoardView: View {
                         ToolbarItem(placement: .primaryAction) {
                             if !boardState.authorMode {
                                 Button {
-                                    
+                                    showLogin = true
                                 } label: {
-                                    NavigationLink(destination: Author()) { Text( LocalizedStringKey("Author"))
-                                    }
+                                    Text( LocalizedStringKey("Author"))
                                 }
                             } else {
                                 Button( LocalizedStringKey("Done")) {
-                                    //                                    print("Done button tapped!")
                                     self.boardState.authorMode.toggle()
                                 }
                             }

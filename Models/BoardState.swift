@@ -40,6 +40,7 @@ class BoardState: ObservableObject {
     @Published var db: FMDatabase?
     @Published var dbUrl: URL?
     @Published var undoPointer = -1
+    @Published var copyBuffer = EditableContent()
     
     func updateUsage(_ content: Content, _ username: String, _ boardName: String ) {
         let url = documentsURL!.appendingPathComponent(username).appendingPathComponent("\(username)\(boardName != "" ? "-" + boardName : "")-usage.json")

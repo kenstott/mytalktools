@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "BoardState.updateUsage(_:_:_:):BoardState.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in Network.isValidUser(username:password:):Network.swift">
          <PersistentStrings>
             <PersistentString
@@ -68,6 +71,14 @@
          <PersistentStrings>
             <PersistentString
                value = "phraseBarState.contents.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditCell.init(content:save:cancel:):EditCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self._editableContent.name">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -206,6 +217,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "BoardState.getMostUsed(_:_:):BoardState.swift">
+      </ContextState>
+      <ContextState
          contextName = "BoardState.reloadDatabase(fileURL:):BoardState.swift">
       </ContextState>
       <ContextState
@@ -215,10 +229,10 @@
                value = "_item">
             </PersistentString>
             <PersistentString
-               value = "_activeChildBoard">
+               value = "_item.linkId">
             </PersistentString>
             <PersistentString
-               value = "_item.linkId">
+               value = "_activeChildBoard">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -326,13 +340,13 @@
          contextName = "closure #3 in ContentView.body.getter:ContentView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self._content.id">
+               value = "self.targeted">
             </PersistentString>
             <PersistentString
                value = "provider.first.id">
             </PersistentString>
             <PersistentString
-               value = "self.targeted">
+               value = "self._content.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

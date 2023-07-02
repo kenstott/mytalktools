@@ -8,6 +8,125 @@
 import SwiftUI
 import Contacts
 
+class EditableContent: ObservableObject {
+    
+    @Published var initialized = false
+    @Published var content: Content = Content()
+    @Published var contentType: ContentType = .imageSoundName
+    @Published var isOpaque: Bool = false
+    @Published var image: UIImage = UIImage()
+    @Published var name: String = ""
+    @Published var negate: Bool = false
+    @Published var positive: Bool = false
+    @Published var imageUrl: String = ""
+    @Published var soundUrl: String = ""
+    @Published var boardId: Int = 0
+    @Published var childBoard: UInt = 0
+    @Published var childBoardId: UInt = 0
+    @Published var childBoardLink: UInt = 0
+    @Published var includeRepeatedCells: Bool = false
+    @Published var popupStyleBoard: Bool = false
+    @Published var fontSize: Int = 0
+    @Published var foregroundColor: Int = 0
+    @Published var backgroundColor: Int = 0
+    @Published var cellSize: Int = 0
+    @Published var doNotZoomPics: Bool = false
+    @Published var zoom: Bool = false
+    @Published var doNotAddToPhraseBar: Bool = false
+    @Published var hidden: Bool = false
+    @Published var ttsSpeech: String = ""
+    @Published var ttsSpeechPrompt: String = ""
+    @Published var alternateTTSVoice: Bool = false
+    @Published var alternateTTS: String = ""
+    @Published var externalUrl: String = ""
+    @Published var editedContent: Content = Content()
+    @Published var scheduleCommand = ""
+    
+    func copy(content: Content) {
+        self.content = content
+        self.name = content.name
+        self.isOpaque = content.isOpaque
+        self.image = content.image
+        self.imageUrl = content.imageURL
+        self.negate = content.negate
+        self.positive = content.positive
+        self.soundUrl = content.soundURL
+        self.childBoard = content.linkId
+        self.childBoardId = content.childBoardId
+        self.childBoardLink = content.childBoardLink
+        self.includeRepeatedCells = content.repeatBoard
+        self.popupStyleBoard = content.popupStyleChildBoard
+        self.fontSize = content.fontSize
+        self.foregroundColor = content.foregroundColor
+        self.backgroundColor = content.backgroundColor
+        self.editedContent = content.copy(id: content.id)
+        self.cellSize = content.cellSize
+        self.doNotZoomPics = content.doNotZoomPics
+        self.zoom = content.zoom
+        self.doNotAddToPhraseBar = content.doNotAddToPhraseBar
+        self.hidden = content.hidden
+        self.ttsSpeech = content.ttsSpeech
+        self.ttsSpeechPrompt = content.ttsSpeechPrompt
+        self.alternateTTSVoice = content.alternateTTSVoice
+        self.alternateTTS = content.alternateTTS
+        self.externalUrl = content.externalUrl
+        if content.externalUrl.starts(with: "mtschedule") {
+            self.scheduleCommand = content.externalUrl
+        }
+        self.boardId = content.boardId
+        switch (content.contentType) {
+        case .goBack: self.contentType = .goBack
+        case .goHome: self.contentType = .goHome
+        default: self.contentType = .imageSoundName
+        }
+        self.editedContent.contentType = contentType
+        self.editedContent.boardId = content.boardId
+        self.initialized = true
+    }
+    
+    func copy(content: EditableContent) {
+        self.content = content.content
+        self.name = content.name
+        self.isOpaque = content.isOpaque
+        self.image = content.image
+        self.imageUrl = content.imageUrl
+        self.negate = content.negate
+        self.positive = content.positive
+        self.soundUrl = content.soundUrl
+        self.childBoard = content.childBoard
+        self.childBoardId = content.childBoardId
+        self.childBoardLink = content.childBoardLink
+        self.includeRepeatedCells = content.includeRepeatedCells
+        self.popupStyleBoard = content.popupStyleBoard
+        self.fontSize = content.fontSize
+        self.foregroundColor = content.foregroundColor
+        self.backgroundColor = content.backgroundColor
+        self.editedContent = content.editedContent
+        self.cellSize = content.cellSize
+        self.doNotZoomPics = content.doNotZoomPics
+        self.zoom = content.zoom
+        self.doNotAddToPhraseBar = content.doNotAddToPhraseBar
+        self.hidden = content.hidden
+        self.ttsSpeech = content.ttsSpeech
+        self.ttsSpeechPrompt = content.ttsSpeechPrompt
+        self.alternateTTSVoice = content.alternateTTSVoice
+        self.alternateTTS = content.alternateTTS
+        self.externalUrl = content.externalUrl
+        if content.externalUrl.starts(with: "mtschedule") {
+            self.scheduleCommand = content.externalUrl
+        }
+        self.boardId = content.boardId
+        switch (content.contentType) {
+        case .goBack: self.contentType = .goBack
+        case .goHome: self.contentType = .goHome
+        default: self.contentType = .imageSoundName
+        }
+        self.editedContent.contentType = contentType
+        self.editedContent.boardId = content.boardId
+        self.initialized = true
+    }
+}
+
 struct EditCell: View {
     
     enum ActiveSheet {
@@ -37,6 +156,7 @@ struct EditCell: View {
     @EnvironmentObject var userState: User
     @EnvironmentObject var speak: Speak
     @EnvironmentObject var media: Media
+    @EnvironmentObject var boardState: BoardState
     @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
     @AppStorage("TTSVoice2") var ttsVoice = "com.apple.ttsbundle.Samantha-compact"
     @AppStorage("TTSVoiceAlt") var ttsVoiceAlternate = ""
@@ -44,39 +164,15 @@ struct EditCell: View {
     @AppStorage("VoiceShape") var voiceShape: Double = 100
     @AppStorage("ColorKey") var colorKey = "1"
     
-    @State var content: Content
-    @State var contentType: ContentType
+    @StateObject private var editableContent = EditableContent()
+    
+    @State private var content = Content()
+    @State private var contentId: Int
+    @State private var hasBuffer: Bool = false
     @State private var showFilePicker = false
     @State private var filePickerType: FilePickerType = .image
     @State private var filePickerTYpes: [UTType] = [.image]
     @State private var mediaTypes: [UTType] = [.image]
-    @State private var editedContent: Content
-    @State private var isOpaque: Bool
-    @State private var image: UIImage
-    @State private var name: String
-    @State private var negate: Bool
-    @State private var positive: Bool
-    @State private var imageUrl: String
-    @State private var soundUrl: String
-    @State private var boardId: Int
-    @State private var childBoard: UInt
-    @State private var childBoardId: UInt
-    @State private var childBoardLink: UInt
-    @State private var includeRepeatedCells: Bool
-    @State private var popupStyleBoard: Bool
-    @State private var fontSize: Int
-    @State private var foregroundColor: Int
-    @State private var backgroundColor: Int
-    @State private var cellSize: Int
-    @State private var doNotZoomPics: Bool
-    @State private var zoom: Bool
-    @State private var doNotAddToPhraseBar: Bool
-    @State private var hidden: Bool
-    @State private var ttsSpeech: String
-    @State private var ttsSpeechPrompt: String
-    @State private var alternateTTSVoice: Bool
-    @State private var alternateTTS: String
-    @State private var externalUrl: String
     @State private var testExternalUrl: String = ""
     @State private var showIntegrationIdeas: Bool = false
     @State private var activeSheet: ActiveSheet = .Main
@@ -123,7 +219,6 @@ struct EditCell: View {
     @State private var newColumns = 3
     @State private var showLocationPicker = false
     @State private var showScheduler = false
-    @State private var scheduleCommand = ""
     
     private var save: ((Content) -> Void)? = nil
     private var cancel:  (() -> Void)? = nil
@@ -131,55 +226,19 @@ struct EditCell: View {
     
     
     init(content: Content, save: @escaping (Content) -> Void, cancel: @escaping () -> Void) {
-        self.content = content
-        self.name = content.name
-        self.isOpaque = content.isOpaque
-        self.image = content.image
-        self.imageUrl = content.imageURL
-        self.negate = content.negate
-        self.positive = content.positive
+        self.contentId = content.id
         self.save = save
         self.cancel = cancel
-        self.soundUrl = content.soundURL
-        self.childBoard = content.linkId
-        self.childBoardId = content.childBoardId
-        self.childBoardLink = content.childBoardLink
-        self.includeRepeatedCells = content.repeatBoard
-        self.popupStyleBoard = content.popupStyleChildBoard
-        self.fontSize = content.fontSize
-        self.foregroundColor = content.foregroundColor
-        self.backgroundColor = content.backgroundColor
-        self.editedContent = content.copy(id: content.id)
-        self.cellSize = content.cellSize
-        self.doNotZoomPics = content.doNotZoomPics
-        self.zoom = content.zoom
-        self.doNotAddToPhraseBar = content.doNotAddToPhraseBar
-        self.hidden = content.hidden
-        self.ttsSpeech = content.ttsSpeech
-        self.ttsSpeechPrompt = content.ttsSpeechPrompt
-        self.alternateTTSVoice = content.alternateTTSVoice
-        self.alternateTTS = content.alternateTTS
-        self.externalUrl = content.externalUrl
-        if content.externalUrl.starts(with: "mtschedule") {
-            self.scheduleCommand = content.externalUrl
-        }
-        self.boardId = content.boardId
-        switch (content.contentType) {
-        case .goBack: contentType = .goBack
-        case .goHome: contentType = .goHome
-        default: contentType = .imageSoundName
-        }
-        self.editedContent.contentType = contentType
-        self.editedContent.boardId = content.boardId
     }
     
     var body: some View {
         UITextField.appearance().clearButtonMode = .always
+        print(editableContent.imageUrl)
         return NavigationView {
             HStack {
                 Form {
                     Section {
-                        Picker(selection: $contentType, label: Text(LocalizedStringKey("Cell Type"))) {
+                        Picker(selection: $editableContent.contentType, label: Text(LocalizedStringKey("Cell Type"))) {
                             Text(LocalizedStringKey("Media")).tag(ContentType.imageSoundName)
                             Text(LocalizedStringKey("Go Home")).tag(ContentType.goHome)
                             Text(LocalizedStringKey("Go Back")).tag(ContentType.goBack)
@@ -188,9 +247,9 @@ struct EditCell: View {
                     } header: {
                         Text(LocalizedStringKey("Type"))
                     }
-                    if contentType != .goHome && contentType != .goBack {
+                    if editableContent.contentType != .goHome && editableContent.contentType != .goBack {
                         Section {
-                            TextField(text: $name, prompt: Text(LocalizedStringKey("Cell Text")))
+                            TextField(text: $editableContent.name, prompt: Text(LocalizedStringKey("Cell Text")))
                             {
                                 Text(LocalizedStringKey("Text"))
                             }
@@ -200,8 +259,8 @@ struct EditCell: View {
                         .textFieldStyle(.roundedBorder)
                         Section {
                             VStack {
-                                if imageUrl != "" {
-                                    Toggle(isOn: $isOpaque) {
+                                if editableContent.imageUrl != "" {
+                                    Toggle(isOn: $editableContent.isOpaque) {
                                         Text(LocalizedStringKey("Opaque")).frame(maxWidth: .infinity, alignment: .trailing)
                                     }
                                 }
@@ -211,9 +270,9 @@ struct EditCell: View {
                                             showIntegrationIdeas = true
                                             activeSheet = .Image
                                         } label: {
-                                            Label(imageUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                            Label(editableContent.imageUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: editableContent.imageUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                         }
-                                        if imageUrl != "" {
+                                        if editableContent.imageUrl != "" {
                                             Button {
                                                 showCropTool = true
                                                 
@@ -221,14 +280,20 @@ struct EditCell: View {
                                                 Label(LocalizedStringKey("Crop"), systemImage: "crop").labelStyle(.iconOnly)
                                             }
                                             Button(role: .destructive) {
-                                                imageUrl = ""
+                                                editableContent.imageUrl = ""
                                             } label: {
                                                 Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                             }
                                             Button {
-                                                image = image.rotate(radians: 1.57079633)!
-                                                if let data = image.pngData() {
-                                                    var (_, filename, _) = Media.splitFileName(str: imageUrl)
+                                                editableContent.image = boardState.copyBuffer.image
+                                                editableContent.imageUrl = boardState.copyBuffer.imageUrl
+                                            } label: {
+                                                Label(LocalizedStringKey("Paste"), systemImage: "doc.on.clipboard").labelStyle(.iconOnly)
+                                            }.disabled(boardState.copyBuffer.imageUrl == "")
+                                            Button {
+                                                editableContent.image = editableContent.image.rotate(radians: 1.57079633)!
+                                                if let data = editableContent.image.pngData() {
+                                                    var (_, filename, _) = Media.splitFileName(str: editableContent.imageUrl)
                                                     filename = "\(filename)_r"
                                                     var fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
                                                         .first?.appendingPathComponent(userState.username)
@@ -244,14 +309,14 @@ struct EditCell: View {
                                                             .appendingPathExtension("png")
                                                     }
                                                     try? data.write(to: fileURL!)
-                                                    imageUrl = "\(userState.username)/Private Library/\(filename).png"
+                                                    editableContent.imageUrl = "\(userState.username)/Private Library/\(filename).png"
                                                 }
                                             } label: {
                                                 Label(LocalizedStringKey("Rotate"), systemImage: "rotate.right").labelStyle(.iconOnly)
                                             }
                                             Button {
                                                 let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-                                                    .first?.appendingPathComponent(imageUrl)
+                                                    .first?.appendingPathComponent(editableContent.imageUrl)
                                                 guard let image = UIImage(contentsOfFile: fileURL!.path) else { return }
                                                 let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
                                                 UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
@@ -261,26 +326,26 @@ struct EditCell: View {
                                         }
                                     }.buttonStyle(BorderlessButtonStyle())
                                     Spacer()
-                                    if imageUrl != "" {
+                                    if editableContent.imageUrl != "" {
                                         VStack {
-                                            Toggle(isOn: $negate) {
+                                            Toggle(isOn: $editableContent.negate) {
                                                 Text(LocalizedStringKey("No")).frame(maxWidth: .infinity, alignment: .trailing)
                                             }
-                                            Toggle(isOn: $positive) {
+                                            Toggle(isOn: $editableContent.positive) {
                                                 Text(LocalizedStringKey("Yes")).frame(maxWidth: .infinity, alignment: .trailing)
                                             }
                                         }
                                         Spacer()
                                         ZStack {
-                                            Image(uiImage: image)
+                                            Image(uiImage: editableContent.image)
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
-                                                .background(isOpaque ? .white : .clear)
+                                                .background(editableContent.isOpaque ? .white : .clear)
                                                 .padding(0)
                                                 .border(.gray, width: 1)
-                                            if negate {
+                                            if editableContent.negate {
                                                 NegateView()
-                                            } else if positive {
+                                            } else if editableContent.positive {
                                                 PositiveView()
                                             }
                                         }.frame(width: 160, height: 160)
@@ -290,19 +355,19 @@ struct EditCell: View {
                         } header: {
                             Text(LocalizedStringKey("Image"))
                         }
-                        if soundUrl == "" || !content.isVideo(soundURL: soundUrl) {
+                        if editableContent.soundUrl == "" || !editableContent.content.isVideo(soundURL: editableContent.soundUrl) {
                             Section {
                                 HStack {
                                     Button {
                                         showIntegrationIdeas = true
                                         activeSheet = .Sound
                                     } label: {
-                                        Label(soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                        Label(editableContent.soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: editableContent.soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
                                     Spacer()
-                                    if soundUrl != "" {
+                                    if editableContent.soundUrl != "" {
                                         Button(role: .destructive) {
-                                            soundUrl = ""
+                                            editableContent.soundUrl = ""
                                         } label: {
                                             Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                         }
@@ -326,21 +391,19 @@ struct EditCell: View {
                                 Text(LocalizedStringKey("Sound"))
                             }
                         }
-                        if soundUrl == "" || content.isVideo(soundURL: soundUrl) {
+                        if editableContent.soundUrl == "" || editableContent.content.isVideo(soundURL: editableContent.soundUrl) {
                             Section {
                                 HStack {
                                     Button {
-//                                        print(soundUrl != "" ? "Swap" : "Add")
                                         showIntegrationIdeas = true
                                         activeSheet = .Video
                                     } label: {
-                                        Label(soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                        Label(editableContent.soundUrl != "" ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: editableContent.soundUrl != "" ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                     }
                                     Spacer()
-                                    if soundUrl != "" {
+                                    if editableContent.soundUrl != "" {
                                         Button(role: .destructive) {
-//                                            print("Delete")
-                                            soundUrl = ""
+                                            editableContent.soundUrl = ""
                                         } label: {
                                             Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                         }
@@ -365,12 +428,12 @@ struct EditCell: View {
                             }
                         }
                         Section {
-                            if childBoard > 0 {
+                            if editableContent.childBoard > 0 {
                                 VStack {
-                                    Toggle(isOn: $includeRepeatedCells) {
+                                    Toggle(isOn: $editableContent.includeRepeatedCells) {
                                         Text(LocalizedStringKey("Include Repeated Cells"))
                                     }
-                                    Toggle(isOn: $popupStyleBoard) {
+                                    Toggle(isOn: $editableContent.popupStyleBoard) {
                                         Text(LocalizedStringKey("Popup Style Board"))
                                     }
                                 }
@@ -380,13 +443,13 @@ struct EditCell: View {
                                     showIntegrationIdeas = true
                                     activeSheet = .ChildBoard
                                 } label: {
-                                    Label(childBoard > 0 ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: childBoard > 0 ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
+                                    Label(editableContent.childBoard > 0 ? LocalizedStringKey("Swap") : LocalizedStringKey("Add"), systemImage: editableContent.childBoard > 0 ? "rectangle.2.swap" : "plus").labelStyle(.iconOnly)
                                 }
                                 Spacer()
-                                if childBoard > 0 {
+                                if editableContent.childBoard > 0 {
                                     Button(role: .destructive) {
-                                        childBoardId = 0
-                                        childBoardLink = 0
+                                        editableContent.childBoardId = 0
+                                        editableContent.childBoardLink = 0
                                     } label: {
                                         Label(LocalizedStringKey("Delete"), systemImage: "trash").labelStyle(.iconOnly)
                                     }
@@ -427,11 +490,11 @@ struct EditCell: View {
                             VStack {
                                 HStack {
                                     Text(LocalizedStringKey("Font Size"))
-                                    Stepper(value: $fontSize,
+                                    Stepper(value: $editableContent.fontSize,
                                             in: 0...50,
                                             step: 1) {
-                                        if fontSize != 0 {
-                                            Text("\(fontSize) \(NSLocalizedString("pixels", comment: ""))")
+                                        if editableContent.fontSize != 0 {
+                                            Text("\(editableContent.fontSize) \(NSLocalizedString("pixels", comment: ""))")
                                                 .italic()
                                                 .font(.system(size: 14))
                                         } else {
@@ -443,22 +506,22 @@ struct EditCell: View {
                                             .padding(5)
                                 }
                                 
-                                Stepper(value: $foregroundColor,
+                                Stepper(value: $editableContent.foregroundColor,
                                         in: 0...16,
                                         step: 1) {
-                                    if foregroundColor != Content.ForegroundColorMask.kfDefault.rawValue {
-                                        Text(LocalizedStringKey("Foreground Color")).foregroundColor(Content.convertColor(value: foregroundColor))
+                                    if editableContent.foregroundColor != Content.ForegroundColorMask.kfDefault.rawValue {
+                                        Text(LocalizedStringKey("Foreground Color")).foregroundColor(Content.convertColor(value: editableContent.foregroundColor))
                                     } else {
                                         Text(LocalizedStringKey("default foreground color")).font(.system(size: 14))
                                     }
                                 }
                                         .padding(5)
-                                Stepper(value: $backgroundColor,
+                                Stepper(value: $editableContent.backgroundColor,
                                         in: 0...16,
                                         step: 1) {
-                                    if backgroundColor != Content.BackgroundColorMask.kNone.rawValue {
-                                        Text(LocalizedStringKey("Background Color")).background(Content.convertBackgroundColor(value: backgroundColor))
-                                    } else  if backgroundColor != Content.ForegroundColorMask.kfClear.rawValue {
+                                    if editableContent.backgroundColor != Content.BackgroundColorMask.kNone.rawValue {
+                                        Text(LocalizedStringKey("Background Color")).background(Content.convertBackgroundColor(value: editableContent.backgroundColor))
+                                    } else  if editableContent.backgroundColor != Content.ForegroundColorMask.kfClear.rawValue {
                                         Text(LocalizedStringKey("transparent background color")).italic().font(.system(size: 14))
                                     } else {
                                         Text(LocalizedStringKey("default background color")).italic().font(.system(size: 14))
@@ -467,11 +530,11 @@ struct EditCell: View {
                                         .padding(5)
                                 HStack {
                                     Text(LocalizedStringKey("Cell Width"))
-                                    Stepper(value: $cellSize,
+                                    Stepper(value: $editableContent.cellSize,
                                             in: 1...15,
                                             step: 1) {
                                         
-                                        Text("\(cellSize) \(cellSize == 0 ? NSLocalizedString("column", comment: "") : NSLocalizedString("columns", comment: ""))").italic().font(.system(size: 14))
+                                        Text("\(editableContent.cellSize) \(editableContent.cellSize == 0 ? NSLocalizedString("column", comment: "") : NSLocalizedString("columns", comment: ""))").italic().font(.system(size: 14))
                                         
                                     }
                                             .padding(5)
@@ -484,10 +547,10 @@ struct EditCell: View {
                         }
                         Section {
                             VStack {
-                                Toggle(LocalizedStringKey("Never Zoom"), isOn: $doNotZoomPics)
-                                Toggle(LocalizedStringKey("Always Zoom"), isOn: $zoom)
-                                Toggle(LocalizedStringKey("Do Not Add To Phrase Bar"), isOn: $doNotAddToPhraseBar)
-                                Toggle(LocalizedStringKey("Hide from User"), isOn: $hidden)
+                                Toggle(LocalizedStringKey("Never Zoom"), isOn: $editableContent.doNotZoomPics)
+                                Toggle(LocalizedStringKey("Always Zoom"), isOn: $editableContent.zoom)
+                                Toggle(LocalizedStringKey("Do Not Add To Phrase Bar"), isOn: $editableContent.doNotAddToPhraseBar)
+                                Toggle(LocalizedStringKey("Hide from User"), isOn: $editableContent.hidden)
                             }
                         } header: {
                             Text(LocalizedStringKey("Cell Touch"))
@@ -495,7 +558,7 @@ struct EditCell: View {
                         Section {
                             VStack {
                                 HStack {
-                                    TextField(LocalizedStringKey("TTS"), text: $ttsSpeech)
+                                    TextField(LocalizedStringKey("TTS"), text: $editableContent.ttsSpeech)
                                     Button {
                                         print("Play")
                                     } label: {
@@ -503,21 +566,21 @@ struct EditCell: View {
                                     }
                                 }
                                 HStack {
-                                    TextField(LocalizedStringKey("Prompt"), text: $ttsSpeechPrompt)
+                                    TextField(LocalizedStringKey("Prompt"), text: $editableContent.ttsSpeechPrompt)
                                     Button {
                                         print("Play")
                                     } label: {
                                         Label(LocalizedStringKey("Play"), systemImage: "play").labelStyle(.iconOnly)
                                     }
                                 }
-                                Toggle(LocalizedStringKey("Alternate TTS Voice"), isOn: $alternateTTSVoice)
+                                Toggle(LocalizedStringKey("Alternate TTS Voice"), isOn: $editableContent.alternateTTSVoice)
                             }
                         } header: {
                             Text(LocalizedStringKey("Text-to-Speech"))
                         }
                         Section {
                             HStack {
-                                TextField(LocalizedStringKey("Tap + for ideas"), text: $externalUrl)
+                                TextField(LocalizedStringKey("Tap + for ideas"), text: $editableContent.externalUrl)
                                 Button {
                                     activeSheet = .Main
                                     showIntegrationIdeas = true
@@ -536,7 +599,7 @@ struct EditCell: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
-                            save!(editedContent)
+                            save!(editableContent.editedContent)
                         } label: {
                             Text(LocalizedStringKey("Save"))
                         }
@@ -549,6 +612,39 @@ struct EditCell: View {
                             Text(LocalizedStringKey("Cancel"))
                         }
                         
+                    }
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        Button {
+                            boardState.copyBuffer.copy(content: editableContent)
+                            hasBuffer = true
+                        } label: {
+                            Label(LocalizedStringKey("Copy"), systemImage: "doc.on.doc").labelStyle(.iconOnly)
+                        }
+                        Spacer()
+                        Button {
+                            editableContent.copy(content: boardState.copyBuffer)
+                        } label: {
+                            Label(LocalizedStringKey("Paste"), systemImage: "doc.on.clipboard").labelStyle(.iconOnly)
+                        }.disabled(!hasBuffer)
+                        Spacer()
+                        Button {
+                            boardState.copyBuffer.copy(content: editableContent)
+                            editableContent.copy(content: EditableContent())
+                        } label: {
+                            Label(LocalizedStringKey("Cut"), systemImage: "scissors").labelStyle(.iconOnly)
+                        }
+                        Spacer()
+                        Button {
+                            editableContent.copy(content: Content().setId(contentId))
+                        } label: {
+                            Label(LocalizedStringKey("Restore"), systemImage: "arrow.uturn.backward").labelStyle(.iconOnly)
+                        }
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Label(LocalizedStringKey("Share"), systemImage: "square.and.arrow.up").labelStyle(.iconOnly)
+                        }
                     }
                 }
                 Spacer()
@@ -565,13 +661,13 @@ struct EditCell: View {
                 } else if URL(string: newValue)?.containsAudio == true {
                     Task {
                         if (cameraURL.starts(with: "http")) {
-                            soundUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
+                            editableContent.soundUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
                             await media.syncURL(url: URL(string: cameraURL)!)
                         } else {
                             let ext = URL(string: cameraURL)?.pathExtension
-                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: ext!)
+                            let fileURL = Media.generateFileName(str: editableContent.name, username: userState.username, ext: ext!)
                             FileManager.default.createFile(atPath: fileURL.path, contents: try Data(contentsOf: URL(string: cameraURL)!))
-                            soundUrl = Media.truncateLocalURL(fileURL)
+                            editableContent.soundUrl = Media.truncateLocalURL(fileURL)
                         }
                     }
                 } else {
@@ -581,8 +677,8 @@ struct EditCell: View {
                                 let (data, responseRaw) = try await URLSession.shared.data(from: URL(string: cameraURL)!)
                                 let response = responseRaw as? HTTPURLResponse
                                 if response!.statusCode == 200 {
-                                    image = UIImage(data: data)!
-                                    imageUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
+                                    editableContent.image = UIImage(data: data)!
+                                    editableContent.imageUrl = Media.truncateRemoteURL(URL(string: cameraURL)!)
                                     await media.syncURL(url: URL(string: cameraURL)!)
                                 } else {
                                     print(response!.statusCode)
@@ -594,126 +690,126 @@ struct EditCell: View {
                                         let data = try? Data(contentsOf: url!)
                                         DispatchQueue.main.async {
                                             if let imageData = data {
-                                                image = UIImage(data: imageData)!
-                                                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                                                let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                                                editableContent.image = UIImage(data: imageData)!
+                                                let fileURL = Media.generateFileName(str: editableContent.name, username: userState.username, ext: "png")
+                                                let scaledImage = ImageUtility.scaleAndRotateImage(editableContent.image, setWidth: 1000, setHeight: 0, setOrientation: editableContent.image.imageOrientation)
                                                 let pngImageData = scaledImage!.pngData()
                                                 FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                                                imageUrl = Media.truncateLocalURL(fileURL)
+                                                editableContent.imageUrl = Media.truncateLocalURL(fileURL)
                                             }
                                         }
                                     }
                                 }
                             }
                         } else {
-                            image = UIImage(contentsOfFile: cameraURL)!
-                            let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "png")
-                            let scaledImage = ImageUtility.scaleAndRotateImage(image, setWidth: 1000, setHeight: 0, setOrientation: image.imageOrientation)
+                            editableContent.image = UIImage(contentsOfFile: cameraURL)!
+                            let fileURL = Media.generateFileName(str: editableContent.name, username: userState.username, ext: "png")
+                            let scaledImage = ImageUtility.scaleAndRotateImage(editableContent.image, setWidth: 1000, setHeight: 0, setOrientation: editableContent.image.imageOrientation)
                             let pngImageData = scaledImage!.pngData()
                             FileManager.default.createFile(atPath: fileURL.path, contents: pngImageData)
-                            imageUrl = Media.truncateLocalURL(fileURL)
+                            editableContent.imageUrl = Media.truncateLocalURL(fileURL)
                         }
                     }
                 }
             }
-            .onChange(of: scheduleCommand) {
+            .onChange(of: editableContent.scheduleCommand) {
                 newValue in
                 if newValue != "" {
-                    externalUrl = scheduleCommand
-                } else if externalUrl.starts(with: "mtschedule") {
-                    scheduleCommand = externalUrl
+                    editableContent.externalUrl = editableContent.scheduleCommand
+                } else if editableContent.externalUrl.starts(with: "mtschedule") {
+                    editableContent.scheduleCommand = editableContent.externalUrl
                 }
             }
-            .onChange(of: alternateTTSVoice) {
+            .onChange(of: editableContent.alternateTTSVoice) {
                 newValue in
-                editedContent.setAlternateTTSVoice(value: newValue)
+                editableContent.editedContent.setAlternateTTSVoice(value: newValue)
             }
-            .onChange(of: ttsSpeechPrompt) {
+            .onChange(of: editableContent.ttsSpeechPrompt) {
                 newValue in
-                editedContent.ttsSpeechPrompt = newValue
+                editableContent.editedContent.ttsSpeechPrompt = newValue
             }
-            .onChange(of: ttsSpeech) {
+            .onChange(of: editableContent.ttsSpeech) {
                 newValue in
-                editedContent.ttsSpeech = newValue
+                editableContent.editedContent.ttsSpeech = newValue
             }
-            .onChange(of: externalUrl) {
+            .onChange(of: editableContent.externalUrl) {
                 newValue in
-                editedContent.externalUrl = newValue
+                editableContent.editedContent.externalUrl = newValue
             }
-            .onChange(of: positive) {
+            .onChange(of: editableContent.positive) {
                 newValue in
-                editedContent.setPositive(value: newValue)
-                if positive {
-                    negate = false
+                editableContent.editedContent.setPositive(value: newValue)
+                if editableContent.positive {
+                    editableContent.negate = false
                 }
             }
-            .onChange(of: negate) {
+            .onChange(of: editableContent.negate) {
                 newValue in
-                editedContent.setNegate(value: newValue)
-                if negate {
-                    positive = false
+                editableContent.editedContent.setNegate(value: newValue)
+                if editableContent.negate {
+                    editableContent.positive = false
                 }
             }
-            .onChange(of: isOpaque) {
+            .onChange(of: editableContent.isOpaque) {
                 newValue in
-                editedContent.setOpaque(value: newValue)
+                editableContent.editedContent.setOpaque(value: newValue)
                 print(newValue)
             }
-            .onChange(of: hidden) {
+            .onChange(of: editableContent.hidden) {
                 newValue in
-                editedContent.setHidden(value: newValue)
+                editableContent.editedContent.setHidden(value: newValue)
             }
-            .onChange(of: doNotAddToPhraseBar) {
+            .onChange(of: editableContent.doNotAddToPhraseBar) {
                 newValue in
-                editedContent.doNotAddToPhraseBar = newValue
+                editableContent.editedContent.doNotAddToPhraseBar = newValue
             }
-            .onChange(of: zoom) {
+            .onChange(of: editableContent.zoom) {
                 newValue in
-                editedContent.zoom = newValue
+                editableContent.editedContent.zoom = newValue
             }
-            .onChange(of: doNotZoomPics) {
+            .onChange(of: editableContent.doNotZoomPics) {
                 newValue in
-                editedContent.doNotZoomPics = newValue
+                editableContent.editedContent.doNotZoomPics = newValue
             }
-            .onChange(of: foregroundColor) {
+            .onChange(of: editableContent.foregroundColor) {
                 newValue in
-                editedContent.setColor(value: newValue)
+                editableContent.editedContent.setColor(value: newValue)
             }
-            .onChange(of: backgroundColor) {
+            .onChange(of: editableContent.backgroundColor) {
                 newValue in
-                editedContent.setBackgroundColor(value: newValue)
+                editableContent.editedContent.setBackgroundColor(value: newValue)
             }
-            .onChange(of: fontSize) {
+            .onChange(of: editableContent.fontSize) {
                 newValue in
-                editedContent.fontSize = newValue
+                editableContent.editedContent.fontSize = newValue
             }
-            .onChange(of: contentType) {
+            .onChange(of: editableContent.contentType) {
                 newValue in
-                editedContent.contentType = newValue
+                editableContent.editedContent.contentType = newValue
             }
-            .onChange(of: childBoardId) {
+            .onChange(of: editableContent.childBoardId) {
                 newValue in
-                editedContent.childBoardId = newValue
-                editedContent.childBoardLink = 0
-                childBoard = newValue
+                editableContent.editedContent.childBoardId = newValue
+                editableContent.editedContent.childBoardLink = 0
+                editableContent.childBoard = newValue
             }
-            .onChange(of: childBoardLink) {
+            .onChange(of: editableContent.childBoardLink) {
                 newValue in
-                editedContent.childBoardLink = newValue
-                editedContent.childBoardId = 0
-                childBoard = newValue
+                editableContent.editedContent.childBoardLink = newValue
+                editableContent.editedContent.childBoardId = 0
+                editableContent.childBoard = newValue
             }
-            .onChange(of: name) {
+            .onChange(of: editableContent.name) {
                 newValue in
-                editedContent.name = newValue
+                editableContent.editedContent.name = newValue
             }
-            .onChange(of: imageUrl) {
+            .onChange(of: editableContent.imageUrl) {
                 newValue in
-                editedContent.imageURL = newValue
+                editableContent.editedContent.imageURL = newValue
             }
-            .onChange(of: soundUrl) {
+            .onChange(of: editableContent.soundUrl) {
                 newValue in
-                editedContent.soundURL = newValue
+                editableContent.editedContent.soundURL = newValue
             }
             .sheet(isPresented: $showContactPicker) {
                 EmbeddedContactPicker(contact: $contact, predicate: NSPredicate(format: "imageDataAvailable == %@", argumentArray: [true]))
@@ -728,38 +824,38 @@ struct EditCell: View {
                 ImagePicker(sourceType: .camera, mediaTypes: [.movie], cameraCaptureMode: .video, selectedURL: $cameraURL)
             }
             .sheet(isPresented: $showRecordAudio) {
-                RecordSound(cellText: $name, filename: $soundUrl)
+                RecordSound(cellText: $editableContent.name, filename: $editableContent.soundUrl)
                     .presentationDetents([.medium])
             }
             .sheet(isPresented: $showShareSheet) {
                 ShareSheet(activityItems: self.sharedItems)
             }
             .sheet(isPresented: $showWebBrowser) {
-                WebBrowser(imageUrl: $cameraURL, cellText: $name)
+                WebBrowser(imageUrl: $cameraURL, cellText: $editableContent.name)
             }
             .sheet(isPresented: $showWebImageSearch) {
-                ImageSearch(query: name, imageUrl: $cameraURL)
+                ImageSearch(query: editableContent.name, imageUrl: $cameraURL)
             }
             .sheet(isPresented: $showCropTool) {
-                CropTool(imageUrl: imageUrl, outUrl: $cameraURL)
+                CropTool(imageUrl: editableContent.imageUrl, outUrl: $cameraURL)
             }
             .sheet(isPresented: $showLibraries) {
-                NavigableLibraryDialog(filter: libraryFilter, query: name, selectedURL: $cameraURL)
+                NavigableLibraryDialog(filter: libraryFilter, query: editableContent.name, selectedURL: $cameraURL)
             }
             .sheet(isPresented: $showLocationPicker) {
                 NavigationView {
-                    FindLocation(urlResult: $externalUrl)
+                    FindLocation(urlResult: $editableContent.externalUrl)
                 }
             }
             .sheet(isPresented: $showScheduler) {
                 NavigationView {
-                    Schedule(urlResult: $scheduleCommand)
+                    Schedule(urlResult: $editableContent.scheduleCommand)
                 }
             }
             .sheet(isPresented: $showNewSimpleBoard) {
                 NewSimpleBoard(rows: $newRows, columns: $newColumns) { cancelled in
                     if !cancelled {
-                        childBoardId = Board.createNewBoard(name: editedContent.name, rows: newRows, columns: newColumns, userId: userState.id).id
+                        editableContent.childBoardId = Board.createNewBoard(name: editableContent.editedContent.name, rows: newRows, columns: newColumns, userId: userState.id).id
                     }
                 }
             }
@@ -769,12 +865,12 @@ struct EditCell: View {
                 let tempURL = try result.get()
                 switch(filePickerType) {
                 case .image:
-                    imageUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
-                    image = Media.uiImageFromShortPath(imageUrl)!
+                    editableContent.imageUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
+                    editableContent.image = Media.uiImageFromShortPath(editableContent.imageUrl)!
                 case .video:
                     fallthrough
                 case .sound:
-                    soundUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
+                    editableContent.soundUrl = Media.copyTempUrl(tempURL, username: userState.username) ?? ""
                 default: print("")
                 }
             } catch let error {
@@ -795,11 +891,11 @@ struct EditCell: View {
         .alert("Enter Phrase", isPresented: $showPhrase) {
             TextField("Enter Phrase", text: $ttsPhrase).autocapitalization(.none).disableAutocorrection(true)
             Button("OK", action: {
-                let fileURL = Media.generateFileName(str: name, username: userState.username, ext: "wav")
+                let fileURL = Media.generateFileName(str: editableContent.name, username: userState.username, ext: "wav")
                 speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
-                    soundUrl = "\(userState.username)/Private Library/\(fileURL.lastPathComponent)"
+                    editableContent.soundUrl = "\(userState.username)/Private Library/\(fileURL.lastPathComponent)"
                 }
-                var alternate: Bool? = alternateTTSVoice
+                var alternate: Bool? = editableContent.alternateTTSVoice
                 speak.utter(ttsPhrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate, fileURL: fileURL)
             })
             Button("Test", action: {
@@ -808,7 +904,7 @@ struct EditCell: View {
                         showPhrase = true
                     }
                 }
-                var alternate: Bool? = alternateTTSVoice
+                var alternate: Bool? = editableContent.alternateTTSVoice
                 speak.utter(ttsPhrase, speechRate: speechRate, voiceShape: voiceShape, alternate: &alternate)
             })
             Button("Cancel", action: {})
@@ -1154,24 +1250,22 @@ struct EditCell: View {
                         showNewSimpleBoard = true
                     }),
                     .default(Text(LocalizedStringKey("Word Variant Board")), action: {
-                        let word = String(editedContent.name.split(separator: " ")[0])
+                        let word = String(editableContent.editedContent.name.split(separator: " ")[0])
                         Task {
                             do {
                                 let words = try await WordVariants().findWordVariants(word)
-                                childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0).id
-//                                print(words!)
+                                editableContent.childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0).id
                             } catch let error {
                                 print(error.localizedDescription)
                             }
                         }
                     }),
                     .default(Text(LocalizedStringKey("Coded Word Variants Board")), action: {
-                        let word = String(editedContent.name.split(separator: " ")[0])
+                        let word = String(editableContent.editedContent.name.split(separator: " ")[0])
                         Task {
                             do {
                                 let words = try await WordVariants().findWordVariantsWithDefinitions(word)
-                                childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0, colorKey: colorKey).id
-//                                print(words!)
+                                editableContent.childBoardId = try Board.createNewBoard(name: word, words: words!, userId: 0, colorKey: colorKey).id
                             } catch let error {
                                 print(error.localizedDescription)
                             }
@@ -1451,10 +1545,14 @@ struct EditCell: View {
                         }
                     }),
                     .default(Text(LocalizedStringKey("OK")), action: {
-                        externalUrl = testExternalUrl
+                        editableContent.externalUrl = testExternalUrl
                     })
                 ])
             }
+        }
+        .onAppear {
+            self.hasBuffer = boardState.copyBuffer.initialized
+            editableContent.copy(content: content.setId(contentId))
         }
     }
 }
