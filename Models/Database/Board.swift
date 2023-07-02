@@ -174,17 +174,17 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
     }
     
     func setId(_ id: UInt, _ username: String?) -> Board {
-        return setId(id, username, nil)
+        return setId(id, username, nil, nil)
     }
     
-    func setId(_ id: UInt, _ username: String?, _ boardState: BoardState?) -> Board {
+    func setId(_ id: UInt, _ username: String?, _ boardName: String?, _ boardState: BoardState?) -> Board {
         if id == SpecialBoardType.MostRecent.rawValue && boardState != nil {
             self.id = SpecialBoardType.MostRecent.rawValue
             self.rows = 10
             self.columns = 3
             self.name = NSLocalizedString("Recents", comment: "")
             var row = 1, column = 1
-            self.contents = boardState!.getMru(username ?? "").map {
+            self.contents = boardState!.getMru(username ?? "", boardName ?? "").map {
                 $0.row = row
                 $0.column = column
                 if column > 3 {
@@ -195,6 +195,26 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                 }
                 return $0
             }
+            return self;
+        }
+        if id == SpecialBoardType.MostUsed.rawValue && boardState != nil {
+            self.id = SpecialBoardType.MostUsed.rawValue
+            self.rows = 10
+            self.columns = 3
+            self.name = NSLocalizedString("Most Used", comment: "")
+            var row = 1, column = 1
+            self.contents = boardState!.getMostUsed(username ?? "", boardName ?? "").map {
+                $0.row = row
+                $0.column = column
+                if column > 3 {
+                    column = 1
+                    row += 1
+                } else {
+                    column += 1
+                }
+                return $0
+            }
+            self.columns = min(self.columns, self.contents.count)
             return self;
         }
         self.id = id;

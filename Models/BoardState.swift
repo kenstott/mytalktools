@@ -41,8 +41,35 @@ class BoardState: ObservableObject {
     @Published var dbUrl: URL?
     @Published var undoPointer = -1
     
-    func updateMru(_ content: Content, _ username: String ) {
-        let key = "mru.\(username)"
+    func updateUsage(_ content: Content, _ username: String, _ boardName: String ) {
+        let url = documentsURL!.appendingPathComponent(username).appendingPathComponent("\(username)\(boardName != "" ? "-" + boardName : "")-usage.json")
+        let key = content.id == -1 ? content.name : String(content.id)
+        var usage = [String:Int]()
+        if FileManager.default.fileExists(atPath: url.path) {
+            do {
+                let contents = try String(contentsOfFile: url.path)
+                usage = try JSONDecoder().decode([String:Int].self, from: contents.data(using: .utf8)!)
+            } catch {
+                usage = [String:Int]()
+            }
+        }
+        if usage[key] == nil {
+            usage[key] = 1
+        } else {
+            usage[key] = usage[key]! + 1
+        }
+        do {
+            let output = try JSONEncoder().encode(usage)
+            print(String(data: output, encoding: .utf8)!)
+            try output.write(to: url)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        print(url)
+    }
+    
+    func updateMru(_ content: Content, _ username: String, _ boardName: String ) {
+        let key = "mru.\(username)\(boardName != "" ? "." + boardName : "")"
         do {
             var result: [LibraryContent] = try JSONDecoder().decode([LibraryContent].self, from: Data((UserDefaults.standard.string(forKey: key) ?? "[]").utf8))
             let index = result.firstIndex(of: LibraryContent.convert(content))
@@ -57,14 +84,39 @@ class BoardState: ObservableObject {
         }
     }
     
-    func getMru(_ username: String) -> [Content] {
-        let key = "mru.\(username)"
+    func getMru(_ username: String, _ boardName: String ) -> [Content] {
+        let key = "mru.\(username)\(boardName != "" ? "." + boardName : "")"
         do {
             let result: [LibraryContent] = try JSONDecoder().decode([LibraryContent].self, from: Data((UserDefaults.standard.string(forKey: key) ?? "[]").utf8))
             return result.map { Content().copyLibraryContent($0) }
         } catch {
             return []
         }
+    }
+    
+    func getMostUsed(_ username: String, _ boardName: String ) -> [Content] {
+        let url = documentsURL!.appendingPathComponent(username).appendingPathComponent("\(username)\(boardName != "" ? "-" + boardName : "")-usage.json")
+        var usage = [String:Int]()
+        if FileManager.default.fileExists(atPath: url.path) {
+            do {
+                let contents = try String(contentsOfFile: url.path)
+                usage = try JSONDecoder().decode([String:Int].self, from: contents.data(using: .utf8)!)
+            } catch {
+                usage = [String:Int]()
+            }
+        }
+        let sortedDict = usage.sorted { $0.0 < $1.0 }
+        let contents: [Content] = sortedDict.map {
+            var c = Content()
+            var id = Int($0.key)
+            if id == nil {
+                c.name = $0.key
+            } else {
+                _ = c.setId(id!)
+            }
+            return c
+        }
+        return contents
     }
     
     var undoable: Bool {

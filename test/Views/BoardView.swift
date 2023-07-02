@@ -35,13 +35,13 @@ struct BoardView: View {
     @AppStorage("AuthorHints") var authorHints = true
     @AppStorage("DisplayAsList") var displayAsList = false
     @AppStorage("UserBarSync") var userBarSync = false
-    @AppStorage("UserBarSettings") var userBarSettings = false
+    @AppStorage("UserBarSettings") var userBarSettings = true
     @AppStorage("UserBarWizard") var userBarWizard = false
     @AppStorage("VolumeButton") var volumeButton = true
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     @AppStorage("BoardName") var storedBoardName = ""
     @AppStorage("PhraseMode") var phraseMode = "0"
-    @AppStorage("AuthoringAllowed") var authoringAllowed = false
+    @AppStorage("AuthoringAllowed") var authoringAllowed = true
     
     @State private var isActive = false
     @State private var activeChildBoard: UInt? = 0
@@ -95,7 +95,7 @@ struct BoardView: View {
                 ProgressView("Downloading your communication board...").onAppear {
                     Task {
                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                        _ = board.setId(id, storedUsername, boardState)
+                        _ = board.setId(id, storedUsername, storedBoardName, boardState)
                         Task {
                             regionMonitor.startMonitor()
                         }
@@ -116,6 +116,9 @@ struct BoardView: View {
                         }
                     }
                     NavigationLink(destination: BoardView(SpecialBoardType.MostRecent.rawValue, geometry: geometry), tag: SpecialBoardType.MostRecent.rawValue, selection: $activeChildBoard) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: BoardView(SpecialBoardType.MostUsed.rawValue, geometry: geometry), tag: SpecialBoardType.MostUsed.rawValue, selection: $activeChildBoard) {
                         EmptyView()
                     }
                     if scheduleMonitor.boardId != 0 {
@@ -156,9 +159,12 @@ struct BoardView: View {
                                             case .goBack: dismiss()
                                             case .goHome: appState.rootViewId = UUID()
                                             default:
-                                                boardState.updateMru(item, storedUsername)
-                                                if (item.linkId != 0) {
-                                                    activeChildBoard = item.linkId
+                                                DispatchQueue.main.async {
+                                                    boardState.updateUsage(item, storedUsername, storedBoardName)
+                                                    boardState.updateMru(item, storedUsername, storedBoardName)
+                                                    if (item.linkId != 0) {
+                                                        activeChildBoard = item.linkId
+                                                    }
                                                 }
                                             }
                                         },
@@ -235,7 +241,7 @@ struct BoardView: View {
                     showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                     showUserHelp = !boardState.authorMode && userHints
                     
-                    _ = board.setId(id, storedUsername, boardState)
+                    _ = board.setId(id, storedUsername, storedBoardName, boardState)
                     scheduleMonitor.createSchedule()
                     Task {
                         regionMonitor.startMonitor()
@@ -296,7 +302,7 @@ struct BoardView: View {
                                 boardState.undo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id, storedUsername, boardState)
+                                    _ = board.setId(id, storedUsername, storedBoardName, boardState)
                                 }
                                 //                                print("Undo")
                             } label: {
@@ -306,7 +312,7 @@ struct BoardView: View {
                                 boardState.redo()
                                 Task {
                                     await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                    _ = board.setId(id, storedUsername, boardState)
+                                    _ = board.setId(id, storedUsername, storedBoardName, boardState)
                                 }
                                 //                                print("Redo")
                             } label: {
@@ -364,6 +370,7 @@ struct BoardView: View {
                             }
                             Button {
                                 print("Most Viewed")
+                                activeChildBoard = SpecialBoardType.MostUsed.rawValue
                             } label: {
                                 Label(LocalizedStringKey("Most Viewed"), systemImage: "list.number")
                             }
