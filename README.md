@@ -119,8 +119,8 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [A cell can be designated as a “Go Back” cell. When tapped will return to previous board.](#_managing_cell_properties_5)|x|x|x|x|done|
 |- [A cell can be programmed with MyTalkTools automations](#_mytalktools_automation_1) to perform virtually any function when tapped: show/hide phrase bar, go back, voice a cell, show most used, etc.|x|x|||done|
 |- [A cell can use other apps openUrl support to integrate with other applications](#_launch_other_applications_1). For example – you can program a cell to start a Facetime conversation.|x|x|||done|
-|- [Cells can be copied/pasted](#_copy_&_paste) to create duplicates|x|x|x|x|TBD|
-|- [Cells can be cleared](#_clear_cells) (remove text, images, etc.)|x|x|x|x|TBD|
+|- [Cells can be copied/pasted](#_copy_&_paste) to create duplicates|x|x|x|x|done|
+|- [Cells can be cleared](#_clear_cells) (remove text, images, etc.)|x|x|x|x|done|
 |- [Cells can override the device “zoom” setting – to always or never “zoom”.](#_managing_cell_properties_6)|x|x|x|x|done|
 |- [Cells can contain a child board](#_create_a_board_2). Tapping a cell with a child board, displays the child board.|x|x|x|x|done|
 |- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|TBD|
