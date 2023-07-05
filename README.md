@@ -1,6 +1,9 @@
 # MyTalkTools
 iOS AAC solution
 
+# IMPORTANT
+To rebuild this project requires the Acapela voice library. Contact me directly for download instructions.
+
 # Introduction
 This is the incomplete open-source version of the MyTalkTools iOS client. Communication Disabilities Foundation Inc. is taking over support for the commercial MyTalkTools suite. This change will occur throughout 2023. By the end of 2023 the foundation will offer all of the MyTalkTools Suite (MyTalkTools Mobile for iOS, MyTalkTools for Android, and MyTalkTools Workspace) for no charge.
 
