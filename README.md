@@ -126,7 +126,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Cells can be cleared](#_clear_cells) (remove text, images, etc.)|x|x|x|x|done|
 |- [Cells can override the device “zoom” setting – to always or never “zoom”.](#_managing_cell_properties_6)|x|x|x|x|done|
 |- [Cells can contain a child board](#_create_a_board_2). Tapping a cell with a child board, displays the child board.|x|x|x|x|done|
-|- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|TBD|
+|- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|view-yes,create-TBD|
 |- [Cell size – a cell can occupy an adjacent space. If you give a cell a size of 2 it will occupy 2 cell spaces.](#_managing_cell_properties_7)|x||||done|
 |- [Copy Cell to Library](#_copy_a_cell) – you can share a cell by copying it and its child board to a private library or the public submissions library|x||x|x|TBD|
 |- [Cells can be hidden from the user](#_hide_cells) and only exposed to the user by the author specifically when needed.|x||x|x|TBD|
