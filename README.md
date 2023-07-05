@@ -64,7 +64,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Generate a Text-To-Speech Recording](#_generate_a_text-to-speech) and attach to a cell (useful when sharing content with users who do not have TTS capability)|x|x|||done|
 |- [Voice cell text dynamically using Text-To-Speech](#_voice_cell_text)|x|x|x|x|done|
 |- [Voice alternate text](#_voice_alternate_text) (something other than the cell text) using Text-To-Speech|x|x|x|x|done|
-|- ` `[Low quality Text-To-Speech voices](#_low_quality_text-to-speech) (English / adult / male / female)|x|x|<p>27 voices in 11 languages</p><p></p>|done|
+|- ` `[Low quality Text-To-Speech voices](#_low_quality_text-to-speech) (English / adult / male / female)|x|x|<p>27 voices in 11 languages</p><p></p>||done|
 |- ` `[High quality Text-To-Speech voices](#_high_quality_text-to-speech) (English, French, German, Dutch, etc. / child / adult / male / female)|$$$|$$$|||done - except for recording, and in-app purchase|
 |[Phrases/Language Generation/Communication](#_phrases/language_generation/communication)||||||
 |- [A “phrase bar” can be optionally displayed](#_display_phrase_bar), and then when tapping on cells it adds them to the phrase bar. Tapping on the phrase bar voices the cells in order.|x|x|||done|
