@@ -75,6 +75,110 @@
 		18CE4C5D295FAC2400D349A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */; };
 		18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5571F29B50D6F00DE584B /* LibraryDialog.swift */; };
 		18D89A422969086000BAF565 /* sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D89A412969086000BAF565 /* sample.sqlite */; };
+		18E002152A536F1D00E520B5 /* AcapelaSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0020F2A536F1C00E520B5 /* AcapelaSetup.m */; };
+		18E002162A536F1D00E520B5 /* acaLicenseFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E002112A536F1C00E520B5 /* acaLicenseFiles.m */; };
+		18E002172A536F1D00E520B5 /* acattsioslicense.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E002142A536F1D00E520B5 /* acattsioslicense.m */; };
+		18E002192A53708B00E520B5 /* libacattsios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E0FE5A2A536E6100E520B5 /* libacattsios.a */; };
+		18E0021B2A54631500E520B5 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E0021A2A54631500E520B5 /* Files.swift */; };
+		18E007132A547A3200E520B5 /* hq-lf-Spanish-Antonio-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B02A547A2F00E520B5 /* hq-lf-Spanish-Antonio-22khz */; };
+		18E007142A547A3200E520B5 /* hq-lf-Polish-Ania-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B12A547A2F00E520B5 /* hq-lf-Polish-Ania-22khz */; };
+		18E007152A547A3200E520B5 /* hq-lf-USEnglish-Willupclose-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B22A547A2F00E520B5 /* hq-lf-USEnglish-Willupclose-22khz */; };
+		18E007162A547A3200E520B5 /* hq-lf-BelgianDutch-Jeroen-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B32A547A2F00E520B5 /* hq-lf-BelgianDutch-Jeroen-22khz */; };
+		18E007172A547A3200E520B5 /* hq-lf-British-Queenelizabeth-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B42A547A2F00E520B5 /* hq-lf-British-Queenelizabeth-22khz */; };
+		18E007182A547A3200E520B5 /* hq-lf-USEnglish-Willoldman-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B52A547A2F00E520B5 /* hq-lf-USEnglish-Willoldman-22khz */; };
+		18E007192A547A3200E520B5 /* hq-lf-German-Andreas-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B62A547A3000E520B5 /* hq-lf-German-Andreas-22khz */; };
+		18E0071A2A547A3200E520B5 /* hq-lf-Polish-monika-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B72A547A3000E520B5 /* hq-lf-Polish-monika-22khz */; };
+		18E0071B2A547A3200E520B5 /* hq-lf-USEnglish-Micah-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B82A547A3000E520B5 /* hq-lf-USEnglish-Micah-22khz */; };
+		18E0071C2A547A3200E520B5 /* hq-lf-Korean-minji-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006B92A547A3000E520B5 /* hq-lf-Korean-minji-22khz */; };
+		18E0071D2A547A3200E520B5 /* hq-lf-Danish-Mette-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BA2A547A3000E520B5 /* hq-lf-Danish-Mette-22khz */; };
+		18E0071E2A547A3200E520B5 /* hq-lf-USEnglish-Willbadguy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BB2A547A3000E520B5 /* hq-lf-USEnglish-Willbadguy-22khz */; };
+		18E0071F2A547A3200E520B5 /* hq-lf-ScottishEnglish-rhona-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BC2A547A3000E520B5 /* hq-lf-ScottishEnglish-rhona-22khz */; };
+		18E007202A547A3200E520B5 /* hq-lf-Spanish-Maria-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BD2A547A3000E520B5 /* hq-lf-Spanish-Maria-22khz */; };
+		18E007212A547A3200E520B5 /* hq-lf-Italian-Chiara-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BE2A547A3000E520B5 /* hq-lf-Italian-Chiara-22khz */; };
+		18E007222A547A3200E520B5 /* hq-lf-AustralianEnglish-Tyler-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006BF2A547A3000E520B5 /* hq-lf-AustralianEnglish-Tyler-22khz */; };
+		18E007232A547A3200E520B5 /* hq-lf-Norwegian-Bente-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C02A547A3000E520B5 /* hq-lf-Norwegian-Bente-22khz */; };
+		18E007242A547A3200E520B5 /* hq-lf-Norwegian-Olav-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C12A547A3000E520B5 /* hq-lf-Norwegian-Olav-22khz */; };
+		18E007252A547A3200E520B5 /* hq-lf-USEnglish-Laura-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C22A547A3000E520B5 /* hq-lf-USEnglish-Laura-22khz */; };
+		18E007262A547A3200E520B5 /* hq-lf-French-Robot-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C32A547A3000E520B5 /* hq-lf-French-Robot-22khz */; };
+		18E007272A547A3200E520B5 /* hq-lf-Greek-Dimitris-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C42A547A3000E520B5 /* hq-lf-Greek-Dimitris-22khz */; };
+		18E007282A547A3200E520B5 /* hq-lf-Dutch-Max-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C52A547A3000E520B5 /* hq-lf-Dutch-Max-22khz */; };
+		18E007292A547A3200E520B5 /* hq-lf-French-Antoine-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C62A547A3000E520B5 /* hq-lf-French-Antoine-22khz */; };
+		18E0072A2A547A3200E520B5 /* hq-lf-French-Antoinefromafar-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C72A547A3000E520B5 /* hq-lf-French-Antoinefromafar-22khz */; };
+		18E0072B2A547A3200E520B5 /* hq-lf-USEnglish-Ryan-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C82A547A3000E520B5 /* hq-lf-USEnglish-Ryan-22khz */; };
+		18E0072C2A547A3200E520B5 /* hq-lf-GothenburgSwedish-Kal-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006C92A547A3000E520B5 /* hq-lf-GothenburgSwedish-Kal-22khz */; };
+		18E0072D2A547A3200E520B5 /* hq-lf-Greek-DimitrisSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CA2A547A3000E520B5 /* hq-lf-Greek-DimitrisSad-22khz */; };
+		18E0072E2A547A3200E520B5 /* hq-lf-USEnglish-Sharon-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CB2A547A3000E520B5 /* hq-lf-USEnglish-Sharon-22khz */; };
+		18E0072F2A547A3200E520B5 /* hq-lf-Brazilian-Marcia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CC2A547A3000E520B5 /* hq-lf-Brazilian-Marcia-22khz */; };
+		18E007302A547A3200E520B5 /* hq-lf-AustralianEnglish-Lisa-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CD2A547A3000E520B5 /* hq-lf-AustralianEnglish-Lisa-22khz */; };
+		18E007312A547A3200E520B5 /* hq-lf-Portuguese-Celia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CE2A547A3000E520B5 /* hq-lf-Portuguese-Celia-22khz */; };
+		18E007322A547A3200E520B5 /* hq-lf-Swedish-Emil-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006CF2A547A3000E520B5 /* hq-lf-Swedish-Emil-22khz */; };
+		18E007332A547A3200E520B5 /* hq-lf-MandarinChinese-Lulu-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D02A547A3000E520B5 /* hq-lf-MandarinChinese-Lulu-22khz */; };
+		18E007342A547A3200E520B5 /* hq-lf-Arabic-Salma-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D12A547A3100E520B5 /* hq-lf-Arabic-Salma-22khz */; };
+		18E007352A547A3200E520B5 /* hq-lf-French-AntoineSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D22A547A3100E520B5 /* hq-lf-French-AntoineSad-22khz */; };
+		18E007362A547A3200E520B5 /* hq-lf-Catalan-Laia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D32A547A3100E520B5 /* hq-lf-Catalan-Laia-22khz */; };
+		18E007372A547A3200E520B5 /* hq-lf-French-Alice-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D42A547A3100E520B5 /* hq-lf-French-Alice-22khz */; };
+		18E007382A547A3200E520B5 /* hq-lf-USEnglish-Nelly-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D52A547A3100E520B5 /* hq-lf-USEnglish-Nelly-22khz */; };
+		18E007392A547A3200E520B5 /* hq-lf-German-Julia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D62A547A3100E520B5 /* hq-lf-German-Julia-22khz */; };
+		18E0073A2A547A3200E520B5 /* hq-lf-British-PeterHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D72A547A3100E520B5 /* hq-lf-British-PeterHappy-22khz */; };
+		18E0073B2A547A3200E520B5 /* hq-lf-Turkish-Ipek-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D82A547A3100E520B5 /* hq-lf-Turkish-Ipek-22khz */; };
+		18E0073C2A547A3200E520B5 /* hq-lf-FinlandSwedish-Samuel-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006D92A547A3100E520B5 /* hq-lf-FinlandSwedish-Samuel-22khz */; };
+		18E0073D2A547A3200E520B5 /* hq-lf-German-Sarah-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DA2A547A3100E520B5 /* hq-lf-German-Sarah-22khz */; };
+		18E0073E2A547A3200E520B5 /* hq-lf-French-Manon-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DB2A547A3100E520B5 /* hq-lf-French-Manon-22khz */; };
+		18E0073F2A547A3200E520B5 /* hq-lf-USEnglish-Saul-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DC2A547A3100E520B5 /* hq-lf-USEnglish-Saul-22khz */; };
+		18E007402A547A3200E520B5 /* hq-lf-USEnglish-WillSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DD2A547A3100E520B5 /* hq-lf-USEnglish-WillSad-22khz */; };
+		18E007412A547A3200E520B5 /* hq-lf-Scanian-Mia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DE2A547A3100E520B5 /* hq-lf-Scanian-Mia-22khz */; };
+		18E007422A547A3200E520B5 /* hq-lf-French-Julie-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006DF2A547A3100E520B5 /* hq-lf-French-Julie-22khz */; };
+		18E007432A547A3200E520B5 /* hq-lf-USSpanish-Rodrigo-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E02A547A3100E520B5 /* hq-lf-USSpanish-Rodrigo-22khz */; };
+		18E007442A547A3200E520B5 /* hq-lf-IndianEnglish-Deepa-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E12A547A3100E520B5 /* hq-lf-IndianEnglish-Deepa-22khz */; };
+		18E007452A547A3200E520B5 /* hq-lf-Swedish-Erik-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E22A547A3100E520B5 /* hq-lf-Swedish-Erik-22khz */; };
+		18E007462A547A3200E520B5 /* hq-lf-British-PeterSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E32A547A3100E520B5 /* hq-lf-British-PeterSad-22khz */; };
+		18E007472A547A3200E520B5 /* hq-lf-USEnglish-Rod-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E42A547A3100E520B5 /* hq-lf-USEnglish-Rod-22khz */; };
+		18E007482A547A3200E520B5 /* hq-lf-USSpanish-Rosa-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E52A547A3100E520B5 /* hq-lf-USSpanish-Rosa-22khz */; };
+		18E007492A547A3200E520B5 /* hq-lf-USEnglish-Will-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E62A547A3100E520B5 /* hq-lf-USEnglish-Will-22khz */; };
+		18E0074A2A547A3200E520B5 /* hq-lf-Dutch-Femke-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E72A547A3100E520B5 /* hq-lf-Dutch-Femke-22khz */; };
+		18E0074B2A547A3200E520B5 /* hq-lf-Dutch-Daan-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E82A547A3100E520B5 /* hq-lf-Dutch-Daan-22khz */; };
+		18E0074C2A547A3200E520B5 /* hq-lf-French-Bruno-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006E92A547A3100E520B5 /* hq-lf-French-Bruno-22khz */; };
+		18E0074D2A547A3200E520B5 /* hq-lf-Swedish-Emma-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006EA2A547A3100E520B5 /* hq-lf-Swedish-Emma-22khz */; };
+		18E0074E2A547A3200E520B5 /* hq-lf-Arabic-Mehdi-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006EB2A547A3100E520B5 /* hq-lf-Arabic-Mehdi-22khz */; };
+		18E0074F2A547A3200E520B5 /* hq-lf-USEnglish-Tracy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006EC2A547A3100E520B5 /* hq-lf-USEnglish-Tracy-22khz */; };
+		18E007502A547A3200E520B5 /* hq-lf-USEnglish-WillHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006ED2A547A3100E520B5 /* hq-lf-USEnglish-WillHappy-22khz */; };
+		18E007512A547A3200E520B5 /* hq-lf-Spanish-Ines-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006EE2A547A3100E520B5 /* hq-lf-Spanish-Ines-22khz */; };
+		18E007522A547A3200E520B5 /* hq-lf-British-Nizareng-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006EF2A547A3100E520B5 /* hq-lf-British-Nizareng-22khz */; };
+		18E007532A547A3300E520B5 /* hq-lf-BelgianDutch-JeroenSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F02A547A3100E520B5 /* hq-lf-BelgianDutch-JeroenSad-22khz */; };
+		18E007542A547A3300E520B5 /* hq-lf-CanadianFrench-Louise-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F12A547A3100E520B5 /* hq-lf-CanadianFrench-Louise-22khz */; };
+		18E007552A547A3300E520B5 /* hq-lf-French-Antoineupclose-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F22A547A3100E520B5 /* hq-lf-French-Antoineupclose-22khz */; };
+		18E007562A547A3300E520B5 /* hq-lf-Arabic-Nizar-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F32A547A3100E520B5 /* hq-lf-Arabic-Nizar-22khz */; };
+		18E007572A547A3300E520B5 /* hq-lf-BelgianDutch-Zoe-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F42A547A3100E520B5 /* hq-lf-BelgianDutch-Zoe-22khz */; };
+		18E007582A547A3300E520B5 /* hq-lf-Italian-Fabiana-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F52A547A3100E520B5 /* hq-lf-Italian-Fabiana-22khz */; };
+		18E007592A547A3300E520B5 /* hq-lf-Japanese-Sakura-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F62A547A3200E520B5 /* hq-lf-Japanese-Sakura-22khz */; };
+		18E0075A2A547A3300E520B5 /* hq-lf-German-Klaus-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F72A547A3200E520B5 /* hq-lf-German-Klaus-22khz */; };
+		18E0075B2A547A3300E520B5 /* hq-lf-British-Lucy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F82A547A3200E520B5 /* hq-lf-British-Lucy-22khz */; };
+		18E0075C2A547A3300E520B5 /* hq-lf-British-Rachel-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006F92A547A3200E520B5 /* hq-lf-British-Rachel-22khz */; };
+		18E0075D2A547A3300E520B5 /* hq-lf-British-Graham-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FA2A547A3200E520B5 /* hq-lf-British-Graham-22khz */; };
+		18E0075E2A547A3300E520B5 /* hq-lf-USEnglish-Heather-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FB2A547A3200E520B5 /* hq-lf-USEnglish-Heather-22khz */; };
+		18E0075F2A547A3300E520B5 /* hq-lf-French-MargauxHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FC2A547A3200E520B5 /* hq-lf-French-MargauxHappy-22khz */; };
+		18E007602A547A3300E520B5 /* hq-lf-French-Margaux-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FD2A547A3200E520B5 /* hq-lf-French-Margaux-22khz */; };
+		18E007612A547A3300E520B5 /* hq-lf-Russian-Alyona-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FE2A547A3200E520B5 /* hq-lf-Russian-Alyona-22khz */; };
+		18E007622A547A3300E520B5 /* hq-lf-Swedish-Elin-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E006FF2A547A3200E520B5 /* hq-lf-Swedish-Elin-22khz */; };
+		18E007632A547A3300E520B5 /* hq-lf-Arabic-Leila-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007002A547A3200E520B5 /* hq-lf-Arabic-Leila-22khz */; };
+		18E007642A547A3300E520B5 /* hq-lf-Danish-Rasmus-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007012A547A3200E520B5 /* hq-lf-Danish-Rasmus-22khz */; };
+		18E007652A547A3300E520B5 /* hq-lf-BelgianDutch-JeroenHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007022A547A3200E520B5 /* hq-lf-BelgianDutch-JeroenHappy-22khz */; };
+		18E007662A547A3300E520B5 /* hq-lf-British-Peter-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007032A547A3200E520B5 /* hq-lf-British-Peter-22khz */; };
+		18E007672A547A3300E520B5 /* hq-lf-Italian-Vittorio-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007042A547A3200E520B5 /* hq-lf-Italian-Vittorio-22khz */; };
+		18E007682A547A3300E520B5 /* hq-lf-BelgianDutch-Sofie-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007052A547A3200E520B5 /* hq-lf-BelgianDutch-Sofie-22khz */; };
+		18E007692A547A3300E520B5 /* hq-lf-Norwegian-Kari-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007062A547A3200E520B5 /* hq-lf-Norwegian-Kari-22khz */; };
+		18E0076A2A547A3300E520B5 /* hq-lf-Dutch-Jasmijn-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007072A547A3200E520B5 /* hq-lf-Dutch-Jasmijn-22khz */; };
+		18E0076B2A547A3300E520B5 /* hq-lf-USEnglish-Willfromafar-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007082A547A3200E520B5 /* hq-lf-USEnglish-Willfromafar-22khz */; };
+		18E0076C2A547A3300E520B5 /* hq-lf-French-Claire-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007092A547A3200E520B5 /* hq-lf-French-Claire-22khz */; };
+		18E0076D2A547A3300E520B5 /* hq-lf-USEnglish-Kenny-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070A2A547A3200E520B5 /* hq-lf-USEnglish-Kenny-22khz */; };
+		18E0076E2A547A3300E520B5 /* hq-lf-French-AntoineHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070B2A547A3200E520B5 /* hq-lf-French-AntoineHappy-22khz */; };
+		18E0076F2A547A3300E520B5 /* hq-lf-USEnglish-Karen-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070C2A547A3200E520B5 /* hq-lf-USEnglish-Karen-22khz */; };
+		18E007702A547A3300E520B5 /* hq-lf-German-Claudia-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070D2A547A3200E520B5 /* hq-lf-German-Claudia-22khz */; };
+		18E007712A547A3300E520B5 /* hq-lf-Finnish-Sanna-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070E2A547A3200E520B5 /* hq-lf-Finnish-Sanna-22khz */; };
+		18E007722A547A3300E520B5 /* hq-lf-USEnglish-Willlittlecreature-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E0070F2A547A3200E520B5 /* hq-lf-USEnglish-Willlittlecreature-22khz */; };
+		18E007732A547A3300E520B5 /* hq-lf-Greek-DimitrisHappy-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007102A547A3200E520B5 /* hq-lf-Greek-DimitrisHappy-22khz */; };
+		18E007742A547A3300E520B5 /* hq-lf-Czech-Eliska-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007112A547A3200E520B5 /* hq-lf-Czech-Eliska-22khz */; };
+		18E007752A547A3300E520B5 /* hq-lf-French-MargauxSad-22khz in Resources */ = {isa = PBXBuildFile; fileRef = 18E007122A547A3200E520B5 /* hq-lf-French-MargauxSad-22khz */; };
 		18E02A2129D9E8030057E4C3 /* Rotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E02A2029D9E8030057E4C3 /* Rotate.swift */; };
 		18E15EEF2A069AAC002AEA3F /* CreateEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */; };
 		18E15F092A06F6B7002AEA3F /* TypePhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E15F082A06F6B7002AEA3F /* TypePhrase.swift */; };
@@ -171,7 +275,116 @@
 		18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D5571F29B50D6F00DE584B /* LibraryDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDialog.swift; sourceTree = "<group>"; };
 		18D89A412969086000BAF565 /* sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.sqlite; sourceTree = "<group>"; };
+		18E0020D2A536F1C00E520B5 /* AcapelaSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcapelaSetup.h; sourceTree = "<group>"; };
+		18E0020E2A536F1C00E520B5 /* AcapelaLicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcapelaLicense.h; sourceTree = "<group>"; };
+		18E0020F2A536F1C00E520B5 /* AcapelaSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcapelaSetup.m; sourceTree = "<group>"; };
+		18E002102A536F1C00E520B5 /* AcapelaSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcapelaSpeech.h; sourceTree = "<group>"; };
+		18E002112A536F1C00E520B5 /* acaLicenseFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = acaLicenseFiles.m; sourceTree = "<group>"; };
+		18E002122A536F1D00E520B5 /* acattsioslicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acattsioslicense.h; sourceTree = "<group>"; };
+		18E002132A536F1D00E520B5 /* acaLicenseFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acaLicenseFiles.h; sourceTree = "<group>"; };
+		18E002142A536F1D00E520B5 /* acattsioslicense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = acattsioslicense.m; sourceTree = "<group>"; };
+		18E0021A2A54631500E520B5 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		18E006B02A547A2F00E520B5 /* hq-lf-Spanish-Antonio-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Spanish-Antonio-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B12A547A2F00E520B5 /* hq-lf-Polish-Ania-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Polish-Ania-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B22A547A2F00E520B5 /* hq-lf-USEnglish-Willupclose-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Willupclose-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B32A547A2F00E520B5 /* hq-lf-BelgianDutch-Jeroen-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-BelgianDutch-Jeroen-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B42A547A2F00E520B5 /* hq-lf-British-Queenelizabeth-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Queenelizabeth-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B52A547A2F00E520B5 /* hq-lf-USEnglish-Willoldman-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Willoldman-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B62A547A3000E520B5 /* hq-lf-German-Andreas-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-German-Andreas-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B72A547A3000E520B5 /* hq-lf-Polish-monika-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Polish-monika-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B82A547A3000E520B5 /* hq-lf-USEnglish-Micah-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Micah-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006B92A547A3000E520B5 /* hq-lf-Korean-minji-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Korean-minji-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BA2A547A3000E520B5 /* hq-lf-Danish-Mette-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Danish-Mette-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BB2A547A3000E520B5 /* hq-lf-USEnglish-Willbadguy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Willbadguy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BC2A547A3000E520B5 /* hq-lf-ScottishEnglish-rhona-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-ScottishEnglish-rhona-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BD2A547A3000E520B5 /* hq-lf-Spanish-Maria-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Spanish-Maria-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BE2A547A3000E520B5 /* hq-lf-Italian-Chiara-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Italian-Chiara-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006BF2A547A3000E520B5 /* hq-lf-AustralianEnglish-Tyler-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-AustralianEnglish-Tyler-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C02A547A3000E520B5 /* hq-lf-Norwegian-Bente-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Norwegian-Bente-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C12A547A3000E520B5 /* hq-lf-Norwegian-Olav-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Norwegian-Olav-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C22A547A3000E520B5 /* hq-lf-USEnglish-Laura-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Laura-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C32A547A3000E520B5 /* hq-lf-French-Robot-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Robot-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C42A547A3000E520B5 /* hq-lf-Greek-Dimitris-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Greek-Dimitris-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C52A547A3000E520B5 /* hq-lf-Dutch-Max-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Dutch-Max-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C62A547A3000E520B5 /* hq-lf-French-Antoine-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Antoine-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C72A547A3000E520B5 /* hq-lf-French-Antoinefromafar-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Antoinefromafar-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C82A547A3000E520B5 /* hq-lf-USEnglish-Ryan-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Ryan-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006C92A547A3000E520B5 /* hq-lf-GothenburgSwedish-Kal-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-GothenburgSwedish-Kal-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CA2A547A3000E520B5 /* hq-lf-Greek-DimitrisSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Greek-DimitrisSad-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CB2A547A3000E520B5 /* hq-lf-USEnglish-Sharon-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Sharon-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CC2A547A3000E520B5 /* hq-lf-Brazilian-Marcia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Brazilian-Marcia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CD2A547A3000E520B5 /* hq-lf-AustralianEnglish-Lisa-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-AustralianEnglish-Lisa-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CE2A547A3000E520B5 /* hq-lf-Portuguese-Celia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Portuguese-Celia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006CF2A547A3000E520B5 /* hq-lf-Swedish-Emil-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Swedish-Emil-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D02A547A3000E520B5 /* hq-lf-MandarinChinese-Lulu-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-MandarinChinese-Lulu-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D12A547A3100E520B5 /* hq-lf-Arabic-Salma-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Arabic-Salma-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D22A547A3100E520B5 /* hq-lf-French-AntoineSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-AntoineSad-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D32A547A3100E520B5 /* hq-lf-Catalan-Laia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Catalan-Laia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D42A547A3100E520B5 /* hq-lf-French-Alice-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Alice-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D52A547A3100E520B5 /* hq-lf-USEnglish-Nelly-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Nelly-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D62A547A3100E520B5 /* hq-lf-German-Julia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-German-Julia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D72A547A3100E520B5 /* hq-lf-British-PeterHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-PeterHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D82A547A3100E520B5 /* hq-lf-Turkish-Ipek-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Turkish-Ipek-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006D92A547A3100E520B5 /* hq-lf-FinlandSwedish-Samuel-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-FinlandSwedish-Samuel-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DA2A547A3100E520B5 /* hq-lf-German-Sarah-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-German-Sarah-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DB2A547A3100E520B5 /* hq-lf-French-Manon-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Manon-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DC2A547A3100E520B5 /* hq-lf-USEnglish-Saul-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Saul-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DD2A547A3100E520B5 /* hq-lf-USEnglish-WillSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-WillSad-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DE2A547A3100E520B5 /* hq-lf-Scanian-Mia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Scanian-Mia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006DF2A547A3100E520B5 /* hq-lf-French-Julie-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Julie-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E02A547A3100E520B5 /* hq-lf-USSpanish-Rodrigo-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USSpanish-Rodrigo-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E12A547A3100E520B5 /* hq-lf-IndianEnglish-Deepa-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-IndianEnglish-Deepa-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E22A547A3100E520B5 /* hq-lf-Swedish-Erik-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Swedish-Erik-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E32A547A3100E520B5 /* hq-lf-British-PeterSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-PeterSad-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E42A547A3100E520B5 /* hq-lf-USEnglish-Rod-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Rod-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E52A547A3100E520B5 /* hq-lf-USSpanish-Rosa-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USSpanish-Rosa-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E62A547A3100E520B5 /* hq-lf-USEnglish-Will-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Will-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E72A547A3100E520B5 /* hq-lf-Dutch-Femke-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Dutch-Femke-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E82A547A3100E520B5 /* hq-lf-Dutch-Daan-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Dutch-Daan-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006E92A547A3100E520B5 /* hq-lf-French-Bruno-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Bruno-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006EA2A547A3100E520B5 /* hq-lf-Swedish-Emma-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Swedish-Emma-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006EB2A547A3100E520B5 /* hq-lf-Arabic-Mehdi-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Arabic-Mehdi-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006EC2A547A3100E520B5 /* hq-lf-USEnglish-Tracy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Tracy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006ED2A547A3100E520B5 /* hq-lf-USEnglish-WillHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-WillHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006EE2A547A3100E520B5 /* hq-lf-Spanish-Ines-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Spanish-Ines-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006EF2A547A3100E520B5 /* hq-lf-British-Nizareng-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Nizareng-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F02A547A3100E520B5 /* hq-lf-BelgianDutch-JeroenSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-BelgianDutch-JeroenSad-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F12A547A3100E520B5 /* hq-lf-CanadianFrench-Louise-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-CanadianFrench-Louise-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F22A547A3100E520B5 /* hq-lf-French-Antoineupclose-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Antoineupclose-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F32A547A3100E520B5 /* hq-lf-Arabic-Nizar-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Arabic-Nizar-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F42A547A3100E520B5 /* hq-lf-BelgianDutch-Zoe-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-BelgianDutch-Zoe-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F52A547A3100E520B5 /* hq-lf-Italian-Fabiana-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Italian-Fabiana-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F62A547A3200E520B5 /* hq-lf-Japanese-Sakura-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Japanese-Sakura-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F72A547A3200E520B5 /* hq-lf-German-Klaus-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-German-Klaus-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F82A547A3200E520B5 /* hq-lf-British-Lucy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Lucy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006F92A547A3200E520B5 /* hq-lf-British-Rachel-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Rachel-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FA2A547A3200E520B5 /* hq-lf-British-Graham-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Graham-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FB2A547A3200E520B5 /* hq-lf-USEnglish-Heather-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Heather-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FC2A547A3200E520B5 /* hq-lf-French-MargauxHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-MargauxHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FD2A547A3200E520B5 /* hq-lf-French-Margaux-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Margaux-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FE2A547A3200E520B5 /* hq-lf-Russian-Alyona-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Russian-Alyona-22khz"; sourceTree = SOURCE_ROOT; };
+		18E006FF2A547A3200E520B5 /* hq-lf-Swedish-Elin-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Swedish-Elin-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007002A547A3200E520B5 /* hq-lf-Arabic-Leila-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Arabic-Leila-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007012A547A3200E520B5 /* hq-lf-Danish-Rasmus-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Danish-Rasmus-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007022A547A3200E520B5 /* hq-lf-BelgianDutch-JeroenHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-BelgianDutch-JeroenHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007032A547A3200E520B5 /* hq-lf-British-Peter-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-British-Peter-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007042A547A3200E520B5 /* hq-lf-Italian-Vittorio-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Italian-Vittorio-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007052A547A3200E520B5 /* hq-lf-BelgianDutch-Sofie-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-BelgianDutch-Sofie-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007062A547A3200E520B5 /* hq-lf-Norwegian-Kari-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Norwegian-Kari-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007072A547A3200E520B5 /* hq-lf-Dutch-Jasmijn-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Dutch-Jasmijn-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007082A547A3200E520B5 /* hq-lf-USEnglish-Willfromafar-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Willfromafar-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007092A547A3200E520B5 /* hq-lf-French-Claire-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-Claire-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070A2A547A3200E520B5 /* hq-lf-USEnglish-Kenny-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Kenny-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070B2A547A3200E520B5 /* hq-lf-French-AntoineHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-AntoineHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070C2A547A3200E520B5 /* hq-lf-USEnglish-Karen-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Karen-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070D2A547A3200E520B5 /* hq-lf-German-Claudia-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-German-Claudia-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070E2A547A3200E520B5 /* hq-lf-Finnish-Sanna-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Finnish-Sanna-22khz"; sourceTree = SOURCE_ROOT; };
+		18E0070F2A547A3200E520B5 /* hq-lf-USEnglish-Willlittlecreature-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-USEnglish-Willlittlecreature-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007102A547A3200E520B5 /* hq-lf-Greek-DimitrisHappy-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Greek-DimitrisHappy-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007112A547A3200E520B5 /* hq-lf-Czech-Eliska-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-Czech-Eliska-22khz"; sourceTree = SOURCE_ROOT; };
+		18E007122A547A3200E520B5 /* hq-lf-French-MargauxSad-22khz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hq-lf-French-MargauxSad-22khz"; sourceTree = SOURCE_ROOT; };
 		18E02A2029D9E8030057E4C3 /* Rotate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Rotate.swift; path = ../../../../../../../Monterey/Users/kennethstott/test/mytalktools/test/Extensions/Rotate.swift; sourceTree = "<group>"; };
+		18E0FE5A2A536E6100E520B5 /* libacattsios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libacattsios.a; sourceTree = "<group>"; };
 		18E15EEE2A069AAC002AEA3F /* CreateEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmail.swift; sourceTree = "<group>"; };
 		18E15F082A06F6B7002AEA3F /* TypePhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypePhrase.swift; sourceTree = "<group>"; };
 		18E15F0A2A099FB9002AEA3F /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
@@ -196,6 +409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E002192A53708B00E520B5 /* libacattsios.a in Frameworks */,
 				185E44FB2A193F2B00250399 /* BrightroomEngine in Frameworks */,
 				18A6BE89296083450039B5D4 /* FMDB in Frameworks */,
 				18EA71BD2974E653005477CE /* AlertToast in Frameworks */,
@@ -229,6 +443,7 @@
 				182702CC297D5FF4009C3B12 /* Media.swift */,
 				18E15F0A2A099FB9002AEA3F /* Sync.swift */,
 				185E45362A23EC4500250399 /* WordVariants.swift */,
+				18E0021A2A54631500E520B5 /* Files.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -301,12 +516,14 @@
 		18CE4C49295FAC2000D349A3 = {
 			isa = PBXGroup;
 			children = (
+				18E002202A54731F00E520B5 /* acapela */,
 				18C9443F2A51A1E700C64476 /* Localizable.strings */,
 				18B480E92A448B1400AED8F5 /* README.md */,
 				18A6BEA2296089B60039B5D4 /* Models */,
 				18CE4C7C295FAD5100D349A3 /* Resources */,
 				18CE4C54295FAC2000D349A3 /* test */,
 				18CE4C53295FAC2000D349A3 /* Products */,
+				18E002182A53708B00E520B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -345,6 +562,105 @@
 		18CE4C7C295FAD5100D349A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18E007002A547A3200E520B5 /* hq-lf-Arabic-Leila-22khz */,
+				18E006EB2A547A3100E520B5 /* hq-lf-Arabic-Mehdi-22khz */,
+				18E006F32A547A3100E520B5 /* hq-lf-Arabic-Nizar-22khz */,
+				18E006D12A547A3100E520B5 /* hq-lf-Arabic-Salma-22khz */,
+				18E006CD2A547A3000E520B5 /* hq-lf-AustralianEnglish-Lisa-22khz */,
+				18E006BF2A547A3000E520B5 /* hq-lf-AustralianEnglish-Tyler-22khz */,
+				18E006B32A547A2F00E520B5 /* hq-lf-BelgianDutch-Jeroen-22khz */,
+				18E007022A547A3200E520B5 /* hq-lf-BelgianDutch-JeroenHappy-22khz */,
+				18E006F02A547A3100E520B5 /* hq-lf-BelgianDutch-JeroenSad-22khz */,
+				18E007052A547A3200E520B5 /* hq-lf-BelgianDutch-Sofie-22khz */,
+				18E006F42A547A3100E520B5 /* hq-lf-BelgianDutch-Zoe-22khz */,
+				18E006CC2A547A3000E520B5 /* hq-lf-Brazilian-Marcia-22khz */,
+				18E006FA2A547A3200E520B5 /* hq-lf-British-Graham-22khz */,
+				18E006F82A547A3200E520B5 /* hq-lf-British-Lucy-22khz */,
+				18E006EF2A547A3100E520B5 /* hq-lf-British-Nizareng-22khz */,
+				18E007032A547A3200E520B5 /* hq-lf-British-Peter-22khz */,
+				18E006D72A547A3100E520B5 /* hq-lf-British-PeterHappy-22khz */,
+				18E006E32A547A3100E520B5 /* hq-lf-British-PeterSad-22khz */,
+				18E006B42A547A2F00E520B5 /* hq-lf-British-Queenelizabeth-22khz */,
+				18E006F92A547A3200E520B5 /* hq-lf-British-Rachel-22khz */,
+				18E006F12A547A3100E520B5 /* hq-lf-CanadianFrench-Louise-22khz */,
+				18E006D32A547A3100E520B5 /* hq-lf-Catalan-Laia-22khz */,
+				18E007112A547A3200E520B5 /* hq-lf-Czech-Eliska-22khz */,
+				18E006BA2A547A3000E520B5 /* hq-lf-Danish-Mette-22khz */,
+				18E007012A547A3200E520B5 /* hq-lf-Danish-Rasmus-22khz */,
+				18E006E82A547A3100E520B5 /* hq-lf-Dutch-Daan-22khz */,
+				18E006E72A547A3100E520B5 /* hq-lf-Dutch-Femke-22khz */,
+				18E007072A547A3200E520B5 /* hq-lf-Dutch-Jasmijn-22khz */,
+				18E006C52A547A3000E520B5 /* hq-lf-Dutch-Max-22khz */,
+				18E006D92A547A3100E520B5 /* hq-lf-FinlandSwedish-Samuel-22khz */,
+				18E0070E2A547A3200E520B5 /* hq-lf-Finnish-Sanna-22khz */,
+				18E006D42A547A3100E520B5 /* hq-lf-French-Alice-22khz */,
+				18E006C62A547A3000E520B5 /* hq-lf-French-Antoine-22khz */,
+				18E006C72A547A3000E520B5 /* hq-lf-French-Antoinefromafar-22khz */,
+				18E0070B2A547A3200E520B5 /* hq-lf-French-AntoineHappy-22khz */,
+				18E006D22A547A3100E520B5 /* hq-lf-French-AntoineSad-22khz */,
+				18E006F22A547A3100E520B5 /* hq-lf-French-Antoineupclose-22khz */,
+				18E006E92A547A3100E520B5 /* hq-lf-French-Bruno-22khz */,
+				18E007092A547A3200E520B5 /* hq-lf-French-Claire-22khz */,
+				18E006DF2A547A3100E520B5 /* hq-lf-French-Julie-22khz */,
+				18E006DB2A547A3100E520B5 /* hq-lf-French-Manon-22khz */,
+				18E006FD2A547A3200E520B5 /* hq-lf-French-Margaux-22khz */,
+				18E006FC2A547A3200E520B5 /* hq-lf-French-MargauxHappy-22khz */,
+				18E007122A547A3200E520B5 /* hq-lf-French-MargauxSad-22khz */,
+				18E006C32A547A3000E520B5 /* hq-lf-French-Robot-22khz */,
+				18E006B62A547A3000E520B5 /* hq-lf-German-Andreas-22khz */,
+				18E0070D2A547A3200E520B5 /* hq-lf-German-Claudia-22khz */,
+				18E006D62A547A3100E520B5 /* hq-lf-German-Julia-22khz */,
+				18E006F72A547A3200E520B5 /* hq-lf-German-Klaus-22khz */,
+				18E006DA2A547A3100E520B5 /* hq-lf-German-Sarah-22khz */,
+				18E006C92A547A3000E520B5 /* hq-lf-GothenburgSwedish-Kal-22khz */,
+				18E006C42A547A3000E520B5 /* hq-lf-Greek-Dimitris-22khz */,
+				18E007102A547A3200E520B5 /* hq-lf-Greek-DimitrisHappy-22khz */,
+				18E006CA2A547A3000E520B5 /* hq-lf-Greek-DimitrisSad-22khz */,
+				18E006E12A547A3100E520B5 /* hq-lf-IndianEnglish-Deepa-22khz */,
+				18E006BE2A547A3000E520B5 /* hq-lf-Italian-Chiara-22khz */,
+				18E006F52A547A3100E520B5 /* hq-lf-Italian-Fabiana-22khz */,
+				18E007042A547A3200E520B5 /* hq-lf-Italian-Vittorio-22khz */,
+				18E006F62A547A3200E520B5 /* hq-lf-Japanese-Sakura-22khz */,
+				18E006B92A547A3000E520B5 /* hq-lf-Korean-minji-22khz */,
+				18E006D02A547A3000E520B5 /* hq-lf-MandarinChinese-Lulu-22khz */,
+				18E006C02A547A3000E520B5 /* hq-lf-Norwegian-Bente-22khz */,
+				18E007062A547A3200E520B5 /* hq-lf-Norwegian-Kari-22khz */,
+				18E006C12A547A3000E520B5 /* hq-lf-Norwegian-Olav-22khz */,
+				18E006B12A547A2F00E520B5 /* hq-lf-Polish-Ania-22khz */,
+				18E006B72A547A3000E520B5 /* hq-lf-Polish-monika-22khz */,
+				18E006CE2A547A3000E520B5 /* hq-lf-Portuguese-Celia-22khz */,
+				18E006FE2A547A3200E520B5 /* hq-lf-Russian-Alyona-22khz */,
+				18E006DE2A547A3100E520B5 /* hq-lf-Scanian-Mia-22khz */,
+				18E006BC2A547A3000E520B5 /* hq-lf-ScottishEnglish-rhona-22khz */,
+				18E006B02A547A2F00E520B5 /* hq-lf-Spanish-Antonio-22khz */,
+				18E006EE2A547A3100E520B5 /* hq-lf-Spanish-Ines-22khz */,
+				18E006BD2A547A3000E520B5 /* hq-lf-Spanish-Maria-22khz */,
+				18E006FF2A547A3200E520B5 /* hq-lf-Swedish-Elin-22khz */,
+				18E006CF2A547A3000E520B5 /* hq-lf-Swedish-Emil-22khz */,
+				18E006EA2A547A3100E520B5 /* hq-lf-Swedish-Emma-22khz */,
+				18E006E22A547A3100E520B5 /* hq-lf-Swedish-Erik-22khz */,
+				18E006D82A547A3100E520B5 /* hq-lf-Turkish-Ipek-22khz */,
+				18E006FB2A547A3200E520B5 /* hq-lf-USEnglish-Heather-22khz */,
+				18E0070C2A547A3200E520B5 /* hq-lf-USEnglish-Karen-22khz */,
+				18E0070A2A547A3200E520B5 /* hq-lf-USEnglish-Kenny-22khz */,
+				18E006C22A547A3000E520B5 /* hq-lf-USEnglish-Laura-22khz */,
+				18E006B82A547A3000E520B5 /* hq-lf-USEnglish-Micah-22khz */,
+				18E006D52A547A3100E520B5 /* hq-lf-USEnglish-Nelly-22khz */,
+				18E006E42A547A3100E520B5 /* hq-lf-USEnglish-Rod-22khz */,
+				18E006C82A547A3000E520B5 /* hq-lf-USEnglish-Ryan-22khz */,
+				18E006DC2A547A3100E520B5 /* hq-lf-USEnglish-Saul-22khz */,
+				18E006CB2A547A3000E520B5 /* hq-lf-USEnglish-Sharon-22khz */,
+				18E006EC2A547A3100E520B5 /* hq-lf-USEnglish-Tracy-22khz */,
+				18E006E62A547A3100E520B5 /* hq-lf-USEnglish-Will-22khz */,
+				18E006BB2A547A3000E520B5 /* hq-lf-USEnglish-Willbadguy-22khz */,
+				18E007082A547A3200E520B5 /* hq-lf-USEnglish-Willfromafar-22khz */,
+				18E006ED2A547A3100E520B5 /* hq-lf-USEnglish-WillHappy-22khz */,
+				18E0070F2A547A3200E520B5 /* hq-lf-USEnglish-Willlittlecreature-22khz */,
+				18E006B52A547A2F00E520B5 /* hq-lf-USEnglish-Willoldman-22khz */,
+				18E006DD2A547A3100E520B5 /* hq-lf-USEnglish-WillSad-22khz */,
+				18E006B22A547A2F00E520B5 /* hq-lf-USEnglish-Willupclose-22khz */,
+				18E006E02A547A3100E520B5 /* hq-lf-USSpanish-Rodrigo-22khz */,
+				18E006E52A547A3100E520B5 /* hq-lf-USSpanish-Rosa-22khz */,
 				18A6BEED296211C80039B5D4 /* 3softtacos.mp3 */,
 				18A6BEEF296211DB0039B5D4 /* Breakfast.mp3 */,
 				18A6BEF0296211DB0039B5D4 /* Drinks.mp3 */,
@@ -363,10 +679,33 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		18E002182A53708B00E520B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		18E002202A54731F00E520B5 /* acapela */ = {
+			isa = PBXGroup;
+			children = (
+				18E0FE5A2A536E6100E520B5 /* libacattsios.a */,
+			);
+			path = acapela;
+			sourceTree = "<group>";
+		};
 		18E02A1F29D9E7EB0057E4C3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				18E15F272A0C0090002AEA3F /* ImageUtility.m */,
+				18E002132A536F1D00E520B5 /* acaLicenseFiles.h */,
+				18E002112A536F1C00E520B5 /* acaLicenseFiles.m */,
+				18E0020E2A536F1C00E520B5 /* AcapelaLicense.h */,
+				18E0020D2A536F1C00E520B5 /* AcapelaSetup.h */,
+				18E0020F2A536F1C00E520B5 /* AcapelaSetup.m */,
+				18E002102A536F1C00E520B5 /* AcapelaSpeech.h */,
+				18E002122A536F1D00E520B5 /* acattsioslicense.h */,
+				18E002142A536F1D00E520B5 /* acattsioslicense.m */,
 				18E15F262A0C0090002AEA3F /* test-Bridging-Header.h */,
 				18E02A2029D9E8030057E4C3 /* Rotate.swift */,
 				18E15F242A0B099D002AEA3F /* URL.swift */,
@@ -456,24 +795,123 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E007392A547A3200E520B5 /* hq-lf-German-Julia-22khz in Resources */,
+				18E007132A547A3200E520B5 /* hq-lf-Spanish-Antonio-22khz in Resources */,
+				18E007152A547A3200E520B5 /* hq-lf-USEnglish-Willupclose-22khz in Resources */,
+				18E007422A547A3200E520B5 /* hq-lf-French-Julie-22khz in Resources */,
+				18E007612A547A3300E520B5 /* hq-lf-Russian-Alyona-22khz in Resources */,
+				18E0071E2A547A3200E520B5 /* hq-lf-USEnglish-Willbadguy-22khz in Resources */,
+				18E007482A547A3200E520B5 /* hq-lf-USSpanish-Rosa-22khz in Resources */,
+				18E007732A547A3300E520B5 /* hq-lf-Greek-DimitrisHappy-22khz in Resources */,
+				18E007672A547A3300E520B5 /* hq-lf-Italian-Vittorio-22khz in Resources */,
+				18E007552A547A3300E520B5 /* hq-lf-French-Antoineupclose-22khz in Resources */,
+				18E0072E2A547A3200E520B5 /* hq-lf-USEnglish-Sharon-22khz in Resources */,
+				18E0074E2A547A3200E520B5 /* hq-lf-Arabic-Mehdi-22khz in Resources */,
 				18A6BEF1296211DB0039B5D4 /* Breakfast.mp3 in Resources */,
 				18A6BF00296211FD0039B5D4 /* MynameisMichael.mp3 in Resources */,
+				18E007372A547A3200E520B5 /* hq-lf-French-Alice-22khz in Resources */,
+				18E007292A547A3200E520B5 /* hq-lf-French-Antoine-22khz in Resources */,
+				18E0076C2A547A3300E520B5 /* hq-lf-French-Claire-22khz in Resources */,
+				18E007272A547A3200E520B5 /* hq-lf-Greek-Dimitris-22khz in Resources */,
+				18E007442A547A3200E520B5 /* hq-lf-IndianEnglish-Deepa-22khz in Resources */,
+				18E007432A547A3200E520B5 /* hq-lf-USSpanish-Rodrigo-22khz in Resources */,
 				18A6BEFF296211FD0039B5D4 /* No.mp3 in Resources */,
 				18A6BF02296211FD0039B5D4 /* Yes.mp3 in Resources */,
+				18E0073F2A547A3200E520B5 /* hq-lf-USEnglish-Saul-22khz in Resources */,
+				18E007472A547A3200E520B5 /* hq-lf-USEnglish-Rod-22khz in Resources */,
+				18E007702A547A3300E520B5 /* hq-lf-German-Claudia-22khz in Resources */,
 				18A6BEEE296211C90039B5D4 /* 3softtacos.mp3 in Resources */,
+				18E007532A547A3300E520B5 /* hq-lf-BelgianDutch-JeroenSad-22khz in Resources */,
+				18E0072F2A547A3200E520B5 /* hq-lf-Brazilian-Marcia-22khz in Resources */,
+				18E007582A547A3300E520B5 /* hq-lf-Italian-Fabiana-22khz in Resources */,
+				18E007402A547A3200E520B5 /* hq-lf-USEnglish-WillSad-22khz in Resources */,
+				18E007332A547A3200E520B5 /* hq-lf-MandarinChinese-Lulu-22khz in Resources */,
+				18E0075E2A547A3300E520B5 /* hq-lf-USEnglish-Heather-22khz in Resources */,
+				18E007522A547A3200E520B5 /* hq-lf-British-Nizareng-22khz in Resources */,
 				18A6BF01296211FD0039B5D4 /* Food.mp3 in Resources */,
+				18E007202A547A3200E520B5 /* hq-lf-Spanish-Maria-22khz in Resources */,
+				18E0075D2A547A3300E520B5 /* hq-lf-British-Graham-22khz in Resources */,
+				18E007242A547A3200E520B5 /* hq-lf-Norwegian-Olav-22khz in Resources */,
+				18E007382A547A3200E520B5 /* hq-lf-USEnglish-Nelly-22khz in Resources */,
+				18E0076A2A547A3300E520B5 /* hq-lf-Dutch-Jasmijn-22khz in Resources */,
 				18CE4C5D295FAC2400D349A3 /* Preview Assets.xcassets in Resources */,
 				18A6BEFE296211FD0039B5D4 /* I_need_help.mp3 in Resources */,
+				18E007512A547A3200E520B5 /* hq-lf-Spanish-Ines-22khz in Resources */,
+				18E007182A547A3200E520B5 /* hq-lf-USEnglish-Willoldman-22khz in Resources */,
+				18E007162A547A3200E520B5 /* hq-lf-BelgianDutch-Jeroen-22khz in Resources */,
 				18A6BF06296359B40039B5D4 /* Settings.bundle in Resources */,
+				18E007592A547A3300E520B5 /* hq-lf-Japanese-Sakura-22khz in Resources */,
+				18E007462A547A3200E520B5 /* hq-lf-British-PeterSad-22khz in Resources */,
 				18A6BEEC2960ECB60039B5D4 /* Needs.mp3 in Resources */,
 				18CE4C5A295FAC2400D349A3 /* Assets.xcassets in Resources */,
+				18E007352A547A3200E520B5 /* hq-lf-French-AntoineSad-22khz in Resources */,
+				18E007222A547A3200E520B5 /* hq-lf-AustralianEnglish-Tyler-22khz in Resources */,
+				18E0071C2A547A3200E520B5 /* hq-lf-Korean-minji-22khz in Resources */,
+				18E007322A547A3200E520B5 /* hq-lf-Swedish-Emil-22khz in Resources */,
+				18E0076E2A547A3300E520B5 /* hq-lf-French-AntoineHappy-22khz in Resources */,
+				18E007362A547A3200E520B5 /* hq-lf-Catalan-Laia-22khz in Resources */,
+				18E007632A547A3300E520B5 /* hq-lf-Arabic-Leila-22khz in Resources */,
 				18B480EA2A448B1500AED8F5 /* README.md in Resources */,
+				18E0072C2A547A3200E520B5 /* hq-lf-GothenburgSwedish-Kal-22khz in Resources */,
+				18E007742A547A3300E520B5 /* hq-lf-Czech-Eliska-22khz in Resources */,
 				18A6BEF2296211DB0039B5D4 /* Drinks.mp3 in Resources */,
+				18E007502A547A3200E520B5 /* hq-lf-USEnglish-WillHappy-22khz in Resources */,
 				18C9443D2A51A1E700C64476 /* Localizable.strings in Resources */,
+				18E007312A547A3200E520B5 /* hq-lf-Portuguese-Celia-22khz in Resources */,
+				18E007562A547A3300E520B5 /* hq-lf-Arabic-Nizar-22khz in Resources */,
+				18E007232A547A3200E520B5 /* hq-lf-Norwegian-Bente-22khz in Resources */,
+				18E0075C2A547A3300E520B5 /* hq-lf-British-Rachel-22khz in Resources */,
+				18E0072A2A547A3200E520B5 /* hq-lf-French-Antoinefromafar-22khz in Resources */,
+				18E0074D2A547A3200E520B5 /* hq-lf-Swedish-Emma-22khz in Resources */,
+				18E007682A547A3300E520B5 /* hq-lf-BelgianDutch-Sofie-22khz in Resources */,
+				18E0075A2A547A3300E520B5 /* hq-lf-German-Klaus-22khz in Resources */,
+				18E007622A547A3300E520B5 /* hq-lf-Swedish-Elin-22khz in Resources */,
+				18E007452A547A3200E520B5 /* hq-lf-Swedish-Erik-22khz in Resources */,
+				18E007142A547A3200E520B5 /* hq-lf-Polish-Ania-22khz in Resources */,
+				18E0072D2A547A3200E520B5 /* hq-lf-Greek-DimitrisSad-22khz in Resources */,
 				18A6BEFD296211FD0039B5D4 /* Lunch_Dinner.mp3 in Resources */,
+				18E007692A547A3300E520B5 /* hq-lf-Norwegian-Kari-22khz in Resources */,
+				18E0075B2A547A3300E520B5 /* hq-lf-British-Lucy-22khz in Resources */,
+				18E0071B2A547A3200E520B5 /* hq-lf-USEnglish-Micah-22khz in Resources */,
+				18E007252A547A3200E520B5 /* hq-lf-USEnglish-Laura-22khz in Resources */,
+				18E0076B2A547A3300E520B5 /* hq-lf-USEnglish-Willfromafar-22khz in Resources */,
+				18E007652A547A3300E520B5 /* hq-lf-BelgianDutch-JeroenHappy-22khz in Resources */,
+				18E0074C2A547A3200E520B5 /* hq-lf-French-Bruno-22khz in Resources */,
 				18A6BEFC296211FD0039B5D4 /* Greetings_Manners.mp3 in Resources */,
+				18E0071A2A547A3200E520B5 /* hq-lf-Polish-monika-22khz in Resources */,
+				18E0076F2A547A3300E520B5 /* hq-lf-USEnglish-Karen-22khz in Resources */,
+				18E0073C2A547A3200E520B5 /* hq-lf-FinlandSwedish-Samuel-22khz in Resources */,
+				18E007212A547A3200E520B5 /* hq-lf-Italian-Chiara-22khz in Resources */,
+				18E0073E2A547A3200E520B5 /* hq-lf-French-Manon-22khz in Resources */,
+				18E0073D2A547A3200E520B5 /* hq-lf-German-Sarah-22khz in Resources */,
+				18E007542A547A3300E520B5 /* hq-lf-CanadianFrench-Louise-22khz in Resources */,
+				18E007192A547A3200E520B5 /* hq-lf-German-Andreas-22khz in Resources */,
+				18E007642A547A3300E520B5 /* hq-lf-Danish-Rasmus-22khz in Resources */,
+				18E007572A547A3300E520B5 /* hq-lf-BelgianDutch-Zoe-22khz in Resources */,
 				18A6BEFB296211FD0039B5D4 /* Snack.mp3 in Resources */,
+				18E007172A547A3200E520B5 /* hq-lf-British-Queenelizabeth-22khz in Resources */,
+				18E007282A547A3200E520B5 /* hq-lf-Dutch-Max-22khz in Resources */,
+				18E0071F2A547A3200E520B5 /* hq-lf-ScottishEnglish-rhona-22khz in Resources */,
+				18E0075F2A547A3300E520B5 /* hq-lf-French-MargauxHappy-22khz in Resources */,
+				18E0072B2A547A3200E520B5 /* hq-lf-USEnglish-Ryan-22khz in Resources */,
+				18E007662A547A3300E520B5 /* hq-lf-British-Peter-22khz in Resources */,
 				18D89A422969086000BAF565 /* sample.sqlite in Resources */,
+				18E0076D2A547A3300E520B5 /* hq-lf-USEnglish-Kenny-22khz in Resources */,
+				18E007342A547A3200E520B5 /* hq-lf-Arabic-Salma-22khz in Resources */,
+				18E007722A547A3300E520B5 /* hq-lf-USEnglish-Willlittlecreature-22khz in Resources */,
+				18E007602A547A3300E520B5 /* hq-lf-French-Margaux-22khz in Resources */,
+				18E007302A547A3200E520B5 /* hq-lf-AustralianEnglish-Lisa-22khz in Resources */,
+				18E007712A547A3300E520B5 /* hq-lf-Finnish-Sanna-22khz in Resources */,
+				18E007262A547A3200E520B5 /* hq-lf-French-Robot-22khz in Resources */,
+				18E0073B2A547A3200E520B5 /* hq-lf-Turkish-Ipek-22khz in Resources */,
+				18E007492A547A3200E520B5 /* hq-lf-USEnglish-Will-22khz in Resources */,
+				18E0074B2A547A3200E520B5 /* hq-lf-Dutch-Daan-22khz in Resources */,
+				18E007752A547A3300E520B5 /* hq-lf-French-MargauxSad-22khz in Resources */,
+				18E0074F2A547A3200E520B5 /* hq-lf-USEnglish-Tracy-22khz in Resources */,
+				18E0071D2A547A3200E520B5 /* hq-lf-Danish-Mette-22khz in Resources */,
+				18E0073A2A547A3200E520B5 /* hq-lf-British-PeterHappy-22khz in Resources */,
+				18E007412A547A3200E520B5 /* hq-lf-Scanian-Mia-22khz in Resources */,
+				18E0074A2A547A3200E520B5 /* hq-lf-Dutch-Femke-22khz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,8 +953,10 @@
 				18E15F0B2A099FB9002AEA3F /* Sync.swift in Sources */,
 				187FFB0D29D85D6B00D91F66 /* EditCell.swift in Sources */,
 				1886DBB729CFBC1D00CF4011 /* Library.swift in Sources */,
+				18E0021B2A54631500E520B5 /* Files.swift in Sources */,
 				182702CB297C5452009C3B12 /* NewDatabase.swift in Sources */,
 				18E15F2B2A0C7596002AEA3F /* CameraView.swift in Sources */,
+				18E002152A536F1D00E520B5 /* AcapelaSetup.m in Sources */,
 				182702C7297C1816009C3B12 /* Network.swift in Sources */,
 				1886DBB629CFBC1D00CF4011 /* GetPost.swift in Sources */,
 				18CE4C56295FAC2000D349A3 /* testApp.swift in Sources */,
@@ -534,6 +974,7 @@
 				185E45372A23EC4500250399 /* WordVariants.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
 				182702D529874ED1009C3B12 /* Query.swift in Sources */,
+				18E002172A536F1D00E520B5 /* acattsioslicense.m in Sources */,
 				18EA71C52975B18E005477CE /* DisclosureIndicator.swift in Sources */,
 				18A6BE8429607FA30039B5D4 /* BoardState.swift in Sources */,
 				185E44F82A193A8600250399 /* SnapshotUIView.swift in Sources */,
@@ -547,6 +988,7 @@
 				182702C5297C17F0009C3B12 /* User.swift in Sources */,
 				185E45352A2239F100250399 /* NewSimpleBoard.swift in Sources */,
 				18C0C4D82A10545600A18334 /* ShareSheet.swift in Sources */,
+				18E002162A536F1D00E520B5 /* acaLicenseFiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +1147,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"test/Preview Content\"";
 				DEVELOPMENT_TEAM = 3LVLRY2458;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = test/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -716,6 +1159,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/acapela",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mytalk.mytalktools.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -726,6 +1174,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "test/Extensions/test-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -755,6 +1204,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/acapela",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mytalk.mytalktools.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -764,6 +1218,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "test/Extensions/test-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

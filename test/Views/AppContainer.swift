@@ -20,17 +20,6 @@ struct AppContainer: View {
     @EnvironmentObject var scheduleMonitor: ScheduleMonitor
     @AppStorage("LOGINUSERNAME") var storedUsername = ""
     
-    init() {
-        do {
-            // Attempts to activate session so you can play audio,
-            // if other sessions have priority this will fail
-            try AVAudioSession.sharedInstance().setActive(true)
-            try! AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default)
-        } catch _ {
-            // Handle error
-        }
-    }
-    
     var body: some View {
         GeometryReader { geometry in
             VStack {

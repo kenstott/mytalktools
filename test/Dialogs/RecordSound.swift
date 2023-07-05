@@ -89,7 +89,7 @@ struct RecordSound: View {
                 formatter.unitsStyle = .full
                 fileURL = Media.generateFileName(str: cellText, username: userState.username, ext: "wav")
                 session = AVAudioSession.sharedInstance()
-                try? session?.setCategory(.playAndRecord, mode: .default)
+                try? session?.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
                 try? session?.setActive(true)
                 recorder = try? AVAudioRecorder(url: fileURL!, settings: [:])
             }

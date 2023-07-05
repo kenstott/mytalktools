@@ -31,6 +31,10 @@ struct FileListDirectory: Decodable, Encodable {
     var FileList: [DocumentFileInfo]
 }
 
+struct DocumentFileInfoArray: Decodable, Encodable {
+    var d: [DocumentFileInfo]
+}
+
 struct DocumentFileInfo: Decodable, Encodable {
     var __type: String
     var CreationTime: String

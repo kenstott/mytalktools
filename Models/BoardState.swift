@@ -108,14 +108,14 @@ class BoardState: ObservableObject {
         }
         let sortedDict = usage.sorted { $0.0 < $1.0 }
         let contents: [Content] = sortedDict.map {
-            var c = Content()
-            var id = Int($0.key)
+            let content = Content()
+            let id = Int($0.key)
             if id == nil {
-                c.name = $0.key
+                content.name = $0.key
             } else {
-                _ = c.setId(id!)
+                _ = content.setId(id!)
             }
-            return c
+            return content
         }
         return contents
     }

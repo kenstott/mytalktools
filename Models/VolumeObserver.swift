@@ -35,7 +35,7 @@ final class VolumeObserver: ObservableObject {
     
     func subscribe() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
+            try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
             try session.setActive(true, options: .notifyOthersOnDeactivation)
             self.volumeIcon = getVolumeIcon(volume: session.outputVolume)
         } catch {
