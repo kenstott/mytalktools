@@ -1,6 +1,9 @@
 # MyTalkTools
 iOS AAC solution
 
+# IMPORTANT
+To rebuild this project requires the Acapela voice library. Contact me directly for download instructions.
+
 # Introduction
 This is the incomplete open-source version of the MyTalkTools iOS client. Communication Disabilities Foundation Inc. is taking over support for the commercial MyTalkTools suite. This change will occur throughout 2023. By the end of 2023 the foundation will offer all of the MyTalkTools Suite (MyTalkTools Mobile for iOS, MyTalkTools for Android, and MyTalkTools Workspace) for no charge.
 
@@ -61,8 +64,8 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Generate a Text-To-Speech Recording](#_generate_a_text-to-speech) and attach to a cell (useful when sharing content with users who do not have TTS capability)|x|x|||done|
 |- [Voice cell text dynamically using Text-To-Speech](#_voice_cell_text)|x|x|x|x|done|
 |- [Voice alternate text](#_voice_alternate_text) (something other than the cell text) using Text-To-Speech|x|x|x|x|done|
-|- ` `[Low quality Text-To-Speech voices](#_low_quality_text-to-speech) (English / adult / male / female)|x|x|<p>27 voices in 11 languages</p><p></p>|done|
-|- ` `[High quality Text-To-Speech voices](#_high_quality_text-to-speech) (English, French, German, Dutch, etc. / child / adult / male / female)|$$$|$$$|||TBD|
+|- ` `[Low quality Text-To-Speech voices](#_low_quality_text-to-speech) (English / adult / male / female)|x|x|<p>27 voices in 11 languages</p><p></p>||done|
+|- ` `[High quality Text-To-Speech voices](#_high_quality_text-to-speech) (English, French, German, Dutch, etc. / child / adult / male / female)|$$$|$$$|||done - except for recording, and in-app purchase|
 |[Phrases/Language Generation/Communication](#_phrases/language_generation/communication)||||||
 |- [A “phrase bar” can be optionally displayed](#_display_phrase_bar), and then when tapping on cells it adds them to the phrase bar. Tapping on the phrase bar voices the cells in order.|x|x|||done|
 |- Phrase bar history – double-tapping the phrase bar will display a history of all phrases used. Or, on an iPad tap the arrow to the left of the phrase bar to view the phrase history. |x||||TBD|
@@ -123,7 +126,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Cells can be cleared](#_clear_cells) (remove text, images, etc.)|x|x|x|x|done|
 |- [Cells can override the device “zoom” setting – to always or never “zoom”.](#_managing_cell_properties_6)|x|x|x|x|done|
 |- [Cells can contain a child board](#_create_a_board_2). Tapping a cell with a child board, displays the child board.|x|x|x|x|done|
-|- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|TBD|
+|- [Cells can be linked to another cell’s child board](#_adding_an_existing). Tapping a cell with a linked child board, displays the child board.|x|x|x|x|view-yes,create-TBD|
 |- [Cell size – a cell can occupy an adjacent space. If you give a cell a size of 2 it will occupy 2 cell spaces.](#_managing_cell_properties_7)|x||||done|
 |- [Copy Cell to Library](#_copy_a_cell) – you can share a cell by copying it and its child board to a private library or the public submissions library|x||x|x|TBD|
 |- [Cells can be hidden from the user](#_hide_cells) and only exposed to the user by the author specifically when needed.|x||x|x|TBD|
@@ -132,7 +135,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Sound](#_sound_1)||||||
 |- [Record sound from the device](#_record_sound_from)|x|x|x|x|done|
 |- [Attach a recorded sound to a cell](#_add_recorded_sound)||x|x|x|done|
-|- [Copy a sound file](#_copy_and_paste) from one cell and paste it into another|x|x|||TBD|
+|- [Copy a sound file](#_copy_and_paste) from one cell and paste it into another|x|x|||done|
 |- [Delete sound from a cell](#_delete_sound_recording)|x|x|x|x|done|
 |- Type a phrase, and [create sound file from the text-to-speech voicing](#_create_text-to-speech_sound), and attach the sound file to a cell|x|x|x|x|done|
 |- [Add or delete sound to/from a content library](#_using_sound_from)|x|x|x|x|done|
@@ -156,7 +159,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- Supports start date/time, supports periodicity (weekly, weekday, monthly, etc.), Supports repeat (once, forever, until)|x|x|||done|
 |- Notifications do not require app to be active to be triggered. |x|x|||done|
 |- [Locations](#_locations)||||||
-|- Add a location to a cell with a child board. When the device is within 100 meters of the location a notification will be displayed on the phone or the apple watch. Click the notification and you will be taken to the cell’s child board.|x|x|||done|
+|- Add a location to a cell with a child board. When the device is within 100 meters of the location a notification will be displayed on the phone. Click the notification and you will be taken to the cell’s child board.|x|x|||done|
 |- Search for a location based on a location name – like “McDonald’s” or “Wendy’s”.|x|x|||TBD|
 |- Search for a location based on a street address – like “1000 Central Ave”|x|x|||done|
 |- Show nearby businesses or locations of interest|x|x|||done|
