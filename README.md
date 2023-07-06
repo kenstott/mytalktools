@@ -74,7 +74,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Dynamically generated word variants board can be automatically coded with Goosen or Fitzgerald codes](#_automatic_coded_word). Supports English.|x|x|||TBD|
 |- [Dynamically generated word variants board can take hint from parent cell.](#_automatic_coded_word_2) If parent cell is coded as a noun – the word variants board would only include plurals. If coded as a verb – it would only include conjugations, etc. Supports English.|x||||TBD|
 |- [Word prediction](#_word_prediction) – cell and word usage patterns are tracked and cell and word predictions, based on previous usage patterns, can be used to select cells within Wizard mode.|x||||TBD|
-|- Direct Selection – swipe right to view full directory of cells. You can scroll or search to find cells. Tap on the cell to navigate directly to it.|iPad||||TBD|
+|- Direct Selection – swipe right to view full directory of cells. You can scroll or search to find cells. Tap on the cell to navigate directly to it.|iPad||||done|
 |[Content Management](#_content_management)||||||
 |- [Get Help](#_getting_help)|x|x|x|x|done|
 |- [Undo/Redo](#_undo/redo) edits|x|x|||done|

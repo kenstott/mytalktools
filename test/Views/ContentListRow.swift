@@ -12,10 +12,12 @@ struct ContentListRow: View {
     private var content = Content()
     private var defaultFontSize: CGFloat = 20
     private var foregroundColor = Color.white
-    init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color) {
+    private var addDisclosureIndicator = true
+    init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, disclosureIndicator: Bool? = nil) {
         self.content = content
         self.defaultFontSize = defaultFontSize
         self.foregroundColor = foregroundColor
+        self.addDisclosureIndicator = disclosureIndicator ?? true
     }
     var body: some View {
         HStack {
@@ -43,7 +45,7 @@ struct ContentListRow: View {
                 .background(.clear)
                 .font(.system(size: defaultFontSize))
             Spacer()
-            if (content.linkId != 0) {
+            if (content.linkId != 0 && addDisclosureIndicator) {
                 DisclosureIndicator()
             }
         }

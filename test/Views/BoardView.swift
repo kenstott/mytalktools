@@ -64,6 +64,8 @@ struct BoardView: View {
     @State private var showSpotlightSearchBoard = false
     @State private var spotlightSearchBoard: UInt = 0
     @State private var showLogin = false
+    @State var directNavigateBoard: UInt? = nil
+    @State var preDirect: UInt = 0
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -126,6 +128,12 @@ struct BoardView: View {
                         }
                         if scheduleMonitor.boardId != 0 {
                             NavigationLink(destination: BoardView(scheduleMonitor.boardId ?? 0, geometry: geometry), tag: scheduleMonitor.boardId ?? 0, selection: $scheduleChildBoard)
+                            {
+                                EmptyView()
+                            }
+                        }
+                        if preDirect != 0 {
+                            NavigationLink(destination: BoardView(preDirect , geometry: geometry), tag: preDirect, selection: $directNavigateBoard)
                             {
                                 EmptyView()
                             }
@@ -231,10 +239,6 @@ struct BoardView: View {
                     }
                     .sheet(isPresented: $showContacts) {
                         EmbeddedContactPicker(contact: $contact, selectionPredicate: NSPredicate(format: "givenName == %@", argumentArray: [UUID()]))
-                        //                }.sheet(isPresented: $showLocationBasedBoard) {
-                        //                    NavigationView {
-                        //                        BoardView(enteredRegion, geometry: geometry)
-                        //                    }
                     }.sheet(isPresented: $showSpotlightSearchBoard) {
                         NavigationView {
                             BoardView(spotlightSearchBoard, geometry: geometry)
@@ -248,11 +252,15 @@ struct BoardView: View {
                         showUserHelp = !boardState.authorMode && userHints
                         
                         _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                        boardState.viewedBoard = self
                         scheduleMonitor.createSchedule()
                         Task {
                             regionMonitor.startMonitor()
-                            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
-                                print("Done")
+                                speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                                    print("Done")
+                                }
+                            if id == 1 {
+                                boardState.updateBoardTree(storedUsername, contentStub: ContentStub())
                             }
                         }
                         let center = UNUserNotificationCenter.current()
@@ -398,6 +406,16 @@ struct BoardView: View {
                 Task {
                     if newValue != 0 {
                         scheduleChildBoard = scheduleMonitor.boardId
+                    }
+                }
+            }
+            .onChange(of: boardState.directNavigateBoard) { newValue in
+                Task {
+                    if newValue != 0 && preDirect != boardState.directNavigateBoard {
+                        preDirect = boardState.directNavigateBoard
+                        Task {
+                            directNavigateBoard = preDirect
+                        }
                     }
                 }
             }

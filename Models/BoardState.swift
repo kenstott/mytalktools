@@ -16,6 +16,64 @@ enum WriteApproach {
     case uploadToRemote, downloadToLocal, doNothing
 }
 
+class ContentStub: Identifiable {
+    var id: Int = 0
+    var name: String = ""
+    var parentBoard: UInt = 0
+    var link: UInt = 0
+    var childBoard: UInt = 0 {
+        didSet {
+            if childBoard != 0 {
+                self.children = [ContentStub]()
+                self.filteredChildren = self.children
+                DispatchQueue.main.async { [self] in
+                    setChildren(children: Board().setId(childBoard, "").contents)
+                }
+            }
+        }
+    }
+    var query = "" {
+        didSet {
+            // filter to leaf cells that match
+            if query != "" {
+                filteredChildren = children?.filter {
+                    $0.name.lowercased().contains(query.lowercased()) || max($0.childBoard, $0.link) != 0
+                }
+            } else {
+                filteredChildren = children
+            }
+            filteredChildren = filteredChildren?.map {
+                $0.query = query
+                $0.isExpanded = query != ""
+                return $0
+            }
+            filteredChildren = filteredChildren?.filter {
+                (max($0.childBoard, $0.link) == 0 && $0.name != "") || $0.filteredChildren?.count != 0
+            }
+        }
+    }
+    var children: [ContentStub]? = nil
+    var filteredChildren: [ContentStub]? = nil
+    var isExpanded = false
+    
+    func setFromContent(content: Content) -> ContentStub {
+        let c = ContentStub()
+        c.id = content.id
+        c.parentBoard = UInt(content.boardId)
+        c.name = content.name
+        c.link = content.childBoardLink
+        c.childBoard = content.childBoardId
+        return c
+    }
+    
+    func setChildren(children: [Content]) {
+        self.children = children.map {
+            ContentStub().setFromContent(content: $0)
+        }
+        self.filteredChildren = self.children
+    }
+}
+
 class BoardState: ObservableObject {
     
     static var db: FMDatabase?
@@ -41,6 +99,49 @@ class BoardState: ObservableObject {
     @Published var dbUrl: URL?
     @Published var undoPointer = -1
     @Published var copyBuffer = EditableContent()
+    @Published var boardTree = [ContentStub]()
+    @Published var boardTreeFiltered = [ContentStub]()
+    @Published var directNavigateBoard: UInt = 0
+    @Published var viewedBoard: BoardView? = nil
+
+    @Published var boardTreeSearch = "" {
+        didSet {
+            if boardTreeSearch != "" {
+                boardTreeFiltered = boardTree.filter {
+                    $0.name.lowercased().contains(boardTreeSearch.lowercased()) || max($0.childBoard, $0.link) != 0
+                }
+            } else {
+                boardTreeFiltered = boardTree
+            }
+            boardTreeFiltered = boardTreeFiltered.map {
+                $0.query = boardTreeSearch
+                $0.isExpanded = boardTreeSearch != ""
+                return $0
+            }
+            boardTreeFiltered = boardTreeFiltered.filter {
+                max($0.childBoard, $0.link) == 0 || $0.filteredChildren?.count != 0
+            }
+        }
+    }
+    
+    func updateBoardTree(_ username: String, contentStub: ContentStub) {
+        let link = max(contentStub.childBoard, contentStub.link)
+        if link == 0 && boardTree.count == 0 {
+            DispatchQueue.main.async { [self] in
+                boardTree = Board()
+                    .setId(1, username)
+                    .contents.map {
+                        ContentStub().setFromContent(content: $0)
+                    }
+                boardTreeFiltered = boardTree
+                print(boardTree.count)
+            }
+        } else if link > 1 && contentStub.children == nil {
+            DispatchQueue.main.async {
+                contentStub.setChildren(children: Board().setId(link, username).contents)
+            }
+        }
+    }
     
     func updateUsage(_ content: Content, _ username: String, _ boardName: String ) {
         let url = documentsURL!.appendingPathComponent(username).appendingPathComponent("\(username)\(boardName != "" ? "-" + boardName : "")-usage.json")
