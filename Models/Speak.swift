@@ -252,13 +252,12 @@ class Speak: NSObject, ObservableObject {
         let shortLanguageName = _shortLanguageName
         
         let voices = AcapelaSpeech.availableVoices() ?? []
-        let voiceNum = (voices as! [String]).firstIndex(of: (alternate ? ttsVoiceAlternate! : ttsVoice).lowercased())
-        if voiceNum == nil {
+        guard let voiceNum = (voices as! [String]).firstIndex(of: (alternate ? ttsVoiceAlternate! : ttsVoice).lowercased()) else {
             callback(false, "")
             return
         }
         
-        let currentVoice = voices[voiceNum!]
+        let currentVoice = voices[voiceNum]
         let voiceDictionary = AcapelaSpeech.attributes(forVoice: currentVoice as? String) ?? [AnyHashable:Any]()
         self.currentVoiceName = "\(voiceDictionary[AcapelaVoiceName]!)";
         
@@ -286,13 +285,12 @@ class Speak: NSObject, ObservableObject {
                     }
                     var inputDir = "NLP"
                     var libraryName = "hq-lf-\(languageName!)-\(voiceName!)-22khz\\\(shortLanguageName!)\\\(inputDir)"
-                    var result = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*"))
-                    if result == nil {
-                        callback(false, "")
-                        return
+                    guard var result = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
+                            callback(false, "")
+                            return
                     }
                     var outputPath = dirDicoPath.appendingPathComponent(inputDir)
-                    for item in result!.d {
+                    for item in result.d {
                         if item.Name != inputDir {
                             let filename = "https://www.mytalktools.com/dnn/UserUploads/acapela.voices.3/hq-lf-\(languageName!)-\(voiceName!)-22khz/\(shortLanguageName!)/\(inputDir)/\(item.Name)"
                             let url = outputPath.appendingPathComponent(item.Name)
@@ -302,13 +300,12 @@ class Speak: NSObject, ObservableObject {
                     }
                     inputDir = "\(voiceName!.lowercased())_\(t)"
                     libraryName = "hq-lf-\(languageName!)-\(voiceName!)-22khz\\\(shortLanguageName!)\\\(inputDir)"
-                    result = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*"))
-                    if result == nil {
+                    guard var resultDirList = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
                         callback(false, "")
                         return
                     }
                     outputPath = dirDicoPath.appendingPathComponent(inputDir)
-                    for item in result!.d {
+                    for item in resultDirList.d {
                         if item.Name != inputDir {
                             let filename = "https://www.mytalktools.com/dnn/UserUploads/acapela.voices.3/hq-lf-\(languageName!)-\(voiceName!)-22khz/\(shortLanguageName!)/\(inputDir)/\(item.Name)"
                             let data = try Data(contentsOf: URL(string: filename)!)

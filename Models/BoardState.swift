@@ -18,6 +18,7 @@ enum WriteApproach {
 
 class ContentStub: Identifiable {
     var id: Int = 0
+    var contentType: ContentType = .imageSoundName
     var name: String = ""
     var parentBoard: UInt = 0
     var link: UInt = 0
@@ -28,6 +29,11 @@ class ContentStub: Identifiable {
                 self.filteredChildren = self.children
                 DispatchQueue.main.async { [self] in
                     setChildren(children: Board().setId(childBoard, "").contents)
+                    self.filteredChildren = self.children?.filter {
+                        var t1 = max($0.childBoard, $0.link) == 0 && $0.name != "" && $0.contentType != .goBack && $0.contentType != .goHome
+                        var t2 = max($0.childBoard, $0.link) != 0
+                        return t1 || t2
+                    }
                 }
             }
         }
@@ -37,10 +43,12 @@ class ContentStub: Identifiable {
             // filter to leaf cells that match
             if query != "" {
                 filteredChildren = children?.filter {
-                    $0.name.lowercased().contains(query.lowercased()) || max($0.childBoard, $0.link) != 0
+                    (max($0.childBoard, $0.link) == 0 && $0.name.lowercased().contains(query.lowercased()) && $0.contentType != .goBack && $0.contentType != .goHome) || ($0.filteredChildren?.count ?? 0) != 0
                 }
             } else {
-                filteredChildren = children
+                filteredChildren = children?.filter {
+                    (max($0.childBoard, $0.link) == 0 && $0.name != "" && $0.contentType != .goBack && $0.contentType != .goHome) || ($0.filteredChildren?.count ?? 0) != 0
+                }
             }
             filteredChildren = filteredChildren?.map {
                 $0.query = query
@@ -48,7 +56,7 @@ class ContentStub: Identifiable {
                 return $0
             }
             filteredChildren = filteredChildren?.filter {
-                (max($0.childBoard, $0.link) == 0 && $0.name != "") || $0.filteredChildren?.count != 0
+                (max($0.childBoard, $0.link) == 0 && $0.name != "" && $0.contentType != .goBack && $0.contentType != .goHome) || ($0.filteredChildren?.count ?? 0) != 0
             }
         }
     }
@@ -59,6 +67,7 @@ class ContentStub: Identifiable {
     func setFromContent(content: Content) -> ContentStub {
         let c = ContentStub()
         c.id = content.id
+        c.contentType = content.contentType
         c.parentBoard = UInt(content.boardId)
         c.name = content.name
         c.link = content.childBoardLink
