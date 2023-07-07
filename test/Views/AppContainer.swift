@@ -10,6 +10,7 @@ import FMDB
 import AVFAudio
 
 struct AppContainer: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var userState: User
     @EnvironmentObject var globalState: BoardState
     @EnvironmentObject var phraseBarState: PhraseBarState
@@ -26,7 +27,7 @@ struct AppContainer: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                if ( authorModeDirectory && globalState.authorMode ) || userModeDirectory {
+                if horizontalSizeClass != .compact && (( authorModeDirectory && globalState.authorMode ) || userModeDirectory) {
                     NavigationView {
                         List {
                             OutlineGroup(globalState.boardTreeFiltered, children: \.filteredChildren) { item in
