@@ -8,8 +8,7 @@ To rebuild this project requires the Acapela voice library. You will need to unz
 - Hotspots
 1. Viewing
 2. Editing
-- Account Creation
-- Create Board from Sample Board
+- Account Creation (done - except for starter boards feature)
 - Wizard (this is the AI/ML component)
 - Synchronize Settings
 - Printing
@@ -98,7 +97,7 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- [Get Help](#_getting_help)|x|x|x|x|done|
 |- [Undo/Redo](#_undo/redo) edits|x|x|||done|
 |- Create initial content on a device using 4 [starter boards](#_starter_boards): male/female: child/adult (Sync / Overwrite from Sample)|x|x|||TBD|
-|- [Copy content from any account to another account](#_updating_with_a) using the accounts’ username (Sync / Overwrite From Sample / I will type in name)|x|x|||TBD|
+|- [Copy content from any account to another account](#_updating_with_a) using the accounts’ username (Sync / Overwrite From Sample / I will type in name)|x|x|||done-except for typing in a name|
 |- [Backup/Restore](#_backup/restore) content to account|x|x|x|x|TBD|
 |- [Automatically synchronize content](#_automatically_synchronize_content) changes across devices and workspace.|x||||TBD|
 |- [Merge content](#_merge) created on device with content created in same account on the web using Workspace. |x|x|||done|
