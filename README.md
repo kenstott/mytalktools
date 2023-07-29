@@ -2,7 +2,7 @@
 iOS AAC solution
 
 # IMPORTANT
-To rebuild this project requires the Acapela voice library. Contact me directly for download instructions.
+To rebuild this project requires the Acapela voice library. You will need to unzip `./acapela/libacattsios.a.zip` to build.
 
 # Major Unfinished Features
 - Hotspots
@@ -16,11 +16,14 @@ To rebuild this project requires the Acapela voice library. Contact me directly 
 - Sharing
 - Phrase Bar History
 - Favorites
+- Pinch Gesture
 
 # Introduction
 This is the incomplete open-source version of the MyTalkTools iOS client. Communication Disabilities Foundation Inc. is taking over support for the commercial MyTalkTools suite. This change will occur throughout 2023. By the end of 2023 the foundation will offer all of the MyTalkTools Suite (MyTalkTools Mobile for iOS, MyTalkTools for Android, and MyTalkTools Workspace) for no charge.
 
 By the start of 2024 - new bug fixes and feature requests will be handled through open source contributors
+
+We will also open-source the Android version (Java), the Web Authoring JS version (JS), and the server-side content management system (C#), before the end of the year.
 
 # Project
 The code, as is, lets you view and use most boards using your MyTalkTools account (with the exception of hotspot boards). In the current phase, the code is scaffolding out UI elements for editing and library management. Once the UI is scaffolded - functionality will be added.
