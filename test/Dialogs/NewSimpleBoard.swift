@@ -18,18 +18,18 @@ struct NewSimpleBoard: View {
         NavigationView {
             HStack {
                 Form {
-                    Picker("Rows", selection: $rows) {
+                    Picker(LocalizedStringKey("Rows"), selection: $rows) {
                         ForEach(1 ..< 16) { i in
                             Text(String(i)).tag(i)
                         }
                     }
-                    Picker("Columns", selection: $columns) {
+                    Picker(LocalizedStringKey("Columns"), selection: $columns) {
                         ForEach(1 ..< 16) { i in
                             Text(String(i)).tag(i)
                         }
                     }
                 }
-                .navigationBarTitle("New Board")
+                .navigationBarTitle(LocalizedStringKey("New Board"))
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Button {

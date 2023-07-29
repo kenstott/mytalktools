@@ -34,6 +34,10 @@ struct Author: View {
     @State var isProfessional = false
     @State var showBoardName = false
     @State var isUnlocked = false
+    @State var showCreateNewUsername = false
+    @State var showCreationSuccess = false
+    @State var showCreationError = false
+    @State var newAccountResponse = NewAccountResponse(d: 13)
     
     func authenticate() {
         let context = LAContext()
@@ -162,7 +166,7 @@ struct Author: View {
                     
                     Section {
                         Button {
-                            // Handle for forgot password action.
+                            showCreateNewUsername = true
                         } label: {
                             Text(LocalizedStringKey("Create new user name"))
                         }
@@ -192,6 +196,12 @@ struct Author: View {
                     }
                     .alert("Login Error", isPresented: $showLoginError) {} message: {
                         Text(isValidUser.result?.errorMessage ?? NSLocalizedString("Unknown error", comment: ""))
+                    }
+                    .alert("Account Creation Success", isPresented: $showCreationSuccess) {} message: {
+                        Text(LocalizedStringKey("Account was successfully created. Your new username and password have been updated. Press login to use your new account."))
+                    }
+                    .alert("Account Creation Error", isPresented: $showCreationError) {} message: {
+                        Text(newAccountResponse.errorMessage)
                     }
                 }.navigationBarTitle(LocalizedStringKey("Login"))
                     .toolbar {
@@ -225,6 +235,18 @@ struct Author: View {
                             authenticate()
                         }
                     }
+            }
+            .sheet(isPresented: $showCreateNewUsername) {
+                NewAccountDialog() { result,username,password in
+                    if result.result == .Success {
+                        self.username = username
+                        self.password = password
+                        showCreationSuccess = true
+                    } else {
+                        self.newAccountResponse = result
+                        showCreationError = true
+                    }
+                }
             }
         }
     }

@@ -10,11 +10,76 @@ enum SpecialBoardType: UInt {
     case MostRecent = 99999999999
     case MostUsed =   99999999998
 }
+/*
+ {\"UserID\":12,\"Username\":\"Public\",\"FirstName\":\"special\",\"LastName\":\"user\",\"IsSuperUser\":false,\"AffiliateId\":null,\"Email\":\"ken@kenstott.com\",\"DisplayName\":\"Basic Starter\",\"UpdatePassword\":false,\"LastIPAddress\":\"172.124.73.177\",\"IsDeleted\":false,\"CreatedByUserID\":-1,\"CreatedOnDate\":\"\\/Date(1268451774240)\\/\",\"LastModifiedByUserID\":-1,\"LastModifiedOnDate\":\"\\/Date(1690636526813)\\/\",\"PasswordResetToken\":\"2919951b-c031-43d5-9460-83b21b7bb4f4\",\"PasswordResetExpiration\":\"\\/Date(1491946724943)\\/\",\"LowerEmail\":\"ken@kenstott.com\",\"PortalId\":0,\"Authorised\":true,\"IsDeleted1\":false,\"RefreshRoles\":false,\"VanityUrl\":\"\"}
+ */
+
+struct SampleBoard: Decodable, Encodable, Hashable {
+    var UserID: Int = 0
+    var Username: String = ""
+    var FirstName: String? = ""
+    var LastName: String? = ""
+    var IsSuperUser: Bool? = false
+    var Email: String? = ""
+    var DisplayName: String? = ""
+    var UpdatePassword: Bool? = false
+    var LastIPAddress: String? = ""
+    var IsDeleted: Bool? = false
+    var CreatedByUserID: Int? = 0
+    var CreatedOnDate: String? = ""
+    var LastModifiedByUserID: Int? = 0
+    var LastModifiedOnDate: String? = ""
+    var PasswordResetToken: String? = ""
+    var PasswordResetExpiration: String? = ""
+    var LowerEmail: String? = ""
+    var PortalId: Int? = 0
+    var Authorised: Bool? = false
+    var IsDeleted1: Bool? = false
+    var RefreshRoles: Bool? = false
+    var VanityUrl: String? = ""
+}
+
+struct SampleBoardResult: Decodable, Encodable {
+    var d: String
+    var dd: [SampleBoard] {
+        get {
+            return getSampleBoardResults(json: self.d)
+        }
+    }
+}
+
+struct OverwriteFromSampleInput: Decodable, Encodable {
+    var userName: String
+    var uuid: String
+    var copyFromUserName: String
+}
+
+func getSampleBoardResults(json: String) -> Array<SampleBoard> {
+    let jsonData = json.data(using: .utf8)!
+    let decoder = JSONDecoder()
+    do {
+        let result = try decoder.decode(Array<SampleBoard>.self, from: jsonData)
+        return result
+    } catch {
+        return []
+    }
+}
 
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
+    static private var _getSampleBoards = Network<SampleBoardResult, QueryInput>(service: "Query")
     var getBoardPost = GetPost<LibraryBoard, LibraryBoardIdInput>(service: "GetBoard")
     
+    static func getSampleBoards() async throws -> [SampleBoard]? {
+        guard let result = try await Board._getSampleBoards.execute(
+            params: QueryInput(
+                query: "EXEC [dbo].[GetUsersByRolename] @PortalID = 0, @Rolename = 'Sample'",
+                site: "SiteSqlServer"))?.dd else {
+            throw "Problem getting sample boards"
+        }
+        return result
+    }
+
     func setColumn(column: String, value: Any) -> Void {
         BoardState.db!.executeUpdate("UPDATE board set \(column) = ? WHERE iphone_board_id = ?", withArgumentsIn: [value,id]);
     }

@@ -285,7 +285,7 @@ class Speak: NSObject, ObservableObject {
                     }
                     var inputDir = "NLP"
                     var libraryName = "hq-lf-\(languageName!)-\(voiceName!)-22khz\\\(shortLanguageName!)\\\(inputDir)"
-                    guard var result = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
+                    guard let result = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
                             callback(false, "")
                             return
                     }
@@ -300,7 +300,7 @@ class Speak: NSObject, ObservableObject {
                     }
                     inputDir = "\(voiceName!.lowercased())_\(t)"
                     libraryName = "hq-lf-\(languageName!)-\(voiceName!)-22khz\\\(shortLanguageName!)\\\(inputDir)"
-                    guard var resultDirList = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
+                    guard let resultDirList = try await Files.getFiles.execute(params: DocumentFileListInput(userName: "acapela.voices.3", libraryName: libraryName, searchPattern: "*.*")) else {
                         callback(false, "")
                         return
                     }

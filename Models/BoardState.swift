@@ -30,8 +30,8 @@ class ContentStub: Identifiable {
                 DispatchQueue.main.async { [self] in
                     setChildren(children: Board().setId(childBoard, "").contents)
                     self.filteredChildren = self.children?.filter {
-                        var t1 = max($0.childBoard, $0.link) == 0 && $0.name != "" && $0.contentType != .goBack && $0.contentType != .goHome
-                        var t2 = max($0.childBoard, $0.link) != 0
+                        let t1 = max($0.childBoard, $0.link) == 0 && $0.name != "" && $0.contentType != .goBack && $0.contentType != .goHome
+                        let t2 = max($0.childBoard, $0.link) != 0
                         return t1 || t2
                     }
                 }
@@ -97,6 +97,7 @@ class BoardState: ObservableObject {
     let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     var getNewDatabase = Network<NewDatabase, NewDatabaseInput>(service: "GetNewDatabase")
     var getNewDatabaseMultiboard = Network<NewDatabase, NewDatabaseInput>(service: "GetNewDatabaseMultiboard")
+    var overwriteFromSample = Network<NewDatabase, OverwriteFromSampleInput>(service: "GetNewDatabaseFromOtherAccount")
     var syncMergePost = Network<SyncMergeResultParent, SyncMergeInput>(service: "MergeDataMultiBoardAndroid")
     
     @Published private(set) var state = State.closed
@@ -354,6 +355,18 @@ class BoardState: ObservableObject {
         }
     }
     
+    func overwriteDeviceFromSample(dbUser: URL, username: String, sampleName: String, media: Media) async -> Void {
+        do {
+            let board = try await overwriteFromSample.execute(params: OverwriteFromSampleInput(userName: username, uuid: "123", copyFromUserName: sampleName))
+            try board?.d.DatabaseImageData.write(to: dbUser)
+            await media.syncMedia(board?.d.DirectoryList ?? [], syncApproach: .overwriteLocal)
+            DispatchQueue.main.async {
+                self.board = board
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
     func overwriteDevice(dbUser: URL, username: String, media: Media, boardID: String?) async -> Void {
         do {
             let board = try await boardID != nil && boardID != ""

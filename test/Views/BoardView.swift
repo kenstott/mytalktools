@@ -66,6 +66,9 @@ struct BoardView: View {
     @State private var showLogin = false
     @State var directNavigateBoard: UInt? = nil
     @State var preDirect: UInt = 0
+    @State var sampleBoards = [SampleBoard]()
+    @State var showSampleBoards = false
+    @State var overwritingFromSample = false
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
     var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
@@ -202,6 +205,24 @@ struct BoardView: View {
                     })
                     .navigationBarTitle(board.name)
                     .navigationBarTitleDisplayMode(.inline)
+                    .confirmationDialog("Overwrite with Sample", isPresented: $showSampleBoards) {
+                        ForEach(sampleBoards, id: \.UserID) { item in
+                            Button(item.DisplayName ?? "") {
+                                overwritingFromSample = true
+                                Task {
+                                    boardState.createUndoSlot()
+                                    await boardState.overwriteDeviceFromSample(dbUser: boardState.dbUrl!, username: userState.username,sampleName: item.Username, media: media)
+                                    DispatchQueue.main.async {
+                                        boardState.reloadDatabase(fileURL: boardState.dbUrl!)
+                                        newDatabase = newDatabase + 1
+                                        appState.rootViewId = UUID()
+                                        overwritingFromSample = false
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
                     .confirmationDialog("Synchronize with Workspace", isPresented: $showSync) {
                         Button("Overwrite Local Device") {
                             Task {
@@ -216,6 +237,10 @@ struct BoardView: View {
                         Button("Overwrite Remote Workspace") {
                             
                         }
+                        Button("Overwrite From Sample Board") {
+                            showSampleBoards = true
+                        }
+                        
                         Button("Merge Local Device and Remote Workspace") {
                             Task {
                                 await boardState.merge(username: userState.username, boardID: storedBoardName, media: media)
@@ -256,12 +281,13 @@ struct BoardView: View {
                         scheduleMonitor.createSchedule()
                         Task {
                             regionMonitor.startMonitor()
-                                speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
-                                    print("Done")
-                                }
+                            speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
+                                print("Done")
+                            }
                             if id == 1 {
                                 boardState.updateBoardTree(storedUsername, contentStub: ContentStub())
                             }
+                            sampleBoards = try await Board.getSampleBoards() ?? []
                         }
                         let center = UNUserNotificationCenter.current()
                         center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -472,6 +498,12 @@ struct BoardView: View {
             }
             if speak.loadingSpeechFiles {
                 ProgressView("Downloading voices...")
+                    .padding(8)
+                    .cornerRadius(5)
+                    .background(.white)
+            }
+            if overwritingFromSample {
+                ProgressView("Overwriting from sample...")
                     .padding(8)
                     .cornerRadius(5)
                     .background(.white)

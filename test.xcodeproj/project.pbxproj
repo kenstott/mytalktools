@@ -17,6 +17,7 @@
 		182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D02981E1F2009C3B12 /* PhraseBar.swift */; };
 		182702D32981E49B009C3B12 /* PhraseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D22981E49B009C3B12 /* PhraseBarView.swift */; };
 		182702D529874ED1009C3B12 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182702D429874ED1009C3B12 /* Query.swift */; };
+		18277DE92A752D47002E7FC4 /* NewAccountDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18277DE82A752D47002E7FC4 /* NewAccountDialog.swift */; };
 		183D7D132A470E4E006EED03 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D7D122A470E4D006EED03 /* Schedule.swift */; };
 		1843E630296BBFC800663122 /* SharingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1843E62F296BBFC800663122 /* SharingDialog.swift */; };
 		18458DE32A0EBC4300BAF832 /* RecordSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18458DE22A0EBC4300BAF832 /* RecordSound.swift */; };
@@ -73,6 +74,7 @@
 		18CE4C58295FAC2000D349A3 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CE4C57295FAC2000D349A3 /* BoardView.swift */; };
 		18CE4C5A295FAC2400D349A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CE4C59295FAC2400D349A3 /* Assets.xcassets */; };
 		18CE4C5D295FAC2400D349A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */; };
+		18D4FC112A6DF43B007B9EF2 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4FC102A6DF43B007B9EF2 /* NewAccount.swift */; };
 		18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D5571F29B50D6F00DE584B /* LibraryDialog.swift */; };
 		18D89A422969086000BAF565 /* sample.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 18D89A412969086000BAF565 /* sample.sqlite */; };
 		18E002152A536F1D00E520B5 /* AcapelaSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E0020F2A536F1C00E520B5 /* AcapelaSetup.m */; };
@@ -209,6 +211,7 @@
 		182702D02981E1F2009C3B12 /* PhraseBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseBar.swift; sourceTree = "<group>"; };
 		182702D22981E49B009C3B12 /* PhraseBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhraseBarView.swift; sourceTree = "<group>"; };
 		182702D429874ED1009C3B12 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		18277DE82A752D47002E7FC4 /* NewAccountDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountDialog.swift; sourceTree = "<group>"; };
 		183D7D122A470E4D006EED03 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		1843E62F296BBFC800663122 /* SharingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingDialog.swift; sourceTree = "<group>"; };
 		18458DE22A0EBC4300BAF832 /* RecordSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSound.swift; sourceTree = "<group>"; };
@@ -273,6 +276,7 @@
 		18CE4C57295FAC2000D349A3 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		18CE4C59295FAC2400D349A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18CE4C5C295FAC2400D349A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		18D4FC102A6DF43B007B9EF2 /* NewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
 		18D5571F29B50D6F00DE584B /* LibraryDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDialog.swift; sourceTree = "<group>"; };
 		18D89A412969086000BAF565 /* sample.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.sqlite; sourceTree = "<group>"; };
 		18E0020D2A536F1C00E520B5 /* AcapelaSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcapelaSetup.h; sourceTree = "<group>"; };
@@ -444,6 +448,7 @@
 				18E15F0A2A099FB9002AEA3F /* Sync.swift */,
 				185E45362A23EC4500250399 /* WordVariants.swift */,
 				18E0021A2A54631500E520B5 /* Files.swift */,
+				18D4FC102A6DF43B007B9EF2 /* NewAccount.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				187EBF132A3DEFAF00F35CEC /* ImageSearch.swift */,
 				187EBF2D2A4072B600F35CEC /* FindLocation.swift */,
 				183D7D122A470E4D006EED03 /* Schedule.swift */,
+				18277DE82A752D47002E7FC4 /* NewAccountDialog.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -930,6 +936,7 @@
 				18C944422A51E05C00C64476 /* EditCellForm.swift in Sources */,
 				18D5572029B50D6F00DE584B /* LibraryDialog.swift in Sources */,
 				18CE4C58295FAC2000D349A3 /* BoardView.swift in Sources */,
+				18D4FC112A6DF43B007B9EF2 /* NewAccount.swift in Sources */,
 				18EA71BF2974FDFA005477CE /* AppState.swift in Sources */,
 				18A6BE81295FB1B80039B5D4 /* File.swift in Sources */,
 				18A6BEA82960BCCB0039B5D4 /* ContentView.swift in Sources */,
@@ -970,6 +977,7 @@
 				185E44EA2A191F7700250399 /* WebBrowser.swift in Sources */,
 				185E44E62A19134A00250399 /* VolumeObserver.swift in Sources */,
 				182702D12981E1F2009C3B12 /* PhraseBar.swift in Sources */,
+				18277DE92A752D47002E7FC4 /* NewAccountDialog.swift in Sources */,
 				185E44EC2A1920B000250399 /* WebViewNavigationDelete.swift in Sources */,
 				185E45372A23EC4500250399 /* WordVariants.swift in Sources */,
 				18EA71C329750A39005477CE /* VolumeDialog.swift in Sources */,
