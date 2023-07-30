@@ -100,12 +100,16 @@ struct BoardView: View {
                 }
                 switch boardState.state {
                 case .closed:
-                    ProgressView("Downloading your communication board...").onAppear {
-                        Task {
-                            await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                            _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                    if boardState.newAccount {
+                        ProgressView("Downloading your new communication board...")
+                    } else {
+                        ProgressView("Downloading your communication board...").onAppear {
                             Task {
-                                regionMonitor.startMonitor()
+                                await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
+                                _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                                Task {
+                                    regionMonitor.startMonitor()
+                                }
                             }
                         }
                     }

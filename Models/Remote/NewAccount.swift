@@ -37,6 +37,8 @@ struct NewAccountResponse: Decodable {
     var errorMessage: LocalizedStringKey {
         get {
             switch result {
+            case .UserAlreadyRegistered:
+                return LocalizedStringKey("That user has already been registered")
             case .DuplicateUserName:
                 fallthrough
             case .UsernameAlreadyExists:

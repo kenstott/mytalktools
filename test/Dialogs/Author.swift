@@ -35,8 +35,6 @@ struct Author: View {
     @State var showBoardName = false
     @State var isUnlocked = false
     @State var showCreateNewUsername = false
-    @State var showCreationSuccess = false
-    @State var showCreationError = false
     @State var newAccountResponse = NewAccountResponse(d: 13)
     
     func authenticate() {
@@ -194,14 +192,10 @@ struct Author: View {
                             Text(LocalizedStringKey("Restore purchases at no cost"))
                         }
                     }
-                    .alert("Login Error", isPresented: $showLoginError) {} message: {
+                    .alert("Login Error", isPresented: $showLoginError) {
+                        
+                    } message: {
                         Text(isValidUser.result?.errorMessage ?? NSLocalizedString("Unknown error", comment: ""))
-                    }
-                    .alert("Account Creation Success", isPresented: $showCreationSuccess) {} message: {
-                        Text(LocalizedStringKey("Account was successfully created. Your new username and password have been updated. Press login to use your new account."))
-                    }
-                    .alert("Account Creation Error", isPresented: $showCreationError) {} message: {
-                        Text(newAccountResponse.errorMessage)
                     }
                 }.navigationBarTitle(LocalizedStringKey("Login"))
                     .toolbar {
@@ -218,7 +212,7 @@ struct Author: View {
                             .alert(isPresented: $isProfessional, content: {
                                 Alert(title: Text(LocalizedStringKey("Professional Account")),
                                       message: Text(LocalizedStringKey("Select a board name from Login")),
-                                      dismissButton: Alert.Button.default(Text(LocalizedStringKey("OK")),
+                                      dismissButton: .default(Text(LocalizedStringKey("OK")),
                                                                           action: {
                                     showBoardName = true
                                 }))
@@ -237,15 +231,10 @@ struct Author: View {
                     }
             }
             .sheet(isPresented: $showCreateNewUsername) {
-                NewAccountDialog() { result,username,password in
-                    if result.result == .Success {
-                        self.username = username
-                        self.password = password
-                        showCreationSuccess = true
-                    } else {
-                        self.newAccountResponse = result
-                        showCreationError = true
-                    }
+                NewAccountDialog() { username,password in
+                    self.username = username
+                    self.password = password
+                    appState.rootViewId = UUID()
                 }
             }
         }

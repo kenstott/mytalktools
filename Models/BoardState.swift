@@ -113,6 +113,7 @@ class BoardState: ObservableObject {
     @Published var boardTreeFiltered = [ContentStub]()
     @Published var directNavigateBoard: UInt = 0
     @Published var viewedBoard: BoardView? = nil
+    @Published var newAccount = false
 
     @Published var boardTreeSearch = "" {
         didSet {
@@ -382,7 +383,7 @@ class BoardState: ObservableObject {
         }
     }
     
-    func setUserDb(username: String, boardID: String?, media: Media) async {
+    func setUserDb(username: String, boardID: String?, media: Media, overwriteAndReload: Bool = true) async {
         DispatchQueue.main.async {
             if self.state == .ready {
                 self.state = .closed
@@ -402,11 +403,13 @@ class BoardState: ObservableObject {
                 print(error.localizedDescription)
             }
         }
-        if !fileManager.fileExists(atPath: dbUser.path, isDirectory: &isDirectory) {
-            await overwriteDevice(dbUser: dbUser, username: username, media: media, boardID: boardID)
-        }
-        DispatchQueue.main.async {
-            self.reloadDatabase(fileURL: dbUser)
+        if overwriteAndReload {
+            if !fileManager.fileExists(atPath: dbUser.path, isDirectory: &isDirectory) {
+                await overwriteDevice(dbUser: dbUser, username: username, media: media, boardID: boardID)
+            }
+            DispatchQueue.main.async {
+                self.reloadDatabase(fileURL: dbUser)
+            }
         }
     }
     
