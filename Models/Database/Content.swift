@@ -27,6 +27,10 @@ enum ContentType: Int, CaseIterable, Identifiable {
     case goBack = 19
 }
 
+struct DecodableContent: Decodable {
+    
+}
+
 class Content: Identifiable, Hashable, ObservableObject {
     
     enum BackgroundColorMask: Int {

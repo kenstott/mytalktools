@@ -198,6 +198,7 @@
 		18EA71C72975B1D8005477CE /* ContentListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C62975B1D8005477CE /* ContentListRow.swift */; };
 		18EA71C92975B889005477CE /* ContentGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71C82975B889005477CE /* ContentGridCell.swift */; };
 		18EA71CB2978EC19005477CE /* Speak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA71CA2978EC19005477CE /* Speak.swift */; };
+		18FCE9EB2A910B4C0070FA8E /* PhraseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FCE9EA2A910B4C0070FA8E /* PhraseHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -406,6 +407,7 @@
 		18EA71C62975B1D8005477CE /* ContentListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListRow.swift; sourceTree = "<group>"; };
 		18EA71C82975B889005477CE /* ContentGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridCell.swift; sourceTree = "<group>"; };
 		18EA71CA2978EC19005477CE /* Speak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speak.swift; sourceTree = "<group>"; };
+		18FCE9EA2A910B4C0070FA8E /* PhraseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseHistory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +501,7 @@
 				187EBF2D2A4072B600F35CEC /* FindLocation.swift */,
 				183D7D122A470E4D006EED03 /* Schedule.swift */,
 				18277DE82A752D47002E7FC4 /* NewAccountDialog.swift */,
+				18FCE9EA2A910B4C0070FA8E /* PhraseHistory.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -931,6 +934,7 @@
 				18E15EEF2A069AAC002AEA3F /* CreateEmail.swift in Sources */,
 				182702C1297BF871009C3B12 /* Author.swift in Sources */,
 				185E45032A1D621800250399 /* EmbeddedContactPicker.swift in Sources */,
+				18FCE9EB2A910B4C0070FA8E /* PhraseHistory.swift in Sources */,
 				18E15F282A0C0090002AEA3F /* ImageUtility.m in Sources */,
 				1886DBB529CFBC1D00CF4011 /* Convertable.swift in Sources */,
 				18C944422A51E05C00C64476 /* EditCellForm.swift in Sources */,

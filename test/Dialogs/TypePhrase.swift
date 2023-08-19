@@ -54,7 +54,7 @@ struct TypePhrase: View {
         if phraseMode == "1" {
             let content = Content()
             content.name = phrase
-            phraseBarState.contents.append(content)
+            phraseBarState.appendToContents(content)
         } else {
             speak.setVoices(ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate) {
 //                print("Completed")

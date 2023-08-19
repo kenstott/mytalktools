@@ -52,6 +52,7 @@ struct ContentView: View {
     @State var zoomId: Int? = -1
     @State var actionSheetType: ActionSheetType = .top
     @State var selectMode = false
+    private var fromPhraseBar = false
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -73,20 +74,21 @@ struct ContentView: View {
             return CGFloat(Double(_defaultFontSize) ?? 15)
         }
     }
-    private var onClick: (() -> Void)? = nil
+    private var onClick: ((_ taps: Int) -> Void)? = nil
     private var contentId: Int = 0
     private var refresh = 0
     
     init(
         _ content: Binding<Content>,
         selectMode: Bool,
-        onClick: @escaping () -> Void,
+        onClick: @escaping (_ taps: Int) -> Void,
         maximumCellHeight: Binding<Double>,
         cellWidth: Binding<Double>,
         board: Binding<Board>,
         refresh: Int,
         zoomHeight: Double,
-        zoomWidth: Double
+        zoomWidth: Double,
+        fromPhraseBar: Bool = false
     ) {
         self.contentId = content.id;
         self.onClick = onClick
@@ -97,6 +99,7 @@ struct ContentView: View {
         self.refresh = refresh
         self.zoomHeight = zoomHeight
         self.zoomWidth = zoomWidth
+        self.fromPhraseBar = fromPhraseBar
     }
     
     func save(content: Content) {
@@ -112,38 +115,42 @@ struct ContentView: View {
         showEditCellActionSheet = false
     }
     
-    func cellAction() {
+    func cellAction(taps: Int = 1) {
         DispatchQueue.main.async {
-            if (phraseMode == "1" || phraseBarState.userPhraseModeToggle) {
-                switch content.contentType {
-                case .goBack:
-                    break;
-                case .goHome:
-                    break;
-                default:
-                    if !content.doNotAddToPhraseBar {
-                        phraseBarState.contents.append(content)
-                    }
-                }
-            } else {
-                if content.linkId == 0 && content.externalUrl == "" && ((zoomPictures && !content.doNotZoomPics) || content.zoom) {
-                    zoomId = content.id
-                }
-                content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
-                    //                    print("done")
-                }
-                if content.boardId == -1 && content.linkId != 0 {
-                    self.linkID = content.linkId
-                }
-                if (content.externalUrl != "") {
-                    if let url = URL(string: content.externalUrl) {
-                        if UIApplication.shared.canOpenURL(url) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            if !self.fromPhraseBar {
+                if taps == 1 {
+                    if phraseMode == "1" || phraseBarState.userPhraseModeToggle {
+                        switch content.contentType {
+                        case .goBack:
+                            break;
+                        case .goHome:
+                            break;
+                        default:
+                            if !content.doNotAddToPhraseBar {
+                                phraseBarState.appendToContents(content);
+                            }
+                        }
+                    } else {
+                        if content.linkId == 0 && content.externalUrl == "" && ((zoomPictures && !content.doNotZoomPics) || content.zoom) {
+                            zoomId = content.id
+                        }
+                        content.voice(speak, ttsVoice: ttsVoice, ttsVoiceAlternate: ttsVoiceAlternate, speechRate: speechRate, voiceShape: voiceShape) {
+                            //                    print("done")
+                        }
+                        if content.boardId == -1 && content.linkId != 0 {
+                            self.linkID = content.linkId
+                        }
+                        if (content.externalUrl != "") {
+                            if let url = URL(string: content.externalUrl) {
+                                if UIApplication.shared.canOpenURL(url) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                }
+                            }
                         }
                     }
                 }
             }
-            onClick!()
+            onClick!(taps)
         }
     }
     
@@ -231,6 +238,9 @@ struct ContentView: View {
                 
             } else {
                 MainView
+                    .onTapGesture(count: 2) {
+                        cellAction(taps: 2)
+                    }
                     .onTapGesture {
                         cellAction()
                     }
@@ -301,7 +311,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geo in
-            ContentView(.constant(Content().setPreview()), selectMode: false, onClick: { () -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0, zoomHeight: 250.0, zoomWidth: 250.0).environmentObject(BoardState())
+            ContentView(.constant(Content().setPreview()), selectMode: false, onClick: { (taps: Int) -> Void in }, maximumCellHeight: .constant(geo.size.height), cellWidth: .constant(geo.size.width), board: .constant(Board()), refresh: 0, zoomHeight: 250.0, zoomWidth: 250.0).environmentObject(BoardState())
         }
     }
 }

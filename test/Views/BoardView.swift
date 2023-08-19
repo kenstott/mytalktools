@@ -87,7 +87,7 @@ struct BoardView: View {
     }
     
     var body: some View {
-        let phraseBarView = PhraseBarView()
+        let phraseBarView = PhraseBarView(geometry: geometry)
         let regionMonitor = RegionMonitor(enteredRegion: $enteredRegion)
         return ZStack {
             VStack {
@@ -151,7 +151,7 @@ struct BoardView: View {
                                 ContentView(
                                     $item,
                                     selectMode: false,
-                                    onClick: { () -> Void in
+                                    onClick: { (taps: Int) -> Void in
                                         if (item.link != 0) {
                                             activeChildBoard = item.linkId
                                         }
@@ -172,7 +172,7 @@ struct BoardView: View {
                                         ContentView(
                                             $item,
                                             selectMode: false,
-                                            onClick: { () -> Void in
+                                            onClick: { (taps: Int) -> Void in
                                                 switch item.contentType {
                                                 case .goBack: dismiss()
                                                 case .goHome: appState.rootViewId = UUID()
@@ -496,7 +496,7 @@ struct BoardView: View {
                 case "phraseBarToggle": phraseBarState.userPhraseModeToggle = !phraseBarState.userPhraseModeToggle
                 case "phraseBarClear": phraseBarState.contents.removeAll()
                 case "phraseBarBackspace": phraseBarState.contents.removeLast()
-                case "play": phraseBarState.speakPhrases()
+                case "play": phraseBarState.speakPhrases(storedUsername, storedBoardName)
                 default: print("Unknown command: \(url.absoluteString)")
                 }
             }

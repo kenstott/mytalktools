@@ -128,7 +128,7 @@ struct LibraryView: View {
                                 ContentView(
                                     .constant(Content().copyLibraryContent(row.Content)),
                                     selectMode: selectMode,
-                                    onClick: { () -> Void in
+                                    onClick: { (taps: Int) -> Void in
                                         
                                     },
                                     maximumCellHeight: .constant(geo.size.height),
