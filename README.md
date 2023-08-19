@@ -83,8 +83,8 @@ These are the features that are being replicated in this new SwiftUI implementat
 |- ` `[High quality Text-To-Speech voices](#_high_quality_text-to-speech) (English, French, German, Dutch, etc. / child / adult / male / female)|$$$|$$$|||done - except for recording, and in-app purchase|
 |[Phrases/Language Generation/Communication](#_phrases/language_generation/communication)||||||
 |- [A “phrase bar” can be optionally displayed](#_display_phrase_bar), and then when tapping on cells it adds them to the phrase bar. Tapping on the phrase bar voices the cells in order.|x|x|||done|
-|- Phrase bar history – double-tapping the phrase bar will display a history of all phrases used. Or, on an iPad tap the arrow to the left of the phrase bar to view the phrase history. |x||||TBD|
-|- Phrase bar favorites – swipe left on a phrase bar history item (see above) and make it a favorite. Favorites are always displayed at the top of list.|x||||TBD|
+|- Phrase bar history – double-tapping the phrase bar will display a history of all phrases used. Or, on an iPad tap the arrow to the left of the phrase bar to view the phrase history. |x||||done|
+|- Phrase bar favorites – swipe left on a phrase bar history item (see above) and make it a favorite. Favorites are always displayed at the top of list.|x||||done|
 |- [4 alternate phrase bar displays](#_display_phrase_bar_1) – 1) text only 2) text only in blocks 3) images and text displayed side by side, 4) images displayed above text|x|2|||TBD|
 |- [Delete last cell added to phrase, Delete entire phrase.](#_delete_phrase_bar)|x|x|||done|
 |- [Long press on the phrase bar displays alternate communication options](#_additional_phrase_bar): Facebook, Twitter, SMS, Email, Photos, Notes, etc.|x|x|||TBD|
