@@ -253,6 +253,11 @@ class Content: Identifiable, Hashable, ObservableObject {
     @Published var isRepeatBoard: Bool = false
     @Published var isRepeatChildBoards: Bool = false
     @Published var hotSpotStyle: Bool = false
+    var isRepeat: Bool {
+        get {
+            return isRepeatRowTop || isRepeatRowBottom || isRepeatColumnLeft || isRepeatColumnRight || isRepeatedCellOverlay
+        }
+    }
     
     func setBackground(_ z: Int) {
         self.background = z

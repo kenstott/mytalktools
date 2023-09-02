@@ -68,6 +68,7 @@ func getSampleBoardResults(json: String) -> Array<SampleBoard> {
 class Board: Hashable, Identifiable, ObservableObject, Equatable {
     
     static private var _getSampleBoards = Network<SampleBoardResult, QueryInput>(service: "Query")
+    static private var repeatCells: [Content] = []
     var getBoardPost = GetPost<LibraryBoard, LibraryBoardIdInput>(service: "GetBoard")
     
     static func getSampleBoards() async throws -> [SampleBoard]? {
@@ -115,6 +116,14 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                 print("Unable to write file")
             }
         }
+    }
+    
+    func getRow(_ row: Int) -> [Content] {
+        return contents.filter { $0.row == row }
+    }
+    
+    func getColumn(_ column: Int) -> [Content] {
+        return contents.filter { $0.column == column }
     }
     
     func getString(id: UInt, column: String, defaultValue: String = "") -> String {
@@ -221,18 +230,128 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         hasher.combine(id)
     }
     
+    func setUseRepeats(_ flag: Bool) {
+        self.useRepeats = flag;
+    }
+    
+    private func updateFilteredContents() {
+        filteredContents = self.contents.map { $0.copy(id: $0.id) }
+        filteredColumns = self.columns
+        if id == 1 {
+            Board.repeatCells = self.contents.filter { $0.isRepeat }
+        } else if useRepeats {
+            let topRow = Board.repeatCells.filter { $0.isRepeatRowTop } .map { $0.copy(id: $0.id) }
+            let bottomRow = Board.repeatCells.filter { $0.isRepeatRowBottom } .map { $0.copy(id: $0.id) }
+            let rightColumn = Board.repeatCells.filter { $0.isRepeatColumnRight } .map { $0.copy(id: $0.id) }
+            let leftColumn = Board.repeatCells.filter { $0.isRepeatColumnLeft } .map { $0.copy(id: $0.id) }
+            let overlayCells = Board.repeatCells.filter { $0.isRepeatedCellOverlay } .map { $0.copy(id: $0.id) }
+            filteredContents = filteredContents.map {
+                for cell in overlayCells {
+                    if cell.row == $0.row && cell.column == $0.column {
+                        return cell
+                    }
+                }
+                return $0
+            }
+            var rows = self.rows
+            if topRow.count > 0 {
+                rows += 1
+                filteredContents = filteredContents.map {
+                    $0.row += 1
+                    return $0
+                }
+                for i in 0..<filteredColumns {
+                    let c = Content()
+                    c.row = 0
+                    c.column = i
+                    filteredContents.insert(c, at: i)
+                }
+            }
+            if leftColumn.count > 0 {
+                filteredColumns += 1
+                filteredContents = filteredContents.map {
+                    $0.column += 1
+                    return $0
+                }
+                for i in 0..<rows {
+                    let c = Content()
+                    c.row = i
+                    c.column = 0
+                    filteredContents.insert(c, at: i * filteredColumns)
+                }
+            }
+            if bottomRow.count > 0 {
+                rows += 1
+                for i in 0..<filteredColumns {
+                    let c = Content()
+                    c.row = rows - 1
+                    c.column = i
+                    filteredContents.append(c)
+                }
+            }
+            if rightColumn.count > 0 {
+                filteredColumns += 1
+                for i in 0..<rows {
+                    let c = Content()
+                    c.row = i
+                    c.column = filteredColumns - 1
+                    filteredContents.insert(c, at: (i * filteredColumns) + filteredColumns - 1 )
+                }
+            }
+            filteredContents = filteredContents.map {
+                for cell in topRow {
+                    if $0.row == 0 && cell.column == $0.column {
+                        return cell
+                    }
+                }
+                return $0
+            }
+            filteredContents = filteredContents.map {
+                for cell in bottomRow {
+                    if $0.row == rows - 1 && cell.column == $0.column {
+                        return cell
+                    }
+                }
+                return $0
+            }
+            filteredContents = filteredContents.map {
+                for cell in leftColumn {
+                    if cell.row == $0.row && $0.column == 0 {
+                        return cell
+                    }
+                }
+                return $0
+            }
+            filteredContents = filteredContents.map {
+                for cell in rightColumn {
+                    if cell.row == $0.row && $0.column == filteredColumns - 1 {
+                        return cell
+                    }
+                }
+                return $0
+            }
+        }
+        filteredContents = filteredContents.filter { $0.externalUrl != "x" }
+    }
+    
     @Published var contents: [Content] = [] {
         didSet {
-            filteredContents = self.contents.filter { $0.externalUrl != "x" }
+            updateFilteredContents()
         }
     }
     @Published var filteredContents: [Content] = []
+    @Published var filteredColumns: Int = 0
     @Published var columns: Int = 0
     @Published var rows: Int = 0
     @Published var userId: Int = -1
     @Published var name: String = ""
     @Published var sort: [Int] = [0,0,0]
     @Published var id: UInt = 0
+    @Published var useRepeats = false {
+        didSet {
+            updateFilteredContents()
+        }
+    }
     
     init() {
         columns = 0
@@ -242,7 +361,8 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
         return setId(id, username, nil, nil)
     }
     
-    func setId(_ id: UInt, _ username: String?, _ boardName: String?, _ boardState: BoardState?) -> Board {
+    func setId(_ id: UInt, _ username: String?, _ boardName: String?, _ boardState: BoardState?, _ useRepeats: Bool = false) -> Board {
+        self.useRepeats = useRepeats
         if id == SpecialBoardType.MostRecent.rawValue && boardState != nil {
             self.id = SpecialBoardType.MostRecent.rawValue
             self.rows = 10
@@ -297,7 +417,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                     content.addToSpotlightSearch(username: username!)
                 }
             }
-//            self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
         } else {
             Task {
                 do {
@@ -336,7 +455,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
                         
                         self.calcCellSizes()
                         self.sortContent()
-//                        self.filteredContents = self.contents.filter { $0.externalUrl != "x" }
                     }
                 }
                 catch let error {
@@ -394,7 +512,6 @@ class Board: Hashable, Identifiable, ObservableObject, Equatable {
             c2.save()
             save()
             sortContent()
-//            filteredContents = contents.filter { $0.externalUrl != "x" }
             return true
         }
         return false

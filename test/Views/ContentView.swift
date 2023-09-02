@@ -13,6 +13,10 @@ import AVFAudio
 enum ActionSheetType {
     case top
     case board
+    case repeatOptions
+    case repeatRow
+    case repeatColumn
+    case repeatCell
 }
 
 struct ContentView: View {
@@ -37,6 +41,7 @@ struct ContentView: View {
     @AppStorage("PhraseBarAnimate") var phraseBarAnimate = false
     @AppStorage("ZoomPictures") var zoomPictures = false
     @AppStorage("UnzoomInterval") var unzoomInterval = 0
+    @AppStorage("LOGINUSERNAME") var storedUsername = ""
     @Binding var maximumCellHeight: Double
     @Binding var cellWidth: Double
     @Binding var board: Board
@@ -48,6 +53,7 @@ struct ContentView: View {
     @State var linkID: UInt?
     @State var showEditCellActionSheet = false
     @State var showEditActionSheet = false
+    @State var showRepeatSheet = false
     @State var showBoardSortOrderSheet = false
     @State var zoomId: Int? = -1
     @State var actionSheetType: ActionSheetType = .top
@@ -261,12 +267,155 @@ struct ContentView: View {
         }
         .actionSheet(isPresented: $showEditActionSheet) {
             switch(actionSheetType) {
+            case .repeatCell: return ActionSheet(
+                title: Text(LocalizedStringKey("Repeat Cell Options")),
+                buttons: [
+                    .cancel {
+                        
+                    },
+                    .destructive(Text(LocalizedStringKey("Remove Repeating Cell")), action: {
+                        content.setRepeatColumnLeft(value: false);
+                        content.setRepeatColumnRight(value: false);
+                        content.setRepeatRowTop(value: false);
+                        content.setRepeatRowBottom(value: false);
+                        content.setRepeatOverlay(value: false);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Cell on Left")), action: {
+                        content.setRepeatColumnLeft(value: true);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Cell on Right")), action: {
+                        content.setRepeatColumnRight(value: true);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Cell on Top")), action: {
+                        content.setRepeatRowTop(value: true);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Cell on Bottom")), action: {
+                        content.setRepeatRowBottom(value: true);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat and Overlay")), action: {
+                        content.setRepeatOverlay(value: true);
+                        content.save()
+                        _ = board.setId(board.id, storedUsername)
+                    })
+                ]
+            )
+            case .repeatColumn: return ActionSheet(
+                title: Text(LocalizedStringKey("Repeat Column Options")),
+                buttons: [
+                    .cancel {
+                        
+                    },
+                    .destructive(Text(LocalizedStringKey("Remove Repeat Column")), action: {
+                        for columnContent in board.getColumn(content.column) {
+                            columnContent.setRepeatColumnLeft(value: false);
+                            columnContent.setRepeatColumnRight(value: false);
+                            columnContent.setRepeatRowTop(value: false);
+                            columnContent.setRepeatRowBottom(value: false);
+                            columnContent.setRepeatOverlay(value: false);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat at Left")), action: {
+                        for columnContent in board.getColumn(content.column) {
+                            columnContent.setRepeatColumnLeft(value: true);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat at Right")), action: {
+                        for columnContent in board.getColumn(content.column) {
+                            columnContent.setRepeatColumnRight(value: true);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    })
+                ]
+            )
+            case .repeatRow: return ActionSheet(
+                title: Text(LocalizedStringKey("Repeat Row Options")),
+                buttons: [
+                    .cancel {
+                        
+                    },
+                    .destructive(Text(LocalizedStringKey("Remove Repeat Row")), action: {
+                        for columnContent in board.getRow(content.row) {
+                            columnContent.setRepeatColumnLeft(value: false);
+                            columnContent.setRepeatColumnRight(value: false);
+                            columnContent.setRepeatRowTop(value: false);
+                            columnContent.setRepeatRowBottom(value: false);
+                            columnContent.setRepeatOverlay(value: false);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat at Top")), action: {
+                        for columnContent in board.getRow(content.row) {
+                            columnContent.setRepeatRowTop(value: true);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat at Bottom")), action: {
+                        for columnContent in board.getRow(content.row) {
+                            columnContent.setRepeatRowBottom(value: true);
+                            columnContent.save()
+                            _ = board.setId(board.id, storedUsername)
+                        }
+                    })
+                ]
+            )
+            case .repeatOptions: return ActionSheet(
+                title: Text(LocalizedStringKey("Repeat Options")),
+                buttons: [
+                    .cancel {
+                        
+                    },
+                    .default(Text(LocalizedStringKey("Repeat Row")), action: {
+                        showEditActionSheet = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            actionSheetType = .repeatRow
+                            showEditActionSheet = true
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Column")), action: {
+                        showEditActionSheet = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            actionSheetType = .repeatColumn
+                            showEditActionSheet = true
+                        }
+                    }),
+                    .default(Text(LocalizedStringKey("Repeat Cell")), action: {
+                        showEditActionSheet = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            actionSheetType = .repeatCell
+                            showEditActionSheet = true
+                        }
+                    })
+                ]
+            )
             case .board: return ActionSheet(
                 title: Text(LocalizedStringKey("Change Board Dimensions")),
                 buttons: getButtons()
             )
             case .top:
-                let repeatButton: [ActionSheet.Button] = [.default(Text(LocalizedStringKey("Repeat")), action: {})]
+                let repeatButton: [ActionSheet.Button] = [.default(Text(LocalizedStringKey("Repeat")), action: {
+                    showEditActionSheet = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        actionSheetType = .repeatOptions
+                        showEditActionSheet = true
+                    }
+                })]
                 var buttons: [ActionSheet.Button] = [
                     .cancel {
                         //                        print("cancel")
@@ -281,7 +430,7 @@ struct ContentView: View {
                     }),
                     .default(Text("\(NSLocalizedString("Edit Board", comment: ""))-\(board.name)"), action: {
                         showEditActionSheet = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             actionSheetType = .board
                             showEditActionSheet = true
                         }
@@ -302,7 +451,7 @@ struct ContentView: View {
             if displayAsList {
                 ContentListRow(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor)
             } else {
-                ContentGridCell(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor, backgroundColor: backgroundColor, maximumCellHeight: maximumCellHeight, cellWidth: cellWidth, separatorLines: separatorLines)
+                ContentGridCell(content, defaultFontSize: defaultFontSize, foregroundColor: foregroundColor, backgroundColor: backgroundColor, maximumCellHeight: maximumCellHeight, cellWidth: cellWidth, separatorLines: separatorLines, fromPhraseBar: fromPhraseBar)
             }
         }
     }

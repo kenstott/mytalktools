@@ -40,7 +40,7 @@ class Network<Output: Decodable, Input: Encodable>: ObservableObject {
         let (data, responseRaw) = try await URLSession.shared.data(for: urlRequest)
         let response = responseRaw as? HTTPURLResponse
         if response!.statusCode == 200 {
-            print(String(data: data, encoding: .utf8) ?? "Problem with network file download.")
+//            print(String(data: data, encoding: .utf8) ?? "Problem with network file download.")
             do {
                 result = try JSONDecoder().decode(Output.self, from: data)
             }

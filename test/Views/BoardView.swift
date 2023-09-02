@@ -71,19 +71,30 @@ struct BoardView: View {
     @State var overwritingFromSample = false
     
     var maximumCellHeight: Double { get { Double(geometry.size.height - 50 - toolbarShown - phraseBarShown) / Double(min(maximumRows, board.rows)) } }
-    var cellWidth: Double { get { geometry.size.width / Double(board.columns == 0 ? 1 : board.columns) } }
+    var cellWidth: Double { get { geometry.size.width / Double(board.filteredColumns == 0 ? 1 : board.filteredColumns) } }
     var toolbarShown: CGFloat { get { boardState.authorMode || advancedUseBar ? 40 : 0 } }
     var phraseBarShown: CGFloat { get { phraseMode == "1" || phraseBarState.userPhraseModeToggle ? 100 : 0 } }
     var columns: Array<GridItem> { get { Array<GridItem>(
         repeating: GridItem(.fixed(cellWidth), spacing: 0, alignment: .leading),
-        count: max(board.columns, 1)) } }
+        count: max(board.filteredColumns, 1)) } }
+    var navigatedFromCell: Content?
+    var useRepeats: Bool {
+        get {
+            if navigatedFromCell != nil {
+                return navigatedFromCell!.isRepeatChildBoards && !boardState.editMode
+            }
+            return false
+        }
+    }
+    
     func multiplier(_ content: Content) -> Double {
         return 1
     }
     
-    init(_ id: UInt = 1, geometry: GeometryProxy) {
+    init(_ id: UInt = 1, geometry: GeometryProxy, navigatedFrom: Content? = nil) {
         self.id = id
         self.geometry = geometry
+        self.navigatedFromCell = navigatedFrom
     }
     
     var body: some View {
@@ -106,7 +117,7 @@ struct BoardView: View {
                         ProgressView("Downloading your communication board...").onAppear {
                             Task {
                                 await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                                _ = board.setId(id, storedUsername, storedBoardName, boardState, useRepeats)
                                 Task {
                                     regionMonitor.startMonitor()
                                 }
@@ -121,7 +132,7 @@ struct BoardView: View {
                         ForEach($board.contents, id: \.id) {
                             $item in
                             if $item.childBoardId.wrappedValue != 0 {
-                                NavigationLink(destination: BoardView(item.linkId, geometry: geometry), tag: item.linkId, selection: $activeChildBoard)
+                                NavigationLink(destination: BoardView(item.linkId, geometry: geometry, navigatedFrom: item), tag: item.linkId, selection: $activeChildBoard)
                                 {
                                     EmptyView()
                                 }
@@ -280,7 +291,7 @@ struct BoardView: View {
                         showAuthorHelp = boardState.authorMode && authorHints && !boardState.editMode
                         showUserHelp = !boardState.authorMode && userHints
                         
-                        _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                        _ = board.setId(id, storedUsername, storedBoardName, boardState, useRepeats)
                         boardState.viewedBoard = self
                         scheduleMonitor.createSchedule()
                         Task {
@@ -347,7 +358,7 @@ struct BoardView: View {
                                     boardState.undo()
                                     Task {
                                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                        _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                                        _ = board.setId(id, storedUsername, storedBoardName, boardState, useRepeats)
                                     }
                                     //                                print("Undo")
                                 } label: {
@@ -357,7 +368,7 @@ struct BoardView: View {
                                     boardState.redo()
                                     Task {
                                         await boardState.setUserDb(username: storedUsername, boardID: storedBoardName, media: media)
-                                        _ = board.setId(id, storedUsername, storedBoardName, boardState)
+                                        _ = board.setId(id, storedUsername, storedBoardName, boardState, useRepeats)
                                     }
                                     //                                print("Redo")
                                 } label: {
@@ -438,6 +449,9 @@ struct BoardView: View {
                         scheduleChildBoard = scheduleMonitor.boardId
                     }
                 }
+            }
+            .onChange(of: boardState.editMode) { newValue in
+                board.setUseRepeats(useRepeats)
             }
             .onChange(of: boardState.directNavigateBoard) { newValue in
                 Task {

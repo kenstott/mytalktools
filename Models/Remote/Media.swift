@@ -267,7 +267,7 @@ class Media: ObservableObject {
                 if response.statusCode == 200 {
                     self.fileManager.createFile(atPath: media.path, contents: data)
                 } else {
-                    print(response)
+//                    print(response)
                 }
             } catch let error {
                 print(error.localizedDescription)
@@ -332,7 +332,7 @@ class Media: ObservableObject {
                                 print ("file error: \(error)")
                             }
                         } else {
-                            print(response)
+//                            print(response)
                         }
                     } catch let error {
                         print(error.localizedDescription)

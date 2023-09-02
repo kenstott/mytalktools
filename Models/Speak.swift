@@ -213,9 +213,9 @@ class Speak: NSObject, ObservableObject {
             } else {
                 primaryVoice!.setRate(Float(speechRate))
                 primaryVoice!.setVoiceShaping(Int32(voiceShape))
-                print(Float(speechRate))
-                print(primaryVoice!.voiceShaping())
-                print(primaryVoice!.rate())
+//                print(Float(speechRate))
+//                print(primaryVoice!.voiceShaping())
+//                print(primaryVoice!.rate())
                 primaryVoice!.startSpeaking(phrase)
             }
         }

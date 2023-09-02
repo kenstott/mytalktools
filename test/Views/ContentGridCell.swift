@@ -16,6 +16,27 @@ struct ContentGridCell: View {
     private var cellWidth: Double = 20
     private var padding: CGFloat = 1
     private var unzoomInternal: Int = 0
+    private var fromPhraseBar = false
+    private var repeatImage: String? {
+        get {
+            if content.isRepeatRowBottom {
+                return "arrow.down"
+            }
+            else if content.isRepeatRowTop{
+                return "arrow.up"
+            }
+            else if content.isRepeatColumnLeft{
+                return "arrow.left"
+            }
+            else if content.isRepeatColumnRight{
+                return "arrow.right"
+            }
+            else if content.isRepeatedCellOverlay {
+                return "rectangle.tophalf.inset.filled"
+            }
+            return nil
+        }
+    }
     
     @AppStorage("CellMargin") var cellMargin = 1
     @AppStorage("UseMarginForCoding") var useMarginForCoding = false
@@ -51,8 +72,21 @@ struct ContentGridCell: View {
         self.unzoomInternal = unzoomInterval
     }
     
+    init (_ content: Content, defaultFontSize: CGFloat, foregroundColor: Color, backgroundColor: Color, maximumCellHeight: Double, cellWidth: Double, separatorLines: CGFloat, fromPhraseBar: Bool) {
+        self.content = content
+        self.defaultFontSize = defaultFontSize
+        if content.imageURL == "" {
+            self.defaultFontSize *= 1.2
+        }
+        self.foregroundColor = Content.convertColor(value: content.foregroundColor) ?? foregroundColor
+        self.maximumCellHeight = maximumCellHeight
+        self.cellWidth = cellWidth
+        self.backgroundColor = Content.convertBackgroundColor(value: content.backgroundColor) ?? backgroundColor
+        self.fromPhraseBar = fromPhraseBar
+    }
+    
     var body: some View {
-        ZStack(alignment: .center) {
+        return ZStack(alignment: .center) {
             VStack(alignment: .center) {
                 Spacer()
                 switch content.contentType {
@@ -91,7 +125,7 @@ struct ContentGridCell: View {
                 }
             }
             .background(.clear)
-            if globalState.authorMode {
+            if globalState.authorMode && !fromPhraseBar {
                 ZStack(alignment: .topLeading) {
                     Color.clear
                     VStack(alignment: .leading) {
@@ -116,8 +150,19 @@ struct ContentGridCell: View {
                     }
                 }
                 .padding(5)
+                if repeatImage != nil {
+                    ZStack(alignment: .topTrailing) {
+                        Color.clear
+                        Image(systemName: repeatImage!)
+                            .padding(5)
+                            .alignmentGuide(.top) { $0[.bottom] - 20 }
+                            .alignmentGuide(.trailing) { $0[.trailing] + 30 }
+                            .foregroundColor(.gray)
+                            .background(.clear)
+                    }
+                }
             }
-            if content.childBoardId != 0 {
+            if content.childBoardId != 0 && !fromPhraseBar {
                 ZStack(alignment: .topTrailing) {
                     Color.clear
                     Image(systemName: "ellipsis")

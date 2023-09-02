@@ -16,8 +16,8 @@ struct PhraseHistory: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        var favoritesList = phraseBarState.getPhraseFavorites(storedUsername, storedBoardName)
-        var favorites = phraseBarState.getPhraseHistory(storedUsername, storedBoardName).filter { favoritesList.contains(phraseBarState.getPhraseHash(phrase: $0)) }
+        let favoritesList = phraseBarState.getPhraseFavorites(storedUsername, storedBoardName)
+        let favorites = phraseBarState.getPhraseHistory(storedUsername, storedBoardName).filter { favoritesList.contains(phraseBarState.getPhraseHash(phrase: $0)) }
         return ZStack {
             List {
                 Section {

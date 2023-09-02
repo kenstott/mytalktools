@@ -178,7 +178,7 @@ class BoardState: ObservableObject {
         } catch let error {
             print(error.localizedDescription)
         }
-        print(url)
+//        print(url)
     }
     
     func updateMru(_ content: Content, _ username: String, _ boardName: String ) {
